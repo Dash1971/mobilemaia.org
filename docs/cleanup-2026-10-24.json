@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-24",
+  "timezone": "Asia/Tokyo",
+  "owner": "mobilemaia.org website setup chat",
+  "free_bytes_before_cleanup": 85682167808,
+  "free_bytes_after_cleanup": 85682524160,
+  "removed": [
+    {
+      "path": ".scratch/app-agents.md",
+      "bytes": 7756
+    },
+    {
+      "path": ".scratch/settings.png",
+      "bytes": 167264
+    },
+    {
+      "path": ".scratch/app-notices.md",
+      "bytes": 8702
+    },
+    {
+      "path": ".scratch/home.png",
+      "bytes": 108904
+    },
+    {
+      "path": ".scratch/app-readme.md",
+      "bytes": 37057
+    },
+    {
+      "path": ".scratch/app-release-notes.md",
+      "bytes": 7486
+    },
+    {
+      "path": ".scratch/responsive.html",
+      "bytes": 910
+    },
+    {
+      "path": ".scratch/app-releasing.md",
+      "bytes": 21952
+    }
+  ],
+  "stopped_processes": [
+    "Python preview server on 127.0.0.1:8765",
+    "Python responsive QA server on 127.0.0.1:8766"
+  ],
+  "retained": "Website source, Git history, reusable app assets, compact checks and published preview screenshot. No build intermediates, APKs, models, virtual environments, containers or emulators were created."
+}

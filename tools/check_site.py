@@ -13,6 +13,7 @@ class Document(HTMLParser):
     def __init__(self, path):
         super().__init__(convert_charrefs=True)
         self.path, self.ids, self.links = path, set(), []
+        self.idrefs = []
         self.has_title = False
         self.has_lang = False
         self.has_viewport = False
@@ -30,6 +31,8 @@ class Document(HTMLParser):
             self.has_viewport = True
         if tag == 'img' and 'alt' not in attrs:
             errors.append(f'{self.path.name}: image missing alt')
+        for attr in ('aria-labelledby', 'aria-describedby', 'aria-controls'):
+            self.idrefs.extend(attrs.get(attr, '').split())
         for attr in ('href', 'src'):
             if attrs.get(attr):
                 self.links.append(attrs[attr])
@@ -47,6 +50,9 @@ for path in ROOT.glob('*.html'):
         errors.append(f'{path.name}: missing title, language or viewport')
 
 for path, doc in documents.items():
+    for identifier in doc.idrefs:
+        if identifier not in doc.ids:
+            errors.append(f'{path.name}: missing ARIA target {identifier}')
     for raw in doc.links:
         url = urlsplit(raw)
         if url.scheme or url.netloc:

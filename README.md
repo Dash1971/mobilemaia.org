@@ -21,14 +21,17 @@ keyboard focus, downloads, and the no-JavaScript fallback after relevant changes
 
 ## Hosting
 
-[GitHub Pages preview](https://dash1971.github.io/mobilemaia.org/).
+Canonical address: [mobilemaia.org](https://mobilemaia.org/).
+The original [GitHub Pages address](https://dash1971.github.io/mobilemaia.org/)
+redirects to the configured custom domain.
 Pushes to `main` validate the site, upload only `site/`, and deploy through
 GitHub Actions. Pull requests validate without deploying. In repository
 Settings → Pages, use **GitHub Actions** as the source.
 
-The domain is being registered separately. No custom domain is attached until
-ownership has been verified. Follow [domain setup](docs/domain-setup.md) to
-connect `mobilemaia.org` and enable HTTPS. Domain registration can remain at 1984.
+The domain is registered at 1984, which also hosts its DNS. GitHub has verified
+ownership and attached the domain to this site's Pages configuration. See
+[domain setup](docs/domain-setup.md) for the DNS records, certificate setup,
+and checks used to complete the cutover. No paid 1984 hosting package is needed.
 
 ## Content and assets
 

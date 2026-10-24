@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://dash1971.github.io/mobilemaia.org/sitemap.xml
+Sitemap: https://mobilemaia.org/sitemap.xml

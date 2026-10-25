@@ -1,0 +1,47 @@
+{
+  "repository": "https://github.com/Dash1971/mobile-maia-research",
+  "commit": "2ac32240764adda087056a5e159d7c31a20df1ca",
+  "licence": "AGPL-3.0-only",
+  "files": [
+    {
+      "source": "README.md",
+      "local": "research-source/README.md",
+      "sha256": "14d727d6124707e625a06a5b59de41a27aac4854030321eaae1e9e67b21e13cc"
+    },
+    {
+      "source": "guides/choosing-maia-settings/README.md",
+      "local": "research-source/guide.md",
+      "sha256": "5ab8f75cd29404603bcb5ec452af858f25e964f4ab92c034fe1a8ce097b50fc1"
+    },
+    {
+      "source": "guides/choosing-maia-settings/figure-values.json",
+      "local": "research-source/figure-values.json",
+      "sha256": "6425d5455fe47f7ae56502d342b7880329b69f1e5c02fc0e0315e3f66bc7ab49"
+    },
+    {
+      "source": "guides/choosing-maia-settings/figures/opening-switch.svg",
+      "local": "site/research/figures/opening-switch.svg",
+      "sha256": "71ccaf42d050c4ac7c285f000f06ee72a2743f0c77719181bed6b5d9729245d1"
+    },
+    {
+      "source": "guides/choosing-maia-settings/figures/top-p-example.svg",
+      "local": "site/research/figures/top-p-example.svg",
+      "sha256": "5bfdb52947c2f7a00d52b731681a20e568b019b4edd2a563a0ba36cc5285950c"
+    },
+    {
+      "source": "guides/choosing-maia-settings/figures/opening-mix.svg",
+      "local": "site/research/figures/opening-mix.svg",
+      "sha256": "aa5637e7cc3279d42e43b567ecd9c8a78800b8c72592899b0f57013237906f1f"
+    },
+    {
+      "source": "guides/choosing-maia-settings/figures/costly-moves.svg",
+      "local": "site/research/figures/costly-moves.svg",
+      "sha256": "60027b83c82b22aac99dea405243d2587200313e43287d08ebbc8e089ee6ff35"
+    },
+    {
+      "source": "guides/choosing-maia-settings/figures/match-scores.svg",
+      "local": "site/research/figures/match-scores.svg",
+      "sha256": "dc624575d32e0ef49a2c8e23330205f5b4b9c5f985595aea2b8df4bd810a89a7"
+    }
+  ]
+}

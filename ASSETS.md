@@ -27,3 +27,20 @@ retain their respective rights and licences. Corresponding source and notices:
 System fonts only; no third-party web fonts, icon libraries, remote image
 requests, or image-generation service assets. The page's decorative checker
 pattern, frames, and marks use CSS and ordinary text.
+
+## Research guide
+
+The guide text, research-index source and five SVG figures are imported unchanged
+from [`Dash1971/mobile-maia-research` at 2ac32240764adda087056a5e159d7c31a20df1ca](https://github.com/Dash1971/mobile-maia-research/tree/2ac32240764adda087056a5e159d7c31a20df1ca).
+Original documentation and figures are AGPL-3.0-only, copyright Mobile Maia
+contributors. This is independent project research, not an official Maia-team
+publication. `research-source/manifest.json` records each original path, local
+destination and SHA-256; it is updated together with the imported source.
+
+The guide's figures are `opening-switch`, `top-p-example`, `opening-mix`,
+`costly-moves` and `match-scores`, copied byte-for-byte from
+`guides/choosing-maia-settings/figures/*.svg`. HTML uses the source PNG captions
+as alternative text for the corresponding SVG. Figures are scaled with CSS;
+their values and content are not redrawn or altered. Full-size originals can be
+opened from each figure. Reports, dataset provenance and reproduction tools
+remain in the research repository, linked at the imported commit.

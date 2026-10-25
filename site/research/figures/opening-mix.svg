@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="424.8pt" viewBox="0 0 792 424.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-19T22:10:27.589680</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 424.8
+L 792 424.8
+L 792 0
+L 0 0
+z
+" style="fill: #f5f7f3"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 269.28 310.104
+L 736.56 310.104
+L 736.56 118.944
+L 269.28 118.944
+z
+" style="fill: #f5f7f3"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 269.28 140.666727
+L 678.15 140.666727
+L 678.15 172.526727
+L 269.28 172.526727
+z
+" clip-path="url(#p53f1c13f6a)" style="fill: #c4cdc6"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 269.28 198.594
+L 613.899 198.594
+L 613.899 230.454
+L 269.28 230.454
+z
+" clip-path="url(#p53f1c13f6a)" style="fill: #c4cdc6"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 269.28 256.521273
+L 678.15 256.521273
+L 678.15 288.381273
+L 269.28 288.381273
+z
+" clip-path="url(#p53f1c13f6a)" style="fill: #287f61"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m4a13596ef7" d="M 0 0
+L 0 3.5
+" style="stroke: #53665d; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m4a13596ef7" x="269.28" y="310.104" style="fill: #53665d; stroke: #53665d; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #53665d" x="269.28" y="326.221187" transform="rotate(-0 269.28 326.221187)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m4a13596ef7" x="386.1" y="310.104" style="fill: #53665d; stroke: #53665d; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #53665d" x="386.1" y="326.221187" transform="rotate(-0 386.1 326.221187)">20</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m4a13596ef7" x="502.92" y="310.104" style="fill: #53665d; stroke: #53665d; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #53665d" x="502.92" y="326.221187" transform="rotate(-0 502.92 326.221187)">40</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m4a13596ef7" x="619.74" y="310.104" style="fill: #53665d; stroke: #53665d; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #53665d" x="619.74" y="326.221187" transform="rotate(-0 619.74 326.221187)">60</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m4a13596ef7" x="736.56" y="310.104" style="fill: #53665d; stroke: #53665d; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #53665d" x="736.56" y="326.221187" transform="rotate(-0 736.56 326.221187)">80</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #20372c" x="502.92" y="348.222125" transform="rotate(-0 502.92 348.222125)">Different opening types</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_6"/>
+     <g id="text_7">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(172.145625 154.555204)">Full sampling</text>
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(201.4425 168.957548)">1.0 / 1.0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_7"/>
+     <g id="text_8">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(188.930625 212.481539)">Top-P 0.95</text>
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(174.575625 226.88482)">from move 1</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8"/>
+     <g id="text_9">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(132.705 270.409281)">Opening variety ON</text>
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(157.81875 284.812562)">then Top-P 0.95</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_6">
+    <path d="M 269.28 310.104
+L 736.56 310.104
+" style="fill: none; stroke: #c4cdc6; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="683.991" y="161.012743" transform="rotate(-0 683.991 161.012743)">70</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="619.74" y="218.940016" transform="rotate(-0 619.74 218.940016)">59</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="683.991" y="276.867288" transform="rotate(-0 683.991 276.867288)">70</text>
+   </g>
+  </g>
+  <g id="text_13">
+   <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="43.56" y="38.232" transform="rotate(-0 43.56 38.232)">Opening variety restores the broader mix</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53665d" x="43.56" y="72.216" transform="rotate(-0 43.56 72.216)">1,000 opening samples per setting · rating 1600 · through 12 full moves</text>
+  </g>
+  <g id="text_15">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53665d" x="43.56" y="386.568" transform="rotate(-0 43.56 386.568)">French, Sicilian and other named opening types; variations are grouped together.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p53f1c13f6a">
+   <rect x="269.28" y="118.944" width="467.28" height="191.16"/>
+  </clipPath>
+ </defs>
+</svg>

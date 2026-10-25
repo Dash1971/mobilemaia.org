@@ -42,7 +42,7 @@ class Document(HTMLParser):
                 errors.append(f'{self.path.name}: third-party asset {resource}')
 
 documents = {}
-for path in ROOT.glob('*.html'):
+for path in ROOT.rglob('*.html'):
     doc = Document(path)
     doc.feed(path.read_text())
     documents[path.resolve()] = doc
@@ -57,7 +57,10 @@ for path, doc in documents.items():
         url = urlsplit(raw)
         if url.scheme or url.netloc:
             continue
-        target = (path.parent / unquote(url.path)).resolve() if url.path else path
+        if url.path.startswith('/'):
+            target = (ROOT / unquote(url.path).lstrip('/')).resolve()
+        else:
+            target = (path.parent / unquote(url.path)).resolve() if url.path else path
         if target.is_dir():
             target = target / 'index.html'
         if not target.is_relative_to(ROOT.resolve()) or not target.exists():

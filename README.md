@@ -4,7 +4,7 @@ The public website for [Mobile Maia](https://github.com/Dash1971/maia-chess-andr
 an independent, free and open-source Android chess app built around Maia-3.
 
 Plain HTML, CSS, and a small progressive-enhancement script. No package manager,
-framework, build step, external fonts, analytics, cookies, or browser storage.
+framework, runtime build step, external fonts, analytics, cookies, or browser storage.
 Only `site/` is deployed. APKs and model binaries stay in the app's distribution
 channels.
 
@@ -34,6 +34,36 @@ ownership and attached the domain to this site's Pages configuration. See
 and checks used to complete the cutover. No paid 1984 hosting package is needed.
 
 ## Content and assets
+
+### Research publication
+
+`/research/` introduces the three published studies and links to a locally served
+visual settings guide. The dedicated research repository remains the source for
+the text, figures, reports, datasets and reproduction tools. Research proposals
+are distinguished from released app behavior and upstream Maia recommendations.
+
+`research-source/manifest.json` pins the research commit and SHA-256 of every
+imported file. The Markdown snapshots and five original SVG figures are kept
+locally; no assets or article text are fetched by a visitor's browser.
+`tools/research.py` generates both HTML pages using Python's standard library.
+
+To update, review the research repository and choose a full, immutable commit:
+
+```sh
+python3 tools/research.py --update FULL_RESEARCH_COMMIT_SHA
+python3 tools/research.py --check
+python3 tools/check_site.py
+```
+
+Review the generated content and check desktop/mobile layouts before publishing.
+Running `python3 tools/research.py` without flags regenerates offline; `--check`
+verifies source hashes and exact generated HTML without network access or writes.
+CI runs that check before validating and deploying `site/`. Edit the original
+guide in the research repository, then import its new commit here; do not edit
+the generated pages independently. The renderer deliberately rejects unsupported
+Markdown blocks and requires review if the study index changes shape.
+
+### App and screenshot sources
 
 App claims and links were checked against Stable source commit
 `cd2551f70f9dde903d4bf543c7ea309beecee58f` and the published Stable `v2.4.0`

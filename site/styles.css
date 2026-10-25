@@ -9,3 +9,6 @@
 /* Keep optional screenshot controls out of the no-JavaScript fallback. */
 .screenshot-controls{display:none}.js .screenshot-controls{display:flex}
 @media(max-width:360px){nav>a[href='#questions']{display:none}.button-small{white-space:nowrap}.hero-actions{gap:18px}.hero-actions .text-link{font-size:11px;gap:6px}}
+/* Let the shared navigation wrap cleanly with the research section on phones. */
+@media(max-width:1100px){.nav-source{display:none}}
+@media(max-width:600px){html{scroll-padding-top:150px}.header-inner{height:auto;min-height:72px;flex-wrap:wrap;gap:12px;padding-block:13px}.header-inner>nav{flex-basis:100%;justify-content:flex-start;gap:22px}.header-inner>nav>.button{margin-left:auto}}

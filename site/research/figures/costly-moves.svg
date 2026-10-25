@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="424.8pt" viewBox="0 0 792 424.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-19T22:10:27.679301</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 424.8
+L 792 424.8
+L 792 0
+L 0 0
+z
+" style="fill: #f5f7f3"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 118.8 314.352
+L 728.64 314.352
+L 728.64 118.944
+L 118.8 118.944
+z
+" style="fill: #f5f7f3"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 146.52 314.352
+L 336.183158 314.352
+L 336.183158 169.639461
+L 146.52 169.639461
+z
+" clip-path="url(#p55f9cca66c)" style="fill: #c4cdc6"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 511.256842 314.352
+L 700.92 314.352
+L 700.92 184.200141
+L 511.256842 184.200141
+z
+" clip-path="url(#p55f9cca66c)" style="fill: #287f61"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #53665d" transform="translate(201.784391 334.671297)">Full sampling</text>
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #53665d" transform="translate(216.432829 349.073641)">1.0 / 1.0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #53665d" transform="translate(553.766546 334.671297)">After the opening</text>
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #53665d" transform="translate(577.352171 349.073641)">1.0 / 0.95</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #20372c" x="108.8" y="318.910594" transform="rotate(-0 108.8 318.910594)">0%</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #20372c" x="108.8" y="270.058594" transform="rotate(-0 108.8 270.058594)">3%</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #20372c" x="108.8" y="221.206594" transform="rotate(-0 108.8 221.206594)">6%</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_6"/>
+     <g id="text_6">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #20372c" x="108.8" y="172.354594" transform="rotate(-0 108.8 172.354594)">9%</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_7"/>
+     <g id="text_7">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #20372c" x="108.8" y="123.502594" transform="rotate(-0 108.8 123.502594)">12%</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #20372c" x="67.245312" y="216.648" transform="rotate(-90 67.245312 216.648)">Mean probability</text>
+    </g>
+   </g>
+   <g id="patch_5">
+    <path d="M 118.8 314.352
+L 728.64 314.352
+" style="fill: none; stroke: #c4cdc6; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #20372c" x="241.351579" y="164.754261" transform="rotate(-0 241.351579 164.754261)">8.89%</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #20372c" x="606.088421" y="179.314941" transform="rotate(-0 606.088421 179.314941)">7.99%</text>
+   </g>
+  </g>
+  <g id="text_11">
+   <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="43.56" y="38.232" transform="rotate(-0 43.56 38.232)">A smaller chance of a costly move</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53665d" x="43.56" y="72.216" transform="rotate(-0 43.56 72.216)">60 selected positions · Maia 1600 · every legal move evaluated</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="43.56" y="369.576" transform="rotate(-0 43.56 369.576)">Costly = at least two pawns below the best evaluated legal move.</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53665d" x="43.56" y="397.188" transform="rotate(-0 43.56 397.188)">Stockfish 18 · 20,000 nodes per move · 0.9 percentage points lower</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p55f9cca66c">
+   <rect x="118.8" y="118.944" width="609.84" height="195.408"/>
+  </clipPath>
+ </defs>
+</svg>

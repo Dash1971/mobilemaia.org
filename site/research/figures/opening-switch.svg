@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="424.8pt" viewBox="0 0 792 424.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-19T22:10:27.379535</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 424.8
+L 792 424.8
+L 792 0
+L 0 0
+z
+" style="fill: #f5f7f3"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 53.856 336.4416
+L 354.024 336.4416
+Q 373.824 336.4416 373.824 325.8216
+L 373.824 188.1864
+Q 373.824 177.5664 354.024 177.5664
+L 53.856 177.5664
+Q 34.056 177.5664 34.056 188.1864
+L 34.056 325.8216
+Q 34.056 336.4416 53.856 336.4416
+z
+" clip-path="url(#p4b323ccf40)" style="fill: #dceadf"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 434.016 336.4416
+L 734.184 336.4416
+Q 753.984 336.4416 753.984 325.8216
+L 753.984 188.1864
+Q 753.984 177.5664 734.184 177.5664
+L 434.016 177.5664
+Q 414.216 177.5664 414.216 188.1864
+L 414.216 325.8216
+Q 414.216 336.4416 434.016 336.4416
+z
+" clip-path="url(#p4b323ccf40)" style="fill: #20372c"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53665d" x="43.56" y="38.232" transform="rotate(-0 43.56 38.232)">MOBILE MAIA  /  PLAYING-SETTINGS RESEARCH</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="43.56" y="84.96" transform="rotate(-0 43.56 84.96)">Opening variety first.</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 28px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="43.56" y="127.44" transform="rotate(-0 43.56 127.44)">More selective play from move 6.</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #287f61" x="63.36" y="208.152" transform="rotate(-0 63.36 208.152)">MOVES 1–5 · BOTH SIDES</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="63.36" y="252.756" transform="rotate(-0 63.36 252.756)">1.0  /  1.0</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(63.36 282.223313)">Temperature / Top-P</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #20372c" transform="translate(63.36 301.608)">Keep Maia's full opening choices.</text>
+   </g>
+   <g id="patch_4">
+    <path d="M 378.20388 257.004
+Q 394.814345 257.004 409.188743 257.004
+" style="fill: none; stroke: #287f61; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 404.388743 254.604
+L 409.188743 257.004
+L 404.388743 259.404
+" style="fill: none; stroke: #287f61; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b5d8c4" x="443.52" y="208.152" transform="rotate(-0 443.52 208.152)">FROM MOVE 6</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #ffffff" x="443.52" y="252.756" transform="rotate(-0 443.52 252.756)">1.0  /  0.95</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(443.52 282.223313)">Temperature / Top-P</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(443.52 301.608)">Trim the least likely tail.</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #20372c" x="43.56" y="373.824" transform="rotate(-0 43.56 373.824)">Max variety in opening: ON</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53665d" x="43.56" y="397.188" transform="rotate(-0 43.56 397.188)">From move 6, the app applies your settings. Here we test 1.0 / 0.95.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p4b323ccf40">
+   <rect x="0" y="0" width="792" height="424.8"/>
+  </clipPath>
+ </defs>
+</svg>

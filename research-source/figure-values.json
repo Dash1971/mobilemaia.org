@@ -1,0 +1,66 @@
+{
+  "source": "studies/opening-variety-2026-10-18/results.json",
+  "quality_source": "studies/opening-variety-2026-10-18/quality-results.json",
+  "match_scores": {
+    "600": {
+      "games": 200,
+      "wins": 93,
+      "draws": 34,
+      "losses": 73,
+      "score": 0.55,
+      "score_95_ci": [
+        0.48,
+        0.6175
+      ]
+    },
+    "1600": {
+      "games": 600,
+      "wins": 345,
+      "draws": 38,
+      "losses": 217,
+      "score": 0.6066666666666667,
+      "score_95_ci": [
+        0.5675,
+        0.6458333333333334
+      ]
+    },
+    "2400": {
+      "games": 200,
+      "wins": 111,
+      "draws": 34,
+      "losses": 55,
+      "score": 0.64,
+      "score_95_ci": [
+        0.58,
+        0.7
+      ]
+    }
+  },
+  "opening_family_counts_1600": {
+    "A": 70,
+    "B": 59,
+    "C": 70
+  },
+  "costly_move_probability_1600": {
+    "positions": 60,
+    "A_mean": 0.08886793104811318,
+    "C_mean": 0.07992622134455402,
+    "C_minus_A_mean": -0.008941709703559135,
+    "C_minus_A_95_ci": [
+      -0.011867453089166397,
+      -0.006133011923069611
+    ]
+  },
+  "illustration": {
+    "probabilities_percent": [
+      60,
+      25,
+      8,
+      4,
+      2,
+      1
+    ],
+    "kept_percent": 97,
+    "excluded_percent": 3
+  }
+}

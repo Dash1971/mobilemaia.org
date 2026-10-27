@@ -116,7 +116,11 @@ reference validation; never swap a smaller/re-exported model silently.
 
 ### Playable browser preview
 
-`/play/` is a small 5M CPU game: play White or Black, set the model rating,
+`/play/` is the first step toward an app trial before Android installation.
+Desktop shows the working app inside a phone frame; phones use the full viewport.
+Home, Game and Settings navigation preserves the current board/engine. The dark
+green presentation follows Stable 2.5, while feature parity is staged in the
+[browser-app roadmap](docs/browser-app-roadmap.md). It is currently a small 5M CPU game: play White or Black, set the model rating,
 select legal moves with taps or arrow keys/Enter, choose promotions, take back
 moves, and export a PGN. It uses pinned, locally vendored chess.js 1.4.0 for legal
 rules and original Cburnett SVG pieces from Lichess. Exact source, licences and

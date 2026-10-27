@@ -7,12 +7,36 @@ let game = new Chess(), human = 'w', rating = 1600, started = false, selected, p
 let worker, ready = false, loading = false, thinking = false, revision = 0, boot = 0, focusSquare = 'e2';
 let engineStart, diagnostics = {}, lastMoveText = '', engineError = '', sessions = 0, games = 0;
 let awaitingSince;
+let activeView = 'home', settingsReturn = 'home';
 const visibility = [{ at: new Date().toISOString(), state: document.visibilityState }];
 document.addEventListener('visibilitychange', () => {
   visibility.push({ at: new Date().toISOString(), state: document.visibilityState });
 });
 const labelColor = color => color === 'w' ? 'White' : 'Black';
 const squareButtons = new Map();
+function syncShell() {
+  $('resume').hidden = !started;
+  $('app-back').hidden = activeView === 'home';
+  $('app-footer').hidden = activeView !== 'home';
+  $('app-title').textContent = activeView === 'home' ? 'Mobile Maia' : activeView === 'game' ? 'Play Maia' : 'Settings';
+  const status = ready ? '5M CPU · Engine ready' : loading
+    ? ($('load-progress').hasAttribute('value') ? 'Loading Maia 5M…' : 'Preparing Maia…')
+    : engineError ? 'Maia needs to reload' : diagnostics.startedAt ? 'Maia is stopped' : '5M CPU · Ready to start';
+  if ($('session-indicator').textContent !== status) $('session-indicator').textContent = status;
+}
+function showView(view, focus = true) {
+  if (view === 'game' && !started) view = 'home';
+  if (view === 'settings' && activeView !== 'settings') settingsReturn = activeView;
+  activeView = view;
+  for (const name of ['home', 'game', 'settings']) $('view-' + name).hidden = name !== view;
+  $('app-content').scrollTop = 0;
+  syncShell();
+  if (focus) (view === 'game' ? squareButtons.get(focusSquare) : view === 'home' ? $('side') : $('app-back'))?.focus({ preventScroll: true });
+}
+$('app-settings').addEventListener('click', () => showView('settings'));
+$('home-settings').addEventListener('click', () => showView('settings'));
+$('resume').addEventListener('click', () => showView('game'));
+$('app-back').addEventListener('click', () => showView(activeView === 'settings' ? settingsReturn : 'home'));
 function makeBoard() {
   const files = human === 'w' ? 'abcdefgh' : 'hgfedcba';
   const ranks = human === 'w' ? '87654321' : '12345678';
@@ -72,9 +96,10 @@ function render() {
   for (let i = 0; i < history.length; i += 2) {
     const li = document.createElement('li'); li.textContent = `${i / 2 + 1}. ${history[i].san}  ${history[i + 1]?.san || ''}`; $('moves').append(li);
   }
-  $('moves').scrollTop = $('moves').scrollHeight; $('empty-moves').hidden = history.length > 0;
+  $('moves').scrollLeft = $('moves').scrollWidth; $('empty-moves').hidden = history.length > 0;
   if (end) game.setHeader('Result', game.isCheckmate() ? (game.turn() === 'w' ? '0-1' : '1-0') : '1/2-1/2');
   else game.setHeader('Result', '*');
+  syncShell();
 }
 function choose(square) {
   if (!started || game.turn() !== human || game.isGameOver() || promotionMoves) return;
@@ -102,7 +127,18 @@ function promote(moves) {
     $('promotion-options').append(button);
   }
   $('promotion').showModal();
+  positionPromotion();
 }
+function positionPromotion() {
+  if (!$('promotion').open) return;
+  const phone = document.querySelector('.phone-shell').getBoundingClientRect();
+  const dialog = $('promotion').getBoundingClientRect();
+  const x = Math.max(dialog.width / 2 + 8, Math.min(innerWidth - dialog.width / 2 - 8, phone.left + phone.width / 2));
+  const y = Math.max(dialog.height / 2 + 8, Math.min(innerHeight - dialog.height / 2 - 8, phone.top + phone.height / 2));
+  $('promotion').style.left = `${x}px`;
+  $('promotion').style.top = `${y}px`;
+}
+window.addEventListener('resize', positionPromotion);
 $('promotion-cancel').addEventListener('click', () => $('promotion').close());
 $('promotion').addEventListener('close', () => { promotionMoves = null; render(); });
 function askMaia() {
@@ -121,6 +157,7 @@ function updateMetrics() {
   pieces.push(`${sessions} session${sessions === 1 ? '' : 's'} created in this tab`, `${games} game${games === 1 ? '' : 's'} started`);
   $('metrics').textContent = pieces.join(' · ');
   $('startup-json').textContent = JSON.stringify(startupReport(), null, 2);
+  syncShell();
 }
 function startupReport() {
   return { ...diagnostics, sessionsCreated: sessions, gamesStarted: games,
@@ -143,7 +180,7 @@ async function startEngine() {
   if (ready || loading) return;
   loading = true; engineError = ''; engineStart = performance.now();
   const thisBoot = ++boot;
-  diagnostics = { startedAt: new Date().toISOString(), version: '20261027-play2', downloads: [] };
+  diagnostics = { startedAt: new Date().toISOString(), version: '20261027-shell1', downloads: [] };
   $('engine-title').textContent = 'Loading Maia.'; $('engine-status').textContent = 'Checking engine configuration…';
   $('load-progress').hidden = false; $('load-progress').value = 0; $('load-progress').max = 1;
   $('release').disabled = false; $('retry').hidden = true; updateMetrics(); render();
@@ -164,6 +201,7 @@ async function startEngine() {
         updateMetrics();
       } else if (data.type === 'initializing') {
         $('engine-title').textContent = 'Preparing Maia.'; $('engine-status').textContent = 'Downloads verified. Creating the CPU session…'; $('load-progress').removeAttribute('value');
+        syncShell();
       } else if (data.type === 'ready') {
         ready = true; loading = false; sessions++;
         diagnostics = { ...diagnostics, ...data.diagnostics, mainReadyMs: performance.now() - engineStart };
@@ -194,10 +232,10 @@ $('setup').addEventListener('submit', event => {
   human = $('side').value; rating = Number($('rating').value); game = createGame(human, rating); started = true; games++;
   focusSquare = human === 'w' ? 'e2' : 'e7';
   awaitingSince = human === 'b' ? performance.now() : null;
+  showView('game', false);
   makeBoard(); render(); $('start').textContent = 'New game'; updateMetrics();
   squareButtons.get(focusSquare).focus({ preventScroll: true });
   if (!ready) startEngine(); else askMaia();
-  if (matchMedia('(max-width:760px)').matches) $('board').scrollIntoView({ block: 'center', behavior: 'smooth' });
 });
 $('undo').addEventListener('click', () => { if (takeBack(game, human)) { revision++; thinking = false; selected = null; lastMoveText = ''; render(); } });
 $('retry').addEventListener('click', startEngine);

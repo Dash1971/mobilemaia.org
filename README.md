@@ -106,8 +106,11 @@ or release verification. Stable and Preview remain separate.
 
 Download links point to official distribution pages, not hardcoded APK versions.
 Keep the homepage concise; detailed features and current release notes live in
-the application repositories. There is no community chat invite until a channel
-has actually been chosen and created.
+the application repositories. The [Mobile Maia community on Flotilla](https://app.flotilla.social/join?r=mobilemaia.spaces.flotilla.social&c=slusagresp6) is a
+10-member pilot for questions, game discussions and Preview testing. Its join
+link is published in the homepage community section and footer; update both
+if the invite is rotated. GitHub issues remain the place for tracked bugs
+and feature requests.
 
 ## Licence
 

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 import { CACHE_NAME, sha256 } from '../../lab/inference/core.mjs?v=20261027-5m';
-import { pwa } from '../pwa.mjs';
+import { pwa } from '../pwa.mjs?v=__PWA_SOURCE__';
 const qa = new URLSearchParams(location.search).get('qa')?.match(/^[a-z0-9-]{1,60}$/)?.[0];
 const offlineQa = !!qa && new URLSearchParams(location.search).get('offlineqa') === '1';
 const keepEngines = !qa || offlineQa;

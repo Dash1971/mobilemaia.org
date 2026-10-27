@@ -37,6 +37,10 @@ def prepare_offline_shell(deploy, app, bundle):
 def assemble(web,deploy):
     if deploy.exists(): raise ValueError('Deployment output must be new.')
     shutil.copytree(ROOT/'site',deploy)
+    pwa_version=hashlib.sha256((deploy/'play/pwa.mjs').read_bytes()).hexdigest()[:16]
+    for relative in ['play/host.mjs','play/native/platform.mjs']:
+        script=deploy/relative
+        script.write_text(script.read_text().replace('__PWA_SOURCE__',pwa_version))
     app=deploy/'play/app';app.mkdir()
     build=digest_tree(web);bundle=app/f'bundle-{build}';shutil.copytree(web,bundle)
     # The source entry is kept at the route root; every compiled asset is scoped
@@ -53,11 +57,16 @@ def assemble(web,deploy):
     marker=bootstrap.rindex('_flutter.loader.load(')
     bootstrap=bootstrap[:marker]+f"_flutter.loader.load({{config:{{assetBase:'bundle-{build}/',canvasKitBaseUrl:'bundle-{build}/canvaskit/',forceSingleThreadedSkwasm:true}}}});\n"
     name=f'flutter_bootstrap.{build}.js';(app/name).write_text(bootstrap)
-    runtime=hashlib.sha256(b''.join((ROOT/'site/play/native'/f).read_bytes() for f in ['platform.mjs','maia-worker.mjs'])).hexdigest()[:16]
+    runtime=hashlib.sha256(b''.join((deploy/'play/native'/f).read_bytes() for f in ['platform.mjs','maia-worker.mjs'])).hexdigest()[:16]
     index=index.replace('</head>',f'<meta name="mobile-maia-bootstrap" content="{name}"><meta name="mobile-maia-asset-base" content="bundle-{build}/"></head>')
     index=index.replace('../native/platform.mjs','../native/platform.mjs?v='+runtime)
     (app/'index.html').write_text(index)
-    host=deploy/'play/index.html';host.write_text(host.read_text().replace('__BROWSER_BUILD__',build))
+    host=deploy/'play/index.html'
+    host_text=host.read_text().replace('__BROWSER_BUILD__',build)
+    for name in ['host.mjs','host.css']:
+        version=hashlib.sha256((deploy/'play'/name).read_bytes()).hexdigest()[:16]
+        host_text=re.sub(re.escape(name)+r'\?v=[^"\s]+',name+'?v='+version,host_text)
+    host.write_text(host_text)
     source=json.loads((web.parent.parent/'browser-source.json').read_text())
     website_revision=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD'],text=True).strip()
     source.update({'websiteRevision':website_revision,

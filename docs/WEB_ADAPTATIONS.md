@@ -94,6 +94,11 @@ long-game review responsiveness remain explicit follow-ups, not parity claims.
 
 ## Guard limits
 
+Web entry scripts and their PWA dependency use content-hash query versions even
+before the service worker is enabled. Compiled assets use content-hash directories.
+Preserve both when changing the build; an uncontrolled first visit must not mix
+new app code with an old HTTP-cached platform/install controller.
+
 Exact replacement counts detect changed patch sites. UI hashes establish that
 selected files came through preparation unchanged; they do not prove all app
 features work on the web. Compilation catches many API changes, while runtime

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-import {pwa} from './pwa.mjs';
+import {pwa} from './pwa.mjs?v=__PWA_SOURCE__';
 const query=new URLSearchParams(location.search);
 const target=new URL('app/',location.href);
 const build=document.querySelector('meta[name="mobile-maia-build"]')?.content;if(build&&!build.startsWith('__'))target.searchParams.set('v',build);

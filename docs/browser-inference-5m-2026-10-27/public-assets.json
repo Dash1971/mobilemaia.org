@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-10-27T05:24:07.891585+00:00",
+  "siteCommit": "7ff07e2424d5f9ca4382b71d34ef3c909d943d8a",
+  "files": [
+    {
+      "url": "https://mobilemaia.org/lab/inference/benchmark.css",
+      "status": 200,
+      "bytes": 2707,
+      "sha256": "f1e54ae60beed603b75cdfc2895d9478cfc60470b168abd7c2a9e3e5da07311f",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/benchmark.mjs",
+      "status": 200,
+      "bytes": 7979,
+      "sha256": "84d065c2a28cbb2d3d9014325c90802d611958fc0242c69f6ef022d08d1dae6a",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/config.json",
+      "status": 200,
+      "bytes": 4182,
+      "sha256": "4d111e12373773bc7fe7ef801e36e12d5bbb009dcf70ea045700d0ec97f34d45",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/core.mjs",
+      "status": 200,
+      "bytes": 2934,
+      "sha256": "619629400e5566b45c9b6a2fd78f61eb54404d292a040c919111d0c3cf19a197",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/fixtures-5m.json",
+      "status": 200,
+      "bytes": 9771,
+      "sha256": "e7e9dbcd3545d18b30f962b7a6fef1fc531a2c46af55134646a7fda201e65352",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/fixtures.json",
+      "status": 200,
+      "bytes": 6205,
+      "sha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/index.html",
+      "status": 200,
+      "bytes": 6984,
+      "sha256": "74f9bd78108f977392caa2a682bb6bed50d924ae73f9c75e932aa7d118228682",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/LICENSE",
+      "status": 200,
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+      "contentType": "application/octet-stream"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ThirdPartyNotices.txt",
+      "status": 200,
+      "bytes": 338088,
+      "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3",
+      "contentType": "text/plain; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort-wasm-simd-threaded.asyncify.mjs",
+      "status": 200,
+      "bytes": 53457,
+      "sha256": "59cf781530e1a16df2a291d78798e3ec1152467edaec402d6f9599d85047c302",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort-wasm-simd-threaded.mjs",
+      "status": 200,
+      "bytes": 24738,
+      "sha256": "30ed0b5cd1182ede931fea448afb567d4dc705ec957af09f108a2be5f770dac3",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort.wasm.min.mjs",
+      "status": 200,
+      "bytes": 53725,
+      "sha256": "c21d9c326d453a4a61398270c804d5979e118540597cb0c07f7b3d64e6098234",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort.webgpu.min.mjs",
+      "status": 200,
+      "bytes": 70742,
+      "sha256": "329cd956772397a1aedd668e911195d39afefb182f6fc14aafa4f08ac8d8f379",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/worker.mjs",
+      "status": 200,
+      "bytes": 8790,
+      "sha256": "53f9575021aa1d6d24520dce7bbb0aa9f9838b7766dbb154e049ec3213a460f7",
+      "contentType": "text/javascript; charset=utf-8"
+    }
+  ]
+}

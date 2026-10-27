@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-27T05:24:59.857701+00:00",
+  "removedPath": ".scratch/inference-5m/",
+  "removedBytes": 234220195,
+  "volumeFreeBeforeBytes": 60354834432,
+  "volumeFreeAfterBytes": 60548960256,
+  "previewStopped": "127.0.0.1:8771",
+  "localPrototypeCache": "cleared through the UI",
+  "retained": "Compact native provenance, wheel URLs/hashes, generated reference fixtures, source and benchmark reports. Existing historical model archives belong to other work and remain untouched.",
+  "completedAt": "2026-10-27T05:33:04.750751+00:00",
+  "publicPrototypeCache": "cleared through the UI after all tests",
+  "browserWorkers": "all completed/terminated; QA tab closed",
+  "downloadHistoryTab": "closed",
+  "compactExportRetained": "mobile-maia-79m-wasm-1793079051346.json (6.3 KB)",
+  "activeBulkOutput": null,
+  "finalVolumeFreeBytes": 56818458624
+}

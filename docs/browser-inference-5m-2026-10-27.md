@@ -98,9 +98,52 @@ still apply. No analytics, automatic uploads, service worker or account added.
 ## Task storage
 
 Initial volume free space was 63,012,970,496 bytes; budget under 1 GiB plus the
-10 GiB reserve. Task-owned `.scratch/inference-5m/` contains the temporary native
-environment, 21 MB model and package-install report, retained for verification
-only and expiring at task completion. No app build, emulator or shared SDK change.
+10 GiB reserve. Task-owned `.scratch/inference-5m/` held the temporary native
+environment, 21 MB model and package-install report; these were removed after
+public 5M verification. No app build, emulator or shared SDK change.
 Compact provenance and browser reports are retained in this document's companion
-directory. Task-owned preview processes and browser caches are cleared after
-published verification; the native environment and weights are then removed.
+directory. Task-owned preview processes and browser caches were cleared after verification;
+completion details are recorded below.
+
+
+## Published verification
+
+Code commit `7ff07e2424d5f9ca4382b71d34ef3c909d943d8a` passed
+[CI and Pages deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40454969554).
+A concurrent homepage/community-link update was preserved before publishing.
+All [14 lab files](browser-inference-5m-2026-10-27/public-assets.json) matched local
+bytes over verified HTTPS. Both model downloads and both runtime downloads were
+size/hash verified in real browser runs. CPU runtime downloads were reused across
+models; both the model and runtime were reused for the final 79M GPU run.
+
+All four model/backend combinations passed all eight model-specific references.
+The following are Mac Chrome desktop smoke results, **not phone benchmarks**.
+
+| Model | Backend requested | Warm runs | Median | p95 | Full result |
+| --- | --- | ---: | ---: | ---: | --- |
+| 5M | cpu | 32 | 52.9 ms | 77.3 ms | [JSON](browser-inference-5m-2026-10-27/public-5m-cpu.json) |
+| 5M | webgpu | 32 | 30.0 ms | 36.1 ms | [JSON](browser-inference-5m-2026-10-27/public-5m-webgpu.json) |
+| 79M | cpu | 32 | 765.0 ms | 839.1 ms | [JSON](browser-inference-5m-2026-10-27/public-79m-cpu.json) |
+| 79M | webgpu | 32 | 45.8 ms | 55.9 ms | [JSON](browser-inference-5m-2026-10-27/public-79m-webgpu.json) |
+
+No hidden-tab transition was recorded in these runs. The 79M CPU result varied
+substantially: a separate 8-run repeat passed with median
+289.3 ms and p95 313.9 ms
+([repeat JSON](browser-inference-5m-2026-10-27/public-79m-cpu-repeat.json)). This is
+also slower than the earlier 79M-only smoke run. Model, input and runtime hashes
+still match. System load, scheduling, power state and browser compilation caches
+were not controlled, and the cause of the timing variation was not established.
+These reports validate execution and routing; they do not establish a precise
+model speedup or a performance regression. Repeated tests under recorded phone
+conditions remain necessary. All raw timings, including outliers, are retained.
+
+The Chrome download history confirmed the new export filename
+`mobile-maia-79m-wasm-1793079051346.json`, 6.3 KB, Done. The default reset to 5M
+on reload after comparison. Named download caches on both local and public
+origins were cleared through the UI; the QA and download-history tabs were
+closed. The preview process was already stopped. Temporary native environment,
+weights and install report were removed (234,220,195 bytes); no shared tools or
+existing model archives were removed. See
+[cleanup evidence](browser-inference-5m-2026-10-27/cleanup.json). Only compact
+source, fixtures, provenance, browser reports, screenshots and the JSON export
+are intentionally retained. No task bulk output remains.

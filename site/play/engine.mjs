@@ -1,6 +1,6 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
 import { CACHE_NAME, encode, sha256 } from '../lab/inference/core.mjs?v=20261027-5m';
-import { sampleMove } from './policy.mjs?v=20261027-play1';
+import { sampleMove } from './policy.mjs?v=20261027-play2';
 
 let session, ort, initPromise, latest, running = false;
 const diagnostics = { schema: 1, modelId: '5m', backend: 'wasm', numThreads: 1,

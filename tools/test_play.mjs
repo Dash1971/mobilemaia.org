@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { Chess, uci, takeBack, currentReply, ending } from '../site/play/game.mjs';
+import { Chess, createGame, uci, takeBack, currentReply, ending } from '../site/play/game.mjs';
 import { moveIndex, sampleMove } from '../site/play/policy.mjs';
 
 assert.equal(moveIndex('e2e4'), 796);
@@ -62,9 +62,18 @@ assert.equal(ending(new Chess('7k/5K2/6Q1/8/8/8/8/8 b - - 0 1'), 'w'), 'Draw by 
 const repeat = new Chess(); for (const move of ['Nf3', 'Nf6', 'Ng1', 'Ng8', 'Nf3', 'Nf6', 'Ng1', 'Ng8']) repeat.move(move);
 assert.equal(ending(repeat, 'w'), 'Draw by threefold repetition.');
 const pgn = new Chess(); pgn.loadPgn(castle.pgn()); assert.equal(pgn.fen(), castle.fen());
+const tagged = createGame('b', 2200, new Date(2026, 9, 27, 12));
+tagged.move('e4'); tagged.move('e5');
+const imported = new Chess(); imported.loadPgn(tagged.pgn());
+assert.equal(imported.getHeaders().White, 'Maia 5M (2200)');
+assert.equal(imported.getHeaders().Black, 'You');
+assert.equal(imported.getHeaders().Date, '2026.10.27');
+assert.equal(imported.getHeaders().Site, 'https://mobilemaia.org/play/');
+assert.deepEqual(imported.history(), ['e4', 'e5']);
 
 const root = new URL('../site/play/', import.meta.url);
 const assets = JSON.parse(await readFile(new URL('assets.json', root)));
+for (const color of 'wb') for (const piece of 'PNBRQK') assert.ok(assets.files.some(file => file.path === `pieces/${color}${piece}.svg`));
 for (const asset of assets.files) {
   const bytes = await readFile(new URL(asset.path, root));
   assert.equal(bytes.length, asset.bytes);

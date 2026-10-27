@@ -1,5 +1,5 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
-import { Chess, uci, takeBack, currentReply, ending } from './game.mjs?v=20261027-play1';
+import { Chess, createGame, uci, takeBack, currentReply, ending } from './game.mjs?v=20261027-play2';
 import { CACHE_NAME } from '../lab/inference/core.mjs?v=20261027-5m';
 const $ = id => document.getElementById(id);
 const names = { p: 'pawn', n: 'knight', b: 'bishop', r: 'rook', q: 'queen', k: 'king' };
@@ -143,7 +143,7 @@ async function startEngine() {
   if (ready || loading) return;
   loading = true; engineError = ''; engineStart = performance.now();
   const thisBoot = ++boot;
-  diagnostics = { startedAt: new Date().toISOString(), version: '20261027-play1', downloads: [] };
+  diagnostics = { startedAt: new Date().toISOString(), version: '20261027-play2', downloads: [] };
   $('engine-title').textContent = 'Loading Maia.'; $('engine-status').textContent = 'Checking engine configuration…';
   $('load-progress').hidden = false; $('load-progress').value = 0; $('load-progress').max = 1;
   $('release').disabled = false; $('retry').hidden = true; updateMetrics(); render();
@@ -152,7 +152,7 @@ async function startEngine() {
     if (!response.ok) throw new Error('Engine configuration unavailable');
     const config = await response.json();
     if (thisBoot !== boot) return;
-    worker = new Worker(new URL('./engine.mjs?v=20261027-play1', import.meta.url), { type: 'module' });
+    worker = new Worker(new URL('./engine.mjs?v=20261027-play2', import.meta.url), { type: 'module' });
     const activeWorker = worker;
     worker.onmessage = ({ data }) => {
       if (worker !== activeWorker) return;
@@ -191,13 +191,9 @@ async function startEngine() {
 $('setup').addEventListener('submit', event => {
   event.preventDefault();
   revision++; thinking = false; selected = null; lastMoveText = ''; engineError = '';
-  game = new Chess(); human = $('side').value; rating = Number($('rating').value); started = true; games++;
+  human = $('side').value; rating = Number($('rating').value); game = createGame(human, rating); started = true; games++;
   focusSquare = human === 'w' ? 'e2' : 'e7';
   awaitingSince = human === 'b' ? performance.now() : null;
-  const now = new Date();
-  game.setHeader('Event', 'Mobile Maia browser preview', 'Site', 'https://mobilemaia.org/play/',
-    'Date', `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`,
-    'White', human === 'w' ? 'You' : `Maia 5M (${rating})`, 'Black', human === 'b' ? 'You' : `Maia 5M (${rating})`);
   makeBoard(); render(); $('start').textContent = 'New game'; updateMetrics();
   squareButtons.get(focusSquare).focus({ preventScroll: true });
   if (!ready) startEngine(); else askMaia();

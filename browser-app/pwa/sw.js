@@ -11,14 +11,20 @@ const assets = new Map(ASSETS.map(asset => [new URL(asset.url, self.location.ori
 let installProgress;
 
 async function fetchAsset(cache, asset) {
-  const request = new Request(asset.url, {cache: 'no-cache', credentials: 'same-origin'});
-  const response = await fetch(request);
-  if (!response.ok) throw new Error('Offline shell download failed: ' + asset.url);
-  const bytes = await response.clone().arrayBuffer();
-  const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))]
-    .map(value => value.toString(16).padStart(2, '0')).join('');
-  if (bytes.byteLength !== asset.bytes || hash !== asset.sha256) {
-    throw new Error('Offline shell integrity mismatch: ' + asset.url);
+  let response;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const request = new Request(asset.url, {cache: attempt ? 'reload' : 'no-cache', credentials: 'same-origin'});
+      response = await fetch(request);
+      if (!response.ok) throw new Error('Download returned HTTP ' + response.status);
+      const bytes = await response.clone().arrayBuffer();
+      const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))]
+        .map(value => value.toString(16).padStart(2, '0')).join('');
+      if (bytes.byteLength !== asset.bytes || hash !== asset.sha256) throw new Error('Offline shell integrity mismatch');
+      break;
+    } catch (error) {
+      if (attempt) throw new Error(asset.url + ': ' + error.message);
+    }
   }
   await cache.put(new URL(asset.url, self.location.origin).href, response.clone());
   return response;
@@ -44,7 +50,14 @@ async function precache(progress = () => {}) {
 }
 self.addEventListener('install', event => event.waitUntil((async () => {
   try { await precache(value => { installProgress = value; }); }
-  catch (error) { await caches.delete(CACHE); throw error; }
+  catch (error) {
+    await caches.delete(CACHE);
+    const message = error.name === 'QuotaExceededError' ? 'Not enough browser storage to save the offline app.' : error.message;
+    for (const client of await self.clients.matchAll({type:'window',includeUncontrolled:true})) {
+      if (new URL(client.url).pathname.startsWith('/play/')) client.postMessage({type:'PWA_INSTALL_ERROR',message});
+    }
+    throw error;
+  }
 })()));
 // No skipWaiting: an update waits for existing games/tabs to close.
 self.addEventListener('activate', event => event.waitUntil((async () => {

@@ -23,7 +23,7 @@ const listeners=new Map();
 const context=vm.createContext({URL,Response,crypto:webcrypto,console,caches,
  Request:class extends Request{constructor(url,options){super(key(url),options);}},
  fetch:async request=>{calls++;if(offline)throw new Error('Network offline');const path=new URL(key(request)).pathname;const data=files.get(path);return new Response(corrupt&&path.endsWith('.wasm')?'corrupt':data,{status:data===undefined?404:200});},
- self:{location:{origin},clients:{async claim(){claims++;}},addEventListener(name,listener){listeners.set(name,listener);}},
+ self:{location:{origin},clients:{async claim(){claims++;},async matchAll(){return [];}},addEventListener(name,listener){listeners.set(name,listener);}},
 });
 vm.runInContext(template.replace('__PWA_RELEASE__','"new"').replace('__PWA_ASSETS__',JSON.stringify(assets)),context);
 async function event(name,extra={}){const pending=[];let response;listeners.get(name)({waitUntil(value){pending.push(value);},respondWith(value){response=value;},...extra});await Promise.all(pending);return response===undefined?undefined:await response;}
@@ -64,7 +64,7 @@ const statuses=[];await event('message',{data:{type:'STATUS'},ports:[{postMessag
 let registrations=0, prevented=false;const pageEvents=new Map();
 const page=vm.createContext({URL,MessageChannel,setTimeout,clearTimeout,isSecureContext:true,
  location:{href:origin+'/play/'},matchMedia:()=>({matches:false}),addEventListener:(name,callback)=>pageEvents.set(name,callback),
- navigator:{serviceWorker:{async getRegistration(){return undefined;},async register(){registrations++;return {active:{scriptURL:origin+'/play/sw.js',postMessage(data,ports){ports[0].postMessage({shellReady:true,progress:1});ports[0].close();}}};}}},
+ navigator:{serviceWorker:{addEventListener(){},async getRegistration(){return undefined;},async register(){registrations++;return {active:{scriptURL:origin+'/play/sw.js',postMessage(data,ports){ports[0].postMessage({shellReady:true,progress:1});ports[0].close();}}};}}},
  parent:null,window:{},console,
 });
 const module=new vm.SourceTextModule(await readFile(new URL('../site/play/pwa.mjs',import.meta.url),'utf8'),{context:page});await module.link(()=>{});await module.evaluate();

@@ -5,6 +5,9 @@ function createController() {
   addEventListener('beforeinstallprompt', event => { event.preventDefault(); prompt = event; });
   addEventListener('appinstalled', () => { prompt = null; void ensureRegistration().catch(error => { failure = error.message; }); });
   const supported = 'serviceWorker' in navigator && isSecureContext;
+  if (supported) navigator.serviceWorker.addEventListener('message', event => {
+    if (event.source?.scriptURL === new URL('/play/sw.js', location.href).href && event.data?.type === 'PWA_INSTALL_ERROR') failure=event.data.message;
+  });
   // Keep the normal first visit light. Enable the offline shell when requested
   // or installed; an existing offline installation continues to update normally.
   const ready = supported ? navigator.serviceWorker.getRegistration('/play/')
@@ -86,7 +89,7 @@ function createController() {
         const timer = setTimeout(() => { worker.removeEventListener('statechange', changed); reject(new Error('Offline setup timed out. Reopen while online to retry.')); }, 120000);
         function changed() {
           if (worker.state === 'activated') { clearTimeout(timer); worker.removeEventListener('statechange', changed); resolve(); }
-          if (worker.state === 'redundant') { clearTimeout(timer); worker.removeEventListener('statechange', changed); reject(new Error('Offline setup failed. Check your connection and free space, then reopen.')); }
+          if (worker.state === 'redundant') { clearTimeout(timer); worker.removeEventListener('statechange', changed); reject(new Error(failure || 'Offline setup failed. Check your connection and free space, then reopen.')); }
         }
         worker.addEventListener('statechange', changed); changed();
       });

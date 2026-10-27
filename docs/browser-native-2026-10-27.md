@@ -21,8 +21,9 @@ changed. Thus no Stable/Preview companion port or app publication applies.
 
 DartWasm is required because dartchess uses exact 64-bit bitboards. The JavaScript
 fallback displays a compatibility notice. Flutter single-threaded SkWasm and ONNX
-CPU WASM run without COOP/COEP. All Flutter renderers/fonts and app assets are
-served locally. Immutable bundle paths prevent cached subset fonts/old code from
+CPU WASM run without COOP/COEP. Flutter renderers, Roboto/icon fonts and app assets are served locally.
+The engine may fetch missing-script/symbol fallback fonts from Google Fonts;
+self-hosting those fallbacks remains a privacy/compatibility follow-up. Immutable bundle paths prevent cached subset fonts/old code from
 mixing with new releases; icon tree shaking is disabled because the JS fallback
 would otherwise remove icons used only by the Wasm app. No service worker is
 installed. The website/research remain buildless HTML.
@@ -66,7 +67,21 @@ Local Chrome with isolated QA preferences/IndexedDB, saving engine downloads off
   project. Offline runtime tests verify raw outputs, queue/error cleanup and
   pinned UCI assets; existing site/research/inference checks remain required.
 
-Live deployment and cleanup evidence is recorded after public verification.
+Published website source `52bc4c0d1ee8a5c975eb9f4fe5f322cb810e7d39` passed
+[GitHub Actions build and deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40489903417).
+Public bundle `2936a14648e6213d` returned a real 5M reply to a drag move
+(`1. e4 e5`) and real Stockfish/M1500 analysis rows; the public source manifest
+matches every asserted local UI hash. Public bootstrap/Wasm/runtime/font-license
+responses were verified. See [verification](browser-native-2026-10-27/verification.json),
+[source manifest](browser-native-2026-10-27/public-source.json),
+[screenshot](browser-native-2026-10-27/public-analysis.png) and
+[cleanup](browser-native-2026-10-27/cleanup.json).
+
+Immediately after verification, the three isolated QA namespaces were cleared,
+engine workers/tabs and preview server were closed, temporary viewport reset,
+and the task-owned scratch source/build/deploy/log output removed. Compact
+evidence remains; shared SDK/pub caches, native source and other tasks' output
+were preserved.
 Temporary viewport changes can invalidate the existing renderer surface during
 emulation; fresh launches at the target viewport were checked. Physical phones
 remain necessary for touch, memory, audio, background lifecycle and startup tests.

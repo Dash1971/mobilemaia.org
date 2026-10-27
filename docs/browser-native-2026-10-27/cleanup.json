@@ -1,0 +1,18 @@
+{
+  "owner": {
+    "owner": "Mobile Maia browser parity chat",
+    "source": "aeea49817c34f48397e910894414c1d8b0352124",
+    "expectedGrowthGiB": 2,
+    "reserveGiB": 10,
+    "retention": "through verification in this turn",
+    "freeBytesAtStart": 43264692224
+  },
+  "removedPaths": [
+    "/Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/browser-native"
+  ],
+  "removedFileBytes": 395484243,
+  "freeBytesBeforeCleanup": 71720353792,
+  "freeBytesAfterCleanup": 72131309568,
+  "retained": "Compact source/build hashes, screenshot and verification evidence; shared Flutter SDK/pub caches and app checkouts untouched. Volume-wide free-space changes are not attributed to this task.",
+  "processes": "Local preview sessions stopped; QA tabs/engines closed; all three isolated QA namespaces cleared. Temporary viewport reset."
+}

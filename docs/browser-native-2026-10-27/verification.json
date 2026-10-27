@@ -1,0 +1,48 @@
+{
+  "websiteCommit": "52bc4c0d1ee8a5c975eb9f4fe5f322cb810e7d39",
+  "appSource": "aeea49817c34f48397e910894414c1d8b0352124",
+  "bundle": "2936a14648e6213d",
+  "ci": "https://github.com/Dash1971/mobilemaia.org/actions/runs/40489903417",
+  "checks": [
+    {
+      "url": "https://mobilemaia.org/play/app/flutter_bootstrap.2936a14648e6213d.js",
+      "status": 200,
+      "bytes": 13274,
+      "sha256": "63672b5c8db61e2f7a0fc4bf729b156be41b5ea2d3c21cee76af5f64d43afbd0"
+    },
+    {
+      "url": "https://mobilemaia.org/play/app/bundle-2936a14648e6213d/main.dart.wasm",
+      "status": 200,
+      "bytes": 3992836,
+      "sha256": "6fce8f08b31fab96b3a7ceb273c2cf93229ad5fe1e483b90fb6036b4c9d3f424"
+    },
+    {
+      "url": "https://mobilemaia.org/play/app/bundle-2936a14648e6213d/main.dart.mjs",
+      "status": 200,
+      "bytes": 32966,
+      "sha256": "1b729bd3b50e600ccdb977e016c663a32f3ccc9f307c872e20fde477401269d1"
+    },
+    {
+      "url": "https://mobilemaia.org/play/app/notices/Roboto_LICENSE.txt",
+      "status": 200,
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ],
+  "uiHashesMatchLocalPreparation": true,
+  "publicBrowser": {
+    "model": "5M CPU WASM one thread",
+    "drag": "e2e4",
+    "reply": "e5",
+    "analysis": "two real Stockfish lines and M1500 Nf3 47%, Bc4 21%, Nc3 12%, Other20%",
+    "consoleErrors": [],
+    "qaToken": "native-public-20261027",
+    "qaCleanup": "Test data cleared. App workers closed."
+  },
+  "limitations": [
+    "Physical phones not tested",
+    "79M phone download reliability unresolved; experimental query option only",
+    "PWA install/offline shell not implemented",
+    "Flutter missing-script/symbol fallback fonts may download from Google Fonts"
+  ]
+}

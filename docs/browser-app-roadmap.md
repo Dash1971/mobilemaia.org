@@ -30,7 +30,9 @@ Eboard controls are excluded. See [implementation/verification](browser-native-2
    worker is installed by this increment. Keep games/settings safe across updates.
 4. Measure and reduce Flutter shell/model cold startup without changing app
    presentation or chess behavior. Review accessibility and browser navigation.
-5. Add repeatable browser integration coverage and compare representative engine
+5. Self-host Flutter’s missing-script/symbol fallback fonts; verify all app
+   languages and document font downloads until that is complete.
+6. Add repeatable browser integration coverage and compare representative engine
    and game-review results against native fixtures, disclosing model differences.
 
 The homepage and research remain plain static HTML. Future app-source changes

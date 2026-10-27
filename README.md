@@ -116,6 +116,10 @@ reference validation; never swap a smaller/re-exported model silently.
 
 ### Playable browser edition
 
+Maintainers: [Web adaptation register and source-upgrade checklist](docs/WEB_ADAPTATIONS.md)
+records every intentional browser difference and what must be reviewed when
+bringing new app features/UI across. Update it alongside adapter/source changes.
+
 `/play/` runs the actual Stable 2.5.0 Flutter application from source
 `aeea49817c34f48397e910894414c1d8b0352124`. Desktop presents it inside a phone;
 narrow screens fill the viewport. The app's board, drag/tap interactions, legal
@@ -135,7 +139,20 @@ Games and app data persist in IndexedDB; settings use localStorage. Verified
 model/runtime downloads can be saved in the inference lab's named cache. Nothing
 is uploaded. The shell requires a modern browser with WasmGC because dartchess
 uses 64-bit bitboards; unsupported browsers receive a compatibility message.
-This is a browser edition, not yet an installable/offline PWA.
+Installation is available through Settings → Install and offline (or the browser's
+Install/Add to Home Screen command). Settings → Save for offline use saves the
+app plus selected Maia, CPU runtime and Stockfish; with 5M, the initial offline
+package totals about 64 MB. Wait for Ready for offline play and analysis before
+disconnecting. Full offline saving is opt-in so an ordinary first visit does not
+compete with Maia's download. Cached files can be evicted by the browser.
+
+A custom, hash-checked `/play/` service worker controls only app clients. Existing
+games remain on their running version; updates activate after all Mobile Maia
+windows/tabs close. Engine files are cached independently, so an app update does
+not deliberately discard model downloads. Installation does not give the browser
+native inference speed. Start game now begins Maia preparation before the first
+prediction. The native System default theme follows browser/OS light/dark;
+wallpaper-derived Android system colors are unavailable through browser APIs.
 
 Build using the official Flutter SDK revision pinned in the build helper:
 
@@ -149,11 +166,14 @@ The source checkout must contain the pinned app commit. The helper enforces the
 app's disk preflight, exports only source/assets without the 79M model, applies
 guarded platform changes, and hashes canonical UI/logic files to reject changes.
 Every compiled asset uses a content-addressed bundle path to prevent mixed old
-fonts/code after deployment. Flutter service-worker generation is disabled.
+fonts/code after deployment. Flutter service-worker generation is disabled; the build generates our scoped
+service worker and its exact asset hashes instead.
 
 Run `node --experimental-vm-modules tools/test_browser_runtime.mjs` for the raw
 inference boundary, queue/error/disposal checks and pinned Stockfish integrity;
 `node tools/test_inference.mjs` checks the shared encoder/reference/runtime pins.
+`node --experimental-vm-modules tools/test_pwa.mjs` checks install opt-in,
+offline routing, integrity failures/retry, update safety and cache isolation.
 See [implementation and verification](docs/browser-native-2026-10-27.md) and
 [remaining work](docs/browser-app-roadmap.md). No Android checkout, release gate,
 or shared Stable/Preview build helper changes; no companion app port applies.

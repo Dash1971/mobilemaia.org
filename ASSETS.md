@@ -109,3 +109,11 @@ Corresponding engine/build source is `nmrugg/stockfish.js` tag `v19.0.1`, commit
 `site/play/assets.json` hashes the vendored Stockfish worker and license;
 `site/play/stockfish.json` pins the runtime download. The source links are also
 provided in the public privacy/credits page.
+
+## PWA installation icons
+
+`site/play/icons/icon-192.png` and `icon-512.png` are deterministic resized
+versions of the original Stable app icon already recorded above.
+`maskable-512.png` centers that same icon on the app background with a safe
+margin for launcher masks. No new branding or generated artwork is introduced.
+The manifest and service worker are original AGPL-3.0-only website code.

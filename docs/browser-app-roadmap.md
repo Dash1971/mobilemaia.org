@@ -16,7 +16,9 @@ no shared Stable/Preview tooling change to port.
 Implemented app surfaces include Home, Game, Settings, Analysis Board, Board
 Editor, Recent games and Game Review. The browser uses 5M CPU and Stockfish Lite,
 so evaluations and classifications can differ from Android's larger engines.
-Eboard controls are excluded. See [implementation/verification](browser-native-2026-10-27.md).
+Eboard controls are excluded. See [implementation/verification](browser-native-2026-10-27.md), the
+[PWA increment](browser-pwa-2026-10-27.md), and the permanent
+[web adaptation register](WEB_ADAPTATIONS.md).
 
 ## Remaining increments
 
@@ -26,8 +28,9 @@ Eboard controls are excluded. See [implementation/verification](browser-native-2
 2. Expose an explicit full-model selector/download flow, with size, progress,
    cancel/retry and memory limits. `?model=79m` currently selects the existing
    experimental full-model path; 79M phone download reliability remains unresolved.
-3. Add an installable/offline PWA shell with scoped update/cache safety. No service
-   worker is installed by this increment. Keep games/settings safe across updates.
+3. Installation and an opt-in offline package are implemented. Extend physical
+   Android/iOS installation, storage-eviction and update-lifecycle testing; preserve
+   games/settings and independent engine caches across future changes.
 4. Measure and reduce Flutter shell/model cold startup without changing app
    presentation or chess behavior. Review accessibility and browser navigation.
 5. Self-host Flutter’s missing-script/symbol fallback fonts; verify all app

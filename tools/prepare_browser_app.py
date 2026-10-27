@@ -17,12 +17,16 @@ def prepare(source,output,flutter):
         path=output/name; text=path.read_text()
         if text.count(old)!=count: raise ValueError(f'{name}: expected {count} occurrences of {old!r}, got {text.count(old)}')
         path.write_text(text.replace(old,new))
-    patch('lib/main.dart',"import 'dart:io';","import 'browser/io.dart';\nimport 'browser/bridge.dart';")
+    patch('lib/main.dart',"import 'dart:io';","import 'browser/io.dart';\nimport 'browser/bridge.dart';\nimport 'browser/settings.dart';")
     patch('lib/main.dart',"import 'package:multistockfish/multistockfish.dart';","import 'browser/stockfish.dart';")
     patch('lib/main.dart','        LicenseRegistry,','        LicenseRegistry,\n        TargetPlatform,')
     patch('lib/main.dart','  WidgetsFlutterBinding.ensureInitialized();','  WidgetsFlutterBinding.ensureInitialized();\n  SharedPreferences.setPrefix(browserPreferencePrefix);')
     patch('lib/main.dart',"const maiaEngineChannel = MethodChannel('maia_chess/engine');","final MethodChannel maiaEngineChannel = BrowserMaiaChannel();")
     patch('lib/src/app_appearance.dart','  return ThemeData(\n','  return ThemeData(\n    platform: TargetPlatform.android,\n')
+    patch('lib/src/app_appearance.dart', '  static Future<AppDynamicColors?> _readSystemColors() async {', '  static Future<AppDynamicColors?> _readSystemColors() async {\n    if (Platform.isBrowser) return null;')
+    patch('lib/src/app_appearance.dart', '              controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable', "              Platform.isBrowser\n                  ? 'Wallpaper-based system colors are not available in a browser. Choose System default above to follow light/dark mode.'\n                  : controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable")
+    patch('lib/src/play.dart', '    if (_storageBlocked || _startingGame || !mounted) return;', "    if (_storageBlocked || _startingGame || !mounted) return;\n    if (Platform.isBrowser) unawaited(maiaEngineChannel.invokeMethod<void>('prepare').catchError((Object error, StackTrace stack) => AppDiagnostics.record('browser-maia-prepare', error, stack)));")
+    patch('lib/src/play.dart', '              if (AppLanguageSettings.maybeOf(context)\n', '              if (Platform.isBrowser) ...[const BrowserAppSettings(), const SizedBox(height: 8)],\n              if (AppLanguageSettings.maybeOf(context)\n')
     patch('lib/src/sound_effect.dart',"static const _channel = MethodChannel('maia_chess/sound_effect');","static final MethodChannel _channel = BrowserMaiaChannel('maia_chess/sound_effect');")
     patch('lib/src/active_session_store.dart','Platform.isAndroid || _testRepository != null','Platform.isBrowser || Platform.isAndroid || _testRepository != null')
     patch('lib/src/diagnostics.dart',"    if (!Platform.isAndroid) return ['platform=${Platform.operatingSystem}'];","    if (Platform.isBrowser) return ['platform=browser', 'model=$browserModelName', 'backend=onnx-web-wasm', 'storage=IndexedDB'];\n    if (!Platform.isAndroid) return ['platform=${Platform.operatingSystem}'];")
@@ -61,7 +65,7 @@ def prepare(source,output,flutter):
         if 'Roboto' in licence.name: shutil.copyfile(licence,output/'assets/fonts'/licence.name)
     (output/'lib/browser_entry.dart').write_text("import 'main.dart' if (dart.library.js) 'browser/unsupported.dart' as app;\nFuture<void> main() => app.main();\n")
     web=output/'web';web.mkdir()
-    (web/'index.html').write_text('''<!DOCTYPE html><html lang="en"><head><base href="$FLUTTER_BASE_HREF"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#101610"><title>Mobile Maia</title><style>html,body{margin:0;width:100%;height:100%;background:#101610;color:#dce4d9;font-family:Roboto,Arial,sans-serif}</style></head><body><script type="module" src="../native/platform.mjs"></script></body></html>''')
+    (web/'index.html').write_text('''<!DOCTYPE html><html lang="en"><head><base href="$FLUTTER_BASE_HREF"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#101610"><title>Mobile Maia</title><link rel="manifest" href="/play/manifest.webmanifest"><link rel="apple-touch-icon" href="/play/icons/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Mobile Maia"><style>html,body{margin:0;width:100%;height:100%;background:#101610;color:#dce4d9;font-family:Roboto,Arial,sans-serif}</style></head><body><script type="module" src="../native/platform.mjs"></script></body></html>''')
     changed={name for name,digest in originals.items() if hashlib.sha256((output/name).read_bytes()).hexdigest()!=digest}
     ui_files=['lib/src/analysis_board.dart','lib/src/board_editor.dart','lib/src/board_preferences.dart','lib/src/board_styles.dart','lib/src/review.dart','lib/src/settings_widgets.dart','lib/src/maia.dart','lib/src/maia_play_settings.dart']
     ui_files += [name for name in originals if name.startswith('lib/l10n/')]

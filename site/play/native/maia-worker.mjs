@@ -1,7 +1,7 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
 import { CACHE_NAME, encode, sha256 } from '../../lab/inference/core.mjs?v=20261027-5m';
 
-let session, ort, initPromise, latest, running = false;
+let session, ort, initPromise, cacheName = CACHE_NAME;
 const diagnostics = { schema: 1, modelId: '5m', backend: 'wasm', numThreads: 1,
   graphOptimizationLevel: 'all', warmupRuns: 0, downloads: [], inferences: [] };
 const notify = data => self.postMessage(data);
@@ -12,7 +12,7 @@ async function load(asset, name, keep) {
   const started = performance.now();
   let cache, saving = Promise.resolve(), reader;
   try {
-    if (keep && self.caches) { try { cache = await caches.open(CACHE_NAME); } catch {} }
+    if (keep && self.caches) { try { cache = await caches.open(cacheName); } catch {} }
     let response = cache && await cache.match(asset.url);
     if (response) entry.source = 'prototype cache';
     else response = await fetch(asset.url, { credentials: 'omit', cache: 'no-store' });
@@ -53,6 +53,7 @@ async function load(asset, name, keep) {
 }
 
 async function init(config, keep) {
+  cacheName = config.browserCacheName || CACHE_NAME;
   const start = performance.now();
   const model = config.models[config.browserModel || '5m']; diagnostics.modelId = config.browserModel || '5m';
   const asset = config.runtime.assets.wasm;
@@ -62,7 +63,7 @@ async function init(config, keep) {
   diagnostics.phase = 'download';
   // Independent downloads overlap; no native-reference or synthetic warm-up runs.
   const modulePromise = import('../../lab/inference/' + asset.module);
-  const [weights, wasm] = await Promise.all([load(model, 'Maia 5M', keep), load(asset, 'CPU runtime', keep)]);
+  const [weights, wasm] = await Promise.all([load(model, model.name, keep), load(asset, 'CPU runtime', keep)]);
   ort = await modulePromise;
   if (ort.env.versions.web !== config.runtime.version) throw new Error('Unexpected runtime version');
   ort.env.wasm.numThreads = 1; ort.env.wasm.proxy = false;
@@ -104,7 +105,7 @@ async function predict(job) {
 let tail = Promise.resolve();
 self.onmessage = ({data}) => {
   if(data.type === 'init' && !initPromise) {
-    initPromise = init(data.config, !data.config.browserQa);
+    initPromise = init(data.config, !data.config.browserQa || data.config.browserOfflineQa);
     initPromise.catch(error => notify({type:'error',error:error.message,diagnostics}));
   } else if(data.type === 'predict') {
     tail = tail.catch(()=>{}).then(()=>predict(data)).catch(error=>notify({type:'error',id:data.id,error:error.message,diagnostics}));

@@ -1,0 +1,17 @@
+{
+  "id": "/play/",
+  "name": "Mobile Maia",
+  "short_name": "Mobile Maia",
+  "description": "Play and analyze chess locally with Maia.",
+  "lang": "en",
+  "start_url": "/play/?source=pwa",
+  "scope": "/play/",
+  "display": "standalone",
+  "background_color": "#101610",
+  "theme_color": "#101610",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

@@ -4,6 +4,10 @@ This is the standalone public website, hosted by GitHub Pages. Deploy `site/`
 plus the generated browser app bundle; never native build artifacts or models.
 It is independent of the Stable and Preview app repositories and release gates.
 
+- Before changing the browser app or upgrading its app-source pin, read
+  `docs/WEB_ADAPTATIONS.md`. Update that register with every web-specific
+  behavior/adapter change and follow its source-upgrade checklist.
+
 - Keep the homepage/research buildless, accessible, responsive, and portable.
   The browser app builds the pinned Mobile Maia Flutter UI with platform adapters;
   do not maintain a separate HTML/JavaScript recreation of app screens or labels.

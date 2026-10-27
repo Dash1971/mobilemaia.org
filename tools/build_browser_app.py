@@ -6,9 +6,34 @@ GIB=1024**3
 SDK='737ba8f885dc774b53b442759999a312c9461e4e'
 def digest_tree(path):
     digest=hashlib.sha256()
-    for file in sorted(p for p in path.rglob('*') if p.is_file()):
+    for file in sorted(p for p in path.rglob('*') if p.is_file() and p.name != '.last_build_id'):
         digest.update(file.relative_to(path).as_posix().encode());digest.update(file.read_bytes())
     return digest.hexdigest()[:16]
+
+def prepare_offline_shell(deploy, app, bundle):
+    """Precache the actual Wasm app, not source maps/unused renderer variants."""
+    paths = set(p for p in (deploy/'play').rglob('*') if p.is_file() and not p.is_relative_to(app))
+    paths.update([deploy/'styles.css', deploy/'assets/icon.png'])
+    lab = deploy/'lab/inference'
+    paths.update(lab/name for name in ['config.json','core.mjs','vendor/ort.wasm.min.mjs',
+        'vendor/ort-wasm-simd-threaded.mjs','vendor/LICENSE','vendor/ThirdPartyNotices.txt'])
+    paths.update(p for p in (app/'notices').rglob('*') if p.is_file())
+    paths.update([app/'index.html', app/'source.json'])
+    paths.update(app.glob('flutter_bootstrap.*.js'))
+    paths.update(p for p in (bundle/'assets').rglob('*') if p.is_file())
+    paths.update(bundle/name for name in ['main.dart.wasm','main.dart.mjs',
+        'canvaskit/skwasm.js','canvaskit/skwasm.wasm',
+        'canvaskit/skwasm_heavy.js','canvaskit/skwasm_heavy.wasm'])
+    assets = [{'url':'/'+path.relative_to(deploy).as_posix(), 'bytes':path.stat().st_size,
+        'sha256':hashlib.sha256(path.read_bytes()).hexdigest()} for path in sorted(paths)]
+    template=(ROOT/'browser-app/pwa/sw.js').read_text()
+    encoded=json.dumps(assets,separators=(',',':'))
+    release=hashlib.sha256((encoded+template).encode()).hexdigest()[:20]
+    (deploy/'play/sw.js').write_text(template.replace('__PWA_RELEASE__',json.dumps(release)).replace('__PWA_ASSETS__',encoded))
+    size=sum(asset['bytes'] for asset in assets)
+    if size>30*1024*1024: raise ValueError(f'Offline shell exceeds 30 MiB budget: {size}')
+    print(json.dumps({'offlineRelease':release,'shellBytes':size,'shellFiles':len(assets)}))
+    return release
 def assemble(web,deploy):
     if deploy.exists(): raise ValueError('Deployment output must be new.')
     shutil.copytree(ROOT/'site',deploy)
@@ -34,7 +59,11 @@ def assemble(web,deploy):
     (app/'index.html').write_text(index)
     host=deploy/'play/index.html';host.write_text(host.read_text().replace('__BROWSER_BUILD__',build))
     source=json.loads((web.parent.parent/'browser-source.json').read_text())
-    source.update({'bundle':build,'runtime':runtime,'flutterRevision':SDK,'modelDefault':'5m','rendering':'dart2wasm/skwasm single-threaded','serviceWorker':False})
+    website_revision=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD'],text=True).strip()
+    source.update({'websiteRevision':website_revision,
+        'websiteDirty':bool(subprocess.check_output(['git','-C',str(ROOT),'status','--porcelain'],text=True).strip()),
+        'adaptationRegister':f'https://github.com/Dash1971/mobilemaia.org/blob/{website_revision}/docs/WEB_ADAPTATIONS.md'})
+    source.update({'bundle':build,'runtime':runtime,'flutterRevision':SDK,'modelDefault':'5m','rendering':'dart2wasm/skwasm single-threaded','serviceWorker':True,'serviceWorkerScope':'/play/'})
     notices=app/'notices';notices.mkdir()
     for license_file in (web.parent.parent/'assets/fonts').glob('*LICENSE*'):
         shutil.copyfile(license_file,notices/license_file.name)
@@ -42,6 +71,7 @@ def assemble(web,deploy):
     files=[p for p in app.rglob('*') if p.is_file()];size=sum(p.stat().st_size for p in files)
     if size>100*1024*1024: raise ValueError(f'Browser app exceeds 100 MiB: {size}')
     if any(p.suffix.lower() in ['.onnx','.apk','.aab'] for p in files): raise ValueError('A model or Android distribution leaked into the web bundle.')
+    prepare_offline_shell(deploy,app,bundle)
     print(json.dumps({'bundle':build,'bytes':size,'files':len(files),'source':SOURCE},indent=2))
     return source
 

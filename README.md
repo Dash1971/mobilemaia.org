@@ -72,7 +72,7 @@ Markdown blocks and requires review if the study index changes shape.
 `3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010`.
 No model weights are checked into or served from this website repository.
 
-The isolated module worker downloads and verifies that model from its pinned
+The dedicated module worker downloads and verifies that model from its pinned
 Git LFS media URL and the pinned ONNX Runtime Web 1.31.1 backend-specific WebAssembly binary from
 jsDelivr. Both responses are checked against fixed sizes and SHA-256. Runtime
 JavaScript and MIT/third-party notices are vendored locally, with hashes and

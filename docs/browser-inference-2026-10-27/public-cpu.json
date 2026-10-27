@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "startedAt": "2026-10-27T05:03:24.539Z",
+  "downloads": [
+    {
+      "label": "Maia model",
+      "source": "network",
+      "bytes": 316034244,
+      "sha256": "3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010",
+      "transferMs": 123552.09999990463,
+      "hashMs": 615.8000001907349,
+      "cacheSaved": true
+    },
+    {
+      "label": "inference runtime",
+      "source": "network",
+      "bytes": 14848852,
+      "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+      "transferMs": 1050.9000000953674,
+      "hashMs": 25.09999990463257,
+      "cacheSaved": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "expectedWhiteScore": 0.46255200464518104,
+      "actualWhiteScore": 0.4625520032454446,
+      "absoluteError": 1.399736437868171e-9,
+      "passed": true
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "expectedWhiteScore": 0.44794894812000413,
+      "actualWhiteScore": 0.4479491162458809,
+      "absoluteError": 1.681258767760596e-7,
+      "passed": true
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "expectedWhiteScore": 0.4155341345243663,
+      "actualWhiteScore": 0.41553486251404836,
+      "absoluteError": 7.279896820366893e-7,
+      "passed": true
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "expectedWhiteScore": 0.45188418135099745,
+      "actualWhiteScore": 0.45188418377336853,
+      "absoluteError": 2.422371081500785e-9,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "expectedWhiteScore": 0.7325736846277291,
+      "actualWhiteScore": 0.7325738208616028,
+      "absoluteError": 1.362338737376234e-7,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "expectedWhiteScore": 0.8046181683529015,
+      "actualWhiteScore": 0.8046175464084471,
+      "absoluteError": 6.219444543820174e-7,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "expectedWhiteScore": 0.5777225255265902,
+      "actualWhiteScore": 0.5777229182457045,
+      "absoluteError": 3.9271911433935713e-7,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "expectedWhiteScore": 0.6544713452142135,
+      "actualWhiteScore": 0.654471387294842,
+      "absoluteError": 4.2080628537277676e-8,
+      "passed": true
+    }
+  ],
+  "timingsMs": [
+    184.40000009536743,
+    184.90000009536743,
+    185.5,
+    183,
+    180.69999980926514,
+    185.30000019073486,
+    183.80000019073486,
+    180.09999990463257
+  ],
+  "model": {
+    "name": "Maia-3 79M (current Android export)",
+    "bytes": 316034244,
+    "sha256": "3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010",
+    "url": "https://media.githubusercontent.com/media/Dash1971/maia-chess-android/5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84/assets/models/maia3-79m.onnx",
+    "sourceCommit": "5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84"
+  },
+  "runtime": {
+    "version": "1.31.1",
+    "backendRequested": "wasm",
+    "numThreads": 1,
+    "graphOptimizationLevel": "all",
+    "allModelOutputs": true,
+    "providerNote": "Single-thread WebAssembly CPU baseline.",
+    "asset": {
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort-wasm-simd-threaded.wasm",
+      "bytes": 14848852,
+      "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+      "module": "vendor/ort.wasm.min.mjs",
+      "loader": "vendor/ort-wasm-simd-threaded.mjs"
+    },
+    "loadedVersion": "1.31.1"
+  },
+  "reference": {
+    "repository": "Dash1971/mobile-maia-research",
+    "commit": "74d8684db865753080da72c6f43b1973bbfd668e",
+    "path": "studies/score-reliability-2026-10-27/data/known-case-sanity.json",
+    "whiteScoreTolerance": 0.0005,
+    "sha256": "27a67210cbdeb9a122f9d208b5a6a8546f98764d646cdd58a568a2e99d3272c2"
+  },
+  "lastStage": "benchmark",
+  "sessionCreationMs": 1423.2999997138977,
+  "inputs": [
+    "tokens",
+    "self_elo",
+    "opponent_elo"
+  ],
+  "outputs": [
+    "move_logits",
+    "value_logits",
+    "ponder"
+  ],
+  "firstInferenceMs": 222.39999961853027,
+  "statistics": {
+    "count": 8,
+    "medianMs": 184.10000014305115,
+    "p95Ms": 185.5,
+    "meanMs": 183.4625000357628,
+    "minMs": 180.09999990463257,
+    "maxMs": 185.5
+  },
+  "finishedAt": "2026-10-27T05:05:34.392Z",
+  "device": {
+    "note": "Desktop Mac Chrome — public-host smoke check",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "logicalCores": 10,
+    "approximateDeviceMemoryGiB": 16,
+    "crossOriginIsolated": false,
+    "webgpuAdvertised": true,
+    "viewport": {
+      "width": 1470,
+      "height": 801
+    },
+    "memoryNote": "Device memory is an approximate browser capability if provided, not measured runtime/GPU memory."
+  },
+  "page": "https://mobilemaia.org/lab/inference/",
+  "visibilityChanges": [
+    {
+      "at": "2026-10-27T05:03:24.343Z",
+      "state": "visible"
+    }
+  ]
+}

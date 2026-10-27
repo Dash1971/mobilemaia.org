@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-10-27T05:03:45.180597+00:00",
+  "siteCommit": "e8abcf4a37bc74f4d9b1bd4d770c27d783443d74",
+  "files": [
+    {
+      "url": "https://mobilemaia.org/lab/inference/benchmark.css",
+      "status": 200,
+      "bytes": 2707,
+      "sha256": "f1e54ae60beed603b75cdfc2895d9478cfc60470b168abd7c2a9e3e5da07311f",
+      "contentType": "text/css; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/benchmark.mjs",
+      "status": 200,
+      "bytes": 6520,
+      "sha256": "e2683dbf8b22a52bf54a4f767a7419485a92864c3dbf1c9c28af03abdee7122a",
+      "contentType": "text/javascript; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/config.json",
+      "status": 200,
+      "bytes": 2735,
+      "sha256": "00f7942898f202d3c504793428ebd4cd78a14775b92592f06f7bf841573df470",
+      "contentType": "application/json; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/core.mjs",
+      "status": 200,
+      "bytes": 2516,
+      "sha256": "abf5fb2e194436aeb0f5860e7c744bc1a0de6567fef2aa56e1a5a87a4dfbf85b",
+      "contentType": "text/javascript; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/fixtures.json",
+      "status": 200,
+      "bytes": 6205,
+      "sha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45",
+      "contentType": "application/json; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/index.html",
+      "status": 200,
+      "bytes": 6171,
+      "sha256": "ec905c84a46b0ef04a38c01a99f841ceb6abea8a3fbe24d72d2536d4312b81bd",
+      "contentType": "text/html; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/LICENSE",
+      "status": 200,
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+      "contentType": "application/octet-stream",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ThirdPartyNotices.txt",
+      "status": 200,
+      "bytes": 338088,
+      "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3",
+      "contentType": "text/plain; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort-wasm-simd-threaded.asyncify.mjs",
+      "status": 200,
+      "bytes": 53457,
+      "sha256": "59cf781530e1a16df2a291d78798e3ec1152467edaec402d6f9599d85047c302",
+      "contentType": "text/javascript; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort-wasm-simd-threaded.mjs",
+      "status": 200,
+      "bytes": 24738,
+      "sha256": "30ed0b5cd1182ede931fea448afb567d4dc705ec957af09f108a2be5f770dac3",
+      "contentType": "text/javascript; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort.wasm.min.mjs",
+      "status": 200,
+      "bytes": 53725,
+      "sha256": "c21d9c326d453a4a61398270c804d5979e118540597cb0c07f7b3d64e6098234",
+      "contentType": "text/javascript; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/vendor/ort.webgpu.min.mjs",
+      "status": 200,
+      "bytes": 70742,
+      "sha256": "329cd956772397a1aedd668e911195d39afefb182f6fc14aafa4f08ac8d8f379",
+      "contentType": "text/javascript; charset=utf-8",
+      "coop": null,
+      "coep": null
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/worker.mjs",
+      "status": 200,
+      "bytes": 7969,
+      "sha256": "d47e3882a3d0ed6e3381fcbe162012cac342f8027d8ae04123555dc06a6ed5f5",
+      "contentType": "text/javascript; charset=utf-8",
+      "coop": null,
+      "coep": null
+    }
+  ]
+}

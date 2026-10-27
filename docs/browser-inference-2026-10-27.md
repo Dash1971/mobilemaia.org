@@ -94,7 +94,52 @@ untested. There is no service worker and no PWA installation prompt.
 
 Volume free space at start: about 70 GiB; task budget under 2 GiB plus the 10 GiB
 reserve. No app builds, emulator, virtual environment or filesystem model copy.
-Task-owned `.scratch/pwa-benchmark/` holds the verified npm archive and temporary
-runtime assets, retained only until public deployment verification, expiring at
-task completion. Browser test downloads are in the named prototype cache on
-localhost, to be cleared after verification. Compact reports above are retained.
+After public verification, `.scratch/pwa-benchmark/` was removed (64,284,938 bytes).
+The preview server was stopped, completed workers terminated and the test tab
+closed. The named prototype download cache was cleared through the UI on both
+localhost and the public HTTPS origin. Volume free space immediately before/after
+scratch removal was 64,017,526,784 / 64,081,809,408 bytes (other workspace tasks
+can also change total free space). Compact reports are retained; no task bulk
+output remains. [Cleanup evidence](browser-inference-2026-10-27/cleanup.json)
+lists the removed paths and intentional retention.
+
+## Public-host verification
+
+Code commit `e8abcf4a37bc74f4d9b1bd4d770c27d783443d74` passed the
+[check and Pages deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40453036916).
+All 13 lab files were fetched over verified HTTPS and matched local bytes;
+module MIME is `text/javascript`. COOP/COEP are absent as expected.
+[Asset checks](browser-inference-2026-10-27/public-assets.json) preserve hashes
+and response metadata.
+
+Both public-host tests passed all eight references. CPU warm median/p95 was
+184.1/185.5 ms (8 samples), and WebGPU requested was 43.0/110.6 ms (8 samples).
+The GPU p95 outlier and small samples reinforce the need for repeated runs.
+Neither run recorded a hidden-tab transition. These remain desktop smoke tests.
+Full reports: [CPU](browser-inference-2026-10-27/public-cpu.json),
+[WebGPU](browser-inference-2026-10-27/public-webgpu.json).
+Chrome's recent-download UI confirmed a prototype WebGPU JSON export as Done
+(5.2 KB); the automation download-event hook timed out, so the native UI was
+used for confirmation. Stop, cache clearing and desktop/narrow layouts were
+also checked.
+
+## Candidate smaller model
+
+The user raised 5M as a better website candidate during this task. The exact
+historical research export is **21,346,652 bytes**, SHA-256
+`ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942`, versus
+316,034,244 bytes for the current Android model. Its existing research archive
+was read without materializing or modifying its weights. The archive is
+19,416,551 bytes, SHA-256
+`aaadbc907664aaccec9c5a1c534b91fbce273ed3fa04df68d692b046c8806110`.
+It remains available in the
+[immutable source snapshot](https://github.com/Dash1971/maia-chess-android/raw/e5c2392c4d979a47e458ba6f571c72ca60ae817b/docs/research/maia3-sampling/assets/mobile-maia-5m-reproduction-asset.zip),
+with attribution, model card, exporter and licence. It is not the current Android
+asset. Serving its raw ONNX bytes with these runtimes would imply approximately
+36 MB for CPU or 50 MB for GPU before HTTP compression, rather than 331/345 MB.
+
+This prototype retains the originally requested current 79M baseline. Adding a
+5M option needs its own pinned download and native reference outputs; the 79M
+golden scores cannot validate a different model. Smaller weights are a promising
+website default, but this task does not measure 5M browser speed, peak memory,
+playing quality or score calibration.

@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-27T05:09:39.929595+00:00",
+  "removedDirectory": ".scratch/pwa-benchmark/",
+  "removedFiles": [
+    {
+      "path": ".scratch/pwa-benchmark/npm-metadata.json",
+      "bytes": 5898
+    },
+    {
+      "path": ".scratch/pwa-benchmark/ort-wasm-simd-threaded.jsep.mjs",
+      "bytes": 47250
+    },
+    {
+      "path": ".scratch/pwa-benchmark/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 29520971
+    },
+    {
+      "path": ".scratch/pwa-benchmark/ort.wasm.min.mjs",
+      "bytes": 53725
+    },
+    {
+      "path": ".scratch/pwa-benchmark/ort.webgpu.min.mjs",
+      "bytes": 70742
+    },
+    {
+      "path": ".scratch/pwa-benchmark/runtime-package.tgz",
+      "bytes": 34586352
+    }
+  ],
+  "removedBytes": 64284938,
+  "volumeFreeBeforeBytes": 64017526784,
+  "volumeFreeAfterBytes": 64081809408,
+  "browserCachesCleared": [
+    "http://127.0.0.1:8771: mobile-maia-inference-downloads-v1",
+    "https://mobilemaia.org: mobile-maia-inference-downloads-v1"
+  ],
+  "processesStopped": [
+    "task preview server 127.0.0.1:8771",
+    "benchmark module workers; test tab closed"
+  ],
+  "retained": "Compact provenance, correctness, raw timing and public asset reports in this docs directory. Existing research 5M archives are source material owned by other work and were read only."
+}

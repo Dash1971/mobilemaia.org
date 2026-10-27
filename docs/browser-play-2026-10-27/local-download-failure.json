@@ -1,0 +1,55 @@
+{
+  "startedAt": "2026-10-27T06:25:14.090Z",
+  "version": "20261027-play1",
+  "downloads": [
+    {
+      "name": "Maia 5M",
+      "expectedBytes": 21346652,
+      "loadedBytes": 0,
+      "source": "network",
+      "status": "failed",
+      "httpStatus": 404,
+      "error": {
+        "name": "Error",
+        "message": "Maia 5M: HTTP 404"
+      },
+      "elapsedMs": 5.699999809265137
+    },
+    {
+      "name": "CPU runtime",
+      "expectedBytes": 14848852,
+      "loadedBytes": 14848852,
+      "source": "prototype cache",
+      "status": "loading",
+      "httpStatus": 200,
+      "cacheSaved": true
+    }
+  ],
+  "schema": 1,
+  "modelId": "5m",
+  "backend": "wasm",
+  "numThreads": 1,
+  "graphOptimizationLevel": "all",
+  "warmupRuns": 0,
+  "inferences": [],
+  "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+  "runtimeVersion": "1.31.1",
+  "error": "Maia 5M: HTTP 404",
+  "failedAt": "2026-10-27T06:25:14.099Z",
+  "sessionsCreated": 0,
+  "gamesStarted": 1,
+  "engineReady": false,
+  "engineLoading": false,
+  "visibilityChanges": [
+    {
+      "at": "2026-10-27T06:25:13.974Z",
+      "state": "visible"
+    }
+  ],
+  "page": "http://127.0.0.1:8771/play/",
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "logicalCores": 10,
+    "crossOriginIsolated": false
+  }
+}

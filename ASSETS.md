@@ -80,3 +80,19 @@ archive linked from the lab. 79M retains its existing current Android export pin
 No model weights or additional runtime dependencies were added to this repository.
 Research reference cases are derived from the pinned score study, with source
 hashes recorded in the lab config and independently calculated input hashes.
+
+
+## Playable browser preview
+
+`site/play/vendor/chess.mjs` and its source map are unchanged chess.js 1.4.0
+from the official npm package, verified with npm SHA-512 integrity. Source commit
+`ce1ff9e9fc342984ff75ca475ab39f37888cb28a` and the original BSD-2-Clause licence
+are recorded in `site/play/assets.json` / `vendor/chess-LICENSE`.
+
+The twelve Cburnett SVG pieces are unchanged from Lichess lila source commit
+`eaaee2ac2ff62a6c600ed65c60bb01410631e6aa`, `public/piece/cburnett/`.
+Artist Colin M. L. Burnett; GPL-2.0-or-later. The upstream `COPYING.md` and full
+GPL-2.0 text are served alongside them. Individual file hashes are in the play
+asset manifest. The board is CSS/HTML, not a new app screenshot.
+The preview reuses the inference lab's pinned 5M model and CPU runtime; no weights
+or runtime binaries are checked into this repository.

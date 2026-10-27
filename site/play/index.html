@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play Maia in your browser — Mobile Maia</title>
+  <meta name="description" content="A small, local chess game against Maia-3 5M, running on your device's CPU.">
+  <meta name="theme-color" content="#f7f6f2"><link rel="canonical" href="https://mobilemaia.org/play/">
+  <link rel="icon" href="../assets/icon.png"><link rel="stylesheet" href="../styles.css?v=20261026">
+  <link rel="stylesheet" href="play.css?v=20261027-play1"><script type="module" src="play.mjs?v=20261027-play1"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="../"><img src="../assets/icon.png" alt="" width="38" height="38"><span>Mobile Maia<span class="brand-dot">.</span></span></a><nav aria-label="Main navigation"><a href="../research/">Research</a><a href="../">The app</a></nav></div></header>
+<main id="main" class="container play-page">
+  <p class="eyebrow">MOBILE MAIA · BROWSER PREVIEW</p><h1>A game with Maia.</h1>
+  <p class="play-deck">Human-like chess, right here. Maia runs on your device, using the smaller 5M model and your CPU.</p>
+  <noscript><p>This playable preview needs JavaScript. The <a href="../research/">research articles</a> remain readable without it.</p></noscript>
+  <div class="game-layout">
+    <section class="board-column" aria-label="Your game">
+      <div class="player-line"><strong id="opponent">Maia 5M</strong><span id="opponent-color">Black</span></div>
+      <div id="board" class="board" role="group" aria-label="Chessboard. Tap a piece, then a destination. Keyboard: arrow keys to move focus, Enter to select."></div>
+      <div class="player-line"><strong>You</strong><span id="human-color">White</span></div>
+      <p id="game-status" class="game-status" role="status" aria-live="polite">Choose your side, then start a game.</p>
+      <div class="game-actions"><button id="undo" class="button button-outline button-small" type="button" disabled>Take back</button><button id="pgn" class="text-button" type="button" disabled>Save PGN</button><span id="last-move" class="last-move"></span></div>
+    </section>
+    <aside class="game-sidebar">
+      <form id="setup" class="setup-panel">
+        <h2>Your next game.</h2>
+        <div class="setup-grid"><label for="side">Play as</label><select id="side"><option value="w">White</option><option value="b">Black</option></select><label for="rating">Maia rating setting</label><select id="rating"><option value="1000">1000</option><option value="1600" selected>1600</option><option value="2200">2200</option><option value="2600">2600</option></select></div>
+        <p class="setting-note">A model setting, not a calibrated playing strength. Changes apply to your next game.</p>
+        <label class="save-choice"><input id="keep" type="checkbox" checked> Save engine downloads for next time</label>
+        <button id="start" class="button start-game" type="submit" disabled>Start game</button>
+        <p class="download-note">First load: about <strong>36 MB</strong>. Use Wi-Fi and keep the tab open while Maia loads. You can make your first move as White while you wait.</p>
+      </form>
+      <section class="engine-panel" aria-labelledby="engine-title"><h2 id="engine-title">Getting ready.</h2><p id="engine-status">Preparing the board. No model download begins until you start.</p><progress id="load-progress" value="0" max="1" aria-label="Engine download progress"></progress><button id="retry" class="button button-small" type="button" hidden>Load Maia</button></section>
+      <section class="move-panel" aria-labelledby="moves-title"><h2 id="moves-title">Moves.</h2><ol id="moves" class="moves" aria-label="Move list"></ol><p id="empty-moves" class="setting-note">Your game will appear here.</p></section>
+    </aside>
+  </div>
+  <details class="engine-details"><summary>Engine &amp; startup details</summary><p id="metrics">No engine has loaded yet.</p><div class="detail-actions"><button id="diagnostics" class="text-button" type="button" disabled>Save startup report</button><button id="release" class="text-button" type="button" disabled>Stop engine</button><button id="clear" class="text-button" type="button">Clear saved engine downloads</button></div><p>One CPU session stays loaded for this tab and is reused between moves and games. Downloads run in parallel and are verified by SHA-256. There are no benchmark warm-up runs before play. The game uses current-board input and full legal-move sampling.</p><details><summary>Full startup report</summary><pre id="startup-json">No engine has loaded yet.</pre></details><p id="storage-status" role="status"></p></details>
+  <div class="play-notes"><p>This is a small browser preview. Games stay in this tab; save a PGN before leaving. There are no clocks, accounts, analytics, or automatic uploads. The first download contacts GitHub and jsDelivr. Saved downloads share the benchmark’s dedicated cache; clearing it removes those downloads too.</p><p>The 5M model can make different choices from the Android app’s 79M model. For performance measurements, try the <a href="../lab/inference/">inference benchmark</a>. <a href="../about.html#browser-play">Privacy &amp; credits</a> · <a href="assets.json">Asset provenance</a> · <a href="vendor/chess-LICENSE">Chess rules licence</a> · <a href="vendor/pieces-COPYING.md">Piece attribution</a> · <a href="vendor/GPL-2.0.txt">Piece licence</a></p></div>
+</main>
+<dialog id="promotion" aria-labelledby="promotion-title"><h2 id="promotion-title">Promote your pawn.</h2><div id="promotion-options" class="promotion-options"></div><button id="promotion-cancel" class="text-button" type="button">Cancel</button></dialog>
+</body></html>

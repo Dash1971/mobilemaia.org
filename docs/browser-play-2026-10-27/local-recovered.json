@@ -1,0 +1,76 @@
+{
+  "startedAt": "2026-10-27T06:25:20.972Z",
+  "version": "20261027-play1",
+  "downloads": [
+    {
+      "name": "Maia 5M",
+      "expectedBytes": 21346652,
+      "loadedBytes": 21346652,
+      "source": "prototype cache",
+      "status": "verified",
+      "httpStatus": 200,
+      "cacheSaved": true,
+      "transferMs": 19.699999809265137,
+      "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "hashMs": 18.699999809265137
+    },
+    {
+      "name": "CPU runtime",
+      "expectedBytes": 14848852,
+      "loadedBytes": 14848852,
+      "source": "prototype cache",
+      "status": "verified",
+      "httpStatus": 200,
+      "cacheSaved": true,
+      "transferMs": 11.099999904632568,
+      "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+      "hashMs": 8.200000286102295
+    }
+  ],
+  "schema": 1,
+  "modelId": "5m",
+  "backend": "wasm",
+  "numThreads": 1,
+  "graphOptimizationLevel": "all",
+  "warmupRuns": 0,
+  "inferences": [
+    {
+      "ms": 181.80000019073486,
+      "at": "2026-10-27T06:25:22.743Z"
+    }
+  ],
+  "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+  "runtimeVersion": "1.31.1",
+  "sessionCreationMs": 1542.1999998092651,
+  "workerReadyMs": 1581.1999998092651,
+  "inputs": [
+    "tokens",
+    "self_elo",
+    "opponent_elo"
+  ],
+  "outputs": [
+    "move_logits",
+    "value_logits",
+    "ponder"
+  ],
+  "mainReadyMs": 1603.4000000953674,
+  "firstInferenceMs": 181.80000019073486,
+  "lastReplyWaitMs": 8107.299999713898,
+  "firstReplyWaitMs": 8107.299999713898,
+  "sessionsCreated": 1,
+  "gamesStarted": 1,
+  "engineReady": true,
+  "engineLoading": false,
+  "visibilityChanges": [
+    {
+      "at": "2026-10-27T06:25:13.974Z",
+      "state": "visible"
+    }
+  ],
+  "page": "http://127.0.0.1:8771/play/",
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "logicalCores": 10,
+    "crossOriginIsolated": false
+  }
+}

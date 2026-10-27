@@ -1,0 +1,84 @@
+{
+  "startedAt": "2026-10-27T06:15:25.427Z",
+  "version": "20261027-play1",
+  "downloads": [
+    {
+      "name": "Maia 5M",
+      "expectedBytes": 21346652,
+      "loadedBytes": 21346652,
+      "source": "network",
+      "status": "verified",
+      "httpStatus": 200,
+      "cacheSaved": true,
+      "transferMs": 10177.299999713898,
+      "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "hashMs": 17.699999809265137
+    },
+    {
+      "name": "CPU runtime",
+      "expectedBytes": 14848852,
+      "loadedBytes": 14848852,
+      "source": "network",
+      "status": "verified",
+      "httpStatus": 200,
+      "cacheSaved": true,
+      "transferMs": 1080.1999998092651,
+      "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+      "hashMs": 11.599999904632568
+    }
+  ],
+  "schema": 1,
+  "modelId": "5m",
+  "backend": "wasm",
+  "numThreads": 1,
+  "graphOptimizationLevel": "all",
+  "warmupRuns": 0,
+  "inferences": [
+    {
+      "ms": 158.19999980926514,
+      "at": "2026-10-27T06:15:36.359Z"
+    },
+    {
+      "ms": 59.40000009536743,
+      "at": "2026-10-27T06:16:36.967Z"
+    },
+    {
+      "ms": 58.30000019073486,
+      "at": "2026-10-27T06:18:41.990Z"
+    }
+  ],
+  "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+  "runtimeVersion": "1.31.1",
+  "sessionCreationMs": 559.5999999046326,
+  "workerReadyMs": 10766.599999904633,
+  "inputs": [
+    "tokens",
+    "self_elo",
+    "opponent_elo"
+  ],
+  "outputs": [
+    "move_logits",
+    "value_logits",
+    "ponder"
+  ],
+  "mainReadyMs": 10784.200000286102,
+  "firstInferenceMs": 158.19999980926514,
+  "lastReplyWaitMs": 67.90000009536743,
+  "firstReplyWaitMs": 10386.5,
+  "sessionsCreated": 1,
+  "gamesStarted": 2,
+  "engineReady": true,
+  "engineLoading": false,
+  "visibilityChanges": [
+    {
+      "at": "2026-10-27T06:15:25.323Z",
+      "state": "visible"
+    }
+  ],
+  "page": "http://127.0.0.1:8771/play/",
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "logicalCores": 10,
+    "crossOriginIsolated": false
+  }
+}

@@ -23,6 +23,7 @@ jobs:
           python3 tools/research.py --check
           python3 tools/check_site.py
           node tools/test_inference.mjs
+          node tools/test_play.mjs
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         if: github.event_name != 'pull_request'
         with:

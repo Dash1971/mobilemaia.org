@@ -5,7 +5,7 @@ an independent, free and open-source Android chess app built around Maia-3.
 
 Plain HTML, CSS, and a small progressive-enhancement script. No package manager,
 framework, runtime build step, external fonts, analytics or cookies. The homepage
-and research articles use no browser storage; the opt-in inference lab is described below.
+and research articles use no browser storage; the opt-in browser previews are described below.
 Only `site/` is deployed. APKs and model binaries stay in the app's distribution
 channels.
 
@@ -113,6 +113,35 @@ score/statistics and runtime integrity checks. Full execution needs a real
 supported browser and the large downloads. Stop/Clear and both backends must be
 checked before changing this experiment. Model/runtime changes need fresh
 reference validation; never swap a smaller/re-exported model silently.
+
+### Playable browser preview
+
+`/play/` is a small 5M CPU game: play White or Black, set the model rating,
+select legal moves with taps or arrow keys/Enter, choose promotions, take back
+moves, and export a PGN. It uses pinned, locally vendored chess.js 1.4.0 for legal
+rules and original Cburnett SVG pieces from Lichess. Exact source, licences and
+file hashes are in `site/play/assets.json` and [ASSETS.md](ASSETS.md).
+
+Startup overlaps the model and CPU-runtime downloads, reuses the benchmark's
+named cache, skips all synthetic/reference warm-up runs, and keeps one dedicated
+worker/session for the life of the tab. New games reuse that session. White can
+play the first move during loading. Late replies from a previous position are
+rejected after takeback/new game. Download failures keep partial byte/error
+information and offer retry without resetting the board. Stop releases the
+worker; clearing downloads removes only the shared experiment cache. No automatic
+upload, game persistence, clock, Stockfish, service worker or install prompt.
+
+Settings match the original model input/policy conventions: current board
+repeated in eight frames, raw equal Self/Opponent rating inputs, legal-move
+masking and Temperature 1 / Top-P 1 sampling. Rating is not a calibrated playing
+strength. This is a browser preview, independent of Android releases.
+
+`node tools/test_play.mjs` checks rules, policy orientation, promotions/castling/
+en passant, takebacks/stale replies, PGN and vendored integrity. The optional
+`tools/compare_play_startup.mjs MODEL WASM [LEVEL]` uses Node/WASM to compare
+session optimization levels against all eight native 5M references. It requires
+separately supplied pinned binaries and performs no downloads. Node timings are
+not browser/phone timings. See [implementation and measured limits](docs/browser-play-2026-10-27.md).
 
 ### App and screenshot sources
 

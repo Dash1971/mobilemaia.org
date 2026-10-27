@@ -61,3 +61,18 @@ rendered by the source study's pinned chess library; see its
 and [source provenance](https://github.com/Dash1971/mobile-maia-research/blob/74d8684db865753080da72c6f43b1973bbfd668e/studies/score-reliability-2026-10-27/README.md#source-provenance-and-attribution).
 Figure bytes and the report are hashed in `research-source/manifest.json`.
 Source data, model weights and inference tools are not served by the website.
+
+
+## Inference lab runtime
+
+The opt-in browser experiment vendors the ONNX Runtime Web 1.31.1 JavaScript
+bundles and their matching CPU/Asyncify loaders unchanged from the official npm package. npm SHA-512
+integrity and individual SHA-256 hashes are recorded in its `config.json`.
+The corresponding [upstream release source](https://github.com/microsoft/onnxruntime/tree/6af1a932e2286d5c58166085d24c68783033edee)
+and local MIT `vendor/LICENSE` / `vendor/ThirdPartyNotices.txt` identify rights
+and dependencies. Its CPU (14,848,852-byte) and GPU Asyncify (28,747,738-byte) WASM binaries
+are downloaded from pinned jsDelivr package URLs on Start and hash-checked
+before use; they are not committed.
+The model remains the app's pinned AGPL asset, downloaded from GitHub on Start.
+Research reference cases are derived from the pinned score study, with source
+hashes recorded in the lab config and independently calculated input hashes.

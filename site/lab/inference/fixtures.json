@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Before 26.Rd1",
+    "elo": 1600,
+    "history": true,
+    "whiteScore": 0.46255200464518104,
+    "referenceWhiteScore": 0.46255200464518104,
+    "historyFens": [
+      "r3rk2/1p1n1ppQ/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 b - h3 0 22",
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26"
+    ],
+    "tokensSha256": "c4ff440a8d0a1324d12017b307bf0f22485e79ae68f03da61b4880884ddf5a9e"
+  },
+  {
+    "name": "Before 26.Rd1",
+    "elo": 1600,
+    "history": false,
+    "whiteScore": 0.44794894812000413,
+    "referenceWhiteScore": 0.44794894812000413,
+    "historyFens": [
+      "r3rk2/1p1n1ppQ/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 b - h3 0 22",
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26"
+    ],
+    "tokensSha256": "bb8e6645cead270e850b15b36847bb772970426d6cae36c4c26e2befcf3346db"
+  },
+  {
+    "name": "Before 26.Rd1",
+    "elo": 2600,
+    "history": true,
+    "whiteScore": 0.4155341345243663,
+    "referenceWhiteScore": 0.4155341345243663,
+    "historyFens": [
+      "r3rk2/1p1n1ppQ/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 b - h3 0 22",
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26"
+    ],
+    "tokensSha256": "c4ff440a8d0a1324d12017b307bf0f22485e79ae68f03da61b4880884ddf5a9e"
+  },
+  {
+    "name": "Before 26.Rd1",
+    "elo": 2600,
+    "history": false,
+    "whiteScore": 0.45188418135099745,
+    "referenceWhiteScore": 0.45188418135099745,
+    "historyFens": [
+      "r3rk2/1p1n1ppQ/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 b - h3 0 22",
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26"
+    ],
+    "tokensSha256": "bb8e6645cead270e850b15b36847bb772970426d6cae36c4c26e2befcf3346db"
+  },
+  {
+    "name": "After 26.Rd1",
+    "elo": 1600,
+    "history": true,
+    "whiteScore": 0.7325736846277291,
+    "referenceWhiteScore": 0.7325736846277291,
+    "historyFens": [
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26",
+      "r3k1nQ/1p2rppN/p3p3/4q3/7P/8/PP3PP1/3R2K1 b - - 8 26"
+    ],
+    "tokensSha256": "3e8d9b9ae38f901f310f87364b9dc56477b81009ad619a403727fa94158429e0"
+  },
+  {
+    "name": "After 26.Rd1",
+    "elo": 1600,
+    "history": false,
+    "whiteScore": 0.8046181683529015,
+    "referenceWhiteScore": 0.8046181683529015,
+    "historyFens": [
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26",
+      "r3k1nQ/1p2rppN/p3p3/4q3/7P/8/PP3PP1/3R2K1 b - - 8 26"
+    ],
+    "tokensSha256": "01e2f6a2fd068d21e3624a26241b49a7ff265de509ee5300cdf7b14f3984e599"
+  },
+  {
+    "name": "After 26.Rd1",
+    "elo": 2600,
+    "history": true,
+    "whiteScore": 0.5777225255265902,
+    "referenceWhiteScore": 0.5777225255265902,
+    "historyFens": [
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26",
+      "r3k1nQ/1p2rppN/p3p3/4q3/7P/8/PP3PP1/3R2K1 b - - 8 26"
+    ],
+    "tokensSha256": "3e8d9b9ae38f901f310f87364b9dc56477b81009ad619a403727fa94158429e0"
+  },
+  {
+    "name": "After 26.Rd1",
+    "elo": 2600,
+    "history": false,
+    "whiteScore": 0.6544713452142135,
+    "referenceWhiteScore": 0.6544713452142135,
+    "historyFens": [
+      "r3rk2/1p3ppQ/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 w - - 1 23",
+      "r3rk1Q/1p3pp1/p3pn2/4q1N1/7P/8/PP3PP1/3R2K1 b - - 2 23",
+      "r3rknQ/1p3pp1/p3p3/4q1N1/7P/8/PP3PP1/3R2K1 w - - 3 24",
+      "r3rknQ/1p1R1pp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 b - - 4 24",
+      "r4knQ/1p1Rrpp1/p3p3/4q1N1/7P/8/PP3PP1/6K1 w - - 5 25",
+      "r4knQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 b - - 6 25",
+      "r3k1nQ/1p1RrppN/p3p3/4q3/7P/8/PP3PP1/6K1 w - - 7 26",
+      "r3k1nQ/1p2rppN/p3p3/4q3/7P/8/PP3PP1/3R2K1 b - - 8 26"
+    ],
+    "tokensSha256": "01e2f6a2fd068d21e3624a26241b49a7ff265de509ee5300cdf7b14f3984e599"
+  }
+]

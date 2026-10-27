@@ -1,0 +1,69 @@
+{
+  "model": {
+    "name": "Maia-3 79M (current Android export)",
+    "bytes": 316034244,
+    "sha256": "3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010",
+    "url": "https://media.githubusercontent.com/media/Dash1971/maia-chess-android/5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84/assets/models/maia3-79m.onnx",
+    "sourceCommit": "5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84"
+  },
+  "runtime": {
+    "version": "1.31.1",
+    "sourceCommit": "6af1a932e2286d5c58166085d24c68783033edee",
+    "npmIntegrity": "sha512-5GeH+bWQ+HxM10z7erGlsWqryrwMbSvm/1tkIsKTT48g0fI19VXVVC435t4t7VsPdSQeS7NmuZPXrQ73k82URw==",
+    "files": [
+      {
+        "path": "vendor/LICENSE",
+        "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+        "bytes": 1073
+      },
+      {
+        "path": "vendor/ThirdPartyNotices.txt",
+        "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3",
+        "bytes": 338088
+      },
+      {
+        "path": "vendor/ort-wasm-simd-threaded.asyncify.mjs",
+        "sha256": "59cf781530e1a16df2a291d78798e3ec1152467edaec402d6f9599d85047c302",
+        "bytes": 53457
+      },
+      {
+        "path": "vendor/ort-wasm-simd-threaded.mjs",
+        "sha256": "30ed0b5cd1182ede931fea448afb567d4dc705ec957af09f108a2be5f770dac3",
+        "bytes": 24738
+      },
+      {
+        "path": "vendor/ort.wasm.min.mjs",
+        "sha256": "c21d9c326d453a4a61398270c804d5979e118540597cb0c07f7b3d64e6098234",
+        "bytes": 53725
+      },
+      {
+        "path": "vendor/ort.webgpu.min.mjs",
+        "sha256": "329cd956772397a1aedd668e911195d39afefb182f6fc14aafa4f08ac8d8f379",
+        "bytes": 70742
+      }
+    ],
+    "assets": {
+      "wasm": {
+        "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort-wasm-simd-threaded.wasm",
+        "bytes": 14848852,
+        "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+        "module": "vendor/ort.wasm.min.mjs",
+        "loader": "vendor/ort-wasm-simd-threaded.mjs"
+      },
+      "webgpu": {
+        "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort-wasm-simd-threaded.asyncify.wasm",
+        "bytes": 28747738,
+        "sha256": "ca319e9539cd0f1e291cf56074760121eaf39650f5dbf84b6e52c07f4b2944ec",
+        "module": "vendor/ort.webgpu.min.mjs",
+        "loader": "vendor/ort-wasm-simd-threaded.asyncify.mjs"
+      }
+    }
+  },
+  "reference": {
+    "repository": "Dash1971/mobile-maia-research",
+    "commit": "74d8684db865753080da72c6f43b1973bbfd668e",
+    "path": "studies/score-reliability-2026-10-27/data/known-case-sanity.json",
+    "whiteScoreTolerance": 0.0005,
+    "sha256": "27a67210cbdeb9a122f9d208b5a6a8546f98764d646cdd58a568a2e99d3272c2"
+  }
+}

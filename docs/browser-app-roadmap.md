@@ -17,12 +17,17 @@ actual 2.5 screenshots. See the
 The dark green app palette and Home → Game → Settings flow inform this increment;
 the browser preview is not yet a pixel-for-pixel or feature-complete copy.
 
-Available now: 5M CPU play, White/Black, four rating settings, legal moves and
-promotion, takeback, PGN export, verified/cached engine downloads, one reusable
-session, and startup diagnostics. The inference benchmark separately offers
-5M/79M and CPU/WebGPU. Today’s playable sampling/rating defaults remain those of
-the existing prototype (1600, Temperature 1 / Top-P 1); they have not silently
-changed to Stable 2.5 defaults.
+Available now: 5M CPU play with Lichess Chessground drag/tap, legal destinations,
+check/last-move highlights, animation, one validated premove, White/Black/Random,
+600–2600 rating input (1500 default), position navigation, flip, promotions,
+takeback and PGN export. Analysis Board adds PGN/FEN import, variation-preserving
+exploration/export, a separate Maia rating and raw move probabilities, two local
+Stockfish Lite lines, engine arrows and Continue from here. One Maia session is
+shared; analysis pauses the game's pending reply and returning resumes it.
+The inference benchmark separately offers 5M/79M and CPU/WebGPU. Play sampling
+remains Temperature 1 / Top-P 1, history off; native 2.5 Top-P/opening-variety
+settings have not yet been ported. Games/studies remain in tab memory.
+See [the implementation decision and verification](browser-analysis-2026-10-27.md).
 
 ## Small, reviewable increments
 
@@ -41,12 +46,12 @@ behavior and leave the preview usable. We are not attempting all six today.
 
 ## Architecture checkpoint before large feature ports
 
-The current small HTML/JavaScript preview is useful evidence for the browser
-engine, caching and startup behavior. Before recreating Analysis Board or Game
-Review, evaluate reusing the Flutter app UI/domain logic with web-specific
+The HTML/JavaScript preview is useful evidence for the browser
+engine, caching and startup behavior. The initial plan called for evaluating, before Analysis Board or Game
+Review, reusing the Flutter app UI/domain logic with web-specific
 engine/storage/file adapters. Compare that with continuing the modular browser
-implementation backed by shared fixtures and formats. Select one approach in a
-recorded decision; avoid maintaining two uncoordinated interpretations of the app.
+implementation backed by shared fixtures and formats. The gameplay/analysis increment records its scoped decision in
+[browser-analysis-2026-10-27.md](browser-analysis-2026-10-27.md); avoid maintaining two uncoordinated interpretations of the app.
 
 The app currently imports `dart:io`, uses a `maia_chess/engine` MethodChannel,
 and depends on native multistockfish. Those boundaries need web implementations;
@@ -57,7 +62,7 @@ I/O/concurrency differences, and its
 points web code toward JavaScript interop. No Flutter web build or app-source
 refactor was performed in this presentation increment.
 
-The checkpoint should prove one existing app screen + one browser-engine reply,
+A future Flutter reuse experiment should prove one existing app screen + one browser-engine reply,
 record first/cached startup, check accessibility and mobile memory/lifecycle,
 identify source-sharing and hosting requirements, and decide the implementation
 path before broad feature work. Homepage/research content remains ordinary HTML.

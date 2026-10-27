@@ -1,0 +1,12 @@
+{
+  "package": "stockfish@19.0.1",
+  "engine": "Stockfish 19 Lite, single-threaded",
+  "source": "https://github.com/nmrugg/stockfish.js/tree/v19.0.1",
+  "licence": "vendor/stockfish-COPYING.txt",
+  "loader": "vendor/stockfish-19-lite-single.js",
+  "wasm": {
+    "url": "https://unpkg.com/stockfish@19.0.1/bin/stockfish-19-lite-single.wasm",
+    "bytes": 1845971,
+    "sha256": "ee4f115bdb2d32cadf96cada104a05b5ec257d7ad6f57582190b49bc71f096de"
+  }
+}

@@ -1,8 +1,8 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
 import { Chess } from './vendor/chess.mjs';
 export { Chess };
-export function createGame(human, rating, now = new Date()) {
-  const game = new Chess();
+export function createGame(human, rating, now = new Date(), fen) {
+  const game = new Chess(fen);
   const date = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
   const headers = { Event: 'Mobile Maia browser preview', Site: 'https://mobilemaia.org/play/',
     Date: date, Round: '-', White: human === 'w' ? 'You' : `Maia 5M (${rating})`,

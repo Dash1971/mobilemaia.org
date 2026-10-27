@@ -97,6 +97,57 @@
       "path": "vendor/chess.js.map",
       "bytes": 138549,
       "sha256": "2a9afbda2477e80182786555b0bbb03d66d33d425e90d61c087b51fa0e8e3b20"
+    },
+    {
+      "path": "vendor/stockfish-19-lite-single.js",
+      "sha256": "ccb130d7ff29408531c47d859a49f91d59d4f482d05a53eb1a3231a4f624c91a",
+      "bytes": 28230
+    },
+    {
+      "path": "vendor/stockfish-COPYING.txt",
+      "sha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b",
+      "bytes": 35821
+    },
+    {
+      "path": "vendor/chessground/LICENSE",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147
+    },
+    {
+      "path": "vendor/chessground/README.md",
+      "sha256": "d0fe38c9e3130b93f34372335588c29b2fc33553fdf3a55de38a7463eab5b865",
+      "bytes": 4657
+    },
+    {
+      "path": "vendor/chessground/brown.css",
+      "sha256": "cc666266d116b752ea085851f2514b25a0273501c6e6f224cbf4282bf01e8123",
+      "bytes": 2908
+    },
+    {
+      "path": "vendor/chessground/chessground.min.js",
+      "sha256": "ccc1aaf2389a7faca68c47e1df24b91976dad208fdd005100e655cb0ef70a591",
+      "bytes": 33291
+    },
+    {
+      "path": "vendor/chessground/base.css",
+      "sha256": "fbfa4b0e791c58c9e793161e543ce712d85663318a82e547aee7db8f817770f2",
+      "bytes": 3537
     }
-  ]
+  ],
+  "stockfish": {
+    "version": "19.0.1",
+    "variant": "lite-single",
+    "source": "https://github.com/nmrugg/stockfish.js/tree/v19.0.1",
+    "licence": "GPL-3.0; see vendor/stockfish-COPYING.txt",
+    "sourceCommit": "0d5dd7944f88c817c07a26bc4fb1905d5f9c46d6"
+  },
+  "chessground": {
+    "package": "@lichess-org/chessground",
+    "version": "10.5.0",
+    "npmIntegrity": "sha512-LmTNnzCQ67RQsryzouWY0jYoN24LlpubtPyYko1gmdpTj5HSfz0VgUGB4Gpo6oifg0MyeT9YeV2TdZEbOP6byA==",
+    "source": "https://github.com/lichess-org/chessground/tree/v10.5.0",
+    "licence": "GPL-3.0-or-later; see vendor/chessground/LICENSE",
+    "modifications": "Unmodified bundled ES module, base/brown CSS; local Cburnett piece CSS and keyboard adapter are separate.",
+    "sourceCommit": "b4f605018e1043640c917e82a74b214cb58e4a05"
+  }
 }

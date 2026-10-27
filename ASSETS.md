@@ -96,3 +96,26 @@ GPL-2.0 text are served alongside them. Individual file hashes are in the play
 asset manifest. The board is CSS/HTML, not a new app screenshot.
 The preview reuses the inference lab's pinned 5M model and CPU runtime; no weights
 or runtime binaries are checked into this repository.
+
+
+## Browser board and analysis engines
+
+Unmodified `@lichess-org/chessground` **10.5.0** bundled ES module and base/brown
+CSS come from the official npm package, verified against its SHA-512 integrity.
+Corresponding source is Lichess Chessground tag `v10.5.0`, commit
+`b4f605018e1043640c917e82a74b214cb58e4a05`. Licence: GPL-3.0-or-later, served in
+`site/play/vendor/chessground/LICENSE`. The separate adapter adds keyboard access
+and connects legal moves from chess.js. Local CSS uses the app's Brown/Cburnett
+palette/pieces and in-board coordinates; upstream interaction highlights remain
+unchanged. The original upstream README is included with the dependency.
+
+Unmodified `stockfish@19.0.1` Lite single-threaded worker glue is vendored locally;
+its 1,845,971-byte WASM is downloaded at runtime from the pinned npm distribution
+on unpkg and checked against SHA-256
+`ee4f115bdb2d32cadf96cada104a05b5ec257d7ad6f57582190b49bc71f096de`.
+Corresponding engine/build source is `nmrugg/stockfish.js` tag `v19.0.1`, commit
+`0d5dd7944f88c817c07a26bc4fb1905d5f9c46d6`. GPL-3.0 text is served in
+`site/play/vendor/stockfish-COPYING.txt`. No WASM/model binary is checked in.
+`site/play/assets.json` hashes every vendored source, licence and piece;
+`site/play/stockfish.json` pins the runtime download. The source links are also
+provided in the public privacy/credits page.

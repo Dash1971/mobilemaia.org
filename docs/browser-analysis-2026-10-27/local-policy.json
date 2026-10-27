@@ -1,0 +1,17 @@
+{
+  "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+  "maiaMoves": [
+    "g1f3",
+    "f1c4",
+    "b1c3",
+    "d2d4",
+    "d2d3"
+  ],
+  "maiaSummary": "Maia · 2. Nf3 · 47.3%",
+  "stockfishMoves": [
+    "g1f3",
+    "b1c3"
+  ],
+  "stockfishSummary": "Stockfish · 2. Nf3 · +0.28 (White)",
+  "tree": "Start1. e4(1. d41… d5(1… Nf6))1… e52. Nf3"
+}

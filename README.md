@@ -116,36 +116,51 @@ reference validation; never swap a smaller/re-exported model silently.
 
 ### Playable browser preview
 
-`/play/` is the first step toward an app trial before Android installation.
-Desktop shows the working app inside a phone frame; phones use the full viewport.
-Home, Game and Settings navigation preserves the current board/engine. The dark
-green presentation follows Stable 2.5, while feature parity is staged in the
-[browser-app roadmap](docs/browser-app-roadmap.md). It is currently a small 5M CPU game: play White or Black, set the model rating,
-select legal moves with taps or arrow keys/Enter, choose promotions, take back
-moves, and export a PGN. It uses pinned, locally vendored chess.js 1.4.0 for legal
-rules and original Cburnett SVG pieces from Lichess. Exact source, licences and
-file hashes are in `site/play/assets.json` and [ASSETS.md](ASSETS.md).
+`/play/` is the browser trial before Android installation. Desktop shows the app
+inside a phone frame; phones use the full viewport. Home, Game, Analysis Board
+and Settings keep one shared 5M CPU session. The app and Lichess are the UI/chess
+references; both browser boards now use unmodified **Lichess Chessground 10.5.0**
+with Brown/Cburnett styling, drag/tap moves, animation, destination dots, capture
+rings, check/last-move highlights, and a keyboard adapter. Play supports
+White/Black/Random, any whole-number rating from 600–2600 (default 1500), one
+legal-checked premove, promotion, takeback, board flip, position navigation,
+Analyse game and PGN export. Navigation and takebacks clear premoves.
 
-Startup overlaps the model and CPU-runtime downloads, reuses the benchmark's
-named cache, skips all synthetic/reference warm-up runs, and keeps one dedicated
-worker/session for the life of the tab. New games reuse that session. White can
-play the first move during loading. Late replies from a previous position are
-rejected after takeback/new game. Download failures keep partial byte/error
-information and offer retry without resetting the board. Stop releases the
-worker; clearing downloads removes only the shared experiment cache. No automatic
-upload, game persistence, clock, Stockfish, service worker or install prompt.
+**Analysis Board** supports legal moves for either side, PGN/file or FEN import,
+mainline/variation navigation, branch-preserving PGN export, board flip, current
+FEN copy and Continue from here with full FEN state. Trying alternatives keeps
+existing moves. Maia displays raw probabilities normalized over all legal moves
+(the top five are shown), using the app's mapping and tie order, independently
+of play sampling. Local **Stockfish 19 Lite single-threaded** provides two PVs,
+White-perspective centipawn/mate scores and blue arrows; Maia's arrow is green.
+Searches stop at depth 12 or 600 ms, debounce position changes, and discard stale
+results. Engines pause when leaving analysis; the original game is retained.
+One Maia worker is shared between play and analysis. Returning to Game resumes
+a pending reply. Pause engines, Retry and Stop engine are available.
 
-Settings match the original model input/policy conventions: current board
-repeated in eight frames, raw equal Self/Opponent rating inputs, legal-move
-masking and Temperature 1 / Top-P 1 sampling. Rating is not a calibrated playing
-strength. This is a browser preview, independent of Android releases.
+Stockfish downloads 1,845,971 bytes from pinned unpkg and verifies size/SHA-256
+before starting the unmodified local worker glue. The version, source, licence
+and hashes are in `site/play/stockfish.json` and `assets.json`. The lite network
+and search budget differ from Android's full engine; no equal-strength or full
+feature-parity claim is made. The board/piece/rules sources are in
+[ASSETS.md](ASSETS.md). Imported PGNs/positions stay local; no automatic uploads.
+Game and study remain in this tab's memory, so export PGN before leaving.
 
-`node tools/test_play.mjs` checks rules, policy orientation, promotions/castling/
-en passant, takebacks/stale replies, PGN and vendored integrity. The optional
-`tools/compare_play_startup.mjs MODEL WASM [LEVEL]` uses Node/WASM to compare
-session optimization levels against all eight native 5M references. It requires
-separately supplied pinned binaries and performs no downloads. Node timings are
-not browser/phone timings. See [implementation and measured limits](docs/browser-play-2026-10-27.md).
+Maia startup still overlaps verified model/runtime downloads, reuses the lab's
+named cache, skips synthetic/reference warm-ups and reuses one CPU session.
+5M remains default; optional 79M play, saved-game recovery, clocks, stacked
+premoves, piece editor, second Maia analysis, game-review classifications and
+PWA installation remain future increments. The current play sampler remains
+Temperature 1 / Top-P 1 with history off; only the new-game rating default and
+range were aligned here. See the [roadmap](docs/browser-app-roadmap.md) and
+[implementation decision and verification](docs/browser-analysis-2026-10-27.md).
+
+`node tools/test_play.mjs` checks rules/policy/PGN and vendored integrity;
+`node tools/test_study.mjs` checks variation import/export, notes/NAGs, custom FEN,
+legal policy probabilities and stale/cancelled UCI searches. The optional
+`tools/compare_play_startup.mjs MODEL WASM [LEVEL]` retains the independent
+native-reference startup comparison; it downloads nothing. No Android source,
+release gates or shared Stable/Preview build helpers change in this increment.
 
 ### App and screenshot sources
 

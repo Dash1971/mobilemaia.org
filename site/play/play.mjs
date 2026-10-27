@@ -1,152 +1,155 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
-import { Chess, createGame, uci, takeBack, currentReply, ending } from './game.mjs?v=20261027-play2';
+import { Chess, createGame, uci, takeBack, currentReply, ending } from './game.mjs?v=20261027-study1';
+import { ChessBoard, pieceNames as names } from './board.mjs?v=20261027-study1';
+import { AnalysisView } from './analysis.mjs?v=20261027-study1';
 import { CACHE_NAME } from '../lab/inference/core.mjs?v=20261027-5m';
 const $ = id => document.getElementById(id);
-const names = { p: 'pawn', n: 'knight', b: 'bishop', r: 'rook', q: 'queen', k: 'king' };
-let game = new Chess(), human = 'w', rating = 1600, started = false, selected, promotionMoves;
-let worker, ready = false, loading = false, thinking = false, revision = 0, boot = 0, focusSquare = 'e2';
+let game = new Chess(), human = 'w', rating = 1500, started = false, promotionCommit;
+let worker, ready = false, loading = false, thinking = false, revision = 0, boot = 0;
 let engineStart, diagnostics = {}, lastMoveText = '', engineError = '', sessions = 0, games = 0;
-let awaitingSince;
+let awaitingSince, pendingFen, viewPly = null, orientation = 'w';
 let activeView = 'home', settingsReturn = 'home';
 const visibility = [{ at: new Date().toISOString(), state: document.visibilityState }];
-document.addEventListener('visibilitychange', () => {
-  visibility.push({ at: new Date().toISOString(), state: document.visibilityState });
-});
+document.addEventListener('visibilitychange', () => visibility.push({ at: new Date().toISOString(), state: document.visibilityState }));
 const labelColor = color => color === 'w' ? 'White' : 'Black';
-const squareButtons = new Map();
+const board = new ChessBoard($('board'), moves => {
+  const fen = game.fen();
+  promote(moves, move => {
+    if (game.fen() !== fen || activeView !== 'game' || viewPly !== null || game.turn() !== human || game.isGameOver()) return;
+    game.move({ from: move.from, to: move.to, promotion: move.promotion });
+    awaitingSince = performance.now(); lastMoveText = ''; revision++; render(); askMaia();
+  });
+});
+board.onPremove = queued => { $('cancel-premove').hidden = !queued; };
+$('cancel-premove').addEventListener('click', () => board.cancel());
+const analysis = new AnalysisView({
+  promote, download, hints: () => $('legal-hints').checked, highlight: () => $('last-highlight').checked,
+  coordinates: () => $('board-coordinates').checked, animation: () => $('board-animation').checked,
+  keep: () => $('keep').checked,
+  requestMaia: job => { if (ready) worker.postMessage(job); else startEngine(); },
+  continueFrom: fen => { pendingFen = fen; $('custom-position').hidden = false; showView('home'); }
+});
+function analysisOwnsEngine() { return activeView === 'analysis' || (activeView === 'settings' && settingsReturn === 'analysis'); }
 function syncShell() {
   $('resume').hidden = !started;
-  $('app-back').hidden = activeView === 'home';
-  $('app-footer').hidden = activeView !== 'home';
-  $('app-title').textContent = activeView === 'home' ? 'Mobile Maia' : activeView === 'game' ? 'Play Maia' : 'Settings';
+  $('app-back').hidden = activeView === 'home'; $('app-footer').hidden = activeView !== 'home';
+  $('app-title').textContent = ({ home: 'Mobile Maia', game: 'Play Maia', settings: 'Settings', analysis: 'Analysis Board' })[activeView];
   const status = ready ? '5M CPU · Engine ready' : loading
     ? ($('load-progress').hasAttribute('value') ? 'Loading Maia 5M…' : 'Preparing Maia…')
     : engineError ? 'Maia needs to reload' : diagnostics.startedAt ? 'Maia is stopped' : '5M CPU · Ready to start';
   if ($('session-indicator').textContent !== status) $('session-indicator').textContent = status;
 }
-function showView(view, focus = true) {
+function showView(view, focus = true, pgn, facing) {
   if (view === 'game' && !started) view = 'home';
   if (view === 'settings' && activeView !== 'settings') settingsReturn = activeView;
+  if (activeView === 'analysis' && view !== 'analysis') analysis.leave();
+  if (view === 'analysis') { revision++; thinking = false; }
+  board.cancel();
+  if ($('promotion').open) $('promotion').close();
   activeView = view;
-  for (const name of ['home', 'game', 'settings']) $('view-' + name).hidden = name !== view;
-  $('app-content').scrollTop = 0;
-  syncShell();
-  if (focus) (view === 'game' ? squareButtons.get(focusSquare) : view === 'home' ? $('side') : $('app-back'))?.focus({ preventScroll: true });
+  for (const name of ['home','game','settings','analysis']) $('view-' + name).hidden = name !== view;
+  $('app-content').scrollTop = 0; syncShell();
+  if (view === 'analysis') analysis.enter(pgn, facing);
+  if (view === 'game') { render(); askMaia(); }
+  if (focus) {
+    if (view === 'game') board.focus();
+    else if (view === 'analysis') analysis.board.focus();
+    else (view === 'home' ? $('side') : $('app-back')).focus({ preventScroll: true });
+  }
 }
 $('app-settings').addEventListener('click', () => showView('settings'));
 $('home-settings').addEventListener('click', () => showView('settings'));
 $('resume').addEventListener('click', () => showView('game'));
+$('open-analysis').addEventListener('click', () => showView('analysis'));
+$('analyse-game').addEventListener('click', () => showView('analysis', true, game.pgn(), orientation));
 $('app-back').addEventListener('click', () => showView(activeView === 'settings' ? settingsReturn : 'home'));
-function makeBoard() {
-  const files = human === 'w' ? 'abcdefgh' : 'hgfedcba';
-  const ranks = human === 'w' ? '87654321' : '12345678';
-  $('board').replaceChildren(); squareButtons.clear();
-  for (const rank of ranks) for (const file of files) {
-    const square = file + rank, button = document.createElement('button');
-    button.type = 'button'; button.dataset.square = square;
-    button.addEventListener('click', () => choose(square));
-    button.addEventListener('keydown', event => {
-      if (event.key === 'Escape') { selected = null; render(); return; }
-      const delta = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -8, ArrowDown: 8 }[event.key];
-      if (delta === undefined) return;
-      event.preventDefault();
-      const all = [...squareButtons.keys()], index = all.indexOf(square), next = index + delta;
-      if (next < 0 || next >= 64 || (Math.abs(delta) === 1 && Math.floor(index / 8) !== Math.floor(next / 8))) return;
-      focusSquare = all[next];
-      for (const [s, b] of squareButtons) b.tabIndex = s === focusSquare ? 0 : -1;
-      squareButtons.get(focusSquare).focus();
-    });
-    squareButtons.set(square, button); $('board').append(button);
-  }
+$('reset-position').addEventListener('click', () => { pendingFen = null; $('custom-position').hidden = true; });
+for (const id of ['legal-hints','last-highlight','board-coordinates','board-animation']) $(id).addEventListener('change', () => { render(); analysis.renderBoard(); });
+function shownGame() {
+  if (viewPly === null) return game;
+  const history = game.history({ verbose: true }), copy = new Chess(history[0]?.before || game.fen());
+  for (const move of history.slice(0,viewPly)) copy.move(move);
+  return copy;
 }
 function render() {
-  const history = game.history({ verbose: true }), last = history.at(-1);
+  const history = game.history({ verbose: true }), display = shownGame(), last = display.history({ verbose: true }).at(-1);
   $('keep').disabled = loading;
-  const canMove = started && game.turn() === human && !game.isGameOver();
-  const destinations = selected && canMove ? game.moves({ square: selected, verbose: true }).map(move => move.to) : [];
-  for (const [square, button] of squareButtons) {
-    const piece = game.get(square), dark = (square.charCodeAt(0) + Number(square[1])) % 2 === 0;
-    const checked = piece?.type === 'k' && piece.color === game.turn() && game.isCheck();
-    button.className = `square${dark ? ' dark' : ''}${last && [last.from, last.to].includes(square) ? ' last' : ''}${selected === square ? ' selected' : ''}${destinations.includes(square) ? ' legal' : ''}${piece ? ' occupied' : ''}${checked ? ' checked' : ''}`;
-    button.tabIndex = square === focusSquare ? 0 : -1;
-    button.setAttribute('aria-label', `${square}, ${piece ? labelColor(piece.color) + ' ' + names[piece.type] : 'empty'}${destinations.includes(square) ? ', legal destination' : ''}${checked ? ', in check' : ''}`);
-    button.setAttribute('aria-pressed', String(square === selected));
-    const pieceKey = piece ? piece.color + piece.type : '';
-    if (button.dataset.piece !== pieceKey) {
-      button.dataset.piece = pieceKey; button.replaceChildren();
-      if (piece) { const img = document.createElement('img'); img.src = `pieces/${piece.color}${piece.type.toUpperCase()}.svg`; img.alt = ''; img.draggable = false; button.append(img); }
-      if (square[1] === (human === 'w' ? '1' : '8')) { const span = document.createElement('span'); span.className = 'coordinate file-coordinate'; span.textContent = square[0]; button.append(span); }
-      if (square[0] === (human === 'w' ? 'a' : 'h')) { const span = document.createElement('span'); span.className = 'coordinate rank-coordinate'; span.textContent = square[1]; button.append(span); }
-    }
-  }
-  $('opponent').textContent = `Maia 5M · ${rating}`;
-  $('human-color').textContent = labelColor(human); $('opponent-color').textContent = labelColor(human === 'w' ? 'b' : 'w');
+  board.update({ game: display, orientation, movable: started && viewPly === null && game.turn() === human && !game.isGameOver(),
+    premoveColor: started && viewPly === null && !game.isGameOver() ? human : undefined,
+    lastMove: last, hints: $('legal-hints').checked, highlight: $('last-highlight').checked,
+    coordinates: $('board-coordinates').checked, animation: $('board-animation').checked });
+  const topIsHuman = orientation !== human;
+  $('opponent').textContent = topIsHuman ? 'You' : `Maia 5M · ${rating}`;
+  $('player-bottom').textContent = topIsHuman ? `Maia 5M · ${rating}` : 'You';
+  $('human-color').textContent = labelColor(orientation); $('opponent-color').textContent = labelColor(orientation === 'w' ? 'b' : 'w');
   const end = ending(game, human);
-  if (end) $('game-status').textContent = end;
+  if (viewPly !== null) $('game-status').textContent = `Viewing position ${viewPly} of ${history.length}. Return to the live position to play.`;
+  else if (end) $('game-status').textContent = end;
   else if (!started) $('game-status').textContent = 'Choose your side, then start a game.';
   else if (game.turn() === human) $('game-status').textContent = `Your move.${game.isCheck() ? ' You are in check.' : ''}${loading ? ' Maia is loading in the background.' : ''}`;
   else if (engineError) $('game-status').textContent = 'Maia could not continue. Load Maia to retry; your position is kept.';
   else if (!ready) $('game-status').textContent = loading ? 'Maia is loading. Your position is ready and waiting.' : 'Load Maia to continue this game.';
   else $('game-status').textContent = 'Maia is thinking…';
   $('undo').disabled = !history.some(move => move.color === human);
-  $('board').setAttribute('aria-busy', String(thinking));
-  $('pgn').disabled = history.length === 0;
+  $('board').setAttribute('aria-busy', String(thinking)); $('pgn').disabled = history.length === 0;
   $('last-move').textContent = lastMoveText;
   $('moves').replaceChildren();
   for (let i = 0; i < history.length; i += 2) {
-    const li = document.createElement('li'); li.textContent = `${i / 2 + 1}. ${history[i].san}  ${history[i + 1]?.san || ''}`; $('moves').append(li);
+    const li = document.createElement('li');
+    for (let n = i; n < Math.min(i + 2, history.length); n++) {
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'move-link';
+      button.textContent = `${history[n].before.split(' ')[5]}${history[n].color === 'w' ? '.' : '…'} ${history[n].san}`;
+      button.setAttribute('aria-current', String(n + 1 === (viewPly ?? history.length)));
+      button.addEventListener('click', () => { board.cancel(); viewPly = n + 1 === history.length ? null : n + 1; render(); }); li.append(button);
+    }
+    $('moves').append(li);
   }
-  $('moves').scrollLeft = $('moves').scrollWidth; $('empty-moves').hidden = history.length > 0;
+  if (viewPly === null) $('moves').scrollLeft = $('moves').scrollWidth;
+  $('moves').hidden = history.length === 0;
+  $('empty-moves').hidden = history.length > 0;
+  const ply = viewPly ?? history.length;
+  $('game-first').disabled = $('game-previous').disabled = ply === 0;
+  $('game-last').disabled = $('game-next').disabled = viewPly === null;
   if (end) game.setHeader('Result', game.isCheckmate() ? (game.turn() === 'w' ? '0-1' : '1-0') : '1/2-1/2');
   else game.setHeader('Result', '*');
   syncShell();
 }
-function choose(square) {
-  if (!started || game.turn() !== human || game.isGameOver() || promotionMoves) return;
-  focusSquare = square;
-  const legal = selected ? game.moves({ square: selected, verbose: true }).filter(move => move.to === square) : [];
-  if (legal.length) {
-    if (legal.some(move => move.promotion)) { promote(legal); return; }
-    playHuman(legal[0]); return;
-  }
-  const piece = game.get(square);
-  selected = piece?.color === human && selected !== square ? square : null;
-  render();
-}
-function playHuman(move) {
-  game.move({ from: move.from, to: move.to, promotion: move.promotion });
-  awaitingSince = performance.now();
-  selected = null; lastMoveText = ''; revision++; render(); askMaia();
-}
-function promote(moves) {
-  promotionMoves = moves; $('promotion-options').replaceChildren();
-  for (const type of ['q', 'r', 'b', 'n']) {
+for (const action of ['first','previous','next','last']) $('game-' + action).addEventListener('click', () => {
+  board.cancel();
+  const count = game.history().length, ply = viewPly ?? count;
+  const next = ({ first: 0, previous: Math.max(0,ply-1), next: Math.min(count,ply+1), last: count })[action];
+  viewPly = next === count ? null : next; render();
+});
+$('game-flip').addEventListener('click', () => { orientation = orientation === 'w' ? 'b' : 'w'; render(); });
+function promote(moves, commit) {
+  if (!moves.length) return;
+  if (moves.length === 1 || !moves.some(move => move.promotion)) { commit(moves[0]); return; }
+  promotionCommit = commit; $('promotion-options').replaceChildren();
+  for (const type of ['q','r','b','n']) {
     const button = document.createElement('button'); button.type = 'button'; button.setAttribute('aria-label', `Promote to ${names[type]}`);
-    const image = document.createElement('img'); image.src = `pieces/${human}${type.toUpperCase()}.svg`; image.alt = ''; button.append(image);
-    button.addEventListener('click', () => { const move = promotionMoves.find(move => move.promotion === type); promotionMoves = null; $('promotion').close(); playHuman(move); });
+    const image = document.createElement('img'); image.src = `pieces/${moves[0].color}${type.toUpperCase()}.svg`; image.alt = ''; button.append(image);
+    button.addEventListener('click', () => {
+      const move = moves.find(move => move.promotion === type), finish = promotionCommit;
+      promotionCommit = null; $('promotion').close(); if (move) finish?.(move);
+    });
     $('promotion-options').append(button);
   }
-  $('promotion').showModal();
-  positionPromotion();
+  $('promotion').showModal(); positionPromotion();
 }
 function positionPromotion() {
   if (!$('promotion').open) return;
-  const phone = document.querySelector('.phone-shell').getBoundingClientRect();
-  const dialog = $('promotion').getBoundingClientRect();
+  const phone = document.querySelector('.phone-shell').getBoundingClientRect(), dialog = $('promotion').getBoundingClientRect();
   const x = Math.max(dialog.width / 2 + 8, Math.min(innerWidth - dialog.width / 2 - 8, phone.left + phone.width / 2));
   const y = Math.max(dialog.height / 2 + 8, Math.min(innerHeight - dialog.height / 2 - 8, phone.top + phone.height / 2));
-  $('promotion').style.left = `${x}px`;
-  $('promotion').style.top = `${y}px`;
+  $('promotion').style.left = `${x}px`; $('promotion').style.top = `${y}px`;
 }
 window.addEventListener('resize', positionPromotion);
 $('promotion-cancel').addEventListener('click', () => $('promotion').close());
-$('promotion').addEventListener('close', () => { promotionMoves = null; render(); });
+$('promotion').addEventListener('close', () => { promotionCommit = null; render(); analysis.renderBoard(); });
 function askMaia() {
-  if (!started || !ready || thinking || game.turn() === human || game.isGameOver()) return;
-  thinking = true;
-  const id = ++revision;
-  worker.postMessage({ type: 'move', id, fen: game.fen(), rating, legal: game.moves({ verbose: true }).map(uci) });
-  render();
+  if (analysisOwnsEngine() || !started || !ready || thinking || game.turn() === human || game.isGameOver()) return;
+  thinking = true; const id = ++revision;
+  worker.postMessage({ type: 'move', id, fen: game.fen(), rating, legal: game.moves({ verbose: true }).map(uci) }); render();
 }
 function updateMetrics() {
   $('diagnostics').disabled = !diagnostics.startedAt;
@@ -164,15 +167,17 @@ function startupReport() {
     engineReady: ready, engineLoading: loading, visibilityChanges: visibility, page: location.href,
     device: { userAgent: navigator.userAgent, logicalCores: navigator.hardwareConcurrency, crossOriginIsolated: self.crossOriginIsolated } };
 }
-function stopEngine(reason = 'Maia is stopped. Load Maia to continue.') {
+function stopEngine(reason = 'Maia is stopped. Load Maia to continue.', all = true) {
+  board.cancel();
+  if (all) analysis.stop();
   boot++; revision++; worker?.terminate(); worker = null; ready = false; loading = false; thinking = false;
-  $('release').disabled = true; $('retry').hidden = !started; $('load-progress').hidden = true;
+  $('release').disabled = true; $('retry').hidden = !started && !analysis.active; $('load-progress').hidden = true;
   $('engine-title').textContent = 'Engine stopped.'; $('engine-status').textContent = reason;
   render(); updateMetrics();
 }
 function failed(message, data) {
   if (data) diagnostics = { ...diagnostics, ...data };
-  stopEngine(message); engineError = message;
+  stopEngine(message, false); engineError = message; analysis.maiaError(message);
   diagnostics.error = message; diagnostics.failedAt = new Date().toISOString();
   $('engine-title').textContent = 'A loading problem.'; updateMetrics(); render();
 }
@@ -180,7 +185,7 @@ async function startEngine() {
   if (ready || loading) return;
   loading = true; engineError = ''; engineStart = performance.now();
   const thisBoot = ++boot;
-  diagnostics = { startedAt: new Date().toISOString(), version: '20261027-shell1', downloads: [] };
+  diagnostics = { startedAt: new Date().toISOString(), version: '20261027-study1', downloads: [] };
   $('engine-title').textContent = 'Loading Maia.'; $('engine-status').textContent = 'Checking engine configuration…';
   $('load-progress').hidden = false; $('load-progress').value = 0; $('load-progress').max = 1;
   $('release').disabled = false; $('retry').hidden = true; updateMetrics(); render();
@@ -189,7 +194,7 @@ async function startEngine() {
     if (!response.ok) throw new Error('Engine configuration unavailable');
     const config = await response.json();
     if (thisBoot !== boot) return;
-    worker = new Worker(new URL('./engine.mjs?v=20261027-play2', import.meta.url), { type: 'module' });
+    worker = new Worker(new URL('./engine.mjs?v=20261027-study1', import.meta.url), { type: 'module' });
     const activeWorker = worker;
     worker.onmessage = ({ data }) => {
       if (worker !== activeWorker) return;
@@ -206,10 +211,12 @@ async function startEngine() {
         ready = true; loading = false; sessions++;
         diagnostics = { ...diagnostics, ...data.diagnostics, mainReadyMs: performance.now() - engineStart };
         $('engine-title').textContent = 'Maia is ready.'; $('engine-status').textContent = 'The engine stays loaded for your next move and your next game.';
-        $('load-progress').hidden = true; updateMetrics(); render(); askMaia();
+        $('load-progress').hidden = true; updateMetrics(); render(); askMaia(); analysis.engineReady();
+      } else if (data.type === 'analysis') {
+        diagnostics = { ...diagnostics, ...data.diagnostics }; updateMetrics(); analysis.result(data);
       } else if (data.type === 'move') {
         diagnostics = { ...diagnostics, ...data.diagnostics }; updateMetrics();
-        if (!currentReply(data, revision, game, human)) return;
+        if (analysisOwnsEngine() || !currentReply(data, revision, game, human)) return;
         thinking = false;
         try {
           const move = game.move({ from: data.move.slice(0, 2), to: data.move.slice(2, 4), promotion: data.move[4] });
@@ -218,9 +225,9 @@ async function startEngine() {
           diagnostics.lastReplyWaitMs = awaitingSince == null ? null : performance.now() - awaitingSince;
           diagnostics.firstReplyWaitMs ??= diagnostics.lastReplyWaitMs;
           awaitingSince = null; updateMetrics();
-          selected = null; render();
+          render();
         } catch (error) { failed(error.message, data.diagnostics); }
-      } else if (data.type === 'error' && (data.id === undefined || data.id === revision)) failed(data.error, data.diagnostics);
+      } else if (data.type === 'error' && (data.id === undefined || data.id === revision || data.id === analysis.requestId)) failed(data.error, data.diagnostics);
     };
     worker.onerror = event => { if (worker === activeWorker) failed(event.message || 'Engine worker stopped. Try loading Maia again.'); };
     worker.postMessage({ type: 'init', config, keep: $('keep').checked });
@@ -228,16 +235,16 @@ async function startEngine() {
 }
 $('setup').addEventListener('submit', event => {
   event.preventDefault();
-  revision++; thinking = false; selected = null; lastMoveText = ''; engineError = '';
-  human = $('side').value; rating = Number($('rating').value); game = createGame(human, rating); started = true; games++;
-  focusSquare = human === 'w' ? 'e2' : 'e7';
-  awaitingSince = human === 'b' ? performance.now() : null;
-  showView('game', false);
-  makeBoard(); render(); $('start').textContent = 'New game'; updateMetrics();
-  squareButtons.get(focusSquare).focus({ preventScroll: true });
+  revision++; thinking = false; lastMoveText = ''; engineError = ''; viewPly = null;
+  human = $('side').value === 'random' ? (Math.random() < .5 ? 'w' : 'b') : $('side').value;
+  rating = Number($('rating').value); game = createGame(human, rating, new Date(), pendingFen);
+  pendingFen = null; $('custom-position').hidden = true; orientation = human; started = true; games++;
+  board.focusSquare = human === 'w' ? 'e2' : 'e7';
+  awaitingSince = game.turn() !== human ? performance.now() : null;
+  showView('game', false); render(); $('start').textContent = 'New game'; updateMetrics(); board.focus();
   if (!ready) startEngine(); else askMaia();
 });
-$('undo').addEventListener('click', () => { if (takeBack(game, human)) { revision++; thinking = false; selected = null; lastMoveText = ''; render(); } });
+$('undo').addEventListener('click', () => { if (takeBack(game, human)) { board.cancel(); revision++; thinking = false; viewPly = null; lastMoveText = ''; render(); } });
 $('retry').addEventListener('click', startEngine);
 $('release').addEventListener('click', () => stopEngine());
 $('clear').addEventListener('click', async () => {
@@ -250,6 +257,6 @@ function download(text, name, type) {
 }
 $('pgn').addEventListener('click', () => download(game.pgn() + '\n', `mobile-maia-game-${Date.now()}.pgn`, 'application/x-chess-pgn'));
 $('diagnostics').addEventListener('click', () => download(JSON.stringify(startupReport(), null, 2) + '\n', `mobile-maia-play-startup-${Date.now()}.json`, 'application/json'));
-makeBoard(); render();
+render();
 if (self.isSecureContext && self.Worker && self.WebAssembly && self.crypto?.subtle && self.BigInt64Array) $('start').disabled = false;
 else $('engine-status').textContent = 'This browser lacks a required secure context, worker, WebAssembly or BigInt capability.';

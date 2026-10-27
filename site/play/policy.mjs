@@ -21,3 +21,16 @@ export function sampleMove(legal, logits, black, random = Math.random) {
   }
   return lastPositive;
 }
+
+// Port of MaiaEncoding.legalMoveProbabilities: raw policy over legal moves,
+// independent of sampling Temperature/Top-P. Keep equal-policy ties stable.
+export function legalMoveProbabilities(legal, logits, black) {
+  if (!legal.length) return [];
+  if (logits.length !== 4352) throw new Error('Invalid move policy');
+  const values = legal.map(move => logits[moveIndex(move, black)]);
+  if (!values.every(Number.isFinite)) throw new Error('Non-finite move policy');
+  const max = Math.max(...values), weights = values.map(value => Math.exp(value - max));
+  const total = weights.reduce((a, b) => a + b, 0);
+  return legal.map((move, i) => ({ move, probability: weights[i] / total }))
+    .sort((a, b) => b.probability - a.probability || a.move.localeCompare(b.move));
+}

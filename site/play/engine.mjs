@@ -1,6 +1,6 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
 import { CACHE_NAME, encode, sha256 } from '../lab/inference/core.mjs?v=20261027-5m';
-import { sampleMove } from './policy.mjs?v=20261027-play2';
+import { sampleMove, legalMoveProbabilities } from './policy.mjs?v=20261027-study1';
 
 let session, ort, initPromise, latest, running = false;
 const diagnostics = { schema: 1, modelId: '5m', backend: 'wasm', numThreads: 1,
@@ -95,13 +95,15 @@ async function infer(job) {
     const policy = await outputs.move_logits.getData();
     const values = await outputs.value_logits.getData();
     if (!Array.from(values).every(Number.isFinite)) throw new Error('Non-finite value output');
-    const move = sampleMove(job.legal, policy, job.fen.split(' ')[1] === 'b');
+    const black = job.fen.split(' ')[1] === 'b';
+    const result = job.type === 'analysis' ? { probabilities: legalMoveProbabilities(job.legal, policy, black) }
+      : { move: sampleMove(job.legal, policy, black) };
     const ms = performance.now() - start;
     diagnostics.inferences.push({ ms, at: new Date().toISOString() });
     if (diagnostics.inferences.length > 500) diagnostics.inferences.shift();
     diagnostics.firstInferenceMs ??= ms;
     diagnostics.phase = 'ready';
-    notify({ type: 'move', id: job.id, fen: job.fen, move, ms, diagnostics });
+    notify({ type: job.type, id: job.id, fen: job.fen, ...result, ms, diagnostics });
   } finally {
     for (const tensor of [...Object.values(outputs || {}), ...Object.values(feeds)]) tensor.dispose();
   }
@@ -121,5 +123,5 @@ self.onmessage = ({ data }) => {
   if (data.type === 'init' && !initPromise) {
     initPromise = init(data.config, data.keep);
     initPromise.catch(error => { diagnostics.failedPhase = diagnostics.phase; diagnostics.phase = 'failed'; notify({ type: 'error', error: error.message, diagnostics }); });
-  } else if (data.type === 'move') { latest = data; drain(); }
+  } else if (data.type === 'move' || data.type === 'analysis') { latest = data; drain(); }
 };

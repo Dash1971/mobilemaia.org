@@ -15,6 +15,19 @@ results and match scores, with links to the full study and recorded data.
 
 ## Studies
 
+### Maia score reliability — 27 October 2026
+
+[Read the report](studies/score-reliability-2026-10-27/REPORT.md) · [Evidence and reproduction guide](studies/score-reliability-2026-10-27/README.md)
+
+The expected-score percentage was useful as a broad guide to human results in
+500 normal-ending games near 1600 and 500 near 2600, with all time forfeits
+excluded. Exact position-to-position estimates were less dependable: on the
+same 100 positions, disagreements above 10 percentage points occurred in 9
+cases at 1600 and 15 at 2600. History on/off gave similar outcome-prediction
+results. At 2600, one group averaged a 31% forecast but scored only 19%;
+the visual guide explains this and walks through a concrete consistency check.
+
+
 ### Opening variety and Top-P 0.95 — 18 October 2026
 
 [Read the report](studies/opening-variety-2026-10-18/REPORT.md) · [Evidence and reproduction guide](studies/opening-variety-2026-10-18/README.md)

@@ -37,15 +37,16 @@ and checks used to complete the cutover. No paid 1984 hosting package is needed.
 
 ### Research publication
 
-`/research/` introduces the three published studies and links to a locally served
-visual settings guide. The dedicated research repository remains the source for
+`/research/` introduces the four published studies and links to locally served
+visual guides to playing settings and score reliability. The dedicated research
+repository remains the source for
 the text, figures, reports, datasets and reproduction tools. Research proposals
 are distinguished from released app behavior and upstream Maia recommendations.
 
 `research-source/manifest.json` pins the research commit and SHA-256 of every
-imported file. The Markdown snapshots and five original SVG figures are kept
+imported file. The Markdown snapshots and nine original SVG figures are kept
 locally; no assets or article text are fetched by a visitor's browser.
-`tools/research.py` generates both HTML pages using Python's standard library.
+`tools/research.py` generates the research HTML pages using Python's standard library.
 
 To update, review the research repository and choose a full, immutable commit:
 

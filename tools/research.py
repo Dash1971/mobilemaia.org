@@ -25,6 +25,9 @@ SITE = ROOT / 'site'
 REPO = 'https://github.com/Dash1971/mobile-maia-research'
 GUIDE = 'guides/choosing-maia-settings/README.md'
 FIGURES = ('opening-switch', 'top-p-example', 'opening-mix', 'costly-moves', 'match-scores')
+SCORE_STUDY = 'studies/score-reliability-2026-10-27'
+SCORE_REPORT = f'{SCORE_STUDY}/REPORT.md'
+SCORE_FIGURES = ('visual-results-1600', 'visual-results-2600', 'example-board', 'visual-worked-example')
 
 
 def source_url(path, commit):
@@ -40,9 +43,13 @@ def target_url(raw, source_path, commit, image=False):
     path = posixpath.normpath(posixpath.join(posixpath.dirname(source_path), url.path))
     if image:
         name = Path(path).stem
+        if name in SCORE_FIGURES and path.startswith(f'{SCORE_STUDY}/figures/'):
+            return f'../figures/score-reliability/{name}.svg'
         if name not in FIGURES or not path.startswith('guides/choosing-maia-settings/figures/'):
             raise ValueError(f'Unimported image: {raw}')
         return f'../figures/{name}.svg'
+    if source_path == 'README.md' and path == SCORE_REPORT:
+        return 'score-reliability/'
     result = source_url(path, commit)
     return result + (f'#{url.fragment}' if url.fragment else '')
 
@@ -98,17 +105,23 @@ def markdown(text, source_path, commit):
             flush()
         elif line.startswith('# '):
             flush()  # The source title is rendered in the page header.
-        elif line.startswith('## '):
+        elif line.startswith(('## ', '### ')):
             flush()
-            title = line[3:]
+            level, title = line.split(' ', 1)
+            level = len(level)
             ident = slug(title)
-            headings.append((ident, title))
-            output.append(f'<h2 id="{ident}">{html.escape(title)}</h2>')
+            if level == 2:
+                headings.append((ident, title))
+            output.append(f'<h{level} id="{ident}">{html.escape(title)}</h{level}>')
+        elif line == '---':
+            flush()
+            output.append('<hr>')
         elif re.fullmatch(r'!\[.*\]\(.+\)', line):
             flush()
             alt, path = re.fullmatch(r'!\[(.*)\]\((.+)\)', line).groups()
             src = target_url(path, source_path, commit, image=True)
-            svg = ET.parse(SITE / 'research' / 'figures' / Path(src).name).getroot()
+            figure_path = SITE / 'research' / Path(src).relative_to('..')
+            svg = ET.parse(figure_path).getroot()
             _, _, width, height = svg.attrib['viewBox'].split()
             output.append(f'<figure class="research-figure"><img src="{src}" alt="{html.escape(alt, quote=True)}" width="{round(float(width))}" height="{round(float(height))}" loading="lazy"><figcaption><a href="{src}">Open full-size figure <span aria-hidden="true">↗</span></a></figcaption></figure>')
         elif line.startswith('|'):
@@ -176,7 +189,7 @@ def page(title, description, path, prefix, body):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} — Mobile Maia</title><meta name="description" content="{html.escape(description, quote=True)}">
 <meta name="theme-color" content="#f7f6f2"><meta property="og:type" content="article"><meta property="og:title" content="{html.escape(title, quote=True)} — Mobile Maia"><meta property="og:description" content="{html.escape(description, quote=True)}"><meta property="og:url" content="https://mobilemaia.org/{path}"><meta property="og:image" content="https://mobilemaia.org/assets/icon.png"><meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://mobilemaia.org/{path}"><link rel="icon" href="{prefix}assets/icon.png" type="image/png"><link rel="stylesheet" href="{prefix}styles.css?v=20261026"><link rel="stylesheet" href="{prefix}research.css?v=20261026"></head>
+<link rel="canonical" href="https://mobilemaia.org/{path}"><link rel="icon" href="{prefix}assets/icon.png" type="image/png"><link rel="stylesheet" href="{prefix}styles.css?v=20261026"><link rel="stylesheet" href="{prefix}research.css?v=20261027"></head>
 <body>{header(prefix)}{body}
 <footer class="container site-footer"><div><a class="brand" href="{prefix}">Mobile Maia<span class="brand-dot">.</span></a><p>Independent research. Open methods.</p></div><div class="footer-links"><a href="{prefix}research/">Research index</a><a href="{REPO}">Research source ↗</a><a href="{prefix}about.html">Privacy &amp; credits</a><a href="https://github.com/Dash1971/mobilemaia.org">Website source ↗</a></div><p class="footer-small">© 2026 Mobile Maia contributors · AGPL-3.0-only · No added analytics or tracking.</p></footer>
 </body></html>
@@ -209,17 +222,29 @@ def render(manifest):
         # dated application-default statements as the current app release state.
         summary = re.split(r'(?<=\.)\s+', ' '.join(paragraphs[1].split()))[:2]
         study_html.append(f'<article class="research-study"><h3>{html.escape(title)}</h3><p>{inline(" ".join(summary), "README.md", commit)}</p><p class="study-links">{inline(links, "README.md", commit)}</p></article>')
-    if len(study_html) != 3:
+    if len(study_html) != 4:
         raise ValueError('Research index changed; review the study extraction before publishing')
     index_body = f'''<main id="main" class="container research-page">
-<header class="research-title research-index-title"><p class="eyebrow">THE QUESTIONS BEHIND THE SETTINGS</p><h1>A closer look at<br><em>human-like chess.</em></h1><p class="research-deck">Experiments into how Maia chooses its moves, and what that means for playing on your phone.</p><p class="research-intro">Independent research by the Mobile Maia project. Read the findings here, then follow the evidence: methods, recorded games, datasets and reproduction tools are openly available.</p></header>
+<header class="research-title research-index-title"><p class="eyebrow">THE QUESTIONS BEHIND THE SETTINGS</p><h1>A closer look at<br><em>human-like chess.</em></h1><p class="research-deck">Experiments into how Maia chooses moves and forecasts human results, and what that means for playing on your phone.</p><p class="research-intro">Independent research by the Mobile Maia project. Read the findings here, then follow the evidence: methods, recorded games, datasets and reproduction tools are openly available.</p></header>
 <section class="research-feature" aria-labelledby="visual-guide-title"><div><p class="eyebrow">START HERE · VISUAL GUIDE</p><h2 id="visual-guide-title">Choosing Maia settings.</h2><p>What happens when you keep the opening variety and trim the least likely moves? Follow the worked Top-P example, opening comparisons and match results.</p><a class="button" href="choosing-maia-settings/">Read the visual guide <span aria-hidden="true">→</span></a></div><a href="choosing-maia-settings/" class="feature-figure" aria-label="Read the visual settings guide"><img src="figures/opening-switch.svg" alt="Full sampling for the first five moves by each side, then Temperature 1.0 and Top-P 0.95 from move 6." width="792" height="425" fetchpriority="high"></a></section>
 <section class="research-studies" aria-labelledby="studies-title"><div class="study-heading"><p class="eyebrow">FOLLOW THE EVIDENCE</p><h2 id="studies-title">The studies.</h2><p>Full reports and reproducible evidence in the research repository.</p></div>{''.join(study_html)}</section>
 <aside class="research-context research-index-context"><h2>Findings, with their limits.</h2><p>These are independent Mobile Maia experiments, not official Maia-team publications. Results describe the tested models, positions and match conditions. Stronger play does not by itself establish more human-like choices, and selected rating inputs are not calibrated competitive Elo ratings.</p><p>Research proposals and released app behavior are separate. See the <a href="https://github.com/Dash1971/maia-chess-android/releases">Stable release notes</a> and <a href="https://github.com/Dash1971/maia-chess-android-preview">experimental Preview channel</a> for implementation status.</p><p><a href="{source_url('README.md', commit)}">Browse this research snapshot ↗</a> · Source <a href="{REPO}/commit/{commit}">{commit[:7]}</a></p></aside>
 </main>'''
+    score = (SOURCE / 'score-reliability/REPORT.md').read_text()
+    score_title = score.splitlines()[0][2:]
+    score_content, score_headings = markdown(score, SCORE_REPORT, commit)
+    score_toc = ''.join(f'<li><a href="#{ident}">{html.escape(title)}</a></li>' for ident, title in score_headings)
+    score_body = f'''<main id="main" class="container research-page">
+<p class="breadcrumb"><a href="../">Research</a><span aria-hidden="true"> / </span>Maia score reliability</p>
+<header class="research-title"><p class="eyebrow">A VISUAL GUIDE · SCORE RELIABILITY</p><h1>{html.escape(score_title)}</h1><p class="research-deck">What the percentage means, how it compares with human results, and why it can jump after a move.</p><div class="research-provenance"><a href="{source_url(SCORE_REPORT, commit)}">Read the original report ↗</a><span>Source <a href="{REPO}/commit/{commit}">{commit[:7]}</a> · Study published 27 October 2026</span></div></header>
+<div class="research-layout"><aside class="research-toc"><nav aria-label="On this page"><p>In this guide</p><ol>{score_toc}</ol></nav></aside>
+<article class="research-article" aria-label="Maia score reliability guide"><aside class="research-context"><strong>Independent Mobile Maia research.</strong> These tests use the Maia-3 79M model and normal-ending online blitz games near 1600 and 2600. The <a href="{source_url(f'{SCORE_STUDY}/APPENDIX.md', commit)}">detailed results and limitations</a> explain the sample and what the findings can establish.</aside>
+{score_content}
+<div class="research-end"><a class="text-link" href="../">← Explore the other studies</a><p>Text and original figures are published from the same pinned research snapshot. <a href="{source_url(f'{SCORE_STUDY}/README.md', commit)}">Data, methods and reproduction ↗</a></p></div></article></div></main>'''
     return {
-        SITE / 'research/index.html': page('Research', 'Independent Mobile Maia research into sampling, opening variety and move history. Start with the visual guide to choosing Maia settings.', 'research/', '../', index_body),
+        SITE / 'research/index.html': page('Research', 'Independent Mobile Maia research into score reliability, sampling, opening variety and move history. Explore visual guides and reproducible evidence.', 'research/', '../', index_body),
         SITE / 'research/choosing-maia-settings/index.html': page('Choosing Maia settings', 'A visual guide to Temperature 1.0, Top-P 0.95 and opening variety, with measured results and links to the full Mobile Maia study.', 'research/choosing-maia-settings/', '../../', guide_body),
+        SITE / 'research/score-reliability/index.html': page('Understanding Maia’s score %', 'What Maia’s expected-score percentage means, how it compares with human game results, and why individual estimates can jump after a move.', 'research/score-reliability/', '../../', score_body),
     }
 
 
@@ -244,6 +269,8 @@ def update(commit):
         GUIDE: SOURCE / 'guide.md',
         'guides/choosing-maia-settings/figure-values.json': SOURCE / 'figure-values.json',
         **{f'guides/choosing-maia-settings/figures/{name}.svg': SITE / f'research/figures/{name}.svg' for name in FIGURES},
+        SCORE_REPORT: SOURCE / 'score-reliability/REPORT.md',
+        **{f'{SCORE_STUDY}/figures/{name}.svg': SITE / f'research/figures/score-reliability/{name}.svg' for name in SCORE_FIGURES},
     }
     downloads = []
     for source_path, dest in imports.items():

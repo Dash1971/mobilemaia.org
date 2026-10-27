@@ -1,12 +1,12 @@
 {
   "repository": "https://github.com/Dash1971/mobile-maia-research",
-  "commit": "2ac32240764adda087056a5e159d7c31a20df1ca",
+  "commit": "74d8684db865753080da72c6f43b1973bbfd668e",
   "licence": "AGPL-3.0-only",
   "files": [
     {
       "source": "README.md",
       "local": "research-source/README.md",
-      "sha256": "14d727d6124707e625a06a5b59de41a27aac4854030321eaae1e9e67b21e13cc"
+      "sha256": "45315a3ad17a4b097dba10933f54a8e66940646be1bc78931088d3ee0f45acac"
     },
     {
       "source": "guides/choosing-maia-settings/README.md",
@@ -42,6 +42,31 @@
       "source": "guides/choosing-maia-settings/figures/match-scores.svg",
       "local": "site/research/figures/match-scores.svg",
       "sha256": "dc624575d32e0ef49a2c8e23330205f5b4b9c5f985595aea2b8df4bd810a89a7"
+    },
+    {
+      "source": "studies/score-reliability-2026-10-27/REPORT.md",
+      "local": "research-source/score-reliability/REPORT.md",
+      "sha256": "8414ee1f94dd4c02183fd9a430b5f00a1d782f7c21d56d46e536c174b67c9977"
+    },
+    {
+      "source": "studies/score-reliability-2026-10-27/figures/visual-results-1600.svg",
+      "local": "site/research/figures/score-reliability/visual-results-1600.svg",
+      "sha256": "7ce38c862cc496b500945232f4df17b7846c02829bda0b71fd34bdddeeffcdca"
+    },
+    {
+      "source": "studies/score-reliability-2026-10-27/figures/visual-results-2600.svg",
+      "local": "site/research/figures/score-reliability/visual-results-2600.svg",
+      "sha256": "e29bf49f47b36db8281707f69ffbcba8d9c469b6fbd1138475c427b4b09a948c"
+    },
+    {
+      "source": "studies/score-reliability-2026-10-27/figures/example-board.svg",
+      "local": "site/research/figures/score-reliability/example-board.svg",
+      "sha256": "75517e21ddbe01bf918fdb97cf229c4cb74e6f3583c088a954e646350764bdc1"
+    },
+    {
+      "source": "studies/score-reliability-2026-10-27/figures/visual-worked-example.svg",
+      "local": "site/research/figures/score-reliability/visual-worked-example.svg",
+      "sha256": "5614858b1edfddd8a0318530ec398bd6a86a9b0e2cf7090b3ce62b8ed7f37cde"
     }
   ]
 }

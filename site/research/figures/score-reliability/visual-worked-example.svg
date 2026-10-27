@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="648pt" height="748.8pt" viewBox="0 0 648 748.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-27T12:08:06.675037</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 748.8 
+L 648 748.8 
+L 648 0 
+L 0 0 
+z
+" style="fill: #f6f4ee"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 51.84 204.4224 
+L 596.16 204.4224 
+Q 609.12 204.4224 609.12 189.4464 
+L 609.12 125.0496 
+Q 609.12 110.0736 596.16 110.0736 
+L 51.84 110.0736 
+Q 38.88 110.0736 38.88 125.0496 
+L 38.88 189.4464 
+Q 38.88 204.4224 51.84 204.4224 
+z
+" clip-path="url(#p07b33e8e3f)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 51.84 411.0912 
+L 298.08 411.0912 
+Q 311.04 411.0912 311.04 396.1152 
+L 311.04 303.264 
+Q 311.04 288.288 298.08 288.288 
+L 51.84 288.288 
+Q 38.88 288.288 38.88 303.264 
+L 38.88 396.1152 
+Q 38.88 411.0912 51.84 411.0912 
+z
+" clip-path="url(#p07b33e8e3f)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 349.92 411.0912 
+L 596.16 411.0912 
+Q 609.12 411.0912 609.12 396.1152 
+L 609.12 303.264 
+Q 609.12 288.288 596.16 288.288 
+L 349.92 288.288 
+Q 336.96 288.288 336.96 303.264 
+L 336.96 396.1152 
+Q 336.96 411.0912 349.92 411.0912 
+z
+" clip-path="url(#p07b33e8e3f)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 136.08 563.8464 
+L 511.92 563.8464 
+Q 524.88 563.8464 524.88 548.8704 
+L 524.88 500.9472 
+Q 524.88 485.9712 511.92 485.9712 
+L 136.08 485.9712 
+Q 123.12 485.9712 123.12 500.9472 
+L 123.12 548.8704 
+Q 123.12 563.8464 136.08 563.8464 
+z
+" clip-path="url(#p07b33e8e3f)" style="fill: #e3efeb"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="38.88" y="41.9328" transform="rotate(-0 38.88 41.9328)">One position. Two different answers.</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="38.88" y="73.3824" transform="rotate(-0 38.88 73.3824)">A position with 26 possible moves • Maia 1600 • White’s score</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="55.08" y="143.7696" transform="rotate(-0 55.08 143.7696)">1. Ask Maia about the position</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="55.08" y="179.712" transform="rotate(-0 55.08 179.712)">“How many points would White score?”</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 27px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4966aa" x="589.68" y="179.712" transform="rotate(-0 589.68 179.712)">46.3%</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="38.88" y="249.3504" transform="rotate(-0 38.88 249.3504)">2. Ask Maia about every possible next move</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="55.08" y="319.7376" transform="rotate(-0 55.08 319.7376)">Move the rook to d1…</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="55.08" y="352.6848" transform="rotate(-0 55.08 352.6848)">10.6% of predicted moves</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #138578" x="55.08" y="388.6272" transform="rotate(-0 55.08 388.6272)">White’s score: 73.3%</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="353.16" y="319.7376" transform="rotate(-0 353.16 319.7376)">The other 25 moves…</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="353.16" y="352.6848" transform="rotate(-0 353.16 352.6848)">89.4% of predicted moves</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #138578" x="353.16" y="388.6272" transform="rotate(-0 353.16 388.6272)">Average score: 25.4%</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 176.811174 421.588248 
+Q 249.482513 451.527435 320.499862 480.785211 
+" style="fill: none; stroke: #55636b; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 317.563272 477.412313 
+L 320.499862 480.785211 
+L 316.03959 481.110744 
+" style="fill: none; stroke: #55636b; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 471.188826 421.588248 
+Q 398.517487 451.527435 327.500138 480.785211 
+" style="fill: none; stroke: #55636b; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 331.96041 481.110744 
+L 327.500138 480.785211 
+L 330.436728 477.412313 
+" style="fill: none; stroke: #55636b; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #192f3e" x="324" y="512.1792" transform="rotate(-0 324 512.1792)">Combine all 26 forecasts using their move chances</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #138578" x="324" y="548.1216" transform="rotate(-0 324 548.1216)">White’s average score: 30.5%</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #c65b4b" x="38.88" y="614.016" transform="rotate(-0 38.88 614.016)">That is a 15.8-point mismatch.</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="38.88" y="647.712" transform="rotate(-0 38.88 647.712)">Both answers describe the same starting position. They should</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="38.88" y="668.6784" transform="rotate(-0 38.88 668.6784)">roughly agree—but here, Maia’s own forecasts do not.</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="38.88" y="704.6208" transform="rotate(-0 38.88 704.6208)">This is a disagreement between predictions, not a count of bad moves or lost games.</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="38.88" y="722.592" transform="rotate(-0 38.88 722.592)">This worked example is separate from the study’s 100-position consistency sample.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p07b33e8e3f">
+   <rect x="0" y="0" width="648" height="748.8"/>
+  </clipPath>
+ </defs>
+</svg>

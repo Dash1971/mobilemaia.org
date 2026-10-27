@@ -1,0 +1,2 @@
+# Preserve the exact imported Matplotlib SVG path data and its source hashes.
+site/research/figures/score-reliability/visual-*.svg whitespace=-blank-at-eol

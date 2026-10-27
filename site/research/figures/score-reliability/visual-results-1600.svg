@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="648pt" height="777.6pt" viewBox="0 0 648 777.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-27T11:29:44.897672</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 777.6 
+L 648 777.6 
+L 648 0 
+L 0 0 
+z
+" style="fill: #f6f4ee"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 42.12 229.392 
+L 605.88 229.392 
+Q 618.84 229.392 618.84 213.84 
+L 618.84 151.632 
+Q 618.84 136.08 605.88 136.08 
+L 42.12 136.08 
+Q 29.16 136.08 29.16 151.632 
+L 29.16 213.84 
+Q 29.16 229.392 42.12 229.392 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 209.304 188.1792 
+L 535.896 188.1792 
+Q 541.08 188.1792 541.08 181.9584 
+L 541.08 178.848 
+Q 541.08 172.6272 535.896 172.6272 
+L 209.304 172.6272 
+Q 204.12 172.6272 204.12 178.848 
+L 204.12 181.9584 
+Q 204.12 188.1792 209.304 188.1792 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 209.304 188.1792 
+L 237.999626 188.1792 
+Q 243.183626 188.1792 243.183626 181.9584 
+L 243.183626 178.848 
+Q 243.183626 172.6272 237.999626 172.6272 
+L 209.304 172.6272 
+Q 204.12 172.6272 204.12 178.848 
+L 204.12 181.9584 
+Q 204.12 188.1792 209.304 188.1792 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #4966aa"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 209.304 217.728 
+L 535.896 217.728 
+Q 541.08 217.728 541.08 211.5072 
+L 541.08 208.3968 
+Q 541.08 202.176 535.896 202.176 
+L 209.304 202.176 
+Q 204.12 202.176 204.12 208.3968 
+L 204.12 211.5072 
+Q 204.12 217.728 209.304 217.728 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 209.304 217.728 
+L 230.04 217.728 
+Q 235.224 217.728 235.224 211.5072 
+L 235.224 208.3968 
+Q 235.224 202.176 230.04 202.176 
+L 209.304 202.176 
+Q 204.12 202.176 204.12 208.3968 
+L 204.12 211.5072 
+Q 204.12 217.728 209.304 217.728 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #138578"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 42.12 332.8128 
+L 605.88 332.8128 
+Q 618.84 332.8128 618.84 317.2608 
+L 618.84 255.0528 
+Q 618.84 239.5008 605.88 239.5008 
+L 42.12 239.5008 
+Q 29.16 239.5008 29.16 255.0528 
+L 29.16 317.2608 
+Q 29.16 332.8128 42.12 332.8128 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 209.304 291.6 
+L 535.896 291.6 
+Q 541.08 291.6 541.08 285.3792 
+L 541.08 282.2688 
+Q 541.08 276.048 535.896 276.048 
+L 209.304 276.048 
+Q 204.12 276.048 204.12 282.2688 
+L 204.12 285.3792 
+Q 204.12 291.6 209.304 291.6 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 209.304 291.6 
+L 303.470935 291.6 
+Q 308.654935 291.6 308.654935 285.3792 
+L 308.654935 282.2688 
+Q 308.654935 276.048 303.470935 276.048 
+L 209.304 276.048 
+Q 204.12 276.048 204.12 282.2688 
+L 204.12 285.3792 
+Q 204.12 291.6 209.304 291.6 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #4966aa"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 209.304 321.1488 
+L 535.896 321.1488 
+Q 541.08 321.1488 541.08 314.928 
+L 541.08 311.8176 
+Q 541.08 305.5968 535.896 305.5968 
+L 209.304 305.5968 
+Q 204.12 305.5968 204.12 311.8176 
+L 204.12 314.928 
+Q 204.12 321.1488 209.304 321.1488 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 209.304 321.1488 
+L 289.053209 321.1488 
+Q 294.237209 321.1488 294.237209 314.928 
+L 294.237209 311.8176 
+Q 294.237209 305.5968 289.053209 305.5968 
+L 209.304 305.5968 
+Q 204.12 305.5968 204.12 311.8176 
+L 204.12 314.928 
+Q 204.12 321.1488 209.304 321.1488 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #138578"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 42.12 436.2336 
+L 605.88 436.2336 
+Q 618.84 436.2336 618.84 420.6816 
+L 618.84 358.4736 
+Q 618.84 342.9216 605.88 342.9216 
+L 42.12 342.9216 
+Q 29.16 342.9216 29.16 358.4736 
+L 29.16 420.6816 
+Q 29.16 436.2336 42.12 436.2336 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 209.304 395.0208 
+L 535.896 395.0208 
+Q 541.08 395.0208 541.08 388.8 
+L 541.08 385.6896 
+Q 541.08 379.4688 535.896 379.4688 
+L 209.304 379.4688 
+Q 204.12 379.4688 204.12 385.6896 
+L 204.12 388.8 
+Q 204.12 395.0208 209.304 395.0208 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 209.304 395.0208 
+L 369.557775 395.0208 
+Q 374.741775 395.0208 374.741775 388.8 
+L 374.741775 385.6896 
+Q 374.741775 379.4688 369.557775 379.4688 
+L 209.304 379.4688 
+Q 204.12 379.4688 204.12 385.6896 
+L 204.12 388.8 
+Q 204.12 395.0208 209.304 395.0208 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #4966aa"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 209.304 424.5696 
+L 535.896 424.5696 
+Q 541.08 424.5696 541.08 418.3488 
+L 541.08 415.2384 
+Q 541.08 409.0176 535.896 409.0176 
+L 209.304 409.0176 
+Q 204.12 409.0176 204.12 415.2384 
+L 204.12 418.3488 
+Q 204.12 424.5696 209.304 424.5696 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 209.304 424.5696 
+L 374.436 424.5696 
+Q 379.62 424.5696 379.62 418.3488 
+L 379.62 415.2384 
+Q 379.62 409.0176 374.436 409.0176 
+L 209.304 409.0176 
+Q 204.12 409.0176 204.12 415.2384 
+L 204.12 418.3488 
+Q 204.12 424.5696 209.304 424.5696 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #138578"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 42.12 539.6544 
+L 605.88 539.6544 
+Q 618.84 539.6544 618.84 524.1024 
+L 618.84 461.8944 
+Q 618.84 446.3424 605.88 446.3424 
+L 42.12 446.3424 
+Q 29.16 446.3424 29.16 461.8944 
+L 29.16 524.1024 
+Q 29.16 539.6544 42.12 539.6544 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 209.304 498.4416 
+L 535.896 498.4416 
+Q 541.08 498.4416 541.08 492.2208 
+L 541.08 489.1104 
+Q 541.08 482.8896 535.896 482.8896 
+L 209.304 482.8896 
+Q 204.12 482.8896 204.12 489.1104 
+L 204.12 492.2208 
+Q 204.12 498.4416 209.304 498.4416 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 209.304 498.4416 
+L 429.954104 498.4416 
+Q 435.138104 498.4416 435.138104 492.2208 
+L 435.138104 489.1104 
+Q 435.138104 482.8896 429.954104 482.8896 
+L 209.304 482.8896 
+Q 204.12 482.8896 204.12 489.1104 
+L 204.12 492.2208 
+Q 204.12 498.4416 209.304 498.4416 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #4966aa"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 209.304 527.9904 
+L 535.896 527.9904 
+Q 541.08 527.9904 541.08 521.7696 
+L 541.08 518.6592 
+Q 541.08 512.4384 535.896 512.4384 
+L 209.304 512.4384 
+Q 204.12 512.4384 204.12 518.6592 
+L 204.12 521.7696 
+Q 204.12 527.9904 209.304 527.9904 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 209.304 527.9904 
+L 442.466182 527.9904 
+Q 447.650182 527.9904 447.650182 521.7696 
+L 447.650182 518.6592 
+Q 447.650182 512.4384 442.466182 512.4384 
+L 209.304 512.4384 
+Q 204.12 512.4384 204.12 518.6592 
+L 204.12 521.7696 
+Q 204.12 527.9904 209.304 527.9904 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #138578"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 42.12 643.0752 
+L 605.88 643.0752 
+Q 618.84 643.0752 618.84 627.5232 
+L 618.84 565.3152 
+Q 618.84 549.7632 605.88 549.7632 
+L 42.12 549.7632 
+Q 29.16 549.7632 29.16 565.3152 
+L 29.16 627.5232 
+Q 29.16 643.0752 42.12 643.0752 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_23">
+    <path d="M 209.304 601.8624 
+L 535.896 601.8624 
+Q 541.08 601.8624 541.08 595.6416 
+L 541.08 592.5312 
+Q 541.08 586.3104 535.896 586.3104 
+L 209.304 586.3104 
+Q 204.12 586.3104 204.12 592.5312 
+L 204.12 595.6416 
+Q 204.12 601.8624 209.304 601.8624 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 209.304 601.8624 
+L 498.814211 601.8624 
+Q 503.998211 601.8624 503.998211 595.6416 
+L 503.998211 592.5312 
+Q 503.998211 586.3104 498.814211 586.3104 
+L 209.304 586.3104 
+Q 204.12 586.3104 204.12 592.5312 
+L 204.12 595.6416 
+Q 204.12 601.8624 209.304 601.8624 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #4966aa"/>
+   </g>
+   <g id="patch_25">
+    <path d="M 209.304 631.4112 
+L 535.896 631.4112 
+Q 541.08 631.4112 541.08 625.1904 
+L 541.08 622.08 
+Q 541.08 615.8592 535.896 615.8592 
+L 209.304 615.8592 
+Q 204.12 615.8592 204.12 622.08 
+L 204.12 625.1904 
+Q 204.12 631.4112 209.304 631.4112 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #e7eae7"/>
+   </g>
+   <g id="patch_26">
+    <path d="M 209.304 631.4112 
+L 507.420507 631.4112 
+Q 512.604507 631.4112 512.604507 625.1904 
+L 512.604507 622.08 
+Q 512.604507 615.8592 507.420507 615.8592 
+L 209.304 615.8592 
+Q 204.12 615.8592 204.12 622.08 
+L 204.12 625.1904 
+Q 204.12 631.4112 209.304 631.4112 
+z
+" clip-path="url(#pb117497fe4)" style="fill: #138578"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="38.88" y="42.768" transform="rotate(-0 38.88 42.768)">Maia 1600</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="38.88" y="73.0944" transform="rotate(-0 38.88 73.0944)">What Maia expected. What actually happened.</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="38.88" y="103.4208" transform="rotate(-0 38.88 103.4208)">500 games • Points scored per 100 games</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="42.12" y="155.52" transform="rotate(-0 42.12 155.52)">Forecasts in the 0–20% range</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #55636b" x="602.64" y="155.52" transform="rotate(-0 602.64 155.52)">65 games</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="183.780661" transform="rotate(-0 42.12 183.780661)">Maia expected</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4966aa" x="596.16" y="185.598512" transform="rotate(-0 596.16 185.598512)">12</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="213.329461" transform="rotate(-0 42.12 213.329461)">Players scored</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #138578" x="596.16" y="215.147312" transform="rotate(-0 596.16 215.147312)">9</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="42.12" y="258.9408" transform="rotate(-0 42.12 258.9408)">Forecasts in the 20–40% range</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #55636b" x="602.64" y="258.9408" transform="rotate(-0 602.64 258.9408)">86 games</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="287.201461" transform="rotate(-0 42.12 287.201461)">Maia expected</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4966aa" x="596.16" y="289.019313" transform="rotate(-0 596.16 289.019313)">31</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="316.750261" transform="rotate(-0 42.12 316.750261)">Players scored</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #138578" x="596.16" y="318.568113" transform="rotate(-0 596.16 318.568113)">27</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="42.12" y="362.3616" transform="rotate(-0 42.12 362.3616)">Forecasts in the 40–60% range</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #55636b" x="602.64" y="362.3616" transform="rotate(-0 602.64 362.3616)">168 games</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="390.622261" transform="rotate(-0 42.12 390.622261)">Maia expected</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4966aa" x="596.16" y="392.440112" transform="rotate(-0 596.16 392.440112)">51</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="420.171061" transform="rotate(-0 42.12 420.171061)">Players scored</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #138578" x="596.16" y="421.988913" transform="rotate(-0 596.16 421.988913)">52</text>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="42.12" y="465.7824" transform="rotate(-0 42.12 465.7824)">Forecasts in the 60–80% range</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #55636b" x="602.64" y="465.7824" transform="rotate(-0 602.64 465.7824)">110 games</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="494.043061" transform="rotate(-0 42.12 494.043061)">Maia expected</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4966aa" x="596.16" y="495.860913" transform="rotate(-0 596.16 495.860913)">69</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="523.591861" transform="rotate(-0 42.12 523.591861)">Players scored</text>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #138578" x="596.16" y="525.409713" transform="rotate(-0 596.16 525.409713)">72</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="42.12" y="569.2032" transform="rotate(-0 42.12 569.2032)">Forecasts in the 80–100% range</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #55636b" x="602.64" y="569.2032" transform="rotate(-0 602.64 569.2032)">71 games</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="597.463861" transform="rotate(-0 42.12 597.463861)">Maia expected</text>
+   </g>
+   <g id="text_31">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4966aa" x="596.16" y="599.281713" transform="rotate(-0 596.16 599.281713)">89</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="42.12" y="627.012661" transform="rotate(-0 42.12 627.012661)">Players scored</text>
+   </g>
+   <g id="text_33">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #138578" x="596.16" y="628.830513" transform="rotate(-0 596.16 628.830513)">92</text>
+   </g>
+   <g id="text_34">
+    <text style="font-weight: 700; font-size: 19px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #192f3e" x="38.88" y="680.4" transform="rotate(-0 38.88 680.4)">The broad picture lines up.</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="38.88" y="706.8384" transform="rotate(-0 38.88 706.8384)">The five groups were within about 1–4 points of the forecast.</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="38.88" y="741.8304" transform="rotate(-0 38.88 741.8304)">White’s scores • Draw = ½ point • History on • No time forfeits</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #55636b" x="38.88" y="758.9376" transform="rotate(-0 38.88 758.9376)">Rounded averages, not exact forecasts. Uncertainty intervals are in the appendix.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pb117497fe4">
+   <rect x="0" y="0" width="648" height="777.6"/>
+  </clipPath>
+ </defs>
+</svg>

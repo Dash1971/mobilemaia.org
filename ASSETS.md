@@ -44,3 +44,20 @@ as alternative text for the corresponding SVG. Figures are scaled with CSS;
 their values and content are not redrawn or altered. Full-size originals can be
 opened from each figure. Reports, dataset provenance and reproduction tools
 remain in the research repository, linked at the imported commit.
+
+### Score reliability — 27 October 2026
+
+The complete visual report and its four SVG figures are imported unchanged from
+[`mobile-maia-research` at 74d8684db865753080da72c6f43b1973bbfd668e](https://github.com/Dash1971/mobile-maia-research/tree/74d8684db865753080da72c6f43b1973bbfd668e/studies/score-reliability-2026-10-27).
+Original report text and figures follow the research repository's AGPL-3.0-only
+licence; third-party material retains its upstream terms. The report's alternative
+text is preserved when using the original SVG counterparts of its PNG figures.
+
+The published figures are `visual-results-1600`, `visual-results-2600`,
+`example-board` and `visual-worked-example`, under
+`site/research/figures/score-reliability/`. The board is the exact recorded position
+rendered by the source study's pinned chess library; see its
+[board generator](https://github.com/Dash1971/mobile-maia-research/blob/74d8684db865753080da72c6f43b1973bbfd668e/studies/score-reliability-2026-10-27/build_example_board.py)
+and [source provenance](https://github.com/Dash1971/mobile-maia-research/blob/74d8684db865753080da72c6f43b1973bbfd668e/studies/score-reliability-2026-10-27/README.md#source-provenance-and-attribution).
+Figure bytes and the report are hashed in `research-source/manifest.json`.
+Source data, model weights and inference tools are not served by the website.

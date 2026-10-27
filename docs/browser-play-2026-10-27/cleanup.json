@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-27T06:43:33.537484+00:00",
+  "removedPath": ".scratch/play-prototype/",
+  "removedFiles": [
+    {
+      "path": ".scratch/play-prototype/chess-metadata.json",
+      "bytes": 2830
+    },
+    {
+      "path": ".scratch/play-prototype/failure-server.py",
+      "bytes": 1080
+    },
+    {
+      "path": ".scratch/play-prototype/graph-comparison.json",
+      "bytes": 6592
+    },
+    {
+      "path": ".scratch/play-prototype/model.onnx",
+      "bytes": 21346652
+    },
+    {
+      "path": ".scratch/play-prototype/runtime.wasm",
+      "bytes": 14848852
+    }
+  ],
+  "removedBytes": 36206006,
+  "volumeFreeBeforeBytes": 65528180736,
+  "volumeFreeAfterBytes": 65564352512,
+  "previewProcesses": "both normal and controlled-failure servers on 127.0.0.1:8771 stopped",
+  "localTestWorker": "stopped through UI",
+  "localDownloadCache": "cleared through UI",
+  "publicCachePolicy": "save unchecked during QA, so no public model/runtime cache entries were created or deleted; pre-existing user cache preserved",
+  "retained": "Compact verification reports, source/asset provenance, screenshots and QA PGN export. Original shared model source and tools untouched.",
+  "completedAt": "2026-10-27T06:50:11.822856+00:00",
+  "publicQAWorker": "stopped through UI; QA tab closed",
+  "downloadHistoryTabs": "closed",
+  "activeBulkOutput": null,
+  "finalVolumeFreeBytes": 74538541056
+}

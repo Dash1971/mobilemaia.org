@@ -111,8 +111,46 @@ It does not claim to measure total native memory or energy use.
 
 Starting volume free space: 54,404,976,640 bytes. Expected task growth under 1 GiB
 plus a 10 GiB free reserve. Shared tools were reused; no app build, emulator or
-native environment was created. Temporary pinned model/WASM copies and a local
-failure-test server live only in ignored `.scratch/play-prototype/`, owned by
-this task for verification and expiring at task completion. Preview workers,
-processes, test download caches and these temporary binaries are removed after
-public verification. Compact source/provenance/reports and QA exports are kept.
+native environment was created. Temporary pinned model/WASM copies, metadata and the local failure-test server
+were removed from `.scratch/play-prototype/` after public download verification
+(36,206,006 logical bytes). Both preview servers were stopped, the local test
+worker stopped, and its dedicated download cache cleared. Public QA used saving
+unchecked, so no public cache entries were created or deleted; pre-existing user
+cache data was preserved. The public test worker was stopped through the UI and
+all QA/download-history tabs closed. No task bulk output remains. Compact
+source/provenance/reports, screenshots and QA exports are intentionally retained.
+[Cleanup evidence](browser-play-2026-10-27/cleanup.json) records paths, free space
+before/after and retention.
+
+
+## Public verification
+
+The playable source and PGN-header fix at
+`448b84996829a4a700cd790ce108777da22383d6` passed
+[CI and Pages deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40462516591).
+All [27 public page/asset bodies](browser-play-2026-10-27/public-assets.json),
+including every play asset and the homepage/privacy/benchmark links, matched the
+local files over verified HTTPS.
+
+A real 5M CPU session on the public route played Maia's White opening, accepted
+a human Black move and generated a legal follow-up. A second game as White with
+the rating changed to 1000 reused the same session and generated a Black reply.
+The startup export confirms **1 session, 2 games, 3 real inferences, 0 warm-ups**.
+[First-game report](browser-play-2026-10-27/public-first-game.json),
+[reused-session report](browser-play-2026-10-27/public-reused-session.json).
+
+This fresh public download, with saving off, reached engine-ready in 13.22 s on
+Mac Chrome; session creation was 2.02 s and first inference 124 ms. Model/runtime
+transfers took 10.57/1.30 s and overlapped. These are desktop smoke measurements,
+not phone performance or a controlled comparison with the benchmark's total run
+time. Saved files and session reuse are separate startup cases.
+
+Export testing found an incorrect use of chess.js `setHeader` (one pair per call)
+which left player/date placeholders. This was fixed before final verification
+and a regression check now round-trips the actual tagged-game constructor.
+Chrome's download history confirmed the corrected PGN and startup JSON exports.
+The downloaded [QA PGN](browser-play-2026-10-27/public-qa-game.pgn) was read back,
+parsed as three legal plies and checked for the correct White/Black, date and
+site headers. [Export hashes/checks](browser-play-2026-10-27/exports.json).
+Only this task's QA game is published here; user-provided phone reports were not
+added to the repository.

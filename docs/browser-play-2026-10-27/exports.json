@@ -1,0 +1,20 @@
+{
+  "startup": {
+    "filename": "mobile-maia-play-startup-1793083650156.json",
+    "bytes": 2209,
+    "sha256": "5710f0fedb369a00635ac76d84a67008f3b234a54698157ca89217d309f559da",
+    "sessionsCreated": 1,
+    "gamesStarted": 2,
+    "inferences": 3,
+    "warmupRuns": 0
+  },
+  "pgn": {
+    "filename": "mobile-maia-game-1793083502294.pgn",
+    "bytes": 179,
+    "sha256": "6ed6606d9af9a25db11c56dd534ea6c85f78f561d908cdb5da081ab2bebec431",
+    "parsedLegalPlies": 3,
+    "white": "Maia 5M (1600)",
+    "black": "You",
+    "date": "2026.10.27"
+  }
+}

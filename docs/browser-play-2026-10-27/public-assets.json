@@ -1,0 +1,195 @@
+{
+  "checkedAt": "2026-10-27T06:42:29.665331+00:00",
+  "siteCommit": "448b84996829a4a700cd790ce108777da22383d6",
+  "files": [
+    {
+      "url": "https://mobilemaia.org/play/assets.json",
+      "status": 200,
+      "bytes": 3106,
+      "sha256": "4f8b6d5ca13ad1d76bb24013c7cf9c1a2e0657f1b33249f7200cdb18a36028f4",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/engine.mjs",
+      "status": 200,
+      "bytes": 6272,
+      "sha256": "cad950fa728c79d992be9ab8567121a92a7780bb21562e948f74dedb529ffa34",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/game.mjs",
+      "status": 200,
+      "bytes": 1663,
+      "sha256": "383e9ce74d0483da6a7c91e54e9305a20cd9b5f84a6751533e30a07897a74e10",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/index.html",
+      "status": 200,
+      "bytes": 5871,
+      "sha256": "ebb9959d8b61c34dff0221d5d418ab86984daba071d5d9c61e4b3f67e1888f8e",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/bB.svg",
+      "status": 200,
+      "bytes": 738,
+      "sha256": "48ff9dba84dae861b1a81ac58f4647e05cee8a827acad1618bf11beaedcce60d",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/bK.svg",
+      "status": 200,
+      "bytes": 815,
+      "sha256": "2dc3caba39a67a707ebc27f4e41b727dd5252f4f49da695fc15cc2589dd92a47",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/bN.svg",
+      "status": 200,
+      "bytes": 837,
+      "sha256": "72e1565fbc9024015dcb6ee28d918c876523119f6f552c0a40d3118c13a67e13",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/bP.svg",
+      "status": 200,
+      "bytes": 353,
+      "sha256": "93e11e46deceff0768211a28df3e39c6d3427aa172bdb5e3928b025bd2858587",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/bQ.svg",
+      "status": 200,
+      "bytes": 965,
+      "sha256": "2d0162d1fe776ac5a4d307d4f6e5960804273edc0d3743f1c97a158f5a64c4b1",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/bR.svg",
+      "status": 200,
+      "bytes": 612,
+      "sha256": "5928b86919ae815f5d35dea8a25f5a84c3f8839468a137e429d42f618185cbcd",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/wB.svg",
+      "status": 200,
+      "bytes": 755,
+      "sha256": "8bf4f38cc170686775f81158934301942b07e3f1162e76c6305e76d66aaa0910",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/wK.svg",
+      "status": 200,
+      "bytes": 642,
+      "sha256": "09837f1f99dae2d05c2a0bfb5ce0fb9f37a95b124de44f428a08ae18d7b7c557",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/wN.svg",
+      "status": 200,
+      "bytes": 648,
+      "sha256": "43d8bed9cd40836335072a20f52d30237e6e2cbe304ffb13e258fa1d576c156a",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/wP.svg",
+      "status": 200,
+      "bytes": 455,
+      "sha256": "a8bd79f344ea69a577cdd7b11cbab7bbebfc157cce01c6d29b8f2edf1c44068e",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/wQ.svg",
+      "status": 200,
+      "bytes": 827,
+      "sha256": "9c0a960b360e08cea48eedab54e852107145de289b81a82fe27942045e2ab665",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/pieces/wR.svg",
+      "status": 200,
+      "bytes": 531,
+      "sha256": "05746153e11de3ff4a43d6725f704e226e5d5b49c6ff170ed598d3e9883f2cd5",
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://mobilemaia.org/play/play.css",
+      "status": 200,
+      "bytes": 5668,
+      "sha256": "acc0b9031b89b057ff8744bf3869ef2a77466bc4e30b196ef131c8838d0e3012",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/play.mjs",
+      "status": 200,
+      "bytes": 15005,
+      "sha256": "7ac6f9467488e22236dcda8b0741d010c02b6785366e228adcaf1ff33295c2d3",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/policy.mjs",
+      "status": 200,
+      "bytes": 1278,
+      "sha256": "c262c3d8e739e0152bcf9109329ef7cc64ce61f334863fc84b99ef3f55fbe248",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/vendor/GPL-2.0.txt",
+      "status": 200,
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "contentType": "text/plain; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/vendor/chess-LICENSE",
+      "status": 200,
+      "bytes": 1315,
+      "sha256": "0b3a3c2b4432a26bb18f9d06f5bba4de015bcc980306b7db28b06025495e2186",
+      "contentType": "application/octet-stream"
+    },
+    {
+      "url": "https://mobilemaia.org/play/vendor/chess.js.map",
+      "status": 200,
+      "bytes": 138549,
+      "sha256": "2a9afbda2477e80182786555b0bbb03d66d33d425e90d61c087b51fa0e8e3b20",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/vendor/chess.mjs",
+      "status": 200,
+      "bytes": 107052,
+      "sha256": "76c7c34f0e2e9ab076521a5d6fe786a9cce537bb1b6f29d32a9c9970b5b232d2",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/play/vendor/pieces-COPYING.md",
+      "status": 200,
+      "bytes": 11180,
+      "sha256": "ad0355db9ccd9ec049120945b356ff40c7c868d719a961732868bd5f5306cbba",
+      "contentType": "text/markdown; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/index.html",
+      "status": 200,
+      "bytes": 15675,
+      "sha256": "aa3602b2a5c60a416b24b83b49ccbd90f97bf09cc59cbf1fcbe29b07f44cafcc",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/about.html",
+      "status": 200,
+      "bytes": 6836,
+      "sha256": "99755e22c523919eaca375c58b6cf4693ec62175cb7d5b8e686fe0f4f52b8e10",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://mobilemaia.org/lab/inference/index.html",
+      "status": 200,
+      "bytes": 7048,
+      "sha256": "d6bdf56f7a2e369ce5391ad0177689499387a138daa223a3fb28b00dc4c3e49a",
+      "contentType": "text/html; charset=utf-8"
+    }
+  ]
+}

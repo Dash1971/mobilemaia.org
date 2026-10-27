@@ -1,103 +1,12 @@
 {
-  "chess": {
-    "version": "1.4.0",
-    "sourceCommit": "ce1ff9e9fc342984ff75ca475ab39f37888cb28a",
-    "npmIntegrity": "sha512-BBJgrrtKQOzFLonR0l+k64A98NLemPwNsCskwb+29bRwobUa4iTm51E1kwGPbWXAcfdDa18nad6vpPPKPWarqw==",
-    "source": "https://github.com/jhlywa/chess.js"
-  },
-  "pieces": {
-    "source": "https://github.com/lichess-org/lila",
-    "commit": "eaaee2ac2ff62a6c600ed65c60bb01410631e6aa",
-    "path": "public/piece/cburnett",
-    "artist": "Colin M. L. Burnett",
-    "licence": "GPL-2.0-or-later; see vendor/pieces-COPYING.md"
+  "stockfish": {
+    "version": "19.0.1",
+    "variant": "lite-single",
+    "source": "https://github.com/nmrugg/stockfish.js/tree/v19.0.1",
+    "licence": "GPL-3.0; see vendor/stockfish-COPYING.txt",
+    "sourceCommit": "0d5dd7944f88c817c07a26bc4fb1905d5f9c46d6"
   },
   "files": [
-    {
-      "path": "pieces/wP.svg",
-      "sha256": "a8bd79f344ea69a577cdd7b11cbab7bbebfc157cce01c6d29b8f2edf1c44068e",
-      "bytes": 455
-    },
-    {
-      "path": "pieces/wN.svg",
-      "sha256": "43d8bed9cd40836335072a20f52d30237e6e2cbe304ffb13e258fa1d576c156a",
-      "bytes": 648
-    },
-    {
-      "path": "pieces/wB.svg",
-      "sha256": "8bf4f38cc170686775f81158934301942b07e3f1162e76c6305e76d66aaa0910",
-      "bytes": 755
-    },
-    {
-      "path": "pieces/wR.svg",
-      "sha256": "05746153e11de3ff4a43d6725f704e226e5d5b49c6ff170ed598d3e9883f2cd5",
-      "bytes": 531
-    },
-    {
-      "path": "pieces/wQ.svg",
-      "sha256": "9c0a960b360e08cea48eedab54e852107145de289b81a82fe27942045e2ab665",
-      "bytes": 827
-    },
-    {
-      "path": "pieces/wK.svg",
-      "sha256": "09837f1f99dae2d05c2a0bfb5ce0fb9f37a95b124de44f428a08ae18d7b7c557",
-      "bytes": 642
-    },
-    {
-      "path": "pieces/bP.svg",
-      "sha256": "93e11e46deceff0768211a28df3e39c6d3427aa172bdb5e3928b025bd2858587",
-      "bytes": 353
-    },
-    {
-      "path": "pieces/bN.svg",
-      "sha256": "72e1565fbc9024015dcb6ee28d918c876523119f6f552c0a40d3118c13a67e13",
-      "bytes": 837
-    },
-    {
-      "path": "pieces/bB.svg",
-      "sha256": "48ff9dba84dae861b1a81ac58f4647e05cee8a827acad1618bf11beaedcce60d",
-      "bytes": 738
-    },
-    {
-      "path": "pieces/bR.svg",
-      "sha256": "5928b86919ae815f5d35dea8a25f5a84c3f8839468a137e429d42f618185cbcd",
-      "bytes": 612
-    },
-    {
-      "path": "pieces/bQ.svg",
-      "sha256": "2d0162d1fe776ac5a4d307d4f6e5960804273edc0d3743f1c97a158f5a64c4b1",
-      "bytes": 965
-    },
-    {
-      "path": "pieces/bK.svg",
-      "sha256": "2dc3caba39a67a707ebc27f4e41b727dd5252f4f49da695fc15cc2589dd92a47",
-      "bytes": 815
-    },
-    {
-      "path": "vendor/chess.mjs",
-      "sha256": "76c7c34f0e2e9ab076521a5d6fe786a9cce537bb1b6f29d32a9c9970b5b232d2",
-      "bytes": 107052
-    },
-    {
-      "path": "vendor/chess-LICENSE",
-      "sha256": "0b3a3c2b4432a26bb18f9d06f5bba4de015bcc980306b7db28b06025495e2186",
-      "bytes": 1315
-    },
-    {
-      "path": "vendor/pieces-COPYING.md",
-      "sha256": "ad0355db9ccd9ec049120945b356ff40c7c868d719a961732868bd5f5306cbba",
-      "bytes": 11180
-    },
-    {
-      "path": "vendor/GPL-2.0.txt",
-      "bytes": 17984,
-      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
-    },
-    {
-      "path": "vendor/chess.js.map",
-      "bytes": 138549,
-      "sha256": "2a9afbda2477e80182786555b0bbb03d66d33d425e90d61c087b51fa0e8e3b20"
-    },
     {
       "path": "vendor/stockfish-19-lite-single.js",
       "sha256": "ccb130d7ff29408531c47d859a49f91d59d4f482d05a53eb1a3231a4f624c91a",
@@ -107,47 +16,6 @@
       "path": "vendor/stockfish-COPYING.txt",
       "sha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b",
       "bytes": 35821
-    },
-    {
-      "path": "vendor/chessground/LICENSE",
-      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
-      "bytes": 35147
-    },
-    {
-      "path": "vendor/chessground/README.md",
-      "sha256": "d0fe38c9e3130b93f34372335588c29b2fc33553fdf3a55de38a7463eab5b865",
-      "bytes": 4657
-    },
-    {
-      "path": "vendor/chessground/brown.css",
-      "sha256": "cc666266d116b752ea085851f2514b25a0273501c6e6f224cbf4282bf01e8123",
-      "bytes": 2908
-    },
-    {
-      "path": "vendor/chessground/chessground.min.js",
-      "sha256": "ccc1aaf2389a7faca68c47e1df24b91976dad208fdd005100e655cb0ef70a591",
-      "bytes": 33291
-    },
-    {
-      "path": "vendor/chessground/base.css",
-      "sha256": "fbfa4b0e791c58c9e793161e543ce712d85663318a82e547aee7db8f817770f2",
-      "bytes": 3537
     }
-  ],
-  "stockfish": {
-    "version": "19.0.1",
-    "variant": "lite-single",
-    "source": "https://github.com/nmrugg/stockfish.js/tree/v19.0.1",
-    "licence": "GPL-3.0; see vendor/stockfish-COPYING.txt",
-    "sourceCommit": "0d5dd7944f88c817c07a26bc4fb1905d5f9c46d6"
-  },
-  "chessground": {
-    "package": "@lichess-org/chessground",
-    "version": "10.5.0",
-    "npmIntegrity": "sha512-LmTNnzCQ67RQsryzouWY0jYoN24LlpubtPyYko1gmdpTj5HSfz0VgUGB4Gpo6oifg0MyeT9YeV2TdZEbOP6byA==",
-    "source": "https://github.com/lichess-org/chessground/tree/v10.5.0",
-    "licence": "GPL-3.0-or-later; see vendor/chessground/LICENSE",
-    "modifications": "Unmodified bundled ES module, base/brown CSS; local Cburnett piece CSS and keyboard adapter are separate.",
-    "sourceCommit": "b4f605018e1043640c917e82a74b214cb58e4a05"
-  }
+  ]
 }

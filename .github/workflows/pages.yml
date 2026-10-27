@@ -23,12 +23,24 @@ jobs:
           python3 tools/research.py --check
           python3 tools/check_site.py
           node tools/test_inference.mjs
-          node tools/test_play.mjs
-          node tools/test_study.mjs
+          node --experimental-vm-modules tools/test_browser_runtime.mjs
+      - name: Get canonical app source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Dash1971/maia-chess-android
+          ref: aeea49817c34f48397e910894414c1d8b0352124
+          path: .scratch/app-source
+          lfs: false
+      - name: Install the app's pinned Flutter SDK
+        run: |
+          git clone --depth 1 --branch 3.47.8 https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          test "$(git -C "$RUNNER_TEMP/flutter" rev-parse HEAD)" = 737ba8f885dc774b53b442759999a312c9461e4e
+      - name: Build the actual Mobile Maia app for the browser
+        run: python3 tools/build_browser_app.py --source .scratch/app-source --flutter "$RUNNER_TEMP/flutter" --scratch .scratch/browser-build
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         if: github.event_name != 'pull_request'
         with:
-          path: site
+          path: .scratch/browser-build/deploy
   deploy:
     if: github.event_name != 'pull_request'
     needs: check

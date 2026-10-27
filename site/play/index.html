@@ -1,86 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Try Mobile Maia — Browser preview</title>
-  <meta name="description" content="Try Mobile Maia in a phone-style browser preview, with local Maia-3 5M CPU play.">
-  <meta name="theme-color" content="#101610"><link rel="canonical" href="https://mobilemaia.org/play/">
-  <link rel="icon" href="../assets/icon.png"><link rel="stylesheet" href="../styles.css?v=20261026">
-  <link rel="stylesheet" href="vendor/chessground/base.css"><link rel="stylesheet" href="vendor/chessground/brown.css">
-  <link rel="stylesheet" href="play.css?v=20261027-study1"><script type="module" src="play.mjs?v=20261027-study1"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="mobile-maia-build" content="__BROWSER_BUILD__"><title>Mobile Maia — Try the app</title><meta name="description" content="Try Mobile Maia in your browser, using the app's own screens and local Maia inference.">
+<link rel="canonical" href="https://mobilemaia.org/play/"><link rel="icon" href="../assets/icon.png"><meta name="theme-color" content="#101610">
+<link rel="stylesheet" href="../styles.css?v=20261026"><link rel="stylesheet" href="host.css?v=20261027-native1">
+<script type="module" src="host.mjs?v=20261027-native1"></script>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to preview</a>
-<header class="site-header"><div class="container header-inner"><a class="brand" href="../"><img src="../assets/icon.png" alt="" width="38" height="38"><span>Mobile Maia<span class="brand-dot">.</span></span></a><nav aria-label="Main navigation"><a href="../research/">Research</a><a href="../">The Android app</a></nav></div></header>
-<main id="main" class="container play-page">
-  <section class="trial-intro" aria-labelledby="trial-title">
-    <p class="eyebrow">TRY IT BEFORE YOU INSTALL</p><h1 id="trial-title">Mobile Maia.<br><em>In your browser.</em></h1>
-    <p>Get a feel for Mobile Maia with a game inside the preview. On a phone, it fills your screen.</p>
-    <p>Play with tap or drag, explore games and variations, and compare Maia’s human move probabilities with local Stockfish analysis.</p>
-    <a class="button" href="../index.html#download">Get the Android app <span aria-hidden="true">↗</span></a>
-    <p class="trial-note">The preview uses the smaller 5M model on your CPU. Its choices can differ from the app’s 79M model. <a href="https://github.com/Dash1971/mobilemaia.org/blob/main/docs/browser-app-roadmap.md">Follow the browser roadmap →</a></p>
-  </section>
-  <section class="phone-shell" aria-label="Mobile Maia browser app">
-    <div class="phone-camera" aria-hidden="true"></div>
-    <div class="app-screen">
-      <header class="app-bar"><button id="app-back" class="icon-button" type="button" aria-label="Back" hidden>←</button><span id="app-title">Mobile Maia</span><button id="app-settings" class="icon-button" type="button" aria-label="Settings">⚙</button></header>
-      <div class="app-engine"><span id="session-indicator" role="status">5M CPU · Ready to start</span><h2 id="engine-title" class="visually-hidden">Getting ready.</h2><progress id="load-progress" value="0" max="1" aria-label="Engine download progress" hidden></progress><button id="retry" class="retry-button" type="button" hidden>Load Maia</button></div>
-      <div id="app-content" class="app-content">
-        <section id="view-home" class="app-view" aria-label="Home">
-          <form id="setup" class="setup-panel">
-            <h2>Play Maia</h2><p class="preview-chip">Browser preview · 5M</p>
-            <div class="setup-grid"><label for="side">Your side</label><select id="side"><option value="w">White</option><option value="b">Black</option><option value="random">Random</option></select><label for="rating">Play Maia rating</label><input id="rating" type="number" min="600" max="2600" step="1" value="1500" required></div>
-            <p class="setting-note">A model setting, not a calibrated playing strength.</p>
-            <p id="custom-position" class="setting-note" hidden>Your next game starts from the selected analysis position. <button id="reset-position" class="text-button" type="button">Use standard start</button></p>
-            <label class="save-choice"><input id="keep" type="checkbox" checked> Save engine downloads for next time</label>
-            <button id="start" class="button start-game" type="submit" disabled>Start game</button>
-            <button id="resume" class="button button-outline resume-game" type="button" hidden>Return to game</button>
-            <p class="download-note">First load: about <strong>36 MB</strong>. Use Wi-Fi and keep this tab open while Maia loads. As White, you can make your first move while you wait.</p>
-          </form>
-          <button id="open-analysis" class="analysis-home button button-outline" type="button">Analysis Board <span aria-hidden="true">↗</span></button>
-          <p class="setting-note analysis-download-note">Explore both sides. Maia probabilities and Stockfish lines run locally. First analysis adds a 1.9 MB Stockfish download.</p>
-          <p class="home-note">Free. Local play. No account.<br>More app features will be added in small increments.</p>
-          <noscript><p>This preview needs JavaScript. <a href="../research/">Read the research</a> without it.</p></noscript>
-        </section>
-        <section id="view-game" class="app-view" aria-label="Game" hidden>
-          <section class="move-panel" aria-labelledby="moves-title"><h2 id="moves-title" class="visually-hidden">Moves</h2><ol id="moves" class="moves" aria-label="Move list"></ol><p id="empty-moves" class="setting-note">Your game will appear here.</p></section>
-          <section class="board-column" aria-label="Your game">
-            <div class="player-line"><strong id="opponent">Maia 5M</strong><span id="opponent-color">Black</span></div>
-            <div id="board" class="board" role="group" aria-label="Chessboard. Tap or drag a piece to a legal destination. Keyboard: arrow keys to move focus, Enter to select, Escape to cancel."></div>
-            <div class="player-line"><strong id="player-bottom">You</strong><span id="human-color">White</span></div>
-            <p id="game-status" class="game-status" role="status" aria-live="polite">Choose your side, then start a game.</p>
-            <nav class="position-nav" aria-label="Game positions"><button id="game-first" type="button" aria-label="First position">|←</button><button id="game-previous" type="button" aria-label="Previous position">←</button><button id="game-next" type="button" aria-label="Next position">→</button><button id="game-last" type="button" aria-label="Return to live position">→|</button><button id="game-flip" type="button" aria-label="Flip game board">⇅</button></nav>
-            <div class="game-actions"><button id="undo" class="button button-outline button-small" type="button" disabled>Take back</button><button id="analyse-game" class="text-button" type="button">Analyse game</button><button id="pgn" class="text-button" type="button" disabled>Save PGN</button></div><p id="last-move" class="last-move"></p>
-            <button id="cancel-premove" class="text-button" type="button" hidden>Cancel premove</button>
-            <p class="board-help">Tap or drag. Legal destinations appear when you select a piece.</p>
-          </section>
-        </section>
-        <section id="view-analysis" class="app-view" aria-label="Analysis Board" hidden>
-          <div class="analysis-heading"><span id="analysis-turn" role="status">White to move</span><button id="analysis-flip" class="text-button" type="button">Flip board ⇅</button></div>
-          <div class="analysis-overview" aria-label="Engine summary"><span id="analysis-summary-maia">Maia · waiting</span><span id="analysis-summary-sf">Stockfish · waiting</span><button id="analysis-show-lines" class="text-button" type="button">Engine lines ↓</button></div>
-          <div id="analysis-board" class="board" role="group" aria-label="Analysis chessboard. Play either side with tap or drag. Arrow keys move focus, Enter selects, Escape cancels."></div>
-          <nav class="position-nav" aria-label="Analysis positions"><button id="analysis-first" type="button" aria-label="First analysis position">|←</button><button id="analysis-previous" type="button" aria-label="Previous analysis position">←</button><span id="analysis-position">Starting position</span><button id="analysis-next" type="button" aria-label="Next analysis position">→</button><button id="analysis-last" type="button" aria-label="Last position in this line">→|</button></nav>
-          <details class="study-tree" open><summary>Moves &amp; variations</summary><div id="analysis-tree" class="analysis-tree" aria-label="Study moves and variations"></div><p id="analysis-comment" class="setting-note"></p></details>
-          <div class="analysis-controls"><label for="analysis-rating">Maia rating</label><input id="analysis-rating" type="number" min="600" max="2600" step="1" value="1500" required><button id="analysis-toggle" class="text-button" type="button">Pause engines</button><button id="analysis-retry" class="text-button" type="button">Retry</button></div>
-          <section class="analysis-engine" aria-labelledby="maia-heading"><h3 id="maia-heading"><span class="engine-dot maia-dot" aria-hidden="true"></span>Maia 5M · human choices</h3><p id="maia-status" class="engine-status" role="status">Waiting for a position</p><div id="maia-lines"></div><p class="setting-note">Top five legal moves. Raw probabilities for the side to move, before sampling settings; not best-move scores.</p></section>
-          <section class="analysis-engine" aria-labelledby="sf-heading"><h3 id="sf-heading"><span class="engine-dot sf-dot" aria-hidden="true"></span>Stockfish 19 Lite</h3><p id="sf-status" class="engine-status" role="status">Waiting for a position</p><div id="sf-lines"></div><p class="setting-note">Two lines, depth 12 or 0.6 seconds. Scores favour White when positive; M means mate. This smaller, single-threaded engine differs from Android’s full Stockfish. Tap a line to explore its first move.</p></section>
-          <div class="study-actions"><button id="analysis-continue" class="button" type="button">Continue from here</button><button id="analysis-export" class="text-button" type="button">Save study PGN</button><button id="analysis-reset" class="text-button" type="button">New analysis</button></div>
-          <details class="engine-details"><summary>Import PGN or FEN</summary><form id="analysis-import-form"><label for="analysis-format">Format</label><select id="analysis-format"><option value="pgn">PGN game</option><option value="fen">FEN position</option></select><label for="analysis-source">Paste game or position</label><textarea id="analysis-source" rows="5" spellcheck="false"></textarea><button class="button button-outline" type="submit">Load position / game</button><label class="file-label" for="analysis-file">Or choose a PGN file</label><input id="analysis-file" type="file" accept=".pgn,application/x-chess-pgn,text/plain"></form><p id="analysis-import-status" role="status"></p></details>
-          <details class="engine-details"><summary>Current FEN</summary><label class="visually-hidden" for="analysis-fen">Current position FEN</label><textarea id="analysis-fen" rows="3" readonly spellcheck="false"></textarea><button id="analysis-copy-fen" class="text-button" type="button">Copy FEN</button><p id="analysis-fen-status" role="status"></p></details>
-          <p class="setting-note">Playing an alternative creates a variation and keeps the original moves. This study stays in this tab: save its PGN before leaving. Position editor, second Maia rating, and full game review are later increments.</p>
-        </section>
-        <section id="view-settings" class="app-view settings-view" aria-labelledby="settings-title" hidden>
-          <h2 id="settings-title" class="visually-hidden">Settings</h2>
-          <section class="settings-card"><h3>Board</h3><label class="save-choice"><input id="board-coordinates" type="checkbox" checked> Board coordinates</label><label class="save-choice"><input id="legal-hints" type="checkbox" checked> Legal-move destinations</label><label class="save-choice"><input id="last-highlight" type="checkbox" checked> Last-move highlight</label><label class="save-choice"><input id="board-animation" type="checkbox" checked> Piece animation</label><p>Tap or drag pieces. Arrow keys, Enter and Escape also work on both boards. One premove can be queued while Maia thinks; it runs only if legal. Board choices apply for this tab.</p></section>
-          <section class="settings-card"><h3>Engine</h3><p><strong>Maia 5M · CPU</strong><br>The small model keeps the browser download manageable. The full 79M model is planned as an optional download.</p><p>Play side and rating are chosen on Home for your next game. Analysis has its own rating. One Maia session is shared; opening analysis pauses Maia’s reply in the game. Returning resumes it.</p></section>
-          <details class="engine-details"><summary>Engine &amp; startup details</summary><p id="engine-status">No model download begins until you start a game.</p><p id="metrics">No engine has loaded yet.</p><div class="detail-actions"><button id="diagnostics" class="text-button" type="button" disabled>Save startup report</button><button id="release" class="text-button" type="button" disabled>Stop engine</button><button id="clear" class="text-button" type="button">Clear saved engine downloads</button></div><p>Downloads run in parallel and are verified by SHA-256. One session is reused between moves and games, with no benchmark warm-up runs. Play uses current-board input and full legal-move sampling.</p><details><summary>Full startup report</summary><pre id="startup-json">No engine has loaded yet.</pre></details><p id="storage-status" role="status"></p></details>
-          <section class="settings-card"><h3>About this preview</h3><p>Play and position analysis are available now. Saved games, full game review and more settings are planned in the <a href="https://github.com/Dash1971/mobilemaia.org/blob/main/docs/browser-app-roadmap.md">browser roadmap</a>. Electronic-board support is outside the web scope.</p><p>Your game and study stay in this tab’s memory. Save a PGN before leaving. There are no accounts, analytics, clocks or automatic uploads. Initial engine downloads contact GitHub, jsDelivr and unpkg. Saved downloads use the benchmark’s dedicated cache.</p><p><a href="../index.html#download">Get the Android app ↗</a></p></section>
-          <p class="play-notes"><a href="../">Project website</a> · <a href="../about.html#browser-play">Privacy &amp; credits</a> · <a href="../lab/inference/">Benchmark</a> · <a href="assets.json">Asset provenance</a> · <a href="vendor/chess-LICENSE">Chess rules licence</a> · <a href="vendor/pieces-COPYING.md">Piece attribution</a> · <a href="vendor/GPL-2.0.txt">Piece licence</a></p>
-        </section>
-      </div>
-      <footer id="app-footer" class="app-footer"><button id="home-settings" class="button button-outline" type="button">⚙ Settings</button></footer>
-    </div>
-  </section>
+<a class="skip-link" href="#app">Skip to Mobile Maia</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="../"><img src="../assets/icon.png" alt="" width="38" height="38"><span>Mobile Maia<span class="brand-dot">.</span></span></a><nav aria-label="Main navigation"><a href="../research/">Research</a><a href="../#download">The Android app</a></nav></div></header>
+<main class="container app-preview">
+<section class="trial-intro"><p class="eyebrow">TRY IT BEFORE YOU INSTALL</p><h1>Mobile Maia.<br><em>In your browser.</em></h1><p>The Mobile Maia app, running in your browser. Play, explore positions, and review games with the same screens and controls.</p><p>Maia runs locally on your CPU. This browser version starts with the smaller 5M model.</p><a class="button" href="../#download">Get the Android app <span aria-hidden="true">↗</span></a><p class="trial-note">First engine use downloads Maia and its runtime. Games and settings are stored in this browser. <a href="../about.html#browser-play">Privacy and source</a>.</p></section>
+<section class="phone-shell" aria-label="Mobile Maia app"><div class="phone-camera" aria-hidden="true"></div><iframe id="app" title="Mobile Maia" allow="clipboard-write; fullscreen; autoplay" src="about:blank"></iframe></section>
 </main>
-<dialog id="promotion" aria-labelledby="promotion-title"><h2 id="promotion-title">Promote your pawn.</h2><div id="promotion-options" class="promotion-options"></div><button id="promotion-cancel" class="text-button" type="button">Cancel</button></dialog>
 </body></html>

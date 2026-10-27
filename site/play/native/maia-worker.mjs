@@ -1,6 +1,5 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
-import { CACHE_NAME, encode, sha256 } from '../lab/inference/core.mjs?v=20261027-5m';
-import { sampleMove, legalMoveProbabilities } from './policy.mjs?v=20261027-study1';
+import { CACHE_NAME, encode, sha256 } from '../../lab/inference/core.mjs?v=20261027-5m';
 
 let session, ort, initPromise, latest, running = false;
 const diagnostics = { schema: 1, modelId: '5m', backend: 'wasm', numThreads: 1,
@@ -55,19 +54,19 @@ async function load(asset, name, keep) {
 
 async function init(config, keep) {
   const start = performance.now();
-  const model = config.models['5m'];
+  const model = config.models[config.browserModel || '5m']; diagnostics.modelId = config.browserModel || '5m';
   const asset = config.runtime.assets.wasm;
   diagnostics.startedAt = new Date().toISOString();
   diagnostics.modelSha256 = model.sha256;
   diagnostics.runtimeVersion = config.runtime.version;
   diagnostics.phase = 'download';
   // Independent downloads overlap; no native-reference or synthetic warm-up runs.
-  const modulePromise = import('../lab/inference/' + asset.module);
+  const modulePromise = import('../../lab/inference/' + asset.module);
   const [weights, wasm] = await Promise.all([load(model, 'Maia 5M', keep), load(asset, 'CPU runtime', keep)]);
   ort = await modulePromise;
   if (ort.env.versions.web !== config.runtime.version) throw new Error('Unexpected runtime version');
   ort.env.wasm.numThreads = 1; ort.env.wasm.proxy = false;
-  ort.env.wasm.wasmPaths = { mjs: new URL('../lab/inference/' + asset.loader, self.location.href).href };
+  ort.env.wasm.wasmPaths = { mjs: new URL('../../lab/inference/' + asset.loader, self.location.href).href };
   ort.env.wasm.wasmBinary = wasm;
   notify({ type: 'initializing' });
   diagnostics.phase = 'session creation';
@@ -81,47 +80,33 @@ async function init(config, keep) {
   notify({ type: 'ready', diagnostics });
 }
 
-async function infer(job) {
-  diagnostics.phase = 'inference';
-  const start = performance.now();
+async function predict(job) {
+  await initPromise;
+  const args = job.arguments, started = performance.now();
   const feeds = {
-    tokens: new ort.Tensor('float32', encode([job.fen], false), [1, 64, 97]),
-    self_elo: new ort.Tensor('int64', new BigInt64Array([BigInt(job.rating)]), [1]),
-    opponent_elo: new ort.Tensor('int64', new BigInt64Array([BigInt(job.rating)]), [1]),
+    tokens: new ort.Tensor('float32', args.tokens, [1,64,97]),
+    self_elo: new ort.Tensor('int64',new BigInt64Array([BigInt(args.selfElo)]),[1]),
+    opponent_elo: new ort.Tensor('int64',new BigInt64Array([BigInt(args.opponentElo)]),[1])
   };
   let outputs;
   try {
     outputs = await session.run(feeds);
-    const policy = await outputs.move_logits.getData();
-    const values = await outputs.value_logits.getData();
-    if (!Array.from(values).every(Number.isFinite)) throw new Error('Non-finite value output');
-    const black = job.fen.split(' ')[1] === 'b';
-    const result = job.type === 'analysis' ? { probabilities: legalMoveProbabilities(job.legal, policy, black) }
-      : { move: sampleMove(job.legal, policy, black) };
-    const ms = performance.now() - start;
-    diagnostics.inferences.push({ ms, at: new Date().toISOString() });
-    if (diagnostics.inferences.length > 500) diagnostics.inferences.shift();
-    diagnostics.firstInferenceMs ??= ms;
-    diagnostics.phase = 'ready';
-    notify({ type: job.type, id: job.id, fen: job.fen, ...result, ms, diagnostics });
+    const policy = new Float32Array(await outputs.move_logits.getData());
+    const values = new Float32Array(await outputs.value_logits.getData());
+    if (policy.length !== 4352 || values.length !== 3 || !policy.every(Number.isFinite) || !values.every(Number.isFinite)) throw new Error('Invalid Maia output');
+    diagnostics.inferences.push({ms:performance.now()-started,at:new Date().toISOString()});
+    if(diagnostics.inferences.length>200)diagnostics.inferences.shift();
+    notify({type:'prediction',id:job.id,policy,values,diagnostics});
   } finally {
-    for (const tensor of [...Object.values(outputs || {}), ...Object.values(feeds)]) tensor.dispose();
+    for(const tensor of [...Object.values(outputs || {}),...Object.values(feeds)])tensor.dispose();
   }
 }
-
-async function drain() {
-  if (running) return;
-  running = true;
-  while (latest) {
-    const job = latest; latest = null;
-    try { await initPromise; await infer(job); }
-    catch (error) { diagnostics.failedPhase = diagnostics.phase; diagnostics.phase = 'failed'; notify({ type: 'error', id: job.id, error: error.message, diagnostics }); }
+let tail = Promise.resolve();
+self.onmessage = ({data}) => {
+  if(data.type === 'init' && !initPromise) {
+    initPromise = init(data.config, !data.config.browserQa);
+    initPromise.catch(error => notify({type:'error',error:error.message,diagnostics}));
+  } else if(data.type === 'predict') {
+    tail = tail.catch(()=>{}).then(()=>predict(data)).catch(error=>notify({type:'error',id:data.id,error:error.message,diagnostics}));
   }
-  running = false;
-}
-self.onmessage = ({ data }) => {
-  if (data.type === 'init' && !initPromise) {
-    initPromise = init(data.config, data.keep);
-    initPromise.catch(error => { diagnostics.failedPhase = diagnostics.phase; diagnostics.phase = 'failed'; notify({ type: 'error', error: error.message, diagnostics }); });
-  } else if (data.type === 'move' || data.type === 'analysis') { latest = data; drain(); }
 };

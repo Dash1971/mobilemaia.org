@@ -24,8 +24,8 @@ retain their respective rights and licences. Corresponding source and notices:
 - [Pinned component notices](https://github.com/Dash1971/maia-chess-android/blob/cd2551f70f9dde903d4bf543c7ea309beecee58f/THIRD_PARTY_NOTICES.md)
 - [Local copy of app notices](APP_NOTICES.md)
 
-System fonts only; no third-party web fonts, icon libraries, remote image
-requests, or image-generation service assets. The page's decorative checker
+The homepage/research use system fonts, with no remote image requests or
+image-generation service assets. The browser app bundles its native fonts locally. The page's decorative checker
 pattern, frames, and marks use CSS and ordinary text.
 
 ## Research guide
@@ -82,32 +82,22 @@ Research reference cases are derived from the pinned score study, with source
 hashes recorded in the lab config and independently calculated input hashes.
 
 
-## Playable browser preview
+## Browser app source and assets
 
-`site/play/vendor/chess.mjs` and its source map are unchanged chess.js 1.4.0
-from the official npm package, verified with npm SHA-512 integrity. Source commit
-`ce1ff9e9fc342984ff75ca475ab39f37888cb28a` and the original BSD-2-Clause licence
-are recorded in `site/play/assets.json` / `vendor/chess-LICENSE`.
+The playable edition compiles canonical app source
+[`aeea49817c34f48397e910894414c1d8b0352124`](https://github.com/Dash1971/maia-chess-android/tree/aeea49817c34f48397e910894414c1d8b0352124),
+including its vendored Dart Chessground, Cburnett pieces, LichessIcons, sounds,
+translations and notices. It adds browser platform adapters from `browser-app/`
+and `site/play/native/`. The earlier independent JavaScript board/rules UI and
+its vendored chess.js/JavaScript Chessground assets have been removed.
 
-The twelve Cburnett SVG pieces are unchanged from Lichess lila source commit
-`eaaee2ac2ff62a6c600ed65c60bb01410631e6aa`, `public/piece/cburnett/`.
-Artist Colin M. L. Burnett; GPL-2.0-or-later. The upstream `COPYING.md` and full
-GPL-2.0 text are served alongside them. Individual file hashes are in the play
-asset manifest. The board is CSS/HTML, not a new app screenshot.
-The preview reuses the inference lab's pinned 5M model and CPU runtime; no weights
-or runtime binaries are checked into this repository.
-
-
-## Browser board and analysis engines
-
-Unmodified `@lichess-org/chessground` **10.5.0** bundled ES module and base/brown
-CSS come from the official npm package, verified against its SHA-512 integrity.
-Corresponding source is Lichess Chessground tag `v10.5.0`, commit
-`b4f605018e1043640c917e82a74b214cb58e4a05`. Licence: GPL-3.0-or-later, served in
-`site/play/vendor/chessground/LICENSE`. The separate adapter adds keyboard access
-and connects legal moves from chess.js. Local CSS uses the app's Brown/Cburnett
-palette/pieces and in-board coordinates; upstream interaction highlights remain
-unchanged. The original upstream README is included with the dependency.
+Flutter is pinned to revision `737ba8f885dc774b53b442759999a312c9461e4e`
+(3.47.8); its local rendering artifacts, Material/Cupertino icons and Roboto fonts
+are included in the generated bundle. Flutter's compiled app license registry
+includes package notices and bundled font licenses. The app's own license and
+third-party notice files remain in the pinned source. `/play/app/source.json`
+records the app commit, unchanged UI hashes, adapter boundaries and build IDs.
+The website repository contains all adapter/build source under AGPL-3.0-only.
 
 Unmodified `stockfish@19.0.1` Lite single-threaded worker glue is vendored locally;
 its 1,845,971-byte WASM is downloaded at runtime from the pinned npm distribution
@@ -116,6 +106,6 @@ on unpkg and checked against SHA-256
 Corresponding engine/build source is `nmrugg/stockfish.js` tag `v19.0.1`, commit
 `0d5dd7944f88c817c07a26bc4fb1905d5f9c46d6`. GPL-3.0 text is served in
 `site/play/vendor/stockfish-COPYING.txt`. No WASM/model binary is checked in.
-`site/play/assets.json` hashes every vendored source, licence and piece;
+`site/play/assets.json` hashes the vendored Stockfish worker and license;
 `site/play/stockfish.json` pins the runtime download. The source links are also
 provided in the public privacy/credits page.

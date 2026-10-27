@@ -3,11 +3,11 @@
 The public website for [Mobile Maia](https://github.com/Dash1971/maia-chess-android),
 an independent, free and open-source Android chess app built around Maia-3.
 
-Plain HTML, CSS, and a small progressive-enhancement script. No package manager,
-framework, runtime build step, external fonts, analytics or cookies. The homepage
-and research articles use no browser storage; the opt-in browser previews are described below.
-Only `site/` is deployed. APKs and model binaries stay in the app's distribution
-channels.
+The homepage and research use plain HTML/CSS with no build framework, analytics,
+cookies or remote fonts. The playable browser edition compiles the actual Flutter
+app from pinned source with browser engine/storage adapters. Pages deploys the
+static site plus the generated app bundle; APKs and model weights are never
+committed or bundled. Local browser storage is described below.
 
 ## Preview and check
 
@@ -25,8 +25,8 @@ keyboard focus, downloads, and the no-JavaScript fallback after relevant changes
 Canonical address: [mobilemaia.org](https://mobilemaia.org/).
 The original [GitHub Pages address](https://dash1971.github.io/mobilemaia.org/)
 redirects to the configured custom domain.
-Pushes to `main` validate the site, upload only `site/`, and deploy through
-GitHub Actions. Pull requests validate without deploying. In repository
+Pushes to `main` validate the site, build the pinned browser app, and deploy
+`.scratch/browser-build/deploy` through GitHub Actions. Pull requests validate without deploying. In repository
 Settings → Pages, use **GitHub Actions** as the source.
 
 The domain is registered at 1984, which also hosts its DNS. GitHub has verified
@@ -114,53 +114,49 @@ supported browser and the large downloads. Stop/Clear and both backends must be
 checked before changing this experiment. Model/runtime changes need fresh
 reference validation; never swap a smaller/re-exported model silently.
 
-### Playable browser preview
+### Playable browser edition
 
-`/play/` is the browser trial before Android installation. Desktop shows the app
-inside a phone frame; phones use the full viewport. Home, Game, Analysis Board
-and Settings keep one shared 5M CPU session. The app and Lichess are the UI/chess
-references; both browser boards now use unmodified **Lichess Chessground 10.5.0**
-with Brown/Cburnett styling, drag/tap moves, animation, destination dots, capture
-rings, check/last-move highlights, and a keyboard adapter. Play supports
-White/Black/Random, any whole-number rating from 600–2600 (default 1500), one
-legal-checked premove, promotion, takeback, board flip, position navigation,
-Analyse game and PGN export. Navigation and takebacks clear premoves.
+`/play/` runs the actual Stable 2.5.0 Flutter application from source
+`aeea49817c34f48397e910894414c1d8b0352124`. Desktop presents it inside a phone;
+narrow screens fill the viewport. The app's board, drag/tap interactions, legal
+moves, highlights, premoves, clocks, settings, analysis engine rows, PGN/FEN/editor,
+Recent games and game review use canonical widgets and Dart logic. Browser
+adapters replace native inference, Stockfish, storage, files, sound and wake lock.
+Electronic-board controls are excluded. This replaces the separate JavaScript UI.
 
-**Analysis Board** supports legal moves for either side, PGN/file or FEN import,
-mainline/variation navigation, branch-preserving PGN export, board flip, current
-FEN copy and Continue from here with full FEN state. Trying alternatives keeps
-existing moves. Maia displays raw probabilities normalized over all legal moves
-(the top five are shown), using the app's mapping and tie order, independently
-of play sampling. Local **Stockfish 19 Lite single-threaded** provides two PVs,
-White-perspective centipawn/mate scores and blue arrows; Maia's arrow is green.
-Searches stop at depth 12 or 600 ms, debounce position changes, and discard stale
-results. Engines pause when leaving analysis; the original game is retained.
-One Maia worker is shared between play and analysis. Returning to Game resumes
-a pending reply. Pause engines, Retry and Stop engine are available.
+Maia uses the pinned 5M model on one CPU WASM thread. Its unchanged Dart encoder,
+sampler and analysis logic consume full raw policy/value outputs from ONNX Runtime
+Web. Stockfish 19 Lite runs in a local single-threaded UCI worker under the app's
+own analysis scheduler. Smaller model/engine results can differ from Android.
+`?model=79m` selects the existing full-model download experimentally; a model
+selection/download UI and reliable physical-phone 79M support remain future work.
 
-Stockfish downloads 1,845,971 bytes from pinned unpkg and verifies size/SHA-256
-before starting the unmodified local worker glue. The version, source, licence
-and hashes are in `site/play/stockfish.json` and `assets.json`. The lite network
-and search budget differ from Android's full engine; no equal-strength or full
-feature-parity claim is made. The board/piece/rules sources are in
-[ASSETS.md](ASSETS.md). Imported PGNs/positions stay local; no automatic uploads.
-Game and study remain in this tab's memory, so export PGN before leaving.
+Games and app data persist in IndexedDB; settings use localStorage. Verified
+model/runtime downloads can be saved in the inference lab's named cache. Nothing
+is uploaded. The shell requires a modern browser with WasmGC because dartchess
+uses 64-bit bitboards; unsupported browsers receive a compatibility message.
+This is a browser edition, not yet an installable/offline PWA.
 
-Maia startup still overlaps verified model/runtime downloads, reuses the lab's
-named cache, skips synthetic/reference warm-ups and reuses one CPU session.
-5M remains default; optional 79M play, saved-game recovery, clocks, stacked
-premoves, piece editor, second Maia analysis, game-review classifications and
-PWA installation remain future increments. The current play sampler remains
-Temperature 1 / Top-P 1 with history off; only the new-game rating default and
-range were aligned here. See the [roadmap](docs/browser-app-roadmap.md) and
-[implementation decision and verification](docs/browser-analysis-2026-10-27.md).
+Build using the official Flutter SDK revision pinned in the build helper:
 
-`node tools/test_play.mjs` checks rules/policy/PGN and vendored integrity;
-`node tools/test_study.mjs` checks variation import/export, notes/NAGs, custom FEN,
-legal policy probabilities and stale/cancelled UCI searches. The optional
-`tools/compare_play_startup.mjs MODEL WASM [LEVEL]` retains the independent
-native-reference startup comparison; it downloads nothing. No Android source,
-release gates or shared Stable/Preview build helpers change in this increment.
+```sh
+python3 tools/build_browser_app.py --source /path/to/maia-chess-android \
+  --flutter /path/to/flutter --scratch .scratch/browser-build
+python3 -m http.server 8080 --bind 127.0.0.1 --directory .scratch/browser-build/deploy
+```
+
+The source checkout must contain the pinned app commit. The helper enforces the
+app's disk preflight, exports only source/assets without the 79M model, applies
+guarded platform changes, and hashes canonical UI/logic files to reject changes.
+Every compiled asset uses a content-addressed bundle path to prevent mixed old
+fonts/code after deployment. Flutter service-worker generation is disabled.
+
+Run `node --experimental-vm-modules tools/test_browser_runtime.mjs` for the raw
+inference boundary, queue/error/disposal checks and pinned Stockfish integrity;
+`node tools/test_inference.mjs` checks the shared encoder/reference/runtime pins.
+See [implementation and verification](docs/browser-native-2026-10-27.md) and
+[remaining work](docs/browser-app-roadmap.md). No Android checkout, release gate,
+or shared Stable/Preview build helper changes; no companion app port applies.
 
 ### App and screenshot sources
 

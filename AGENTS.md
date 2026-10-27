@@ -1,10 +1,13 @@
 # Mobile Maia website
 
-This is the standalone public website, hosted by GitHub Pages. Serve only `site/`.
+This is the standalone public website, hosted by GitHub Pages. Deploy `site/`
+plus the generated browser app bundle; never native build artifacts or models.
 It is independent of the Stable and Preview app repositories and release gates.
 
-- Keep the site buildless, accessible, responsive, and portable. Use local assets
-  and system fonts. Do not introduce analytics, trackers, accounts, or dependencies
+- Keep the homepage/research buildless, accessible, responsive, and portable.
+  The browser app builds the pinned Mobile Maia Flutter UI with platform adapters;
+  do not maintain a separate HTML/JavaScript recreation of app screens or labels.
+  Use local assets and fonts (system fonts for ordinary website pages). Do not introduce analytics, trackers, accounts, or dependencies
   without a concrete product need and user authorization.
 - Check current Stable documentation before making app claims. Keep Preview
   features and downloads clearly separate. Do not publish app releases here.

@@ -1,5 +1,8 @@
 # Playable 5M CPU preview — 2026-10-27
 
+> Historical implementation evidence. The separate JavaScript UI described here
+> was superseded by the [canonical Flutter browser edition](browser-native-2026-10-27.md).
+
 Route: <https://mobilemaia.org/play/>. A small turn-based browser game, using the
 same unchanged 5M model and single-thread CPU runtime as the benchmark. Android
 Stable and Preview source, versions, build tooling and release gates are untouched;

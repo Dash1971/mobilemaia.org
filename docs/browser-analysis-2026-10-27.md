@@ -1,5 +1,8 @@
 # Browser gameplay and Analysis Board
 
+> Historical implementation evidence. The separate JavaScript UI described here
+> was superseded by the [canonical Flutter browser edition](browser-native-2026-10-27.md).
+
 The product reference is Mobile Maia Stable 2.5.0, commit
 `aeea49817c34f48397e910894414c1d8b0352124`, and Lichess's website. The user
 clarified that interactions should match those references as closely as

@@ -1,5 +1,5 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
-import { CACHE_NAME } from './core.mjs';
+import { CACHE_NAME, sha256, selectedModel, downloadBytes } from './core.mjs?v=20261027-5m';
 const $ = id => document.getElementById(id);
 let worker, config, fixtures, currentReport, visibilityChanges = [];
 document.addEventListener('visibilitychange', () => {
@@ -7,7 +7,7 @@ document.addEventListener('visibilitychange', () => {
 });
 function status(message, detail = '') { $('status').textContent = message; $('detail').textContent = detail; }
 function busy(value) {
-  for (const id of ['start', 'backend', 'iterations', 'keep', 'device-note', 'clear']) $(id).disabled = value;
+  for (const id of ['start', 'model', 'backend', 'iterations', 'keep', 'device-note', 'clear']) $(id).disabled = value;
   $('stop').disabled = !value;
 }
 function showReport(report) {
@@ -21,7 +21,7 @@ function showReport(report) {
   }
   const backend = report.runtime.backendRequested === 'webgpu' ? 'WebGPU requested (CPU node fallback may occur)' : 'WebAssembly CPU';
   const interrupted = report.visibilityChanges?.some(change => change.state !== 'visible');
-  $('result-summary').textContent = `All ${report.checks.length} reference checks passed. ${report.statistics.count} warmed inferences. ${backend}.${interrupted ? ' Tab was hidden during this run; repeat in the foreground for comparable timings.' : ''}`;
+  $('result-summary').textContent = `${report.model.name}. All ${report.checks.length} reference checks passed. ${report.statistics.count} warmed inferences. ${backend}.${interrupted ? ' Tab was hidden during this run; repeat in the foreground for comparable timings.' : ''}`;
   const entries = [['Warm median', report.statistics.medianMs], ['Warm p95', report.statistics.p95Ms], ['First inference', report.firstInferenceMs], ['Session creation', report.sessionCreationMs]];
   for (const [label, value] of entries) {
     const item = document.createElement('div'); item.className = 'metric';
@@ -40,10 +40,12 @@ $('controls').addEventListener('submit', event => {
   event.preventDefault();
   if (!config || worker) return;
   const context = device();
+  const modelId = $('model').value;
   visibilityChanges = [{ at: new Date().toISOString(), state: document.visibilityState }];
   busy(true); $('export').disabled = true; $('metrics').replaceChildren(); $('result-summary').textContent = 'Test in progress…';
+  $('raw').textContent = 'Test in progress…'; currentReport = null;
   $('progress').value = 0; $('progress').max = 1;
-  worker = new Worker(new URL('./worker.mjs', import.meta.url), { type: 'module' });
+  worker = new Worker(new URL('./worker.mjs?v=20261027-5m', import.meta.url), { type: 'module' });
   const activeWorker = worker;
   worker.onmessage = ({ data }) => {
     if (worker !== activeWorker) return;
@@ -61,14 +63,14 @@ $('controls').addEventListener('submit', event => {
   worker.onerror = event => {
     if (worker !== activeWorker) return;
     worker.terminate(); worker = null; busy(false);
-    showReport({ schema: 1, status: 'failed', lastStage: $('status').textContent, error: event.message || 'Worker stopped unexpectedly. The browser may have run out of resources.', device: context });
+    showReport({ schema: 2, status: 'failed', model: selectedModel(config, modelId), lastStage: $('status').textContent, error: event.message || 'Worker stopped unexpectedly. The browser may have run out of resources.', device: context, visibilityChanges, page: location.href });
     status('Worker stopped. Try the CPU backend, or close other resource-heavy tabs.');
   };
-  worker.postMessage({ config, fixtures, backend: $('backend').value, iterations: Number($('iterations').value), keep: $('keep').checked });
+  worker.postMessage({ config, fixtures: fixtures[modelId], modelId, backend: $('backend').value, iterations: Number($('iterations').value), keep: $('keep').checked });
 });
 $('stop').addEventListener('click', () => {
   worker?.terminate(); worker = null; busy(false);
-  showReport({ schema: 1, status: 'cancelled', lastStage: $('status').textContent, device: device(), finishedAt: new Date().toISOString() });
+  showReport({ schema: 2, status: 'cancelled', model: selectedModel(config, $('model').value), lastStage: $('status').textContent, device: device(), finishedAt: new Date().toISOString() });
   status('Stopped. Saved downloads, if completed, can be cleared below.'); $('progress').value = 0;
 });
 $('clear').addEventListener('click', async () => {
@@ -78,11 +80,30 @@ $('clear').addEventListener('click', async () => {
 $('export').addEventListener('click', () => {
   if (!currentReport) return;
   const url = URL.createObjectURL(new Blob([JSON.stringify(currentReport, null, 2) + '\n'], { type: 'application/json' }));
-  const link = document.createElement('a'); link.href = url; link.download = `mobile-maia-${currentReport.runtime?.backendRequested || currentReport.status}-${Date.now()}.json`; link.click();
+  const link = document.createElement('a'); link.href = url; link.download = `mobile-maia-${currentReport.model?.id || 'unknown'}-${currentReport.runtime?.backendRequested || currentReport.status}-${Date.now()}.json`; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
+function updateDownloadInfo() {
+  if (!config) return;
+  const model = selectedModel(config, $('model').value);
+  $('download-info').textContent = `${model.name}: about ${Math.round(downloadBytes(config, model.id, $('backend').value) / 1e6)} MB on the first run, including the ${ (model.bytes / 1e6).toFixed(1) } MB model and selected runtime. Saved downloads can be reused.`;
+}
+$('model').addEventListener('change', updateDownloadInfo);
+$('backend').addEventListener('change', updateDownloadInfo);
 try {
-  [config, fixtures] = await Promise.all([fetch('config.json').then(r => { if (!r.ok) throw new Error('Config unavailable'); return r.json(); }), fetch('fixtures.json').then(r => { if (!r.ok) throw new Error('References unavailable'); return r.json(); })]);
+  const response = await fetch('config.json', { cache: 'no-store' });
+  if (!response.ok) throw new Error('Config unavailable');
+  config = await response.json();
+  if (config.schema !== 2) throw new Error('Unsupported configuration; reload this page.');
+  fixtures = Object.fromEntries(await Promise.all(Object.entries(config.models).map(async ([id, model]) => {
+    const response = await fetch(model.fixtures, { cache: 'no-store' });
+    if (!response.ok) throw new Error('References unavailable');
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (await sha256(bytes) !== model.reference.fixturesSha256) throw new Error('Reference file hash mismatch');
+    return [id, JSON.parse(new TextDecoder().decode(bytes))];
+  })));
+  $('model').value = selectedModel(config).id;
+  updateDownloadInfo();
   if (!self.isSecureContext || !self.Worker || !self.WebAssembly || !self.crypto?.subtle || !self.BigInt64Array) throw new Error('This browser lacks a required secure browser, worker, WebAssembly or BigInt capability.');
   $('start').disabled = false;
   status('Ready. Downloads begin only when you start; saved files will be reused.', `WebGPU ${navigator.gpu ? 'advertised' : 'not advertised'} · ${navigator.hardwareConcurrency ?? '?'} logical cores · ${self.crossOriginIsolated ? 'isolated' : 'single-thread host'}`);

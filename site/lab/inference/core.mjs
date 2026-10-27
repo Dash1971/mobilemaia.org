@@ -1,6 +1,18 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
 export const CACHE_NAME = 'mobile-maia-inference-downloads-v1';
 
+export function selectedModel(config, id = config.defaultModel) {
+  const model = config.models[id];
+  if (!model || model.id !== id) throw new Error('Unknown Maia model');
+  return model;
+}
+
+export function downloadBytes(config, id, backend) {
+  const runtime = config.runtime.assets[backend];
+  if (!runtime) throw new Error('Unknown inference backend');
+  return selectedModel(config, id).bytes + runtime.bytes;
+}
+
 // Port of MaiaEncoding.historicalTokens/tokenizeFen at the pinned app commit.
 // Each historical board uses its own side-to-move orientation; channel 96 is zero.
 export function encode(history, useHistory) {

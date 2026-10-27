@@ -73,6 +73,10 @@ and local MIT `vendor/LICENSE` / `vendor/ThirdPartyNotices.txt` identify rights
 and dependencies. Its CPU (14,848,852-byte) and GPU Asyncify (28,747,738-byte) WASM binaries
 are downloaded from pinned jsDelivr package URLs on Start and hash-checked
 before use; they are not committed.
-The model remains the app's pinned AGPL asset, downloaded from GitHub on Start.
+Both models retain the upstream AGPL terms and are downloaded from GitHub on Start.
+5M uses the exact historical research export from original app source commit
+`4e80de9402f6d1944d6582d7a6ab09b8b33fe223`, with SHA-256 and its attribution/licence
+archive linked from the lab. 79M retains its existing current Android export pin.
+No model weights or additional runtime dependencies were added to this repository.
 Research reference cases are derived from the pinned score study, with source
 hashes recorded in the lab config and independently calculated input hashes.

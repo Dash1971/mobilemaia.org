@@ -1,0 +1,30 @@
+{
+  "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+  "runtime": {
+    "name": "onnxruntime",
+    "version": "1.24.3",
+    "provider": "CPUExecutionProvider",
+    "numpyVersion": "2.3.5",
+    "threads": 1
+  },
+  "positionSource": {
+    "path": "site/lab/inference/fixtures.json",
+    "sha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45"
+  },
+  "generator": {
+    "path": "tools/make_5m_reference.py",
+    "sha256": "48802b7334ce7bdd942a569c6aea567445a427b13d2ac3409a9347d205a00006"
+  },
+  "fixturesSha256": "e7e9dbcd3545d18b30f962b7a6fef1fc531a2c46af55134646a7fda201e65352",
+  "inputNames": [
+    "tokens",
+    "self_elo",
+    "opponent_elo"
+  ],
+  "outputNames": [
+    "move_logits",
+    "value_logits",
+    "ponder"
+  ],
+  "checks": 8
+}

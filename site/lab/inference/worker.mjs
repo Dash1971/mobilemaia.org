@@ -1,8 +1,8 @@
 // Copyright 2026 Mobile Maia contributors. SPDX-License-Identifier: AGPL-3.0-only
-import { CACHE_NAME, encode, sha256, whiteScore, statistics } from './core.mjs';
+import { CACHE_NAME, encode, sha256, whiteScore, statistics, selectedModel } from './core.mjs?v=20261027-5m';
 
 let lastProgress = 0;
-const report = { schema: 1, status: 'running', startedAt: new Date().toISOString(), downloads: [], checks: [], timingsMs: [] };
+const report = { schema: 2, status: 'running', startedAt: new Date().toISOString(), downloads: [], checks: [], timingsMs: [] };
 function stage(name, message, extra = {}) {
   report.lastStage = name;
   self.postMessage({ type: 'progress', stage: name, message, ...extra });
@@ -57,12 +57,13 @@ async function loadVerified(asset, label, keep) {
 }
 
 self.onmessage = async ({ data }) => {
-  const { config, fixtures, backend, iterations, keep } = data;
-  report.model = config.model;
+  const { config, fixtures, modelId, backend, iterations, keep } = data;
+  const modelConfig = selectedModel(config, modelId);
+  report.model = modelConfig;
   report.runtime = { version: config.runtime.version, backendRequested: backend, numThreads: 1,
     graphOptimizationLevel: 'all', allModelOutputs: true,
     providerNote: backend === 'webgpu' ? 'WebGPU preferred; unsupported nodes may execute on CPU. Per-node placement is not measured.' : 'Single-thread WebAssembly CPU baseline.' };
-  report.reference = config.reference;
+  report.reference = modelConfig.reference;
   let session;
   try {
     if (backend === 'webgpu') {
@@ -78,7 +79,7 @@ self.onmessage = async ({ data }) => {
     }
     const runtimeAsset = config.runtime.assets[backend];
     report.runtime.asset = runtimeAsset;
-    let model = await loadVerified(config.model, 'Maia model', keep);
+    let model = await loadVerified(modelConfig, modelConfig.name, keep);
     let wasm = await loadVerified(runtimeAsset, 'inference runtime', keep);
     stage('initialization', 'Creating inference session. This can take a while on a phone…');
     const ort = await import('./' + runtimeAsset.module);
@@ -115,7 +116,9 @@ self.onmessage = async ({ data }) => {
         }
         if (arrays.move_logits.length !== 4352) throw new Error('Unexpected move-policy shape');
         const score = whiteScore(arrays.value_logits, fixture.historyFens.at(-1));
-        return { ms: performance.now() - start, whiteScore: score };
+        return { ms: performance.now() - start, whiteScore: score,
+          valueLogits: Array.from(arrays.value_logits),
+          policySamples: fixture.nativePolicySamples?.map(sample => arrays.move_logits[sample.index]) };
       } finally {
         for (const tensor of [...Object.values(outputs || {}), ...Object.values(feeds)]) tensor.dispose();
       }
@@ -125,10 +128,15 @@ self.onmessage = async ({ data }) => {
       const result = await infer(fixture);
       if (i === 0) report.firstInferenceMs = result.ms;
       const error = Math.abs(result.whiteScore - fixture.whiteScore);
+      const valueLogitError = fixture.nativeValueLogits ? Math.max(...fixture.nativeValueLogits.map((value, j) => Math.abs(value - result.valueLogits[j]))) : null;
+      const policyLogitError = fixture.nativePolicySamples ? Math.max(...fixture.nativePolicySamples.map((sample, j) => Math.abs(sample.logit - result.policySamples[j]))) : null;
+      const passed = error <= modelConfig.reference.whiteScoreTolerance
+        && (valueLogitError === null || valueLogitError <= modelConfig.reference.logitTolerance)
+        && (policyLogitError === null || policyLogitError <= modelConfig.reference.logitTolerance);
       report.checks.push({ name: fixture.name, elo: fixture.elo, history: fixture.history,
         expectedWhiteScore: fixture.whiteScore, actualWhiteScore: result.whiteScore, absoluteError: error,
-        passed: error <= config.reference.whiteScoreTolerance });
-      if (error > config.reference.whiteScoreTolerance) throw new Error(`Native-reference mismatch (${fixture.name}, ${fixture.elo}, history ${fixture.history})`);
+        valueLogitError, policyLogitError, passed });
+      if (!passed) throw new Error(`Native-reference mismatch (${fixture.name}, ${fixture.elo}, history ${fixture.history})`);
     }
     stage('benchmark', 'Measuring warmed inference…', { loaded: 0, total: iterations });
     for (let i = 0; i < iterations; i++) {

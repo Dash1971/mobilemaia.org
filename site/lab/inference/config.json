@@ -1,10 +1,53 @@
 {
-  "model": {
-    "name": "Maia-3 79M (current Android export)",
-    "bytes": 316034244,
-    "sha256": "3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010",
-    "url": "https://media.githubusercontent.com/media/Dash1971/maia-chess-android/5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84/assets/models/maia3-79m.onnx",
-    "sourceCommit": "5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84"
+  "schema": 2,
+  "defaultModel": "5m",
+  "models": {
+    "5m": {
+      "id": "5m",
+      "name": "Maia-3 5M (historical research export)",
+      "bytes": 21346652,
+      "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "url": "https://raw.githubusercontent.com/Dash1971/maia-chess-android/4e80de9402f6d1944d6582d7a6ab09b8b33fe223/assets/models/maia3-5m.onnx",
+      "sourceCommit": "4e80de9402f6d1944d6582d7a6ab09b8b33fe223",
+      "fixtures": "fixtures-5m.json",
+      "reference": {
+        "whiteScoreTolerance": 0.0005,
+        "logitTolerance": 0.002,
+        "nativeRuntime": {
+          "name": "onnxruntime",
+          "version": "1.24.3",
+          "provider": "CPUExecutionProvider",
+          "numpyVersion": "2.3.5",
+          "threads": 1
+        },
+        "generator": {
+          "path": "tools/make_5m_reference.py",
+          "sha256": "48802b7334ce7bdd942a569c6aea567445a427b13d2ac3409a9347d205a00006"
+        },
+        "positionSource": {
+          "path": "site/lab/inference/fixtures.json",
+          "sha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45"
+        },
+        "fixturesSha256": "e7e9dbcd3545d18b30f962b7a6fef1fc531a2c46af55134646a7fda201e65352"
+      }
+    },
+    "79m": {
+      "id": "79m",
+      "name": "Maia-3 79M (current Android export)",
+      "bytes": 316034244,
+      "sha256": "3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010",
+      "url": "https://media.githubusercontent.com/media/Dash1971/maia-chess-android/5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84/assets/models/maia3-79m.onnx",
+      "sourceCommit": "5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84",
+      "fixtures": "fixtures.json",
+      "reference": {
+        "repository": "Dash1971/mobile-maia-research",
+        "commit": "74d8684db865753080da72c6f43b1973bbfd668e",
+        "path": "studies/score-reliability-2026-10-27/data/known-case-sanity.json",
+        "whiteScoreTolerance": 0.0005,
+        "sha256": "27a67210cbdeb9a122f9d208b5a6a8546f98764d646cdd58a568a2e99d3272c2",
+        "fixturesSha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45"
+      }
+    }
   },
   "runtime": {
     "version": "1.31.1",
@@ -58,12 +101,5 @@
         "loader": "vendor/ort-wasm-simd-threaded.asyncify.mjs"
       }
     }
-  },
-  "reference": {
-    "repository": "Dash1971/mobile-maia-research",
-    "commit": "74d8684db865753080da72c6f43b1973bbfd668e",
-    "path": "studies/score-reliability-2026-10-27/data/known-case-sanity.json",
-    "whiteScoreTolerance": 0.0005,
-    "sha256": "27a67210cbdeb9a122f9d208b5a6a8546f98764d646cdd58a568a2e99d3272c2"
   }
 }

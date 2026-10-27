@@ -67,19 +67,37 @@ Markdown blocks and requires review if the study index changes shape.
 
 ### Browser inference prototype
 
-`/lab/inference/` is an opt-in performance experiment using the exact current
-316,034,244-byte Maia-3 79M ONNX export, SHA-256
-`3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010`.
-No model weights are checked into or served from this website repository.
+`/lab/inference/` compares two unchanged Maia-3 ONNX exports:
 
-The dedicated module worker downloads and verifies that model from its pinned
-Git LFS media URL and the pinned ONNX Runtime Web 1.31.1 backend-specific WebAssembly binary from
-jsDelivr. Both responses are checked against fixed sizes and SHA-256. Runtime
-JavaScript and MIT/third-party notices are vendored locally, with hashes and
-upstream provenance in `site/lab/inference/config.json`. Visitor downloads happen
-only after Start; fixture data is small and local. A named Cache Storage cache
-can retain downloads on explicit user choice. Clear saved downloads deletes only
-that cache. No result or input is uploaded; JSON export is a local download.
+- **5M is the default:** 21,346,652 bytes, SHA-256
+  `ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942`.
+  This is the historical research export, fetched directly from the original
+  immutable Git blob. First download including runtime is about 36 MB for CPU
+  or 50 MB for WebGPU.
+- **79M is optional:** the current Android export, 316,034,244 bytes, SHA-256
+  `3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010`.
+  It is fetched from pinned Git LFS media; first download is about 331/345 MB.
+
+No model weights are checked into or served from this website repository.
+The model selector updates the first-download estimate without downloading
+weights. Downloads begin on Start. Cache keys use each immutable URL, so models
+stay separate and a saved runtime can be reused across models. Reports and JSON
+filenames identify the model; switching selections does not relabel an existing
+result. 5M and 79M predictions differ; this is not a quality-equivalence claim.
+
+The dedicated module worker downloads and verifies the chosen model and pinned
+ONNX Runtime Web 1.31.1 backend-specific WebAssembly binary from jsDelivr.
+Responses are checked against fixed sizes and SHA-256. Runtime JavaScript and
+MIT/third-party notices are vendored locally, with hashes and upstream provenance
+in `site/lab/inference/config.json`. Each model has a separate, hash-checked
+reference file; 79M retains its original published goldens. The 5M goldens were
+computed independently with native ONNX Runtime 1.24.3 and a NumPy encoder, also
+checking value logits and selected policy logits. See
+[5M validation and reproduction](docs/browser-inference-5m-2026-10-27.md).
+
+A named Cache Storage cache can retain downloads on explicit user choice.
+Clear saved downloads deletes only that cache. No result or input is uploaded;
+JSON export is a local download. No PWA service worker is installed.
 
 CPU uses one WASM thread for the GitHub Pages environment without COOP/COEP.
 GPU is an explicit WebGPU-preferred path; unsupported nodes can execute on CPU,

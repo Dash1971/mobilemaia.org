@@ -1,0 +1,261 @@
+{
+  "schema": 2,
+  "status": "completed",
+  "startedAt": "2026-10-27T05:19:32.331Z",
+  "downloads": [
+    {
+      "label": "Maia-3 5M (historical research export)",
+      "source": "prototype cache",
+      "bytes": 21346652,
+      "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "transferMs": 12.399999618530273,
+      "hashMs": 24,
+      "cacheSaved": true
+    },
+    {
+      "label": "inference runtime",
+      "source": "network",
+      "bytes": 28747738,
+      "sha256": "ca319e9539cd0f1e291cf56074760121eaf39650f5dbf84b6e52c07f4b2944ec",
+      "transferMs": 2054.4000000953674,
+      "hashMs": 41.39999961853027,
+      "cacheSaved": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "expectedWhiteScore": 0.529696621719738,
+      "actualWhiteScore": 0.5296968153900229,
+      "absoluteError": 1.9367028492034422e-7,
+      "valueLogitError": 5.960464477539062e-7,
+      "policyLogitError": 0.0000133514404296875,
+      "passed": true
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "expectedWhiteScore": 0.5061840671089215,
+      "actualWhiteScore": 0.5061835654466116,
+      "absoluteError": 5.016623099152184e-7,
+      "valueLogitError": 0.0000013113021850585938,
+      "policyLogitError": 0.000003814697265625,
+      "passed": true
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "expectedWhiteScore": 0.43706827842638696,
+      "actualWhiteScore": 0.437068035754883,
+      "absoluteError": 2.426715039471894e-7,
+      "valueLogitError": 0.0000016689300537109375,
+      "policyLogitError": 0.00000762939453125,
+      "passed": true
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "expectedWhiteScore": 0.46528973115531447,
+      "actualWhiteScore": 0.46528928803127245,
+      "absoluteError": 4.4312404201551914e-7,
+      "valueLogitError": 0.0000014901161193847656,
+      "policyLogitError": 0.00000858306884765625,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "expectedWhiteScore": 0.5239122207395828,
+      "actualWhiteScore": 0.5239120497870973,
+      "absoluteError": 1.7095248550091924e-7,
+      "valueLogitError": 7.152557373046875e-7,
+      "policyLogitError": 0.000009059906005859375,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "expectedWhiteScore": 0.4594309414875285,
+      "actualWhiteScore": 0.4594312112815755,
+      "absoluteError": 2.6979404699201126e-7,
+      "valueLogitError": 6.556510925292969e-7,
+      "policyLogitError": 0.000011920928955078125,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "expectedWhiteScore": 0.38126933529585627,
+      "actualWhiteScore": 0.3812691765143146,
+      "absoluteError": 1.587815416925764e-7,
+      "valueLogitError": 4.76837158203125e-7,
+      "policyLogitError": 0.0000095367431640625,
+      "passed": true
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "expectedWhiteScore": 0.38618012414736635,
+      "actualWhiteScore": 0.3861798778582102,
+      "absoluteError": 2.462891561805236e-7,
+      "valueLogitError": 7.152557373046875e-7,
+      "policyLogitError": 0.00000858306884765625,
+      "passed": true
+    }
+  ],
+  "timingsMs": [
+    35.5,
+    32.5,
+    30.199999809265137,
+    30.800000190734863,
+    30.40000009536743,
+    39.700000286102295,
+    34.19999980926514,
+    34.10000038146973,
+    31.299999713897705,
+    29.600000381469727,
+    29.699999809265137,
+    29.5,
+    29.5,
+    29.59999990463257,
+    29,
+    29.09999990463257,
+    29.5,
+    29.09999990463257,
+    30.300000190734863,
+    30.09999990463257,
+    29.59999990463257,
+    29.40000009536743,
+    29.40000009536743,
+    29.5,
+    29.300000190734863,
+    29.299999713897705,
+    29.5,
+    30.199999809265137,
+    33,
+    29.90000009536743,
+    29.300000190734863,
+    32.89999961853027
+  ],
+  "model": {
+    "id": "5m",
+    "name": "Maia-3 5M (historical research export)",
+    "bytes": 21346652,
+    "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+    "url": "https://raw.githubusercontent.com/Dash1971/maia-chess-android/4e80de9402f6d1944d6582d7a6ab09b8b33fe223/assets/models/maia3-5m.onnx",
+    "sourceCommit": "4e80de9402f6d1944d6582d7a6ab09b8b33fe223",
+    "fixtures": "fixtures-5m.json",
+    "reference": {
+      "whiteScoreTolerance": 0.0005,
+      "logitTolerance": 0.002,
+      "nativeRuntime": {
+        "name": "onnxruntime",
+        "version": "1.24.3",
+        "provider": "CPUExecutionProvider",
+        "numpyVersion": "2.3.5",
+        "threads": 1
+      },
+      "generator": {
+        "path": "tools/make_5m_reference.py",
+        "sha256": "48802b7334ce7bdd942a569c6aea567445a427b13d2ac3409a9347d205a00006"
+      },
+      "positionSource": {
+        "path": "site/lab/inference/fixtures.json",
+        "sha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45"
+      },
+      "fixturesSha256": "e7e9dbcd3545d18b30f962b7a6fef1fc531a2c46af55134646a7fda201e65352"
+    }
+  },
+  "runtime": {
+    "version": "1.31.1",
+    "backendRequested": "webgpu",
+    "numThreads": 1,
+    "graphOptimizationLevel": "all",
+    "allModelOutputs": true,
+    "providerNote": "WebGPU preferred; unsupported nodes may execute on CPU. Per-node placement is not measured.",
+    "asset": {
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 28747738,
+      "sha256": "ca319e9539cd0f1e291cf56074760121eaf39650f5dbf84b6e52c07f4b2944ec",
+      "module": "vendor/ort.webgpu.min.mjs",
+      "loader": "vendor/ort-wasm-simd-threaded.asyncify.mjs"
+    },
+    "loadedVersion": "1.31.1"
+  },
+  "reference": {
+    "whiteScoreTolerance": 0.0005,
+    "logitTolerance": 0.002,
+    "nativeRuntime": {
+      "name": "onnxruntime",
+      "version": "1.24.3",
+      "provider": "CPUExecutionProvider",
+      "numpyVersion": "2.3.5",
+      "threads": 1
+    },
+    "generator": {
+      "path": "tools/make_5m_reference.py",
+      "sha256": "48802b7334ce7bdd942a569c6aea567445a427b13d2ac3409a9347d205a00006"
+    },
+    "positionSource": {
+      "path": "site/lab/inference/fixtures.json",
+      "sha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45"
+    },
+    "fixturesSha256": "e7e9dbcd3545d18b30f962b7a6fef1fc531a2c46af55134646a7fda201e65352"
+  },
+  "lastStage": "benchmark",
+  "gpu": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "description": ""
+  },
+  "sessionCreationMs": 3494.5,
+  "inputs": [
+    "tokens",
+    "self_elo",
+    "opponent_elo"
+  ],
+  "outputs": [
+    "move_logits",
+    "value_logits",
+    "ponder"
+  ],
+  "firstInferenceMs": 163.09999990463257,
+  "statistics": {
+    "count": 32,
+    "medianMs": 29.65000009536743,
+    "p95Ms": 35.5,
+    "meanMs": 30.78125,
+    "minMs": 29,
+    "maxMs": 39.700000286102295
+  },
+  "finishedAt": "2026-10-27T05:19:39.405Z",
+  "device": {
+    "note": "Desktop Mac Chrome — 5M local validation",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "logicalCores": 10,
+    "approximateDeviceMemoryGiB": 16,
+    "crossOriginIsolated": false,
+    "webgpuAdvertised": true,
+    "viewport": {
+      "width": 1470,
+      "height": 801
+    },
+    "memoryNote": "Device memory is an approximate browser capability if provided, not measured runtime/GPU memory."
+  },
+  "page": "http://127.0.0.1:8771/lab/inference/",
+  "visibilityChanges": [
+    {
+      "at": "2026-10-27T05:19:32.315Z",
+      "state": "visible"
+    }
+  ]
+}

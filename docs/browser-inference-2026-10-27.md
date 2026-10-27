@@ -1,5 +1,7 @@
 # Browser inference prototype — 2026-10-27
 
+This records the initial 79M-only prototype. The [5M follow-up](browser-inference-5m-2026-10-27.md) adds the smaller default and retains 79M for comparison.
+
 Public route: <https://mobilemaia.org/lab/inference/>. This is a foreground
 inference experiment to inform a possible PWA, not an installable app or a
 replacement for the Android release. No Stable/Preview code, build helper or

@@ -1,0 +1,82 @@
+{
+  "source": "e217a925f7b25412a26497874932c3c8cacf51da",
+  "checks": [
+    {
+      "path": "play/index.html",
+      "http": 200,
+      "bytes": 15042,
+      "sha256": "f589ec38c55218ce46c42da1b2711f677e98f7c762f761a3d9619c8b46ddd73d",
+      "matches_source": true
+    },
+    {
+      "path": "play/play.css",
+      "http": 200,
+      "bytes": 14953,
+      "sha256": "709d8e19fcdc58b81a6e7a31c458a234d1683b2c0b1a20c745594e8418056ac3",
+      "matches_source": true
+    },
+    {
+      "path": "play/play.mjs",
+      "http": 200,
+      "bytes": 18263,
+      "sha256": "235a961583613b25e565569d4d9e9100176c8198bb3ba754b4e1935574a629ce",
+      "matches_source": true
+    },
+    {
+      "path": "play/board.mjs",
+      "http": 200,
+      "bytes": 7240,
+      "sha256": "8b20807a60a1f7c282835a442d1309e3a692835a3dfe75eab9465e6fe9e0c6d8",
+      "matches_source": true
+    },
+    {
+      "path": "play/analysis.mjs",
+      "http": 200,
+      "bytes": 11436,
+      "sha256": "c58521d79c6c0e0c2b32ec051fceaab04a9c25ab504b137e44def3c6467589f6",
+      "matches_source": true
+    },
+    {
+      "path": "play/study.mjs",
+      "http": 200,
+      "bytes": 7676,
+      "sha256": "76eeaa01c44ff596865ca9b3ddae098273bcb4ef625e34fa8ee90375352156f1",
+      "matches_source": true
+    },
+    {
+      "path": "play/engine.mjs",
+      "http": 200,
+      "bytes": 6471,
+      "sha256": "424173f1b286099104da7f9044f1c6035ab90d78f48b508e5d45af457af16054",
+      "matches_source": true
+    },
+    {
+      "path": "play/stockfish.mjs",
+      "http": 200,
+      "bytes": 5267,
+      "sha256": "0ab75f5159984d5ef6a7887e941794bbfa9129c16e8a19fbe0cc83d9c060e861",
+      "matches_source": true
+    },
+    {
+      "path": "play/stockfish.json",
+      "http": 200,
+      "bytes": 451,
+      "sha256": "88f1d2730c2ec293eb2461e0ca8501add6fe3bcf6657ec75a27e3b3303f71eb2",
+      "matches_source": true
+    },
+    {
+      "path": "play/vendor/chessground/chessground.min.js",
+      "http": 200,
+      "bytes": 33291,
+      "sha256": "ccc1aaf2389a7faca68c47e1df24b91976dad208fdd005100e655cb0ef70a591",
+      "matches_source": true
+    },
+    {
+      "path": "play/vendor/stockfish-19-lite-single.js",
+      "http": 200,
+      "bytes": 28230,
+      "sha256": "ccb130d7ff29408531c47d859a49f91d59d4f482d05a53eb1a3231a4f624c91a",
+      "matches_source": true
+    }
+  ]
+}

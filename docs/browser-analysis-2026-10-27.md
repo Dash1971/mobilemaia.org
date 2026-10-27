@@ -111,4 +111,28 @@ expected growth below 1 GiB with a 10 GiB reserve. No app builds/emulators were
 created. Task-owned bulk is confined to `.scratch/browser-analysis/` (this chat,
 retention only through public verification in this turn). Shared tools/caches,
 other checkouts and original user benchmark files are not disposable output.
-Publication verification and cleanup are recorded after the public check.
+
+## Published verification and cleanup
+
+Published source `e217a925f7b25412a26497874932c3c8cacf51da` passed
+[check and deploy](https://github.com/Dash1971/mobilemaia.org/actions/runs/40480580924).
+All 11 entry/module/worker/manifest downloads returned HTTP 200 and matched
+local source bytes; hashes are in `browser-analysis-2026-10-27/public-files.json`.
+Public drag `e2e4` received the real Maia reply `b6`; Analyse game produced five
+Maia choices and two Stockfish PVs. An independent rules check validated all
+seven displayed moves against the saved FEN in `public-policy.json`. PGN import
+kept nested branches; the current move scrolled into the move-tree viewport.
+The 390 px public layout had no horizontal overflow. Returning from analysis
+preserved `1. e4 b6` and the same one Maia session/game. Public cold startup was
+11.25 s on this desktop; no physical-phone performance claim is made. No console
+errors/warnings were reported in this check.
+
+Both local and public workers were stopped, the preview server stopped, test
+tabs closed and the temporary viewport reset. Removed the task-owned scratch
+directory (96 files, 2,470,155 bytes), including the temporary WASM, npm package
+archive/extraction and rewrite script, immediately after public verification.
+No bulk was retained. Compact policy/source-hash evidence and the detailed
+`browser-analysis-2026-10-27/cleanup.json` remain. QA disabled persistent engine
+download saving; existing user cache entries and original phone reports were
+left in place. Volume-wide free-space changes include other work and are not
+attributed to this task.

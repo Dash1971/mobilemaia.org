@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-27T09:27:43.007099+00:00",
+  "source": "e217a925f7b25412a26497874932c3c8cacf51da",
+  "deployment": "https://github.com/Dash1971/mobilemaia.org/actions/runs/40480580924",
+  "publicDownloadVerified": true,
+  "workersStopped": [
+    "local Maia",
+    "local Stockfish",
+    "public Maia",
+    "public Stockfish"
+  ],
+  "previewServerStopped": true,
+  "qaTabsClosed": true,
+  "viewportReset": true,
+  "persistentEngineDownloadSavingDuringQA": false,
+  "removedPaths": [
+    "/Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/browser-analysis"
+  ],
+  "removedFiles": 96,
+  "removedBytes": 2470155,
+  "freeBytesBefore": 43564175360,
+  "freeBytesAfter": 43566862336,
+  "retainedBulk": [],
+  "retainedEvidence": [
+    "local-policy.json",
+    "public-policy.json",
+    "public-files.json",
+    "implementation and verification notes"
+  ],
+  "preserved": "Shared tools/caches, app checkouts, original user phone reports and existing user browser data."
+}

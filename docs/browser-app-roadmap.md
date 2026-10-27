@@ -102,7 +102,7 @@ path before broad feature work. Homepage/research content remains ordinary HTML.
 - [x] Diagnostics move into Settings; the game remains the primary experience.
 - [x] 5M CPU and current game rules/sampling remain unchanged.
 - [x] Verify desktop/narrow layouts and real navigation with a loaded engine.
-- [ ] Publish and verify the public route.
+- [x] Publish and verify the public route.
 
 Future app-source/shared-tool changes must follow their own Stable/Preview
 alignment and release procedures. This website increment changes neither app
@@ -115,3 +115,20 @@ both narrow layouts had no horizontal page overflow. These are resized desktop
 checks, not a substitute for testing on a physical phone. Existing research,
 site/link, inference and chess/policy checks passed. The worker was stopped after
 the local check; persistent download saving was disabled for QA.
+
+Published source `bcacf6d1c1f3a8d860381e71c6b572ad40322300` passed
+[check and deploy](https://github.com/Dash1971/mobilemaia.org/actions/runs/40472578243).
+Public `/play/`, CSS and JavaScript returned HTTP 200 and matched local bytes.
+Live public play returned `1. e4 e6`; Settings → Game → Home → Return to game
+preserved those moves, with one session and one game. First network startup was
+17.4 s and the reply inference 164 ms on this desktop run; these are observations,
+not phone performance claims or a controlled startup comparison.
+
+Cleanup: stopped both local/public test workers, closed the test tab, reset the
+temporary viewport and stopped the preview server. No model/runtime files,
+build intermediates or browser download-cache entries were created on disk by
+this increment; QA used in-memory downloads with saving disabled. Existing
+shared caches and other tasks' files were left in place. Volume free space was
+73,788,424,192 bytes at start and 51,521,380,352 bytes at the completion check;
+the task created only compact source/documentation changes, so that volume-wide
+change is not attributed to this work. No bulk paths needed removal or retention.

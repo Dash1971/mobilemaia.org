@@ -1,0 +1,37 @@
+{
+  "pwa": {
+    "supported": true,
+    "installed": false,
+    "canInstall": true,
+    "shellReady": true,
+    "registered": true,
+    "updating": false,
+    "preparing": false,
+    "workerState": "activated",
+    "controller": "https://mobilemaia.org/play/sw.js",
+    "release": "353e46e831de89d89ef5",
+    "error": ""
+  },
+  "app": {
+    "flavor": "browser",
+    "model": "5m",
+    "pwa": {
+      "supported": true,
+      "installed": false,
+      "canInstall": true,
+      "shellReady": true,
+      "registered": true,
+      "updating": false,
+      "preparing": false,
+      "workerState": "activated",
+      "controller": "https://mobilemaia.org/play/sw.js",
+      "release": "353e46e831de89d89ef5",
+      "error": "",
+      "offlineReady": true,
+      "phase": "Downloading and checking Maia and its runtime…",
+      "downloadProgress": null,
+      "model": "5m"
+    },
+    "storage": "IndexedDB"
+  }
+}

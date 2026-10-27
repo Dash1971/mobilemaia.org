@@ -1,0 +1,10 @@
+{
+  "websiteCommit": "d556b4336a2855a80e656bec9cfaa8d1f8c97d91",
+  "bundle": "8b4cef12a8921e1f",
+  "offlineRelease": "353e46e831de89d89ef5",
+  "swSha256": "fc46ffac2a39bbb699e6855896451b3afb8f3f3611f8f6aad331a661b833a4a2",
+  "shellBytes": 25790967,
+  "shellFiles": 856,
+  "sourceManifestSha256": "074f2320d12a81bbe638e36fc8aa21b10c05d1f3d4a317e367ac9ea4a8ac422a",
+  "ci": "https://github.com/Dash1971/mobilemaia.org/actions/runs/40507354232"
+}

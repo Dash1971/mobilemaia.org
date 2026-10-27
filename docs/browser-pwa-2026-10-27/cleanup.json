@@ -1,0 +1,19 @@
+{
+  "owner": {
+    "owner": "Mobile Maia browser build",
+    "source": "aeea49817c34f48397e910894414c1d8b0352124",
+    "retention": "through deployment verification",
+    "expectedGrowthGiB": 2,
+    "reserveGiB": 10
+  },
+  "removedPaths": [
+    "/Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/browser-pwa"
+  ],
+  "removedFileBytes": 381674892,
+  "freeBytesBeforeCleanup": 72435691520,
+  "freeBytesAfterCleanup": 72834412544,
+  "retained": "Compact source/manifests, screenshot/diagnostic evidence and hashes. Public application service worker and verified shell cache intentionally retained as the requested offline feature. Shared Flutter SDK/pub caches, native checkouts, normal user model caches/preferences/games preserved.",
+  "processes": "All task preview servers and build/watch processes stopped or completed; local and public QA tabs/engine workers closed.",
+  "browserData": "Both isolated QA namespaces cleared: pwa-local-20261027 and pwa-public-20261027. Local task-origin service worker/shell/font caches removed; public QA engine cache removed. No desktop PWA was installed. No temporary viewport was set.",
+  "diskNote": "Initial volume free space was about 72.1 GB. Volume-wide changes include other tasks and are not attributed to this task."
+}

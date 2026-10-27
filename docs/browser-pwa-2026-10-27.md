@@ -72,3 +72,43 @@ cold-launch check stops the local web server, then confirms cached model/runtime
 sources; it does not change the user's device/network or claim a physical-phone
 airplane-mode or installed-iOS test. Physical Android/iOS installation, long-game
 performance, background lifecycle and eviction testing remain follow-ups.
+
+
+## Public verification and cleanup
+
+Published source `d556b4336a2855a80e656bec9cfaa8d1f8c97d91` passed
+[CI/build/deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40507354232).
+The public build is `8b4cef12a8921e1f`, offline release
+`353e46e831de89d89ef5`. Its manifest and source metadata identify the exact
+website/app/compiler sources and link to the register at the website commit.
+
+An initial public cache installation failed without a detailed reason. All 856
+published asset bodies were independently fetched and matched their pinned
+hashes. A UI retry succeeded; the initial failure's exact cause was not
+established. The follow-up adds a cache-bypassing download retry and detailed
+install/storage errors. Entry scripts and their PWA dependency now carry
+content-based query versions before offline activation as well.
+
+The public update was prepared while the previous version remained running.
+Closing/reopening the owned test tab loaded the new version, with saved engines
+still present. Settings reported Ready for offline play and analysis; Chrome
+reported install eligibility. A fresh Analysis Board session returned real
+Stockfish lines (+0.4 e4…, +0.3 d4…) and Maia1500 probabilities e4 64%, d4 24%,
+c4 3%, Other9%. Diagnostics confirmed both Maia and the CPU runtime loaded from
+cache with their pinned hashes. The observed session initialization was 1.60 s
+and inference 155.5 ms on desktop; these are observations, not a phone benchmark.
+
+See the [public build](browser-pwa-2026-10-27/public-build.json),
+[source manifest](browser-pwa-2026-10-27/public-source.json),
+[update state](browser-pwa-2026-10-27/public-update-diagnostics.json),
+[engine diagnostics](browser-pwa-2026-10-27/public-diagnostics.json),
+[offline-ready screenshot](browser-pwa-2026-10-27/public-offline-ready.png),
+[asset check](browser-pwa-2026-10-27/public-asset-check.json) and
+[cleanup record](browser-pwa-2026-10-27/cleanup.json).
+
+Immediately after public verification, the isolated local/public QA engines,
+data, preferences and model/runtime downloads were cleared, all owned preview
+servers/tabs stopped, and task-owned source/build/deploy/log scratch removed.
+The public application service worker/shell remains intentionally as the
+requested feature; normal user games, preferences and model caches were not
+cleared. Shared tools/native source were preserved. No desktop PWA was installed.

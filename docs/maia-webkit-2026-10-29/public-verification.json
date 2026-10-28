@@ -1,0 +1,82 @@
+{
+  "checkedAt": "2026-10-28T16:58:31.225769+00:00",
+  "pagesRun": 40730515938,
+  "bundle": "4a5d7e4b841e17ad",
+  "runtime": "2cea62091393e0eb",
+  "files": {
+    "LICENSE": {
+      "url": "https://mobilemaia.org/play/runtime/maia5m-a14f47c48f44c05c/LICENSE",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+      "verified": true
+    },
+    "maia5m-ops.config": {
+      "url": "https://mobilemaia.org/play/runtime/maia5m-a14f47c48f44c05c/maia5m-ops.config",
+      "bytes": 372,
+      "sha256": "c9acec4f343ed36380f947244b9b686a6f3a0d71f27d82d587767ba22395cc7c",
+      "verified": true
+    },
+    "ort-wasm-simd.wasm": {
+      "url": "https://mobilemaia.org/play/runtime/maia5m-a14f47c48f44c05c/ort-wasm-simd.wasm",
+      "bytes": 4595085,
+      "sha256": "a14f47c48f44c05cd4211a13e39aed70ed15e20942081ac2ecee099972dfc26b",
+      "verified": true
+    },
+    "ort-wasm-simd.mjs": {
+      "url": "https://mobilemaia.org/play/runtime/maia5m-a14f47c48f44c05c/ort-wasm-simd.mjs",
+      "bytes": 15947,
+      "sha256": "2546bb87e098c7d2dbcfc6efc1dcf936cd56f8290de757cd10dc716abc67b178",
+      "verified": true
+    },
+    "ThirdPartyNotices.txt": {
+      "url": "https://mobilemaia.org/play/runtime/maia5m-a14f47c48f44c05c/ThirdPartyNotices.txt",
+      "bytes": 338088,
+      "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3",
+      "verified": true
+    },
+    "manifest.json": {
+      "url": "https://mobilemaia.org/play/runtime/maia5m-a14f47c48f44c05c/manifest.json",
+      "bytes": 2308,
+      "sha256": "99fe92f2aa1ff86df5e8cbb9cd122bd6bbae7b162ef3483c2652a43c5ad57a8e",
+      "verified": true
+    },
+    "standard/maia-worker.mjs": {
+      "sha256": "7278e1c4c7971e1cae5224781e0721608f9d3d0f10428130485047dbd7935079",
+      "unchanged": true
+    },
+    "standard/ort-5m-256m.mjs": {
+      "sha256": "01dbec91baae8526e56ae78123b9481178b9d7db73836c90c391eb931967cd9f",
+      "unchanged": true
+    }
+  },
+  "compiledJavaScriptByteIdentical": true,
+  "modelUnchanged": true,
+  "physicalIOSAcceptance": false,
+  "compiledWasmByteIdenticalToPriorPublic": true,
+  "compiledWasmSha256": "e9b3786d17e2c2c1b9e207b424af606a270239334df83c1d068b6928d05c72f9",
+  "compatibilityModules": {
+    "platform-entry.mjs": {
+      "sha256": "d09e4896aec9f40dfabe98b93043dab7635ba4da598ad30d8a6ebf995c0a2925",
+      "matchesTestedSource": true
+    },
+    "runtime-route.mjs": {
+      "sha256": "018537867a82bbabf5f71b75c83d70c177b2477f659e263b708382b68e666c10",
+      "matchesTestedSource": true
+    },
+    "maia-client.mjs": {
+      "sha256": "0bf11ed0c412b667c4f5c0ac7530a5631260eabda53bfdbcd8eb666539f2f7dc",
+      "matchesTestedSource": true
+    },
+    "maia-compat-worker.mjs": {
+      "sha256": "42c745d2bf5e70f21bc02748eabd5511b943ac06c52b1e9b873ea14d5b88b8b0",
+      "matchesTestedSource": true
+    },
+    "platform-compat.mjs": {
+      "sha256": "4a13cfdf1bd53c2bae21fc64a133ee3b7ba2955839b9373d13c9c15d8e54bba0",
+      "matchesTestedSource": true
+    }
+  },
+  "safeUpdateVerified": true,
+  "activatedPwaRelease": "d47ba1ed95beea04f7f0",
+  "updatedStandardGame": "Maia played 1.e4; standard dart2wasm/SkWasm CPU path and original hashes confirmed"
+}

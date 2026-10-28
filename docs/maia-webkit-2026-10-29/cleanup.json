@@ -1,0 +1,44 @@
+{
+  "completedAt": "2026-10-28T16:55:36.595527+00:00",
+  "removedPath": "/Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/maia-ios-compat",
+  "owner": {
+    "owner": "Mobile Maia iOS runtime investigation",
+    "expectedGrowthGiB": 8,
+    "reserveGiB": 10,
+    "retention": "through verified publication; clean before completion",
+    "expiry": "2026-10-30",
+    "freeBytesAtStart": 67861495808
+  },
+  "fileBytesRemoved": 375810305,
+  "freeBytesBefore": 66784186368,
+  "stoppedProcesses": [
+    "local HTTP 8773 (both server sessions)",
+    "Node inference checks",
+    "local Flutter web build/resume"
+  ],
+  "clearedBrowserTests": [
+    "Chrome standard Maia isolation namespace",
+    "Chrome and Safari reference probe cache/workers",
+    "Safari webkit-home startup namespace",
+    "Safari webkit-play app, engine, offline shell/font caches and service worker",
+    "public Safari webkit-public isolated startup data; closed owned tab",
+    "Chrome standard-public old-version game and standard-new-public updated game; confirmed workers closed; closed tabs"
+  ],
+  "remote": {
+    "linuxBuild": 40724637526,
+    "intermediatesRemovedBySuccessfulAlwaysStep": "/home/runner/work/_temp/maia-cpu-build",
+    "runnerSpaceMeasurements": "Not emitted by the original workflow; future cleanup now logs before/after. Runner was ephemeral.",
+    "temporaryArtifactDeleted": 12834375685
+  },
+  "retained": [
+    "compact source/hash/browser verification in docs/maia-webkit-2026-10-29",
+    "verified website runtime release web-maia-cpu-1.31.1-r1 (runtime only; no model)",
+    "shared SDK/Pub/LFS caches, all Android source and normal user app data",
+    "public verified PWA worker/shell; normal user app data unchanged"
+  ],
+  "noAndroidEdits": true,
+  "nativeSourceCommit": "aeea49817c34f48397e910894414c1d8b0352124",
+  "freeBytesAfter": 67170144256,
+  "publicVerificationFinishedAt": "2026-10-28T17:05:43.499633+00:00",
+  "localScratchStillAbsent": true
+}

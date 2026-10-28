@@ -1,0 +1,142 @@
+Browser tab: 245636738, Title: "Mobile Maia — Try the app", URL: "https://mobilemaia.org/play/?qa=standard-public-20261029".
+0 AXWebArea Mobile Maia — Try the app, URL: mobilemaia.org/play/?qa=standard-public-20261029
+	1 link Description: Skip to Mobile Maia, Value: mobilemaia.org/play/?qa=standard-public-20261029#app
+	2 container
+		3 link Description: Mobile Maia., Value: mobilemaia.org/
+		4 container Main navigation
+			5 link Description: Research, Value: mobilemaia.org/research/
+			6 link Description: The Android app, Value: mobilemaia.org/#download
+	7 container
+		8 text TRY IT BEFORE YOU INSTALL
+		9 heading Mobile Maia. In your browser., Value: 1
+			10 text Mobile Maia.
+			11 text In your browser.
+		12 text The Mobile Maia app, running in your browser. Play, explore positions, and review games with the same screens and controls.
+		13 text Maia runs locally on your CPU. This browser version starts with the smaller 5M model.
+		14 link Description: Get the Android app, Value: mobilemaia.org/#download
+		15 container
+			16 text First engine use downloads Maia and its runtime. Games and settings are stored in this browser. 
+			17 link Description: Privacy and source, Value: mobilemaia.org/about.html#browser-play
+			18 text .
+		19 button Show QA diagnostics
+		42 text {
+  "pwa": {
+    "supported": true,
+    "installed": false,
+    "canInstall": true,
+    "shellReady": true,
+    "registered": true,
+    "updating": true,
+    "preparing": false,
+    "workerState": "activated",
+    "controller": "https://mobilemaia.org/play/sw.js",
+    "release": "cfecfbd6bb9d532e9b16",
+    "error": ""
+  },
+  "app": {
+    "flavor": "browser",
+    "compiler": "dart2wasm/SkWasm",
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "appBuild": "bundle-4a5d7e4b841e17ad/",
+    "model": "5m",
+    "maia": {
+      "schema": 1,
+      "modelId": "5m",
+      "backend": "wasm",
+      "numThreads": 1,
+      "graphOptimizationLevel": "all",
+      "warmupRuns": 0,
+      "downloads": [
+        {
+          "name": "Maia-3 5M (historical research export)",
+          "expectedBytes": 21346652,
+          "loadedBytes": 21346652,
+          "source": "network",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": false,
+          "transferMs": 502.90000009536743,
+          "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+          "hashMs": 19.09999990463257
+        },
+        {
+          "name": "CPU runtime",
+          "expectedBytes": 14848852,
+          "loadedBytes": 14848852,
+          "source": "network",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": false,
+          "transferMs": 199.89999961853027,
+          "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+          "hashMs": 13.599999904632568
+        }
+      ],
+      "inferences": [
+        {
+          "ms": 154.19999980926514,
+          "at": "2026-10-28T17:01:59.219Z"
+        }
+      ],
+      "startedAt": "2026-10-28T17:01:57.228Z",
+      "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "runtimeVersion": "1.31.1",
+      "phase": "ready",
+      "wasmMemoryMaxMiB": 256,
+      "loader": "ort-5m-256m.mjs",
+      "sessionCreationMs": 1311.1999998092651,
+      "workerReadyMs": 1835,
+      "inputs": [
+        "tokens",
+        "self_elo",
+        "opponent_elo"
+      ],
+      "outputs": [
+        "move_logits",
+        "value_logits",
+        "ponder"
+      ]
+    },
+    "pwa": {
+      "supported": true,
+      "installed": false,
+      "canInstall": true,
+      "shellReady": true,
+      "registered": true,
+      "updating": true,
+      "preparing": false,
+      "workerState": "activated",
+      "controller": "https://mobilemaia.org/play/sw.js",
+      "release": "cfecfbd6bb9d532e9b16",
+      "error": "",
+      "offlineReady": false,
+      "phase": "Maia is ready.",
+      "downloadProgress": null,
+      "model": "5m"
+    },
+    "storage": "IndexedDB"
+  }
+}
+		20 button End this test and clear its data, ID: qa-end
+		21 container Mobile Maia app
+			22 container Description: Mobile Maia, ID: app
+				23 AXWebArea Mobile Maia, URL: mobilemaia.org/play/app/?v=4a5d7e4b841e17ad&qa=standard-public-20261029
+					24 container
+						26 container flt-semantic-node-3
+							27 container flt-semantic-node-16
+								28 button Home, ID: flt-semantic-node-21
+								29 button Reset game, ID: flt-semantic-node-22
+								30 button (collapsed) Share and export, ID: flt-semantic-node-23, Secondary Actions: Expand
+							31 container flt-semantic-node-34
+								32 text 1.
+								33 text d4
+							34 text Maia3 1500elo
+							35 text White material:
+							36 text You
+							37 text Black material:
+							38 button Game menu, ID: flt-semantic-node-29
+							39 button Resign, ID: flt-semantic-node-30
+							40 button Previous move Previous move, ID: flt-semantic-node-31
+							41 button (disabled) Next move Next move, ID: flt-semantic-node-32
+
+The focused UI element is 19 button Show QA diagnostics

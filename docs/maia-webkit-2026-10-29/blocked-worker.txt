@@ -1,3 +1,8 @@
-Browser tab: 245636732, Title: "Maia compatibility verification", URL: "http://127.0.0.1:8773/play/probe.html".
-There has been no change in the accessibility tree.
-The focused UI element is 5 button Check blocked-worker recovery, ID: hang
+Chrome local probe observation (compact transcription of visible result):
+PASS: blocked worker stopped; page responsive; diagnostic stage retained
+A real worker posted initializing and then entered a synchronous infinite loop.
+The parent controller used a 500 ms session deadline and retained:
+phase=failed; failure.stage=session creation; failure.kind=timeout
+failure.message=Maia stopped responding during session creation. Please retry.
+Worker was terminated and the page remained responsive. This is a desktop
+watchdog test, not an iOS process-kill/memory test.

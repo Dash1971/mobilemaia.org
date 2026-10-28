@@ -24,7 +24,7 @@ as before. Routing tests verify that standard clients never import the
 compatibility module.
 
 The compiled JavaScript app is byte-identical to the current public app.
-The rebuilt Dart Wasm has the same size/import set but differs in import-string
+The local macOS Dart Wasm rebuild has the same size/import set but differs in import-string
 interning order; it is not claimed byte-identical. The canonical source/compiler
 pins and protected UI/domain hashes are unchanged. A real local Flutter Wasm
 analysis returned both Stockfish lines and Maia probabilities with the existing
@@ -123,3 +123,38 @@ The [website runtime release](https://github.com/Dash1971/mobilemaia.org/release
 was downloaded independently and all six file hashes/lengths matched the pin,
 including the finalized loader and full provenance manifest. The temporary CI
 package is redundant once this durable, verified release exists.
+
+## Published verification and cleanup
+
+Website code `c77c8cff3b965028f41f1f8711f20a46718ff7fa` passed the full
+[Pages checks/build/deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40730515938).
+The public bundle remains `4a5d7e4b841e17ad`; native runtime entry hash is
+`2cea62091393e0eb`, activated offline release `d47ba1ed95beea04f7f0`.
+Every public compatibility module and all six runtime-package files match the
+tested source/pin. The published Linux Flutter Wasm **and** JavaScript bytes are
+identical to the preceding public app, as are its standard Maia worker/loader.
+The local Mac rebuild difference described above did not change the published
+Linux app bytes. See [public manifest](maia-webkit-2026-10-29/public-source.json)
+and [file verification](maia-webkit-2026-10-29/public-verification.json).
+
+The existing public PWA kept its old game running while preparing the new shell,
+then waited for clients to close. After owned QA data was cleared and the tab
+closed, the new release activated. A new standard Flutter Wasm game received
+Maia's `1.e4` and diagnostics confirmed the existing 14.8 MB runtime/256 MiB
+loader, not the WebKit compatibility profile. See
+[safe update](maia-webkit-2026-10-29/public-safe-update.txt) and
+[updated standard game](maia-webkit-2026-10-29/public-standard-game.txt).
+Public Safari started the same JavaScript interface; native automation input
+was unreliable, so no additional public Safari game/analysis claim is made.
+Local Safari analysis/offline and exact public artifact matching are the
+compatibility evidence. Physical iOS 16 acceptance remains pending.
+
+All owned local servers, builds, inference processes and browser test workers
+stopped. Local/public QA data and owned tabs were cleared/closed. The checked
+scratch root was removed (375,810,305 file bytes), including copied models,
+runtime binaries and compiled app/source intermediates. Shared tools/caches,
+normal user games/settings, the public verified PWA shell and the durable
+runtime-only release were retained. The Android source checkout remains clean
+at the original pin. See [cleanup](maia-webkit-2026-10-29/cleanup.json).
+This final evidence-only follow-up does not change deployed code or require
+another app/model build.

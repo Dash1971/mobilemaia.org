@@ -22,6 +22,7 @@ jobs:
         run: |
           python3 tools/research.py --check
           python3 tools/check_site.py
+          python3 tools/prepare_browser_runtime.py --check
           node tools/test_inference.mjs
           node --experimental-vm-modules tools/test_browser_runtime.mjs
           node --experimental-vm-modules tools/test_pwa.mjs

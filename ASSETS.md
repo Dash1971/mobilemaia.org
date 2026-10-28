@@ -78,6 +78,13 @@ Both models retain the upstream AGPL terms and are downloaded from GitHub on Sta
 `4e80de9402f6d1944d6582d7a6ab09b8b33fe223`, with SHA-256 and its attribution/licence
 archive linked from the lab. 79M retains its existing current Android export pin.
 No model weights or additional runtime dependencies were added to this repository.
+The playable app additionally serves a derived copy of the pinned MIT CPU loader,
+`site/play/native/ort-5m-256m.mjs`, for 5M. Its only functional edits reduce the
+shared-memory maximum and corresponding heap-limit/growth constants to 256 MiB;
+the initial 16 MiB and downloaded Wasm/model bytes remain unchanged.
+`tools/prepare_browser_runtime.py` verifies the upstream SHA-256 and regenerates
+the exact edits; CI/builds check it. The public source manifest records the
+derived loader hash. Original lab/79M loaders stay unchanged.
 Research reference cases are derived from the pinned score study, with source
 hashes recorded in the lab config and independently calculated input hashes.
 

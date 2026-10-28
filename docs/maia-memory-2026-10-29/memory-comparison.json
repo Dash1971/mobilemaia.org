@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "completePolicyAndValueTensorsBitIdentical": 16,
+  "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+  "wasmSha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+  "sharedMemoryMaximumBytes": 268435456,
+  "observedWasmHeapBytes": 76808192,
+  "originalReservationRejectedBySimulation": true,
+  "sharedArrayBufferGlobalHidden": true,
+  "physicalIOSAcceptance": false
+}

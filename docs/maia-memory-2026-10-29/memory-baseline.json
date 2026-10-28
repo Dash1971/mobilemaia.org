@@ -1,0 +1,253 @@
+{
+  "mode": "baseline",
+  "sharedArrayBufferGlobalHidden": true,
+  "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+  "wasmSha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+  "sessionCreationMs": 411.64641699999993,
+  "results": [
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "repeat": 0,
+      "ms": 37.96529199999998,
+      "policySha256": "161e0c6e285c68d9993a79f41c83923a409479ec5cde057601a9400812f4e074",
+      "values": [
+        0.35391464829444885,
+        -1.5121855735778809,
+        0.4814790189266205
+      ],
+      "whiteScore": 0.5296968203683152
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "repeat": 0,
+      "ms": 16.654749999999922,
+      "policySha256": "7732c7d18fe5e32e38522df4a0dced886638d369a53bdd0caf7a6c93dff537b6",
+      "values": [
+        0.3622085750102997,
+        -1.416680932044983,
+        0.38900646567344666
+      ],
+      "whiteScore": 0.5061840528030457
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "repeat": 0,
+      "ms": 16.36533399999996,
+      "policySha256": "ab07f40aba315c425eae239525cc562939fc4005e409760d447da5d8fafe2b93",
+      "values": [
+        0.2794991731643677,
+        -1.0339258909225464,
+        -0.013056684285402298
+      ],
+      "whiteScore": 0.4370682757601206
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "repeat": 0,
+      "ms": 17.068415999999957,
+      "policySha256": "5de3c418843078469172097c9ea4c634c3994b953b29c144e00024c105417e55",
+      "values": [
+        0.1854964643716812,
+        -0.8989534378051758,
+        0.020886272192001343
+      ],
+      "whiteScore": 0.465289557054097
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "repeat": 0,
+      "ms": 17.02541599999995,
+      "policySha256": "2f912f0e3de6fe01a25a9a27c882d91e122159a28d17cb42871d33e1d466ba15",
+      "values": [
+        0.6234081387519836,
+        -1.8162823915481567,
+        0.5232973098754883
+      ],
+      "whiteScore": 0.5239122607327455
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "repeat": 0,
+      "ms": 22.286917000000017,
+      "policySha256": "1cf2b866c8548eb268c48b9ea31ed489f2ad7ea6d782a53019f7b33e62a6377d",
+      "values": [
+        0.5589431524276733,
+        -1.889737844467163,
+        0.7280399799346924
+      ],
+      "whiteScore": 0.4594311263256059
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "repeat": 0,
+      "ms": 19.432416999999987,
+      "policySha256": "e83d012b1d85c52bbb33d20557b18f96c07c97ead76e862cd932fb6d9dd5aece",
+      "values": [
+        0.14460839331150055,
+        -1.2863571643829346,
+        0.6736292839050293
+      ],
+      "whiteScore": 0.38126922194250124
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "repeat": 0,
+      "ms": 17.88941699999998,
+      "policySha256": "38cd519c5e0e82c8fd562dd44709d6143eb859d809eca9758c41539d8f55a673",
+      "values": [
+        0.21879515051841736,
+        -1.3258039951324463,
+        0.7209997177124023
+      ],
+      "whiteScore": 0.38618017723523823
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "repeat": 1,
+      "ms": 15.764125000000035,
+      "policySha256": "161e0c6e285c68d9993a79f41c83923a409479ec5cde057601a9400812f4e074",
+      "values": [
+        0.35391464829444885,
+        -1.5121855735778809,
+        0.4814790189266205
+      ],
+      "whiteScore": 0.5296968203683152
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "repeat": 1,
+      "ms": 15.642417000000023,
+      "policySha256": "7732c7d18fe5e32e38522df4a0dced886638d369a53bdd0caf7a6c93dff537b6",
+      "values": [
+        0.3622085750102997,
+        -1.416680932044983,
+        0.38900646567344666
+      ],
+      "whiteScore": 0.5061840528030457
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "repeat": 1,
+      "ms": 15.556625000000054,
+      "policySha256": "ab07f40aba315c425eae239525cc562939fc4005e409760d447da5d8fafe2b93",
+      "values": [
+        0.2794991731643677,
+        -1.0339258909225464,
+        -0.013056684285402298
+      ],
+      "whiteScore": 0.4370682757601206
+    },
+    {
+      "name": "Before 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "repeat": 1,
+      "ms": 15.315292,
+      "policySha256": "5de3c418843078469172097c9ea4c634c3994b953b29c144e00024c105417e55",
+      "values": [
+        0.1854964643716812,
+        -0.8989534378051758,
+        0.020886272192001343
+      ],
+      "whiteScore": 0.465289557054097
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": true,
+      "repeat": 1,
+      "ms": 15.33075000000008,
+      "policySha256": "2f912f0e3de6fe01a25a9a27c882d91e122159a28d17cb42871d33e1d466ba15",
+      "values": [
+        0.6234081387519836,
+        -1.8162823915481567,
+        0.5232973098754883
+      ],
+      "whiteScore": 0.5239122607327455
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 1600,
+      "history": false,
+      "repeat": 1,
+      "ms": 15.35004099999992,
+      "policySha256": "1cf2b866c8548eb268c48b9ea31ed489f2ad7ea6d782a53019f7b33e62a6377d",
+      "values": [
+        0.5589431524276733,
+        -1.889737844467163,
+        0.7280399799346924
+      ],
+      "whiteScore": 0.4594311263256059
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": true,
+      "repeat": 1,
+      "ms": 15.174250000000029,
+      "policySha256": "e83d012b1d85c52bbb33d20557b18f96c07c97ead76e862cd932fb6d9dd5aece",
+      "values": [
+        0.14460839331150055,
+        -1.2863571643829346,
+        0.6736292839050293
+      ],
+      "whiteScore": 0.38126922194250124
+    },
+    {
+      "name": "After 26.Rd1",
+      "elo": 2600,
+      "history": false,
+      "repeat": 1,
+      "ms": 15.462957999999958,
+      "policySha256": "38cd519c5e0e82c8fd562dd44709d6143eb859d809eca9758c41539d8f55a673",
+      "values": [
+        0.21879515051841736,
+        -1.3258039951324463,
+        0.7209997177124023
+      ],
+      "whiteScore": 0.38618017723523823
+    }
+  ],
+  "allocations": [
+    {
+      "descriptor": {
+        "initial": 0,
+        "maximum": 0,
+        "shared": true
+      },
+      "rejected": false,
+      "currentBytes": 0
+    },
+    {
+      "descriptor": {
+        "initial": 256,
+        "maximum": 65536,
+        "shared": true
+      },
+      "rejected": false,
+      "currentBytes": 76808192
+    }
+  ]
+}

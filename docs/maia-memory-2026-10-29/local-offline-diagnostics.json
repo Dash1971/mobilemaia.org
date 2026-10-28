@@ -1,0 +1,98 @@
+{
+  "pwa": {
+    "supported": true,
+    "installed": false,
+    "canInstall": true,
+    "shellReady": true,
+    "registered": true,
+    "updating": false,
+    "preparing": false,
+    "workerState": "activated",
+    "controller": "http://127.0.0.1:8773/play/sw.js",
+    "release": "06d112ceeac206147c03",
+    "error": ""
+  },
+  "app": {
+    "flavor": "browser",
+    "compiler": "dart2js/CanvasKit",
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "appBuild": "bundle-352cbf9758cdfe81/",
+    "model": "5m",
+    "maia": {
+      "schema": 1,
+      "modelId": "5m",
+      "backend": "wasm",
+      "numThreads": 1,
+      "graphOptimizationLevel": "all",
+      "warmupRuns": 0,
+      "downloads": [
+        {
+          "name": "Maia-3 5M (historical research export)",
+          "expectedBytes": 21346652,
+          "loadedBytes": 21346652,
+          "source": "prototype cache",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": true,
+          "transferMs": 25.300000190734863,
+          "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+          "hashMs": 27.799999713897705
+        },
+        {
+          "name": "CPU runtime",
+          "expectedBytes": 14848852,
+          "loadedBytes": 14848852,
+          "source": "prototype cache",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": true,
+          "transferMs": 17.399999618530273,
+          "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+          "hashMs": 7.399999618530273
+        }
+      ],
+      "inferences": [
+        {
+          "ms": 204.69999980926514,
+          "at": "2026-10-28T15:20:48.391Z"
+        }
+      ],
+      "startedAt": "2026-10-28T15:20:46.026Z",
+      "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "runtimeVersion": "1.31.1",
+      "phase": "ready",
+      "wasmMemoryMaxMiB": 256,
+      "loader": "ort-5m-256m.mjs",
+      "sessionCreationMs": 2106.300000190735,
+      "workerReadyMs": 2160.0999999046326,
+      "inputs": [
+        "tokens",
+        "self_elo",
+        "opponent_elo"
+      ],
+      "outputs": [
+        "move_logits",
+        "value_logits",
+        "ponder"
+      ]
+    },
+    "pwa": {
+      "supported": true,
+      "installed": false,
+      "canInstall": true,
+      "shellReady": true,
+      "registered": true,
+      "updating": false,
+      "preparing": false,
+      "workerState": "activated",
+      "controller": "http://127.0.0.1:8773/play/sw.js",
+      "release": "06d112ceeac206147c03",
+      "error": "",
+      "offlineReady": true,
+      "phase": "Maia is ready.",
+      "downloadProgress": null,
+      "model": "5m"
+    },
+    "storage": "IndexedDB"
+  }
+}

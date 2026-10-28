@@ -29,7 +29,15 @@ def prepare(source,output,flutter):
     patch('lib/src/play.dart', '              if (AppLanguageSettings.maybeOf(context)\n', '              if (Platform.isBrowser) ...[const BrowserAppSettings(), const SizedBox(height: 8)],\n              if (AppLanguageSettings.maybeOf(context)\n')
     patch('lib/src/sound_effect.dart',"static const _channel = MethodChannel('maia_chess/sound_effect');","static final MethodChannel _channel = BrowserMaiaChannel('maia_chess/sound_effect');")
     patch('lib/src/active_session_store.dart','Platform.isAndroid || _testRepository != null','Platform.isBrowser || Platform.isAndroid || _testRepository != null')
-    patch('lib/src/diagnostics.dart',"    if (!Platform.isAndroid) return ['platform=${Platform.operatingSystem}'];","    if (Platform.isBrowser) return ['platform=browser', 'model=$browserModelName', 'backend=onnx-web-wasm', 'storage=IndexedDB'];\n    if (!Platform.isAndroid) return ['platform=${Platform.operatingSystem}'];")
+    patch('lib/src/diagnostics.dart',"    if (!Platform.isAndroid) return ['platform=${Platform.operatingSystem}'];",'''    if (Platform.isBrowser) {
+      final lines = ['platform=browser', 'model=$browserModelName', 'backend=onnx-web-wasm', 'storage=IndexedDB'];
+      try {
+        final runtime = await maiaEngineChannel.invokeMethod<Object?>('systemDiagnostics');
+        lines.add('browserRuntime=${jsonEncode(runtime)}');
+      } catch (error) { lines.add('browserRuntime=unavailable ($error)'); }
+      return lines;
+    }
+    if (!Platform.isAndroid) return ['platform=${Platform.operatingSystem}'];''')
     patch('lib/src/play.dart',"            SwitchListTile(\n              key: const ValueKey('home-chessnut-toggle'),","            if (!Platform.isBrowser) SwitchListTile(\n              key: const ValueKey('home-chessnut-toggle'),")
     patch('lib/src/play.dart',"              _settingsSection(\n                title: 'Chessnut',","              if (!Platform.isBrowser) _settingsSection(\n                title: 'Chessnut',")
     patch('lib/src/play.dart',"'Maia-3 79M ($_elo)'","'Maia-3 $browserModelName ($_elo)'",2)

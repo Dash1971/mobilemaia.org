@@ -67,10 +67,16 @@ async function init(config, keep) {
   ort = await modulePromise;
   if (ort.env.versions.web !== config.runtime.version) throw new Error('Unexpected runtime version');
   ort.env.wasm.numThreads = 1; ort.env.wasm.proxy = false;
-  ort.env.wasm.wasmPaths = { mjs: new URL('../../lab/inference/' + asset.loader, self.location.href).href };
+  const bounded = diagnostics.modelId === '5m';
+  const loader = bounded ? new URL('ort-5m-256m.mjs', import.meta.url)
+    : new URL('../../lab/inference/' + asset.loader, self.location.href);
+  if (bounded) loader.search = new URL(import.meta.url).search;
+  diagnostics.wasmMemoryMaxMiB = bounded ? 256 : 4096;
+  diagnostics.loader = bounded ? 'ort-5m-256m.mjs' : asset.loader;
+  ort.env.wasm.wasmPaths = { mjs: loader.href };
   ort.env.wasm.wasmBinary = wasm;
-  notify({ type: 'initializing' });
   diagnostics.phase = 'session creation';
+  notify({ type: 'initializing', diagnostics });
   const sessionStart = performance.now();
   session = await ort.InferenceSession.create(weights, { executionProviders: ['wasm'],
     graphOptimizationLevel: diagnostics.graphOptimizationLevel, executionMode: 'sequential', enableMemPattern: false });
@@ -91,11 +97,14 @@ async function predict(job) {
   };
   let outputs;
   try {
-    outputs = await session.run(feeds);
+    diagnostics.phase = 'inference';
+    // Ponder is unused by the app. Fetch only the original policy/value heads.
+    outputs = await session.run(feeds, ['move_logits', 'value_logits']);
     const policy = new Float32Array(await outputs.move_logits.getData());
     const values = new Float32Array(await outputs.value_logits.getData());
     if (policy.length !== 4352 || values.length !== 3 || !policy.every(Number.isFinite) || !values.every(Number.isFinite)) throw new Error('Invalid Maia output');
     diagnostics.inferences.push({ms:performance.now()-started,at:new Date().toISOString()});
+    diagnostics.phase = 'ready'; delete diagnostics.failure;
     if(diagnostics.inferences.length>200)diagnostics.inferences.shift();
     notify({type:'prediction',id:job.id,policy,values,diagnostics});
   } finally {
@@ -103,11 +112,17 @@ async function predict(job) {
   }
 }
 let tail = Promise.resolve();
+function fail(error, id) {
+  diagnostics.failure = { stage: diagnostics.phase === 'failed' ? diagnostics.failure?.stage : diagnostics.phase, name: error.name,
+    message: error.message, stack: String(error.stack || '').slice(0, 1500) };
+  diagnostics.phase = 'failed';
+  notify({type:'error', ...(id === undefined ? {} : {id}), error:error.message, diagnostics});
+}
 self.onmessage = ({data}) => {
   if(data.type === 'init' && !initPromise) {
     initPromise = init(data.config, !data.config.browserQa || data.config.browserOfflineQa);
-    initPromise.catch(error => notify({type:'error',error:error.message,diagnostics}));
+    initPromise.catch(error => fail(error));
   } else if(data.type === 'predict') {
-    tail = tail.catch(()=>{}).then(()=>predict(data)).catch(error=>notify({type:'error',id:data.id,error:error.message,diagnostics}));
+    tail = tail.catch(()=>{}).then(()=>predict(data)).catch(error=>fail(error,data.id));
   }
 };

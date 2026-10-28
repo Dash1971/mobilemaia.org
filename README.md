@@ -132,6 +132,10 @@ Maia uses the pinned 5M model on one CPU WASM thread. Its unchanged Dart encoder
 sampler and analysis logic consume full raw policy/value outputs from ONNX Runtime
 Web. Stockfish 19 Lite runs in a local single-threaded UCI worker under the app's
 own analysis scheduler. Smaller model/engine results can differ from Android.
+The 5M runtime uses a source-verified ORT loader with a 256 MiB shared-memory
+ceiling rather than the upstream 4 GiB maximum, addressing older iOS startup
+allocation failures. Model/Wasm bytes remain unchanged. The 79M comparison keeps
+the upstream loader. Copy diagnostics includes runtime stage and memory limit.
 `?model=79m` selects the existing full-model download experimentally; a model
 selection/download UI and reliable physical-phone 79M support remain future work.
 
@@ -186,6 +190,12 @@ inference boundary, queue/error/disposal checks and pinned Stockfish integrity;
 `node tools/test_inference.mjs` checks the shared encoder/reference/runtime pins.
 `node --experimental-vm-modules tools/test_pwa.mjs` checks install opt-in,
 offline routing, integrity failures/retry, update safety and cache isolation.
+`python3 tools/prepare_browser_runtime.py --check` verifies the derived 5M loader.
+For real inference memory/parity checks, use `tools/test_maia_memory.mjs` with
+an explicitly owned ignored scratch directory (`owner.json`): modes `baseline`,
+`bounded`, `reject-upstream`, then `compare`. It downloads only the pinned 5M/CPU
+artifacts, tests all eight native-reference fixtures twice and compares complete
+policy/value tensors. Remove task-owned models/runtime files after verification.
 See [implementation and verification](docs/browser-native-2026-10-27.md) and
 [remaining work](docs/browser-app-roadmap.md). No Android checkout, release gate,
 or shared Stable/Preview build helper changes; no companion app port applies.

@@ -1,0 +1,28 @@
+{
+  "mode": "reject-upstream",
+  "sharedArrayBufferGlobalHidden": true,
+  "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+  "wasmSha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+  "sessionCreationMs": 5.499042000000003,
+  "results": [],
+  "expectedError": "no available backend found. ERR: [wasm] RangeError: Out of memory (test rejects shared reservations over 256 MiB)",
+  "allocations": [
+    {
+      "descriptor": {
+        "initial": 0,
+        "maximum": 0,
+        "shared": true
+      },
+      "rejected": false,
+      "currentBytes": 0
+    },
+    {
+      "descriptor": {
+        "initial": 256,
+        "maximum": 65536,
+        "shared": true
+      },
+      "rejected": true
+    }
+  ]
+}

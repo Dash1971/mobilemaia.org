@@ -1,0 +1,75 @@
+Window: "Mobile Maia — Try the app", App: Safari.
+0 standard window Mobile Maia — Try the app, ID: owned Safari test window, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: Mobile Maia — Try the app, URL: 127.0.0.1:8773/play/?qa=webkit-play-20261029&offlineqa=1
+					5 link Skip to Mobile Maia, Value: 127.0.0.1:8773/play/?qa=webkit-play-20261029&offlineqa=1#app
+					6 container
+						7 link Mobile Maia., Value: 127.0.0.1:8773/
+						8 container Main navigation
+							9 link Research, Value: 127.0.0.1:8773/research/
+							10 link The Android app, Value: 127.0.0.1:8773/#download
+					11 container
+						12 text TRY IT BEFORE YOU INSTALL
+						13 heading Value: 1, Mobile Maia.
+In your browser.
+							14 text Mobile Maia. In your browser.
+						15 text The Mobile Maia app, running in your browser. Play, explore positions, and review games with the same screens and controls. Maia runs locally on your CPU. This browser version starts with the smaller 5M model.
+						16 link Get the Android app, Value: 127.0.0.1:8773/#download
+						17 text First engine use downloads Maia and its runtime. Games and settings are stored in this browser. 
+						18 link Privacy and source, Value: 127.0.0.1:8773/about.html#browser-play
+						19 text .
+						20 button Show QA diagnostics
+						21 button End this test and clear its data
+						22 container Mobile Maia app
+							23 scroll area
+								24 HTML content Description: Mobile Maia, URL: 127.0.0.1:8773/play/app/?v=0d816ac0ed97955b&qa=webkit-play-20261029&offlineqa=1
+									25 container
+										26 button Back
+										27 heading Settings, Value: 2
+											28 text Settings
+										29 container Downloads the selected Maia model, CPU runtime and Stockfish. The 5M engine downloads total about 38 MB, plus about 38 MB for the app and its board/piece choices. Browser storage can be cleared or evicted; export important games.
+											30 text Install and offline
+											31 button Install Mobile Maia Open from your home screen in its own app window.
+											32 text Offline play Ready for offline play and analysis.
+											33 button Check offline files
+										34 heading Language Language System default, Value: 2
+											35 text Language Language System default
+										36 button (collapsed) Appearance Theme Dark, Secondary Actions: Expand
+										37 heading Board, Value: 2
+											38 text Board
+										39 button Board Brown
+										40 button Piece set Cburnett
+										41 switch (settable, boolean) Board coordinates, Value: on
+										42 switch (settable, boolean) Legal-move destinations, Value: on
+										43 switch (settable, boolean) Last-move highlight, Value: on
+										44 switch (settable, boolean) Piece animation, Value: on
+										45 switch (settable, boolean) Magnify dragged piece, Value: on
+										46 button Dragged piece target Circle
+										47 container Game settings
+											48 switch (settable, boolean) Game sounds Moves, captures, errors, and game end, Value: off
+											49 switch (settable, boolean) Touch feedback Touch feedback for moves, checks, errors, and game end, Value: on
+											50 switch (settable, boolean) Premoves Queue a move while Maia is thinking, Value: on
+											51 switch (settable, boolean) 100 ms premove penalty Use 0.1 seconds per premove in timed games, Value: off
+											52 switch (settable, boolean) Allow multiple premoves Queue a sequence; an illegal move cancels the rest, Value: off
+											53 switch (settable, boolean) Human move timing Variable natural pauses before Maia moves, Value: off
+										54 container Engine settings
+											55 button About Temperature and Top-P
+										56 container Temperature: 1.00
+											57 container 1.00
+												58 slider (settable, float) Value: 1, Details: 100%
+										59 container Top-P: 0.95
+											60 container 0.95
+												61 slider (settable, float) Value: 1, Details: 95%
+										62 switch (settable, boolean) Max variety in opening, Value: on
+										63 button Max variety in opening
+										64 switch (settable, boolean) Use move history, Value: off
+										65 button Use move history
+										66 switch (settable, boolean) Save Maia sampling data, Value: off
+										67 button Save Maia sampling data
+										68 button (collapsed) Secondary Actions: Expand, Game analysis quality Game analysis quality Fast Depth 12 · up to 0.5 seconds per position, plus up to 3 seconds checking standout moves.
+										69 button Reset settings to default
+										70 text Resets all settings on this screen. Saved games and sampling data are kept.
+										71 button Copy diagnostics
+				72 scroll bar (settable, float) 0.7

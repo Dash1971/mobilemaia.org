@@ -106,3 +106,20 @@ and retained the failed stage. See [Chrome inference](maia-webkit-2026-10-29/chr
 [temporary local probe source](maia-webkit-2026-10-29/probe.html).
 The probe is not deployed product UI. These are modern desktop checks; the
 reported physical iOS 16 device remains the final acceptance check.
+
+The actual Safari Flutter analysis board returned Maia probabilities and both
+Stockfish lines. Save for offline use completed; after the localhost server was
+stopped, a cold reload booted the JavaScript app and produced fresh analysis from
+both cached engines. This changes no system network settings and is not a phone
+airplane-mode test. See [app analysis](maia-webkit-2026-10-29/safari-app-analysis.txt),
+[offline ready](maia-webkit-2026-10-29/safari-offline-saved.txt) and
+[cold offline analysis](maia-webkit-2026-10-29/safari-offline-analysis.txt).
+Safari's grouped game-setup accessibility controls did not activate Start game
+in this automation run; a first game move on this compatibility profile is not
+claimed verified. The compiled game UI/logic is unchanged. Physical iOS gameplay,
+background recovery and long sessions remain acceptance checks.
+
+The [website runtime release](https://github.com/Dash1971/mobilemaia.org/releases/tag/web-maia-cpu-1.31.1-r1)
+was downloaded independently and all six file hashes/lengths matched the pin,
+including the finalized loader and full provenance manifest. The temporary CI
+package is redundant once this durable, verified release exists.

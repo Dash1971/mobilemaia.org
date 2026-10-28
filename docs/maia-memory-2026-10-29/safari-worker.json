@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "scope": "Desktop Safari worker smoke test outside Flutter shell; not physical iOS acceptance",
+  "browser": "Safari 26.6.2 on macOS",
+  "loader": "ort-5m-256m.mjs",
+  "maximumMiB": 256,
+  "policyLength": 4352,
+  "valueLength": 3,
+  "policyMaxError": 0.0000152587890625,
+  "valueMaxError": 8.642673492431641e-7,
+  "inferenceMs": 107
+}

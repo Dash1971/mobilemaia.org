@@ -89,6 +89,15 @@ and the same bounded loader. See [analysis](maia-memory-2026-10-29/local-analysi
 This does not change the user's network or establish a physical-phone airplane-
 mode result. The isolated local test data/engine cache was cleared afterward.
 
+A direct worker smoke test in desktop Safari 26.6.2 also passed using the
+actual bounded loader and model. For one native-reference case, policy sample
+error was at most 0.00001526 and value error at most 0.000000865, within the
+0.002 logit tolerance. See [Safari result](maia-memory-2026-10-29/safari-worker.json)
+and the [temporary local probe source](maia-memory-2026-10-29/safari-probe.html).
+The probe ran outside the Flutter shell and is not deployed as product UI.
+Its owned worker/cache was cleared and its tab closed afterward. This is a
+modern desktop WebKit check, not an iOS 16 qualification.
+
 ## Scope and remaining acceptance
 
 Physical iOS 16 acceptance is pending. A successful desktop test cannot establish
@@ -102,7 +111,40 @@ shared native helpers and APK release gates are unchanged; there is no native
 companion PR or app publication to perform.
 
 Build host: macOS, shared pinned Flutter 3.47.8/Dart and shared Pub cache.
-Task bulk is `.scratch/maia-memory`, with an explicit owner, expected growth
+Task bulk was `.scratch/maia-memory`, with an explicit owner, expected growth
 under 2 GiB and a 10 GiB reserve. Initial free space was about 63.8 GiB.
-Compact evidence is retained beside this document. Public verification and
-immediate scoped cleanup are recorded after publication.
+Compact evidence is retained beside this document. Cleanup completed immediately
+after public verification and before this evidence-only follow-up commit.
+
+
+## Public verification and cleanup
+
+Commit `dbf6612636cea8ff24690ee02a1acb93d486c3ec` passed the full
+[CI, real-model memory gate, Flutter build and Pages deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40715344867).
+The deployed bundle is `4a5d7e4b841e17ad`, native runtime `f338a072af05bcdc`,
+offline release `cfecfbd6bb9d532e9b16`. The downloaded derived loader matches
+source SHA-256 `01dbec91baae8526e56ae78123b9481178b9d7db73836c90c391eb931967cd9f`.
+See [public source metadata](maia-memory-2026-10-29/public-source.json) and
+[loader verification](maia-memory-2026-10-29/public-loader.json).
+
+The existing public worker safely prepared the new shell while its old app was
+open. Closing the owned test tab activated the update. In the new JavaScript
+app, dragging e2-e4 received a real Maia g6 reply. Analysis then returned the
+expected Maia probabilities and real Stockfish lines. Visible diagnostics
+confirmed the bounded loader, 256 MiB ceiling, successful predictions and
+verified unchanged model/runtime hashes. See [game](maia-memory-2026-10-29/public-game.png),
+[analysis](maia-memory-2026-10-29/public-analysis.png) and
+[diagnostics](maia-memory-2026-10-29/public-diagnostics.json).
+
+The public JavaScript is byte-identical to the locally tested compiled app,
+SHA-256 `9b4078f8f445f7509c9b449ca86f7a5e42ee55ec27b133a635b26975bd655110`.
+This qualifies the published artifact under the tested desktop conditions;
+physical iOS 16 acceptance remains pending.
+
+Local Chrome app, desktop Safari probe and public Chrome QA data/engine caches
+were cleared with completion confirmed, and their owned tabs closed. All owned
+servers/build/test/watch processes stopped. The checked task-owned scratch root
+was removed, including every copied model/runtime binary (550,999,427 file bytes).
+Shared tools/caches, ordinary user games/preferences/models and the public PWA
+worker/verified shell were retained. See [cleanup](maia-memory-2026-10-29/cleanup.json).
+No APK, emulator, signing material or native release was created or changed.

@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Maia memory smoke test</title><h1>Maia memory smoke test</h1><p>Task-owned local worker test; no app data is used.</p><button id="run">Run 5M reference case</button><button id="end">End test and clear its cache</button><p id="status">Ready</p><pre id="result"></pre><script type="module">
+import {encode} from '../lab/inference/core.mjs';
+const key='mobile-maia-engine-qa-memory-safari-20261029';let worker,fixture;
+const status=document.querySelector('#status'),result=document.querySelector('#result');
+document.querySelector('#run').onclick=async()=>{try{
+ document.querySelector('#run').disabled=true;status.textContent='Downloading and initializing...';
+ const config=await(await fetch('../lab/inference/config.json')).json();
+ fixture=(await(await fetch('../lab/inference/fixtures-5m.json')).json())[0];
+ const source=await(await fetch('app/source.json')).json();
+ worker=new Worker('native/maia-worker.mjs?v='+source.runtime,{type:'module'});
+ worker.onerror=e=>status.textContent='ERROR: '+e.message;
+ worker.onmessage=({data})=>{try{
+  if(data.type==='error')throw new Error(data.error);
+  if(data.type==='initializing')status.textContent='Creating bounded 5M session...';
+  if(data.type==='ready'){worker.postMessage({type:'predict',id:1,arguments:{tokens:encode(fixture.historyFens,fixture.history),selfElo:fixture.elo,opponentElo:fixture.elo}});}
+  if(data.type==='prediction'){
+   let policyError=0,valueError=0;
+   for(const sample of fixture.nativePolicySamples)policyError=Math.max(policyError,Math.abs(data.policy[sample.index]-sample.logit));
+   for(let i=0;i<3;i++)valueError=Math.max(valueError,Math.abs(data.values[i]-fixture.nativeValueLogits[i]));
+   if(data.policy.length!==4352 || data.values.length!==3 || policyError>.002 || valueError>.002)throw new Error('Reference mismatch');
+   status.textContent='PASS: real 5M inference matches native reference';
+   result.textContent=['loader='+data.diagnostics.loader,'maximumMiB='+data.diagnostics.wasmMemoryMaxMiB,'policyLength='+data.policy.length,'valueLength='+data.values.length,'policyMaxError='+policyError,'valueMaxError='+valueError,'inferenceMs='+data.diagnostics.inferences.at(-1).ms,'browser='+navigator.userAgent].join('\n');
+  }
+ }catch(error){status.textContent='ERROR: '+error.message;}};
+ worker.postMessage({type:'init',config:{...config,browserModel:'5m',browserQa:true,browserOfflineQa:true,browserCacheName:key}});
+ }catch(error){status.textContent='ERROR: '+error.message;}};
+document.querySelector('#end').onclick=async()=>{worker?.terminate();await caches.delete(key);status.textContent='Test cache cleared; worker stopped.';};
+</script></html>

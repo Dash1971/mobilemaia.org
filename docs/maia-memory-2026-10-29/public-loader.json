@@ -1,0 +1,8 @@
+{
+  "revision": "dbf6612636cea8ff24690ee02a1acb93d486c3ec",
+  "url": "https://mobilemaia.org/play/native/ort-5m-256m.mjs",
+  "sha256": "01dbec91baae8526e56ae78123b9481178b9d7db73836c90c391eb931967cd9f",
+  "bytes": 25024,
+  "memoryMaximumMiB": 256,
+  "ci": "https://github.com/Dash1971/mobilemaia.org/actions/runs/40715344867"
+}

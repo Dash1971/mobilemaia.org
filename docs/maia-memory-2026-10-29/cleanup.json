@@ -1,0 +1,17 @@
+{
+  "completedUtc": "2026-10-28T15:33:06.551254+00:00",
+  "publishedRevision": "dbf6612636cea8ff24690ee02a1acb93d486c3ec",
+  "publicJavaScriptMatchesLocalSha256": "9b4078f8f445f7509c9b449ca86f7a5e42ee55ec27b133a635b26975bd655110",
+  "removedPaths": [
+    "/Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/maia-memory"
+  ],
+  "removedFileBytes": 550999427,
+  "removedFiles": 6457,
+  "freeBytesBefore": 67681452032,
+  "freeBytesAfter": 68251561984,
+  "models": "All task-owned 5M ONNX and CPU Wasm download copies removed with scratch; hashes/reference results retained.",
+  "processes": "All owned build/test/watch processes completed; all localhost servers stopped.",
+  "browserCleanup": "Local Chrome app, Safari probe and public Chrome QA workers/caches/data cleared with completion visible; owned tabs closed.",
+  "retained": "Compact verification/hashes/probe source; shared Flutter/Pub tools; normal user data/engine cache; public PWA service worker and verified shell as the product feature.",
+  "nativeChannels": "Stable and Preview source/build helpers/releases unchanged; no port or publication applies."
+}

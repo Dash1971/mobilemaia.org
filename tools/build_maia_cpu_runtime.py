@@ -28,7 +28,7 @@ def build(scratch):
     env=os.environ.copy();env['GIT_LFS_SKIP_SMUDGE']='1'
     source=scratch/'source';source.mkdir()
     for args in [['init'],['remote','add','origin','https://github.com/microsoft/onnxruntime.git'],
-                 ['fetch','--depth','1','--filter=blob:none','origin',SOURCE],['checkout','--detach','FETCH_HEAD']]:
+                 ['-c','http.version=HTTP/1.1','fetch','--depth','1','origin',SOURCE],['checkout','--detach','FETCH_HEAD']]:
         run(['git',*args],cwd=source,env=env)
     assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=source,text=True).strip()==SOURCE
     cmake=source/'cmake/onnxruntime_webassembly.cmake'

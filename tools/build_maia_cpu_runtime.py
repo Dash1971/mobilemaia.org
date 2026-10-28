@@ -43,8 +43,8 @@ def build(scratch):
       '--build_dir',str(scratch/'build'),'--build_wasm','--enable_wasm_simd',
       '--skip_tests','--disable_wasm_exception_catching','--enable_wasm_api_exception_catching',
       '--disable_rtti','--disable_contrib_ops','--disable_ml_ops',
-      '--include_ops_by_config',str(config),'--emsdk_version',EMSDK,'--parallel','2',
-      '--cmake_generator','Ninja','--cmake_extra_defines','CMAKE_CXX_FLAGS_RELEASE=-Os -DNDEBUG',
+      '--include_ops_by_config',str(config),'--emsdk_version',EMSDK,'--parallel','4',
+      '--cmake_generator','Ninja','--cmake_extra_defines','CMAKE_CXX_FLAGS_RELEASE=-Os -DNDEBUG -Wno-error=pass-failed',
       'CMAKE_C_FLAGS_RELEASE=-Os -DNDEBUG']
     # --enable_wasm_threads is deliberately absent: no shared memory/atomics.
     run(command,cwd=source,env=env)

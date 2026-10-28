@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build a model-scoped, non-shared ORT CPU runtime in owned Linux scratch."""
-import argparse, hashlib, json, os, pathlib, shutil, subprocess, sys, time
+import argparse, hashlib, json, os, pathlib, shutil, subprocess, sys, time, venv
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 SOURCE='6af1a932e2286d5c58166085d24c68783033edee'
@@ -26,6 +26,9 @@ def build(scratch):
     if free < 18*GIB: raise ValueError('Need expected 8 GiB growth plus 10 GiB reserve.')
     scratch.mkdir();(scratch/'owner.json').write_text(json.dumps({'owner':'Mobile Maia non-shared CPU runtime build','source':SOURCE,'expectedGrowthGiB':8,'reserveGiB':10,'retention':'through artifact verification; runner ephemeral'},indent=2)+'\n')
     env=os.environ.copy();env['GIT_LFS_SKIP_SMUDGE']='1'
+    venv.EnvBuilder(with_pip=True).create(scratch/'venv')
+    python=str(scratch/'venv/bin/python')
+    run([python,'-m','pip','install','--no-cache-dir','flatbuffers==25.9.23','numpy==2.2.6','packaging==25.0'],cwd=scratch,env=env)
     source=scratch/'source';source.mkdir()
     for args in [['init'],['remote','add','origin','https://github.com/microsoft/onnxruntime.git'],
                  ['-c','http.version=HTTP/1.1','fetch','--depth','1','origin',SOURCE],['checkout','--detach','FETCH_HEAD']]:
@@ -36,7 +39,7 @@ def build(scratch):
     if text.count(old)!=1: raise ValueError('Review the upstream Wasm memory configuration.')
     cmake.write_text(text.replace(old,'set(MAXIMUM_MEMORY "268435456")'))
     config=ROOT/'browser-app/runtime/maia5m-ops.config'
-    command=[sys.executable,str(source/'tools/ci_build/build.py'),'--config','Release',
+    command=[python,str(source/'tools/ci_build/build.py'),'--config','Release',
       '--build_dir',str(scratch/'build'),'--build_wasm','--enable_wasm_simd',
       '--skip_tests','--disable_wasm_exception_catching','--enable_wasm_api_exception_catching',
       '--disable_rtti','--disable_contrib_ops','--disable_ml_ops',

@@ -1,0 +1,21 @@
+{
+  "websiteRevision": "435ac8c882787dbe683c247eea4c0a46b237efb5",
+  "assets": [
+    {
+      "url": "https://mobilemaia.org/play/app/bundle-bf5dc78021e0536b/main.dart.js",
+      "bytes": 4562630,
+      "sha256": "d0b959f77148971f431e7cc43725a9027d15a916741eed6d71f634480baa53d4"
+    },
+    {
+      "url": "https://mobilemaia.org/play/app/bundle-bf5dc78021e0536b/canvaskit/canvaskit.wasm",
+      "bytes": 7284602,
+      "sha256": "fbed517a43e82452404446683f00f2e876d835aed84410695759e67b6bb01cd3"
+    },
+    {
+      "url": "https://mobilemaia.org/play/app/flutter_bootstrap.bf5dc78021e0536b.js",
+      "bytes": 13432,
+      "sha256": "077d6d7b1f67a40bd07ef00ac431b8f40079183dc4cd0c0ccf82ada165c6e216"
+    }
+  ],
+  "ci": "https://github.com/Dash1971/mobilemaia.org/actions/runs/40706380270"
+}

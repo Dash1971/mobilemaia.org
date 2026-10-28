@@ -1,0 +1,10 @@
+Desktop Safari, automatic selection (no renderer override).
+Visible QA diagnostics reported:
+  "flavor": "browser",
+  "compiler": "dart2js/CanvasKit",
+  "model": "5m"
+The actual Flutter Mobile Maia heading and Settings control were present.
+This is a desktop Safari check, not iOS 16 acceptance.
+Direct app route: dragged e2-e4 and observed move history "1. e4 e6".
+Safari returned a real Maia reply. Separate Safari Stockfish/offline checks
+were not completed. Its QA data/engines were cleared and its owned tab closed.

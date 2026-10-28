@@ -1,0 +1,16 @@
+{
+  "completedUtc": "2026-10-28T14:38:52.855692+00:00",
+  "publishedRevision": "435ac8c882787dbe683c247eea4c0a46b237efb5",
+  "publicJavaScriptMatchesCleanLocalBuild": "d0b959f77148971f431e7cc43725a9027d15a916741eed6d71f634480baa53d4",
+  "removedPaths": [
+    "/Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/browser-js"
+  ],
+  "removedFileBytes": 478263043,
+  "removedFiles": 6438,
+  "freeBytesBefore": 67905482752,
+  "freeBytesAfter": 68403449856,
+  "processes": "All owned Flutter builds, Node checks, gh watches and localhost servers completed/stopped.",
+  "browserCleanup": "Local Chrome, Safari and public Chrome QA namespaced data/preferences/engines cleared; owned tabs closed. Local test service workers/shell/font caches cleared.",
+  "retained": "Compact docs evidence; shared SDK/Pub caches; normal user games/preferences/engines; public PWA service worker and verified shell as the requested product feature.",
+  "nativeChannels": "No Stable/Preview source, shared helper or release changes; no companion PR or publication."
+}

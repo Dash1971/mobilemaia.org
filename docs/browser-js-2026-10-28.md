@@ -68,9 +68,10 @@ precached. App updates continue to wait for running clients to close.
 
 These are desktop Chrome correctness/runtime/cache checks. They do not qualify
 iOS 16.7.16, physical iPhone installation, airplane mode, memory pressure or
-background lifecycle. A native desktop Safari attempt was interrupted before
-the test page was opened; no Safari result is claimed. The user's iOS device is
-still needed for acceptance. No speed improvement over native is promised.
+background lifecycle. A subsequent desktop Safari check automatically selected dart2js/CanvasKit,
+rendered the actual Flutter app, and returned a real Maia e6 reply to a dragged
+e2-e4. See [Safari observations](browser-js-2026-10-28/safari-auto-fallback.txt).
+Separate Safari Stockfish/offline checks were not completed. The user's iOS device is still needed for acceptance. No speed improvement over native is promised.
 
 This is a website-only dependency/platform adaptation. Stable and Preview
 checkouts, shared native build helpers, APK release gates, versions and app
@@ -79,7 +80,35 @@ The continuing contract is [WEB_ADAPTATIONS.md](WEB_ADAPTATIONS.md), W09/W12/W14
 
 Build host: macOS, shared pinned Flutter 3.47.8/Dart SDK and Pub cache. Initial
 free space was about 63.8 GiB, with expected growth under 2 GiB and a 10 GiB
-reserve. All task bulk is under `.scratch/browser-js`, owned through public
-deployment verification; compact evidence is kept in this document's sibling
-directory. Publication and immediate scoped cleanup are recorded below when
-complete.
+reserve. All task bulk was under `.scratch/browser-js`; compact evidence is kept in this
+document's sibling directory. Cleanup completed immediately after public
+verification, before this evidence-only follow-up commit.
+
+
+## Public deployment and cleanup
+
+Source `435ac8c882787dbe683c247eea4c0a46b237efb5` passed the full
+[GitHub build, tests and Pages deployment](https://github.com/Dash1971/mobilemaia.org/actions/runs/40706380270).
+The public bundle is `bf5dc78021e0536b`, offline release `2da62843780cec627bc8`.
+The published JavaScript SHA-256 is
+`d0b959f77148971f431e7cc43725a9027d15a916741eed6d71f634480baa53d4`,
+identical to the clean locally verified build. Public source metadata includes the
+passing chess comparison and exact adapter/rule hashes. See [source manifest](browser-js-2026-10-28/public-source.json)
+and [downloaded asset hashes](browser-js-2026-10-28/public-assets.json).
+
+An existing public service worker kept the old app running while the new shell
+installed. Closing the owned test tab allowed the new worker to activate; a new
+tab loaded the new bundle and forwarded `renderer=js`. The deployed JavaScript
+app then returned fresh Stockfish lines and the expected Maia probabilities.
+Visible diagnostics reported dart2js/CanvasKit, verified 5M/CPU hashes and
+an offline-ready shell/engine cache. See [public analysis](browser-js-2026-10-28/public-analysis.png)
+and [diagnostics](browser-js-2026-10-28/public-diagnostics.json).
+
+All three QA namespaces (local Chrome, desktop Safari, public Chrome) had their
+own games/preferences/model/runtime cache cleared through the test cleanup
+control, with completion confirmed before closing their owned tabs. All owned
+servers/builds were stopped. The checked task-owned scratch directory was removed
+(478,263,043 file bytes); shared tools/caches and normal user app data were retained.
+The public service worker/verified app shell remains as the requested offline
+feature. See [cleanup report](browser-js-2026-10-28/cleanup.json). No APK, emulator,
+virtual environment or filesystem model copy was created.

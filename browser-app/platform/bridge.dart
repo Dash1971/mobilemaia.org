@@ -11,6 +11,7 @@ extension type BrowserHost(JSObject _) implements JSObject {
   external BrowserFiles get files;
   external JSString get modelName;
   external JSString get preferencePrefix;
+  external set compiler(JSString value);
 }
 extension type BrowserUci(JSObject _) implements JSObject {
   external void post(JSString command);
@@ -48,3 +49,7 @@ Future<T> runBrowserTask<T>(FutureOr<T> Function() action) async {
 String get browserModelName => browserHost.modelName.toDart;
 
 String get browserPreferencePrefix => browserHost.preferencePrefix.toDart;
+
+void reportBrowserCompiler() {
+  browserHost.compiler = (const bool.fromEnvironment('dart.library.js') ? 'dart2js/CanvasKit' : 'dart2wasm/SkWasm').toJS;
+}

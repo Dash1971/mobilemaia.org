@@ -137,12 +137,17 @@ selection/download UI and reliable physical-phone 79M support remain future work
 
 Games and app data persist in IndexedDB; settings use localStorage. Verified
 model/runtime downloads can be saved in the inference lab's named cache. Nothing
-is uploaded. The shell requires a modern browser with WasmGC because dartchess
-uses 64-bit bitboards; unsupported browsers receive a compatibility message.
+is uploaded. The same Flutter app is built for DartWasm/SkWasm and JavaScript/
+CanvasKit. Flutter selects the JavaScript build when its Wasm build is unsupported
+or disabled for a browser (including Safari with the pinned SDK). An exact two-
+limb bitboard adapter lets the existing chess rules run under JavaScript.
+`?renderer=js` forces this path for testing. The CPU engines still use ordinary
+WebAssembly, which does not require WasmGC. Physical iOS 16 compatibility and
+performance require device testing; compilation is not that evidence.
 Installation is available through Settings → Install and offline (or the browser's
 Install/Add to Home Screen command). Settings → Save for offline use saves the
 app plus selected Maia, CPU runtime and Stockfish; with 5M, the initial offline
-package totals about 64 MB. Wait for Ready for offline play and analysis before
+package totals about 76 MB, including both app builds. Wait for Ready for offline play and analysis before
 disconnecting. Full offline saving is opt-in so an ordinary first visit does not
 compete with Maia's download. Cached files can be evicted by the browser.
 
@@ -168,6 +173,13 @@ guarded platform changes, and hashes canonical UI/logic files to reject changes.
 Every compiled asset uses a content-addressed bundle path to prevent mixed old
 fonts/code after deployment. Flutter service-worker generation is disabled; the build generates our scoped
 service worker and its exact asset hashes instead.
+
+After locked Pub resolution, the helper verifies dartchess 0.13.1's source tree,
+copies it into task scratch and redirects only that project's package config.
+The shared Pub cache stays untouched. Move generation is unchanged; split constant
+masks and a conditional SquareSet export select native int64 or paired uint32.
+Every build compares the compiled-JS rules with unmodified upstream VM rules and
+known perft counts via `tools/test_browser_chess.py` before compiling the app.
 
 Run `node --experimental-vm-modules tools/test_browser_runtime.mjs` for the raw
 inference boundary, queue/error/disposal checks and pinned Stockfish integrity;

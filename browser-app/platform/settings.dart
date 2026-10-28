@@ -76,7 +76,7 @@ class _BrowserAppSettingsState extends State<BrowserAppSettings> {
         icon: Icon(offline ? Icons.refresh : Icons.download_for_offline_outlined),
         label: Text(offline ? 'Check offline files' : 'Save for offline use'),
       )),
-      const Padding(padding: EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text('Downloads the selected Maia model, CPU runtime and Stockfish. The 5M engine downloads total about 38 MB, plus about 26 MB for the app and its board/piece choices. Browser storage can be cleared or evicted; export important games.')),
+      const Padding(padding: EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text('Downloads the selected Maia model, CPU runtime and Stockfish. The 5M engine downloads total about 38 MB, plus about 38 MB for the app and its board/piece choices. Browser storage can be cleared or evicted; export important games.')),
       if (_status['updating'] == true) const Padding(padding: EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text('An update is ready. Finish your game, then close all Mobile Maia windows and tabs and reopen.')),
       if (_error != null) Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text(_error!, semanticsLabel: 'Offline setup error: $_error')),
     ]));

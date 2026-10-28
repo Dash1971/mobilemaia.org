@@ -1,0 +1,143 @@
+Browser tab: 245636669, Title: "Mobile Maia — Try the app", URL: "http://127.0.0.1:8773/play/?renderer=js&qa=safari-fallback-20261028&offlineqa=1".
+1 AXWebArea Mobile Maia — Try the app, URL: 127.0.0.1:8773/play/?renderer=js&qa=safari-fallback-20261028&offlineqa=1
+	2 link Description: Skip to Mobile Maia, Value: 127.0.0.1:8773/play/?renderer=js&qa=safari-fallback-20261028&offlineqa=1#app
+	3 container
+		4 link Description: Mobile Maia., Value: 127.0.0.1:8773/
+		5 container Main navigation
+			6 link Description: Research, Value: 127.0.0.1:8773/research/
+			7 link Description: The Android app, Value: 127.0.0.1:8773/#download
+	8 container
+		9 text TRY IT BEFORE YOU INSTALL
+		10 heading Mobile Maia. In your browser., Value: 1
+			11 text Mobile Maia.
+			12 text In your browser.
+		13 text The Mobile Maia app, running in your browser. Play, explore positions, and review games with the same screens and controls.
+		14 text Maia runs locally on your CPU. This browser version starts with the smaller 5M model.
+		15 link Description: Get the Android app, Value: 127.0.0.1:8773/#download
+		16 container
+			17 text First engine use downloads Maia and its runtime. Games and settings are stored in this browser. 
+			18 link Description: Privacy and source, Value: 127.0.0.1:8773/about.html#browser-play
+			19 text .
+		20 button Show QA diagnostics
+		47 text {
+  "pwa": {
+    "supported": true,
+    "installed": false,
+    "canInstall": true,
+    "shellReady": true,
+    "registered": true,
+    "updating": false,
+    "preparing": false,
+    "workerState": "activated",
+    "controller": "http://127.0.0.1:8773/play/sw.js",
+    "release": "693a91667ed1c4a5ff8e",
+    "error": ""
+  },
+  "app": {
+    "flavor": "browser",
+    "compiler": "dart2js/CanvasKit",
+    "model": "5m",
+    "maia": {
+      "schema": 1,
+      "modelId": "5m",
+      "backend": "wasm",
+      "numThreads": 1,
+      "graphOptimizationLevel": "all",
+      "warmupRuns": 0,
+      "downloads": [
+        {
+          "name": "Maia-3 5M (historical research export)",
+          "expectedBytes": 21346652,
+          "loadedBytes": 21346652,
+          "source": "prototype cache",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": true,
+          "transferMs": 59.59999990463257,
+          "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+          "hashMs": 50.40000009536743
+        },
+        {
+          "name": "CPU runtime",
+          "expectedBytes": 14848852,
+          "loadedBytes": 14848852,
+          "source": "prototype cache",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": true,
+          "transferMs": 36.30000019073486,
+          "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+          "hashMs": 13.700000286102295
+        }
+      ],
+      "inferences": [
+        {
+          "ms": 155.59999990463257,
+          "at": "2026-10-28T14:24:53.206Z"
+        }
+      ],
+      "startedAt": "2026-10-28T14:24:51.406Z",
+      "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "runtimeVersion": "1.31.1",
+      "phase": "ready",
+      "sessionCreationMs": 1533.9000000953674,
+      "workerReadyMs": 1644.5,
+      "inputs": [
+        "tokens",
+        "self_elo",
+        "opponent_elo"
+      ],
+      "outputs": [
+        "move_logits",
+        "value_logits",
+        "ponder"
+      ]
+    },
+    "pwa": {
+      "supported": true,
+      "installed": false,
+      "canInstall": true,
+      "shellReady": true,
+      "registered": true,
+      "updating": false,
+      "preparing": false,
+      "workerState": "activated",
+      "controller": "http://127.0.0.1:8773/play/sw.js",
+      "release": "693a91667ed1c4a5ff8e",
+      "error": "",
+      "offlineReady": true,
+      "phase": "Maia is ready.",
+      "downloadProgress": null,
+      "model": "5m"
+    },
+    "storage": "IndexedDB"
+  }
+}
+		21 button End this test and clear its data, ID: qa-end
+		22 container Mobile Maia app
+			23 container Description: Mobile Maia, ID: app
+				24 AXWebArea Mobile Maia, URL: 127.0.0.1:8773/play/app/?v=9971bcb5c04299f3&qa=safari-fallback-20261028&offlineqa=1&renderer=js
+					25 container
+						26 container flt-semantic-node-22
+							27 container flt-semantic-node-39
+								28 button Home, ID: flt-semantic-node-40
+								29 heading Analysis Board, Value: 2, ID: flt-semantic-node-41
+									30 text Analysis Board
+								31 button (collapsed) Share and export, ID: flt-semantic-node-42, Secondary Actions: Expand
+							48 text +0.3
+							32 container flt-semantic-node-23
+								49 text +0.3
+								50 text d4 d5 c4 e6 Nf3 Nf6 Nc3 Bb4
+								51 text +0.3
+								52 text Nf3 d5 d4 e6 c4 Nf6 Bg5 Nbd7
+								53 button ID: flt-semantic-node-44, Move history: off Maia 1500 move probabilities. Move history: off, e4 64%, d4 24%, c4 3%, other legal moves 9%. M1500 e4 64% d4 24% c4 3% Other 9%
+								39 button Moves Moves, ID: flt-semantic-node-30
+								40 button Computer analysis Computer analysis, ID: flt-semantic-node-31
+							41 button Analysis menu, ID: flt-semantic-node-33
+							42 button Flip board, ID: flt-semantic-node-34
+							43 container Description: Turn engine off, ID: flt-semantic-node-35
+								44 button SF, ID: flt-semantic-node-36
+							45 button (disabled) Previous move Previous move, ID: flt-semantic-node-37
+							46 button (disabled) Next move Next move, ID: flt-semantic-node-38
+
+The focused UI element is 20 button Show QA diagnostics

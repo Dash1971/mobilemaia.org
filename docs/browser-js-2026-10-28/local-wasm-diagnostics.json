@@ -1,0 +1,94 @@
+{
+  "pwa": {
+    "supported": true,
+    "installed": false,
+    "canInstall": true,
+    "shellReady": false,
+    "registered": false,
+    "updating": false,
+    "preparing": false,
+    "workerState": "not registered",
+    "controller": "",
+    "release": "",
+    "error": ""
+  },
+  "app": {
+    "flavor": "browser",
+    "compiler": "dart2wasm/SkWasm",
+    "model": "5m",
+    "maia": {
+      "schema": 1,
+      "modelId": "5m",
+      "backend": "wasm",
+      "numThreads": 1,
+      "graphOptimizationLevel": "all",
+      "warmupRuns": 0,
+      "downloads": [
+        {
+          "name": "Maia-3 5M (historical research export)",
+          "expectedBytes": 21346652,
+          "loadedBytes": 21346652,
+          "source": "prototype cache",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": true,
+          "transferMs": 33.59999990463257,
+          "sha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+          "hashMs": 25.09999990463257
+        },
+        {
+          "name": "CPU runtime",
+          "expectedBytes": 14848852,
+          "loadedBytes": 14848852,
+          "source": "prototype cache",
+          "status": "verified",
+          "httpStatus": 200,
+          "cacheSaved": true,
+          "transferMs": 26,
+          "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d",
+          "hashMs": 7.300000190734863
+        }
+      ],
+      "inferences": [
+        {
+          "ms": 80.60000038146973,
+          "at": "2026-10-28T14:18:25.152Z"
+        }
+      ],
+      "startedAt": "2026-10-28T14:18:23.925Z",
+      "modelSha256": "ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942",
+      "runtimeVersion": "1.31.1",
+      "phase": "ready",
+      "sessionCreationMs": 1086.0999999046326,
+      "workerReadyMs": 1145.9000000953674,
+      "inputs": [
+        "tokens",
+        "self_elo",
+        "opponent_elo"
+      ],
+      "outputs": [
+        "move_logits",
+        "value_logits",
+        "ponder"
+      ]
+    },
+    "pwa": {
+      "supported": true,
+      "installed": false,
+      "canInstall": true,
+      "shellReady": false,
+      "registered": false,
+      "updating": false,
+      "preparing": false,
+      "workerState": "not registered",
+      "controller": "",
+      "release": "",
+      "error": "",
+      "offlineReady": false,
+      "phase": "Maia is ready.",
+      "downloadProgress": null,
+      "model": "5m"
+    },
+    "storage": "IndexedDB"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "source": "aeea49817c34f48397e910894414c1d8b0352124",
+  "sourceRepository": "Dash1971/maia-chess-android",
+  "modifiedPlatformBoundaries": [
+    "lib/main.dart",
+    "lib/src/active_session_store.dart",
+    "lib/src/app_appearance.dart",
+    "lib/src/diagnostics.dart",
+    "lib/src/play.dart",
+    "lib/src/review_widgets.dart",
+    "lib/src/sampling_capture.dart",
+    "lib/src/session_model.dart",
+    "lib/src/session_repository.dart",
+    "lib/src/sound_effect.dart"
+  ],
+  "unchangedDartFiles": 44,
+  "unchangedUiAndLogic": {
+    "lib/src/analysis_board.dart": "3d26ec1710a28b0e9a47fc157bff10edd24a9cdcc6ebf00a43836c1e4b982bce",
+    "lib/src/board_editor.dart": "612bed3c1a21004bc5ec7ceabdc16cc07f584f1ecbf39d1ed13c3ea48f13c67c",
+    "lib/src/board_preferences.dart": "d7075dab683fd5443b314e6f1ec3ca32f3764b2e654afa1b37359287ae2ac106",
+    "lib/src/board_styles.dart": "967dd3f373702874be9ac419e126f143fc08198ca3b802c9ee7aa14ade47ff67",
+    "lib/src/review.dart": "07739adde45076d3cc0dc0246dffa48582334c90f5c0613fadc0fda68c79181b",
+    "lib/src/settings_widgets.dart": "50d92a5c7d823563399a0d5ae47d90ea2649f0ad5cddf46f00f93180ece8eb29",
+    "lib/src/maia.dart": "9f7d8caf2464023ef27596883366f1426155a37c6ec32835f0f95277fd3346c2",
+    "lib/src/maia_play_settings.dart": "e8d5257f0f29826a2ea39fa074f7c08f183260507ead9adab182094aa74fb261",
+    "lib/l10n/app_localizations_fr.dart": "0f23da4b2761d1ae3c9811e749f00ade9dae80cf3f3430b3731b86b3672c76d9",
+    "lib/l10n/app_localizations.dart": "7a79a4ebaf51d71b446acff73dd43ec048e9c790d56025f558e8df9841e2bf0f",
+    "lib/l10n/app_localizations_ko.dart": "a39400cca705260c4fc9a53d0cd87acb1c99f529be3fba60140c50f95fcefb37",
+    "lib/l10n/app_localizations_hi.dart": "afe203306f738399d7c341b1ff5f1eeaa9dee1452bef93ef4b3b1ee4d411abdb",
+    "lib/l10n/app_localizations_es.dart": "b7afe368f3d615d15a12d196ea8202df9def09d3cb5d7bc47517c280010f97e9",
+    "lib/l10n/app_localizations_zh.dart": "d5a3e2ea0824a7752be4320611fd1ba73ce3cfde3833eb71de8a844524fbb671",
+    "lib/l10n/app_localizations_ja.dart": "e2045cc4a3c509f3b457f07f3e657526d2faf372bdac718780bc3a87e9857847",
+    "lib/l10n/app_localizations_ru.dart": "028bfaa0e9a0553daf116fe085a6f8dd2e5dbe9ffdddcc296b02354641d16eb3",
+    "lib/l10n/app_localizations_de.dart": "1277220f03cd93aeea1344450f7134b4a062ef6837e8d18fb4a63b3476083760",
+    "lib/l10n/app_localizations_pt.dart": "b283f46aec14f175219e805c2a1244730c53e533434b4a1bea45387042c5d2b1",
+    "lib/l10n/app_localizations_en.dart": "c799869832b4b244b9e6ec362a088bf513a4335c5fc036f73fb8ad3cf8f022b6"
+  },
+  "chessCompatibility": {
+    "package": "dartchess 0.13.1",
+    "upstreamTreeSha256": "75d3bb8787ed631a69ce4d3ea231241582501f9a74c16dc46e824a3acce490e9",
+    "representation": "native int64 for DartWasm; unsigned 32-bit pair for dart2js",
+    "adapterSha256": "c20084398476f6c7d069018a770dc07204bfe1e1bb63f0bb35be9f2e3b5f1240",
+    "splitConstantMasks": {
+      "board.dart": 25,
+      "castles.dart": 7
+    },
+    "unchangedRules": {
+      "attacks.dart": "2610a24108f664d8f0e3b47fbfb3989810f11d445e8de8552aa9d8ea49a5f58e",
+      "position.dart": "0e49b7c7bb116a3a5c88782503750a697c3aa52e0c277f53045c3ceddcfebff0",
+      "setup.dart": "8ba6b8c247f1a97ced50b9f27f782cfe78609b06a250ec175dee9abbd054c1d7",
+      "pgn.dart": "a4597748a88cc198c03e1ff16dcd8701343f7e0839ef971ec0d4419aaff55dd3",
+      "models.dart": "c9f4d1773046742dcfde2ebb3acd0c574a63ce15eb832bbab8f3aae850bf029f"
+    }
+  },
+  "chessVerification": {
+    "result": "PASS",
+    "perftPositions": 165,
+    "comparison": "unmodified dartchess VM == adapted VM == compiled dart2js in Node",
+    "checks": {
+      "digest": 3933291835,
+      "bitboardChecks": 19008,
+      "moveChecks": 6042,
+      "perftNodes": 717822,
+      "perftPositions": 165
+    },
+    "driverSha256": "e6a8c0f260b85844a8bad3e90870331bec18a2b36e8157850f6c27b0cf57efb6"
+  },
+  "websiteRevision": "f6c9dbe429ff8a1ff5e35492d3da91ec18190c9b",
+  "websiteDirty": true,
+  "adaptationRegister": "https://github.com/Dash1971/mobilemaia.org/blob/f6c9dbe429ff8a1ff5e35492d3da91ec18190c9b/docs/WEB_ADAPTATIONS.md",
+  "bundle": "bf8027f56b9b1791",
+  "runtime": "cf2c5393533593a3",
+  "flutterRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "modelDefault": "5m",
+  "rendering": "dart2wasm/skwasm or dart2js/CanvasKit; single-threaded",
+  "serviceWorker": true,
+  "serviceWorkerScope": "/play/"
+}

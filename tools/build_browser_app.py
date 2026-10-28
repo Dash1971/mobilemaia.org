@@ -2,6 +2,7 @@
 """Build canonical Mobile Maia widgets and assemble an immutable Pages bundle."""
 import argparse, hashlib, json, os, pathlib, re, shutil, subprocess, sys
 from prepare_browser_app import ROOT, SOURCE, prepare
+from prepare_browser_chess import prepare_chess
 GIB=1024**3
 SDK='737ba8f885dc774b53b442759999a312c9461e4e'
 def digest_tree(path):
@@ -11,7 +12,7 @@ def digest_tree(path):
     return digest.hexdigest()[:16]
 
 def prepare_offline_shell(deploy, app, bundle):
-    """Precache the actual Wasm app, not source maps/unused renderer variants."""
+    """Precache both compiler targets and their renderers, excluding source maps."""
     paths = set(p for p in (deploy/'play').rglob('*') if p.is_file() and not p.is_relative_to(app))
     paths.update([deploy/'styles.css', deploy/'assets/icon.png'])
     lab = deploy/'lab/inference'
@@ -21,7 +22,8 @@ def prepare_offline_shell(deploy, app, bundle):
     paths.update([app/'index.html', app/'source.json'])
     paths.update(app.glob('flutter_bootstrap.*.js'))
     paths.update(p for p in (bundle/'assets').rglob('*') if p.is_file())
-    paths.update(bundle/name for name in ['main.dart.wasm','main.dart.mjs',
+    paths.update(bundle/name for name in ['main.dart.wasm','main.dart.mjs','main.dart.js',
+        'canvaskit/canvaskit.js','canvaskit/canvaskit.wasm',
         'canvaskit/skwasm.js','canvaskit/skwasm.wasm',
         'canvaskit/skwasm_heavy.js','canvaskit/skwasm_heavy.wasm'])
     assets = [{'url':'/'+path.relative_to(deploy).as_posix(), 'bytes':path.stat().st_size,
@@ -31,7 +33,7 @@ def prepare_offline_shell(deploy, app, bundle):
     release=hashlib.sha256((encoded+template).encode()).hexdigest()[:20]
     (deploy/'play/sw.js').write_text(template.replace('__PWA_RELEASE__',json.dumps(release)).replace('__PWA_ASSETS__',encoded))
     size=sum(asset['bytes'] for asset in assets)
-    if size>30*1024*1024: raise ValueError(f'Offline shell exceeds 30 MiB budget: {size}')
+    if size>40*1024*1024: raise ValueError(f'Offline shell exceeds 40 MiB budget: {size}')
     print(json.dumps({'offlineRelease':release,'shellBytes':size,'shellFiles':len(assets)}))
     return release
 def assemble(web,deploy):
@@ -55,7 +57,7 @@ def assemble(web,deploy):
             if key in entry: entry[key]=f'bundle-{build}/'+entry[key]
     bootstrap=bootstrap[:match.start(1)]+json.dumps(config,separators=(',',':'))+bootstrap[match.end(1):]
     marker=bootstrap.rindex('_flutter.loader.load(')
-    bootstrap=bootstrap[:marker]+f"_flutter.loader.load({{config:{{assetBase:'bundle-{build}/',canvasKitBaseUrl:'bundle-{build}/canvaskit/',forceSingleThreadedSkwasm:true}}}});\n"
+    bootstrap=bootstrap[:marker]+f"const useJavaScript = new URLSearchParams(location.search).get('renderer') === 'js';\n_flutter.loader.load({{config:{{...(useJavaScript ? {{renderer:'canvaskit'}} : {{}}),assetBase:'bundle-{build}/',canvasKitBaseUrl:'bundle-{build}/canvaskit/',canvasKitVariant:'full',forceSingleThreadedSkwasm:true}}}});\n"
     name=f'flutter_bootstrap.{build}.js';(app/name).write_text(bootstrap)
     runtime=hashlib.sha256(b''.join((deploy/'play/native'/f).read_bytes() for f in ['platform.mjs','maia-worker.mjs'])).hexdigest()[:16]
     index=index.replace('</head>',f'<meta name="mobile-maia-bootstrap" content="{name}"><meta name="mobile-maia-asset-base" content="bundle-{build}/"></head>')
@@ -68,11 +70,12 @@ def assemble(web,deploy):
         host_text=re.sub(re.escape(name)+r'\?v=[^"\s]+',name+'?v='+version,host_text)
     host.write_text(host_text)
     source=json.loads((web.parent.parent/'browser-source.json').read_text())
+    source['chessVerification']=json.loads((web.parent.parent.parent/'chess-verification.json').read_text())
     website_revision=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD'],text=True).strip()
     source.update({'websiteRevision':website_revision,
         'websiteDirty':bool(subprocess.check_output(['git','-C',str(ROOT),'status','--porcelain'],text=True).strip()),
         'adaptationRegister':f'https://github.com/Dash1971/mobilemaia.org/blob/{website_revision}/docs/WEB_ADAPTATIONS.md'})
-    source.update({'bundle':build,'runtime':runtime,'flutterRevision':SDK,'modelDefault':'5m','rendering':'dart2wasm/skwasm single-threaded','serviceWorker':True,'serviceWorkerScope':'/play/'})
+    source.update({'bundle':build,'runtime':runtime,'flutterRevision':SDK,'modelDefault':'5m','rendering':'dart2wasm/skwasm or dart2js/CanvasKit; single-threaded','serviceWorker':True,'serviceWorkerScope':'/play/'})
     notices=app/'notices';notices.mkdir()
     for license_file in (web.parent.parent/'assets/fonts').glob('*LICENSE*'):
         shutil.copyfile(license_file,notices/license_file.name)
@@ -97,6 +100,8 @@ def build(source,flutter,scratch):
     subprocess.run(cmd+['precache','--web'],env=env,check=True)
     app=scratch/'app';prepare(source,app,flutter)
     subprocess.run(cmd+['pub','get','--enforce-lockfile'],cwd=app,env=env,check=True)
+    original_chess, browser_chess = prepare_chess(app)
+    subprocess.run([sys.executable,str(ROOT/'tools/test_browser_chess.py'),'--app',str(app),'--original',str(original_chess),'--flutter',str(flutter)],env=env,check=True)
     subprocess.run([sys.executable,str(source/'tool/build_workspace.py'),'preflight'],check=True)
     subprocess.run(cmd+['build','web','--wasm','--release','--no-pub','--target','lib/browser_entry.dart','--base-href','/play/app/','--no-web-resources-cdn','--source-maps','--pwa-strategy','none','--no-tree-shake-icons'],cwd=app,env=env,check=True)
     return assemble(app/'build/web',scratch/'deploy')

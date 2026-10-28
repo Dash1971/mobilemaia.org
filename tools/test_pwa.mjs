@@ -14,6 +14,8 @@ const caches={async keys(){return [...store.keys()];},async delete(name){return 
 const files=new Map([
   ['/play/index.html','<title>Host</title>'],['/play/app/index.html','<title>App</title>'],
   ['/play/app/bundle-test/main.dart.wasm','wasm-data'],['/lab/inference/core.mjs','export const version=1;'],
+  ['/play/app/bundle-test/main.dart.js','js-app'],['/play/app/bundle-test/canvaskit/canvaskit.js','renderer-js'],
+  ['/play/app/bundle-test/canvaskit/canvaskit.wasm','renderer-wasm'],
   ['/play/vendor/stockfish.js','worker-code'],
 ]);
 const assets=[...files].map(([url,data])=>({url,bytes:Buffer.byteLength(data),sha256:createHash('sha256').update(data).digest('hex')}));
@@ -44,6 +46,10 @@ assert.equal(store.has('unrelated-user-cache'),true);assert.equal(store.has('mob
 offline=true;const before=calls;
 for(const [url,expected] of [['/play/?source=pwa','<title>Host</title>'],['/play/app/?qa=test&v=new','<title>App</title>'],['/lab/inference/core.mjs?v=1','export const version=1;']]){
  const response=await event('fetch',{request:{method:'GET',mode:url.startsWith('/play/')?'navigate':'cors',url:origin+url}});assert.equal(await response.text(),expected);
+}
+for(const [url,expected] of files) {
+ const response=await event('fetch',{request:{method:'GET',mode:'cors',url:origin+url}});
+ assert.equal(await response.text(),expected,'Every compiler/renderer asset must be available with all network denied');
 }
 assert.equal(calls,before,'Offline app should not try a network request');
 const workerResponse=await event('fetch',{request:{method:'GET',mode:'same-origin',url:origin+'/play/vendor/stockfish.js#blob%3Averified-wasm'}});

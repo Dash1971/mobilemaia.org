@@ -87,7 +87,7 @@ async function invoke(channel,method,args={}){
     case 'openUrl':{const url=new URL(args.url);if(url.protocol!=='https:')throw new Error('Unsupported URL');window.open(url.href,'_blank','noopener,noreferrer');return null;}
     case 'dataDirectory':return '/mobile-maia';
     case 'samplingMetadata':return {backend:'onnx-web-wasm',model:modelId,modelSha256:maiaDiagnostics?.modelSha256 || '',runtime:'1.31.1'};
-    case 'systemDiagnostics':return {flavor:'browser',model:modelId,maia:maiaDiagnostics,pwa:await offlineStatus(),storage:'IndexedDB'};
+    case 'systemDiagnostics':return {flavor:'browser',compiler:globalThis.mobileMaiaNative.compiler,model:modelId,maia:maiaDiagnostics,pwa:await offlineStatus(),storage:'IndexedDB'};
     case 'saveSamplingData':{await flush();const path=args.readable?'/mobile-maia/sampling-data/report.html':'/mobile-maia/sampling-data/export.jsonl';const record=JSON.parse(records.get(path) || 'null');if(!record)throw new Error('Sampling export is unavailable');return download(record.text,args.readable?'mobile-maia-sampling.html':'mobile-maia-sampling.jsonl',args.readable?'text/html':'application/x-ndjson');}
     case 'setKeepScreenOn':try{if(args.enabled&&!wake)wake=await navigator.wakeLock?.request('screen');else if(!args.enabled&&wake){await wake.release();wake=null;}}catch{}return null;
     default:throw new Error('Browser platform method is not implemented: '+method);

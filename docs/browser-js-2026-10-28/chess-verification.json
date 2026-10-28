@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "perftPositions": 165,
+  "comparison": "unmodified dartchess VM == adapted VM == compiled dart2js in Node",
+  "checks": {
+    "digest": 3933291835,
+    "bitboardChecks": 19008,
+    "moveChecks": 6042,
+    "perftNodes": 717822,
+    "perftPositions": 165
+  },
+  "driverSha256": "e6a8c0f260b85844a8bad3e90870331bec18a2b36e8157850f6c27b0cf57efb6"
+}

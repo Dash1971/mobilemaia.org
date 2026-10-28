@@ -3,7 +3,7 @@ import {pwa} from './pwa.mjs?v=__PWA_SOURCE__';
 const query=new URLSearchParams(location.search);
 const target=new URL('app/',location.href);
 const build=document.querySelector('meta[name="mobile-maia-build"]')?.content;if(build&&!build.startsWith('__'))target.searchParams.set('v',build);
-for(const name of ['model','qa','offlineqa'])if(query.has(name))target.searchParams.set(name,query.get(name));
+for(const name of ['model','qa','offlineqa','renderer'])if(query.has(name))target.searchParams.set(name,query.get(name));
 document.getElementById('app').src=target.href;
 // Isolated QA data belongs to this test, never to a normal app session.
 const qa=query.get('qa')?.match(/^[a-z0-9-]{1,60}$/)?.[0];

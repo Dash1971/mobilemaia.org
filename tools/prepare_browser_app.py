@@ -20,7 +20,7 @@ def prepare(source,output,flutter):
     patch('lib/main.dart',"import 'dart:io';","import 'browser/io.dart';\nimport 'browser/bridge.dart';\nimport 'browser/settings.dart';")
     patch('lib/main.dart',"import 'package:multistockfish/multistockfish.dart';","import 'browser/stockfish.dart';")
     patch('lib/main.dart','        LicenseRegistry,','        LicenseRegistry,\n        TargetPlatform,')
-    patch('lib/main.dart','  WidgetsFlutterBinding.ensureInitialized();','  WidgetsFlutterBinding.ensureInitialized();\n  SharedPreferences.setPrefix(browserPreferencePrefix);')
+    patch('lib/main.dart','  WidgetsFlutterBinding.ensureInitialized();','  WidgetsFlutterBinding.ensureInitialized();\n  reportBrowserCompiler();\n  SharedPreferences.setPrefix(browserPreferencePrefix);')
     patch('lib/main.dart',"const maiaEngineChannel = MethodChannel('maia_chess/engine');","final MethodChannel maiaEngineChannel = BrowserMaiaChannel();")
     patch('lib/src/app_appearance.dart','  return ThemeData(\n','  return ThemeData(\n    platform: TargetPlatform.android,\n')
     patch('lib/src/app_appearance.dart', '  static Future<AppDynamicColors?> _readSystemColors() async {', '  static Future<AppDynamicColors?> _readSystemColors() async {\n    if (Platform.isBrowser) return null;')
@@ -63,7 +63,7 @@ def prepare(source,output,flutter):
     patch('pubspec.yaml','    - family: LichessIcons',fontyaml+'    - family: LichessIcons')
     for licence in fonts.glob('*LICENSE*'):
         if 'Roboto' in licence.name: shutil.copyfile(licence,output/'assets/fonts'/licence.name)
-    (output/'lib/browser_entry.dart').write_text("import 'main.dart' if (dart.library.js) 'browser/unsupported.dart' as app;\nFuture<void> main() => app.main();\n")
+    (output/'lib/browser_entry.dart').write_text("import 'main.dart' as app;\nFuture<void> main() => app.main();\n")
     web=output/'web';web.mkdir()
     (web/'index.html').write_text('''<!DOCTYPE html><html lang="en"><head><base href="$FLUTTER_BASE_HREF"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#101610"><title>Mobile Maia</title><link rel="manifest" href="/play/manifest.webmanifest"><link rel="apple-touch-icon" href="/play/icons/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Mobile Maia"><style>html,body{margin:0;width:100%;height:100%;background:#101610;color:#dce4d9;font-family:Roboto,Arial,sans-serif}</style></head><body><script type="module" src="../native/platform.mjs"></script></body></html>''')
     changed={name for name,digest in originals.items() if hashlib.sha256((output/name).read_bytes()).hexdigest()!=digest}

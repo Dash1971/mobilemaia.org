@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/maia-cpu-runtime.yml'
       - 'tools/build_maia_cpu_runtime.py'
+      - 'tools/finalize_maia_cpu.py'
       - 'browser-app/runtime/maia5m-ops.config'
 permissions:
   contents: read
@@ -30,4 +31,9 @@ jobs:
           path=pathlib.Path(os.environ['RUNNER_TEMP'])/'maia-cpu-build'
           if path.exists():
             assert json.loads((path/'owner.json').read_text())['owner']=='Mobile Maia non-shared CPU runtime build'
+            before=shutil.disk_usage(path.parent).free
+            removed=sum(p.stat().st_size for p in path.rglob('*') if p.is_file() and not p.is_symlink())
             shutil.rmtree(path)
+            print(json.dumps({'removed':str(path),'fileBytesRemoved':removed,
+                              'freeBytesBefore':before,'freeBytesAfter':shutil.disk_usage(path.parent).free,
+                              'retained':'uploaded runtime package only, pending verification; no models'},indent=2))

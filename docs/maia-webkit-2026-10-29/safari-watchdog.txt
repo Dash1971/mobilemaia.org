@@ -1,0 +1,39 @@
+Window: "Maia compatibility verification", App: Safari.
+0 standard window Maia compatibility verification, ID: owned Safari test window, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: Maia compatibility verification, URL: 127.0.0.1:8773/play/probe.html
+					5 heading Maia compatibility verification, Value: 1
+						6 text Maia compatibility verification
+					7 text Task-owned local test. Uses no app games or settings.
+					8 button Check blocked-worker recovery
+					9 button Run 5M reference
+					10 button End test and clear cache
+					11 text PASS: blocked worker stopped; page responsive; diagnostic stage retained
+					12 text {
+  "phase": "failed",
+  "trace": [
+    {
+      "phase": "configuration",
+      "at": 1793205190534
+    },
+    {
+      "phase": "worker startup",
+      "at": 1793205190534
+    },
+    {
+      "phase": "session creation",
+      "at": 1793205190562
+    },
+    {
+      "phase": "failed",
+      "at": 1793205191063
+    }
+  ],
+  "phaseAt": 1793205191063,
+  "failure": {
+    "stage": "session creation",
+    "kind": "timeout",
+    "message": "Maia stopped responding during session creation. Please retry.",
+    "at": 1

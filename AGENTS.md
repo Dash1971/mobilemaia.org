@@ -4,6 +4,12 @@ This is the standalone public website, hosted by GitHub Pages. Deploy `site/`
 plus the generated browser app bundle; never native build artifacts or models.
 It is independent of the Stable and Preview app repositories and release gates.
 
+- Absolute user constraint: Mobile Maia Android app repositories are read-only.
+  Never edit, commit, push or release Android app code from this website task.
+  Export the pinned source read-only; browser transformations belong only in
+  this repository and its task-owned disposable web-build copies. Preserve the
+  existing Android/browser-Wasm experience when fixing WebKit JS compatibility.
+
 - Before changing the browser app or upgrading its app-source pin, read
   `docs/WEB_ADAPTATIONS.md`. Update that register with every web-specific
   behavior/adapter change and follow its source-upgrade checklist.

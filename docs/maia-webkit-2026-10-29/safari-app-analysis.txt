@@ -1,0 +1,47 @@
+Window: "Mobile Maia — Try the app", App: Safari.
+0 standard window Mobile Maia — Try the app, ID: owned Safari test window, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: Mobile Maia — Try the app, URL: 127.0.0.1:8773/play/?qa=webkit-play-20261029&offlineqa=1
+					5 link Skip to Mobile Maia, Value: 127.0.0.1:8773/play/?qa=webkit-play-20261029&offlineqa=1#app
+					6 container
+						7 link Mobile Maia., Value: 127.0.0.1:8773/
+						8 container Main navigation
+							9 link Research, Value: 127.0.0.1:8773/research/
+							10 link The Android app, Value: 127.0.0.1:8773/#download
+					11 container
+						12 text TRY IT BEFORE YOU INSTALL
+						13 heading Value: 1, Mobile Maia.
+In your browser.
+							14 text Mobile Maia. In your browser.
+						15 text The Mobile Maia app, running in your browser. Play, explore positions, and review games with the same screens and controls. Maia runs locally on your CPU. This browser version starts with the smaller 5M model.
+						16 link Get the Android app, Value: 127.0.0.1:8773/#download
+						17 text First engine use downloads Maia and its runtime. Games and settings are stored in this browser. 
+						18 link Privacy and source, Value: 127.0.0.1:8773/about.html#browser-play
+						19 text .
+						20 button Show QA diagnostics
+						21 button End this test and clear its data
+						22 container Mobile Maia app
+							23 scroll area
+								24 HTML content Description: Mobile Maia, URL: 127.0.0.1:8773/play/app/?v=0d816ac0ed97955b&qa=webkit-play-20261029&offlineqa=1
+									25 container
+										26 button Home
+										27 heading Analysis Board, Value: 2
+											28 text Analysis Board
+										29 button (collapsed) Share and export, Secondary Actions: Expand
+										30 text +0.3
+										31 text +0.3
+										32 text e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Nf6
+										33 text +0.3
+										34 text d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7
+										35 button Move history: off Maia 1500 move probabilities. Move history: off, e4 64%, d4 24%, c4 3%, other legal moves 9%. M1500 e4 64% d4 24% c4 3% Other 9%
+										36 button Moves Moves
+										37 button Computer analysis Computer analysis
+										38 button Analysis menu
+										39 button Flip board
+										40 container Turn engine off
+											41 button SF
+										42 button (disabled) Previous move Previous move
+										43 button (disabled) Next move Next move
+				44 scroll bar (settable, float) 0

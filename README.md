@@ -132,10 +132,13 @@ Maia uses the pinned 5M model on one CPU WASM thread. Its unchanged Dart encoder
 sampler and analysis logic consume full raw policy/value outputs from ONNX Runtime
 Web. Stockfish 19 Lite runs in a local single-threaded UCI worker under the app's
 own analysis scheduler. Smaller model/engine results can differ from Android.
-The 5M runtime uses a source-verified ORT loader with a 256 MiB shared-memory
-ceiling rather than the upstream 4 GiB maximum, addressing older iOS startup
-allocation failures. Model/Wasm bytes remain unchanged. The 79M comparison keeps
-the upstream loader. Copy diagnostics includes runtime stage and memory limit.
+Android/Chromium and Flutter Wasm keep the existing 5M worker and source-verified
+256 MiB shared-memory loader. Only the WebKit JavaScript fallback uses a separate
+model-scoped ORT build with no threads/shared memory and a 256 MiB binary ceiling.
+The earlier shared-memory cap alone did not resolve the reported iOS 16 crash.
+The model bytes and app UI/logic are unchanged. The 79M comparison keeps upstream.
+Compatibility initialization has parent-thread deadlines/cancellation and bounded
+diagnostic snapshots. See [isolation and verification](docs/maia-webkit-2026-10-29.md).
 `?model=79m` selects the existing full-model download experimentally; a model
 selection/download UI and reliable physical-phone 79M support remain future work.
 
@@ -151,7 +154,8 @@ performance require device testing; compilation is not that evidence.
 Installation is available through Settings → Install and offline (or the browser's
 Install/Add to Home Screen command). Settings → Save for offline use saves the
 app plus selected Maia, CPU runtime and Stockfish; with 5M, the initial offline
-package totals about 76 MB, including both app builds. Wait for Ready for offline play and analysis before
+package totals about 76 MB with the standard runtime, including both app builds;
+the compatibility runtime is smaller. Wait for Ready for offline play and analysis before
 disconnecting. Full offline saving is opt-in so an ordinary first visit does not
 compete with Maia's download. Cached files can be evicted by the browser.
 
@@ -174,6 +178,9 @@ python3 -m http.server 8080 --bind 127.0.0.1 --directory .scratch/browser-build/
 The source checkout must contain the pinned app commit. The helper enforces the
 app's disk preflight, exports only source/assets without the 79M model, applies
 guarded platform changes, and hashes canonical UI/logic files to reject changes.
+Android app repositories are strictly read-only; all transformations target the
+disposable browser build. The compatibility CPU package is fetched from its
+hash-pinned website runtime release, not rebuilt for each app deployment.
 Every compiled asset uses a content-addressed bundle path to prevent mixed old
 fonts/code after deployment. Flutter service-worker generation is disabled; the build generates our scoped
 service worker and its exact asset hashes instead.
@@ -187,6 +194,10 @@ known perft counts via `tools/test_browser_chess.py` before compiling the app.
 
 Run `node --experimental-vm-modules tools/test_browser_runtime.mjs` for the raw
 inference boundary, queue/error/disposal checks and pinned Stockfish integrity;
+`node --experimental-vm-modules tools/test_compat_runtime.mjs` checks the isolated
+worker, `node tools/test_maia_client.mjs` checks deadlines/cancellation, and
+`node --experimental-vm-modules tools/test_runtime_routing.mjs` protects the
+standard Android/Flutter Wasm dispatch and existing engine source hashes.
 `node tools/test_inference.mjs` checks the shared encoder/reference/runtime pins.
 `node --experimental-vm-modules tools/test_pwa.mjs` checks install opt-in,
 offline routing, integrity failures/retry, update safety and cache isolation.
@@ -196,6 +207,11 @@ an explicitly owned ignored scratch directory (`owner.json`): modes `baseline`,
 `bounded`, `reject-upstream`, then `compare`. It downloads only the pinned 5M/CPU
 artifacts, tests all eight native-reference fixtures twice and compares complete
 policy/value tensors. Remove task-owned models/runtime files after verification.
+The build additionally runs `tools/test_maia_cpu.mjs` in isolated `original`,
+`custom` and `compare` processes, checking real binary memory types and every
+policy/value output against upstream and native fixtures. Its runtime package
+is pinned in `browser-app/runtime/maia5m-cpu.json`; rebuild that package on Linux
+using the dedicated workflow when its source/operators/build settings change.
 See [implementation and verification](docs/browser-native-2026-10-27.md) and
 [remaining work](docs/browser-app-roadmap.md). No Android checkout, release gate,
 or shared Stable/Preview build helper changes; no companion app port applies.

@@ -1,0 +1,27 @@
+{
+  "stable-250-preparation": {
+    "revision": "aeea49817c34f48397e910894414c1d8b0352124",
+    "workingTreeClean": true,
+    "access": "read-only"
+  },
+  "standardBrowserPath": {
+    "baselineWebsiteCommit": "129e90b7776f44ae34a50213a1e36bb9956c8948",
+    "workerSha256": "7278e1c4c7971e1cae5224781e0721608f9d3d0f10428130485047dbd7935079",
+    "loaderSha256": "01dbec91baae8526e56ae78123b9481178b9d7db73836c90c391eb931967cd9f",
+    "adapterChange": "Only an export of unchanged stockfishBytes; body hash guarded by test_runtime_routing.mjs",
+    "compatibilitySelection": "actual dart2js/CanvasKit compiler AND WebKit UA; excludes Android/Chromium"
+  },
+  "compiledApp": {
+    "javascript": {
+      "sha256": "9b4078f8f445f7509c9b449ca86f7a5e42ee55ec27b133a635b26975bd655110",
+      "byteIdenticalToCurrentPublic": true
+    },
+    "wasm": {
+      "bytes": 4002531,
+      "importSetIdentical": true,
+      "oldSha256": "e9b3786d17e2c2c1b9e207b424af606a270239334df83c1d068b6928d05c72f9",
+      "newSha256": "df97892dc998eb075b641d15633bd0046cfb46edc795780156f7a960fb39b82b",
+      "note": "Recompilation is not byte-identical: import-string interning order differs. App source and compiler pin are unchanged. Real Wasm/engine execution verified separately."
+    }
+  }
+}

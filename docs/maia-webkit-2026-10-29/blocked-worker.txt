@@ -1,0 +1,3 @@
+Browser tab: 245636732, Title: "Maia compatibility verification", URL: "http://127.0.0.1:8773/play/probe.html".
+There has been no change in the accessibility tree.
+The focused UI element is 5 button Check blocked-worker recovery, ID: hang

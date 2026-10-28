@@ -4,6 +4,7 @@ import argparse, hashlib, json, os, pathlib, re, shutil, subprocess, sys
 from prepare_browser_app import ROOT, SOURCE, prepare
 from prepare_browser_chess import prepare_chess
 from prepare_browser_runtime import check as check_runtime
+from prepare_maia_cpu import prepare as prepare_cpu, install as install_cpu
 GIB=1024**3
 SDK='737ba8f885dc774b53b442759999a312c9461e4e'
 def digest_tree(path):
@@ -14,7 +15,8 @@ def digest_tree(path):
 
 def prepare_offline_shell(deploy, app, bundle):
     """Precache both compiler targets and their renderers, excluding source maps."""
-    paths = set(p for p in (deploy/'play').rglob('*') if p.is_file() and not p.is_relative_to(app))
+    paths = set(p for p in (deploy/'play').rglob('*') if p.is_file() and not p.is_relative_to(app)
+                and not (p.is_relative_to(deploy/'play/runtime') and p.suffix=='.wasm'))
     paths.update([deploy/'styles.css', deploy/'assets/icon.png'])
     lab = deploy/'lab/inference'
     paths.update(lab/name for name in ['config.json','core.mjs','vendor/ort.wasm.min.mjs',
@@ -41,8 +43,10 @@ def assemble(web,deploy):
     check_runtime()
     if deploy.exists(): raise ValueError('Deployment output must be new.')
     shutil.copytree(ROOT/'site',deploy)
+    cpu_package,cpu_pin=prepare_cpu(web.parent.parent.parent)
+    cpu_runtime=install_cpu(cpu_package,cpu_pin,deploy)
     pwa_version=hashlib.sha256((deploy/'play/pwa.mjs').read_bytes()).hexdigest()[:16]
-    for relative in ['play/host.mjs','play/native/platform.mjs']:
+    for relative in ['play/host.mjs','play/native/platform.mjs','play/native/platform-compat.mjs']:
         script=deploy/relative
         script.write_text(script.read_text().replace('__PWA_SOURCE__',pwa_version))
     app=deploy/'play/app';app.mkdir()
@@ -61,9 +65,9 @@ def assemble(web,deploy):
     marker=bootstrap.rindex('_flutter.loader.load(')
     bootstrap=bootstrap[:marker]+f"const useJavaScript = new URLSearchParams(location.search).get('renderer') === 'js';\n_flutter.loader.load({{config:{{...(useJavaScript ? {{renderer:'canvaskit'}} : {{}}),assetBase:'bundle-{build}/',canvasKitBaseUrl:'bundle-{build}/canvaskit/',canvasKitVariant:'full',forceSingleThreadedSkwasm:true}}}});\n"
     name=f'flutter_bootstrap.{build}.js';(app/name).write_text(bootstrap)
-    runtime=hashlib.sha256(b''.join((deploy/'play/native'/f).read_bytes() for f in ['platform.mjs','maia-worker.mjs','ort-5m-256m.mjs'])).hexdigest()[:16]
+    runtime=hashlib.sha256(b''.join(p.read_bytes() for p in sorted((deploy/'play/native').glob('*.mjs')))+(deploy/'play/maia-cpu.json').read_bytes()).hexdigest()[:16]
     index=index.replace('</head>',f'<meta name="mobile-maia-bootstrap" content="{name}"><meta name="mobile-maia-asset-base" content="bundle-{build}/"></head>')
-    index=index.replace('../native/platform.mjs','../native/platform.mjs?v='+runtime)
+    index=index.replace('../native/platform.mjs','../native/platform-entry.mjs?v='+runtime)
     (app/'index.html').write_text(index)
     host=deploy/'play/index.html'
     host_text=host.read_text().replace('__BROWSER_BUILD__',build)
@@ -72,10 +76,12 @@ def assemble(web,deploy):
         host_text=re.sub(re.escape(name)+r'\?v=[^"\s]+',name+'?v='+version,host_text)
     host.write_text(host_text)
     source=json.loads((web.parent.parent/'browser-source.json').read_text())
-    source['maia5mCpuLoader']={'memoryMaximumMiB':256,
-        'sha256':hashlib.sha256((deploy/'play/native/ort-5m-256m.mjs').read_bytes()).hexdigest(),
-        'wasmBinaryChanged':False,'modelChanged':False}
+    source['maia5mCompatibilityRuntime']={**cpu_runtime,'selection':'dart2js/CanvasKit AND WebKit; excludes Android/Chromium',
+        'package':cpu_pin['downloadBase'],
+        'loaderSha256':cpu_pin['files']['ort-wasm-simd.mjs']['sha256'],
+        'wasmBinaryChanged':True,'modelChanged':False}
     source['maiaMemoryVerification']=json.loads((web.parent.parent.parent/'memory-comparison.json').read_text())
+    source['maiaCompatibilityVerification']=json.loads((web.parent.parent.parent/'cpu-comparison.json').read_text())
     source['chessVerification']=json.loads((web.parent.parent.parent/'chess-verification.json').read_text())
     website_revision=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD'],text=True).strip()
     source.update({'websiteRevision':website_revision,
@@ -101,12 +107,15 @@ def build(source,flutter,scratch):
     subprocess.run([sys.executable,str(source/'tool/build_workspace.py'),'preflight'],check=True)
     if shutil.disk_usage(ROOT).free<12*GIB: raise ValueError('Need expected 2 GiB growth plus 10 GiB reserve.')
     scratch.mkdir(parents=True);(scratch/'owner.json').write_text(json.dumps({'owner':'Mobile Maia browser build','source':SOURCE,'retention':'through deployment verification','expectedGrowthGiB':2,'reserveGiB':10},indent=2)+'\n')
-    # Use real pinned model/runtime bytes to guard the derived memory limit and
-    # output parity. Downloads stay outside deploy/ in this owned scratch root.
+    # Inspect actual memory types and compare complete real-model outputs with
+    # upstream in isolated processes. Keep model/test files outside deploy/.
     node=shutil.which('node')
     if not node: raise ValueError('Node.js is required for browser verification.')
+    cpu_package,_=prepare_cpu(scratch)
     for mode in ['baseline','reject-upstream','bounded','compare']:
         subprocess.run([node,str(ROOT/'tools/test_maia_memory.mjs'),'--scratch',str(scratch),'--mode',mode],check=True)
+    for mode in ['original','custom','compare']:
+        subprocess.run([node,str(ROOT/'tools/test_maia_cpu.mjs'),'--scratch',str(scratch),'--runtime',str(cpu_package),'--mode',mode],check=True)
     env=os.environ.copy();env['XDG_CONFIG_HOME']=str(scratch/'config');env['FLUTTER_SUPPRESS_ANALYTICS']='true'
     cmd=[str(flutter/'bin/flutter')]
     # A fresh official SDK checkout has no material fonts until tool bootstrap.

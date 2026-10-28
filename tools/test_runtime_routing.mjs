@@ -1,0 +1,45 @@
+// Keep the compatibility repair out of Android and Flutter Wasm inference.
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import vm from 'node:vm';
+import {usesWebKitCompatibility} from '../site/play/native/runtime-route.mjs';
+const root=new URL('../site/play/native/',import.meta.url);
+const hash=text=>createHash('sha256').update(text).digest('hex');
+const platform=await readFile(new URL('platform.mjs',root),'utf8');
+const suffix='\n// Reuse the verified Stockfish download in the isolated WebKit adapter.\nexport { stockfishBytes };\n';
+assert.ok(platform.endsWith(suffix));
+assert.equal(hash(platform.slice(0,-suffix.length)),'37c4a72671b9892439b7cfa46497e1d639642ca9e8f91e09628dbff06f38b625');
+assert.equal(hash(await readFile(new URL('maia-worker.mjs',root))),'7278e1c4c7971e1cae5224781e0721608f9d3d0f10428130485047dbd7935079');
+assert.equal(hash(await readFile(new URL('ort-5m-256m.mjs',root))),'01dbec91baae8526e56ae78123b9481178b9d7db73836c90c391eb931967cd9f');
+const safari='Mozilla/5.0 (iPhone; CPU iPhone OS 16_7_16 like Mac OS X) AppleWebKit/605.1.15 Version/16.6 Mobile Safari/604.1';
+const android='Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140.0.0.0 Mobile Safari/537.36';
+const chromium='Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/140.0.0.0 Safari/537.36';
+for(const ua of [safari,android,chromium,'Firefox/143'])assert.equal(usesWebKitCompatibility('dart2wasm/SkWasm',ua),false);
+for(const ua of [android,chromium,'Firefox/143'])assert.equal(usesWebKitCompatibility('dart2js/CanvasKit',ua),false);
+assert.equal(usesWebKitCompatibility('dart2js/CanvasKit',safari),true);
+assert.equal(usesWebKitCompatibility(undefined,safari),false);
+assert.equal(usesWebKitCompatibility('dart2js/CanvasKit',safari.replace('Version/16.6','CriOS/140.0')),true);
+const calls=[],imports=[];
+const host={compiler:'dart2wasm/SkWasm',invoke:async(...args)=>{calls.push(['standard',...args]);return 'standard';}};
+const navigator={userAgent:safari};
+const context=vm.createContext({URL,Set,navigator,mobileMaiaNative:host});
+const route=new vm.SourceTextModule(await readFile(new URL('runtime-route.mjs',root),'utf8'),{context});await route.link(()=>{});await route.evaluate();
+const standard=new vm.SyntheticModule(['stockfishBytes'],function(){this.setExport('stockfishBytes',()=>{});},{context});await standard.link(()=>{});await standard.evaluate();
+const compat=new vm.SyntheticModule(['createCompatibility'],function(){this.setExport('createCompatibility',()=>({invoke:async(...args)=>{calls.push(['compat',...args]);return 'compat';}}));},{context});await compat.link(()=>{});await compat.evaluate();
+const entry=new vm.SourceTextModule(await readFile(new URL('platform-entry.mjs',root),'utf8'),{context,
+ initializeImportMeta:meta=>{meta.url='https://mobilemaia.org/play/native/platform-entry.mjs?v=hash';},
+ importModuleDynamically:async url=>{imports.push(url);if(url.includes('runtime-route'))return route;if(url.includes('platform-compat'))return compat;if(url.includes('platform.mjs'))return standard;throw new Error(url);}});
+await entry.link(()=>{});await entry.evaluate();
+assert.equal(await host.invoke('maia_chess/engine','prepare'),'standard');
+host.compiler='dart2js/CanvasKit';navigator.userAgent=android;
+for(const method of ['prepare','predict','release','prepareOffline','systemDiagnostics'])assert.equal(await host.invoke('maia_chess/engine',method),'standard');
+assert.ok(!imports.some(url=>url.includes('platform-compat')),'Android must not even load the compatibility adapter');
+navigator.userAgent=safari;
+assert.equal(await host.invoke('maia_chess/engine','prepare'),'compat');
+assert.equal(await host.invoke('maia_chess/engine','predict',{}),'compat');
+assert.equal(await host.invoke('maia_chess/engine','openPgnFile'),'standard');
+assert.equal(await host.invoke('maia_chess/sound_effect','release'),'standard');
+assert.equal(imports.filter(url=>url.includes('platform-compat')).length,1);
+assert.ok(imports.every(url=>url.endsWith('?v=hash')));
+console.log('PASS: Android/Chromium/Flutter Wasm retain standard dispatch; WebKit+JS alone loads compatibility; prior standard adapter body, worker and CPU loader hashes unchanged.');

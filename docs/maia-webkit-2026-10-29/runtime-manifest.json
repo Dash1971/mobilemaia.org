@@ -1,0 +1,68 @@
+{
+  "runtime": "onnxruntime-web",
+  "version": "1.31.1",
+  "sourceCommit": "6af1a932e2286d5c58166085d24c68783033edee",
+  "emsdkVersion": "4.0.23",
+  "profile": "maia5m-simd-unshared",
+  "threads": false,
+  "sharedMemory": false,
+  "memoryMaximumMiB": 256,
+  "operatorsConfigSha256": "c9acec4f343ed36380f947244b9b686a6f3a0d71f27d82d587767ba22395cc7c",
+  "recipeSha256": "369841dfb5531ef42b9cd84633ab6f3d8b6e9c260127d510d1741799f2ebf93a",
+  "websiteCommit": "6a8c4af6fa7946f8d1455e23873adfb004279c2b",
+  "command": [
+    "--config",
+    "Release",
+    "--build_dir",
+    "/home/runner/work/_temp/maia-cpu-build/build",
+    "--build_wasm",
+    "--enable_wasm_simd",
+    "--skip_tests",
+    "--disable_wasm_exception_catching",
+    "--enable_wasm_api_exception_catching",
+    "--disable_rtti",
+    "--disable_contrib_ops",
+    "--disable_ml_ops",
+    "--include_ops_by_config",
+    "/home/runner/work/mobilemaia.org/mobilemaia.org/browser-app/runtime/maia5m-ops.config",
+    "--emsdk_version",
+    "4.0.23",
+    "--parallel",
+    "4",
+    "--cmake_generator",
+    "Ninja",
+    "--cmake_extra_defines",
+    "CMAKE_CXX_FLAGS_RELEASE=-Os -DNDEBUG -Wno-error=pass-failed",
+    "CMAKE_C_FLAGS_RELEASE=-Os -DNDEBUG"
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    "maia5m-ops.config": {
+      "bytes": 372,
+      "sha256": "c9acec4f343ed36380f947244b9b686a6f3a0d71f27d82d587767ba22395cc7c"
+    },
+    "ort-wasm-simd.wasm": {
+      "bytes": 4595085,
+      "sha256": "a14f47c48f44c05cd4211a13e39aed70ed15e20942081ac2ecee099972dfc26b"
+    },
+    "ort-wasm-simd.mjs": {
+      "bytes": 15947,
+      "sha256": "2546bb87e098c7d2dbcfc6efc1dcf936cd56f8290de757cd10dc716abc67b178"
+    },
+    "ThirdPartyNotices.txt": {
+      "bytes": 338088,
+      "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3"
+    }
+  },
+  "unsharedLoaderCleanup": {
+    "originalLoader": {
+      "bytes": 16072,
+      "sha256": "38fbbbc8d331b2aad342e8304dd03d1c3607b86b5500e3c04192063e4e21a772"
+    },
+    "processorSha256": "0634fe467f5d3b18bc1c308bae83614a4f63c7fa036460a2570b9301f7d6e093",
+    "change": "Remove the sole, unused SharedArrayBuffer declaration and zero-page shared-memory probe; Wasm binary unchanged."
+  }
+}

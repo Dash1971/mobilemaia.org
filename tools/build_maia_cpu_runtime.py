@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build a model-scoped, non-shared ORT CPU runtime in owned Linux scratch."""
 import argparse, hashlib, json, os, pathlib, shutil, subprocess, sys, time, venv
+from finalize_maia_cpu import finalize
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 SOURCE='6af1a932e2286d5c58166085d24c68783033edee'
@@ -64,6 +65,7 @@ def build(scratch):
       'websiteCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
       'command':command[2:],'files':files}
     (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    manifest=finalize(output)
     print(json.dumps(manifest,indent=2))
 
 if __name__=='__main__':

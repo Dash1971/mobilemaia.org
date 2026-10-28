@@ -153,3 +153,6 @@ try{
   await storageReady();
   const script=document.createElement('script');script.src=document.querySelector('meta[name="mobile-maia-bootstrap"]')?.content || 'flutter_bootstrap.js';document.body.append(script);
 }catch(error){document.body.textContent='Mobile Maia could not open browser storage. '+error.message;}
+
+// Reuse the verified Stockfish download in the isolated WebKit adapter.
+export { stockfishBytes };

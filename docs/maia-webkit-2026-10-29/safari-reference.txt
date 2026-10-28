@@ -1,0 +1,24 @@
+Window: "Maia compatibility verification", App: Safari.
+0 standard window Maia compatibility verification, ID: owned Safari test window, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: Maia compatibility verification, URL: 127.0.0.1:8773/play/probe.html
+					5 heading Maia compatibility verification, Value: 1
+						6 text Maia compatibility verification
+					7 text Task-owned local test. Uses no app games or settings.
+					8 button Check blocked-worker recovery
+					9 button (disabled) Run 5M reference
+					10 button End test and clear cache
+					11 text PASS: non-shared 5M matches native reference
+					12 text {
+  "loader": "/play/runtime/maia5m-a14f47c48f44c05c/ort-wasm-simd.mjs",
+  "sharedMemory": false,
+  "maximumMiB": 256,
+  "policyLength": 4352,
+  "valueLength": 3,
+  "policyMaxError": 0.0000171661376953125,
+  "valueMaxError": 0.0000014603137969970703,
+  "sessionMs": 404.99999999999994,
+  "inferenceMs": 29
+}

@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Maia compatibility verification</title>
+<h1>Maia compatibility verification</h1><p>Task-owned local test. Uses no app games or settings.</p>
+<button id="hang">Check blocked-worker recovery</button><button id="run">Run 5M reference</button><button id="end">End test and clear cache</button><p id="status">Ready</p><pre id="result"></pre>
+<script type="module">
+import {MaiaClient} from './native/maia-client.mjs?v=0bf11ed0c412b667';
+import {encode} from '../lab/inference/core.mjs';
+const key='mobile-maia-engine-qa-webkit-runtime-20261029';let client,worker,blob;
+const status=document.querySelector('#status'),result=document.querySelector('#result');
+document.querySelector('#hang').onclick=async()=>{
+ try{
+  blob=URL.createObjectURL(new Blob(["self.onmessage=()=>{postMessage({type:'initializing'});for(;;){}}"],{type:'text/javascript'}));
+  client=new MaiaClient({config:async()=>({}),worker:()=>new Worker(blob),limits:{boot:3000,session:500,cooldown:0}});
+  status.textContent='Waiting for main-thread deadline…';
+  try{await client.prepare();throw new Error('Expected timeout');}catch(error){
+   const snapshot=client.snapshot();if(snapshot.failure?.kind!=='timeout' || snapshot.failure.stage!=='session creation')throw error;
+   result.textContent=JSON.stringify(snapshot,null,2);status.textContent='PASS: blocked worker stopped; page responsive; diagnostic stage retained';
+  }
+ }catch(error){status.textContent='ERROR: '+error.message;}
+ finally{client?.release();if(blob)URL.revokeObjectURL(blob);blob=null;}
+};
+document.querySelector('#run').onclick=async()=>{
+ try{
+  document.querySelector('#run').disabled=true;status.textContent='Downloading and initializing reference…';
+  const config=await(await fetch('../lab/inference/config.json')).json();
+  config.browserRuntime5m=await(await fetch('maia-cpu.json')).json();
+  const fixture=(await(await fetch('../lab/inference/fixtures-5m.json')).json())[0];
+  const source=await(await fetch('app/source.json')).json();
+  worker=new Worker('native/maia-compat-worker.mjs?v='+source.runtime,{type:'module'});
+  worker.onerror=e=>status.textContent='ERROR: '+e.message;
+  worker.onmessage=({data})=>{try{
+   if(data.type==='error')throw new Error(data.error);
+   if(data.type==='initializing')status.textContent='Creating non-shared 5M session…';
+   if(data.type==='ready')worker.postMessage({type:'predict',id:1,arguments:{tokens:encode(fixture.historyFens,fixture.history),selfElo:fixture.elo,opponentElo:fixture.elo}});
+   if(data.type==='prediction'){
+    let policyError=0,valueError=0;
+    for(const sample of fixture.nativePolicySamples)policyError=Math.max(policyError,Math.abs(data.policy[sample.index]-sample.logit));
+    for(let i=0;i<3;i++)valueError=Math.max(valueError,Math.abs(data.values[i]-fixture.nativeValueLogits[i]));
+    if(data.policy.length!==4352 || data.values.length!==3 || policyError>.002 || valueError>.002 || data.diagnostics.sharedMemory!==false)throw new Error('Reference/profile mismatch');
+    status.textContent='PASS: non-shared 5M matches native reference';
+    result.textContent=JSON.stringify({loader:data.diagnostics.loader,sharedMemory:data.diagnostics.sharedMemory,
+     maximumMiB:data.diagnostics.wasmMemoryMaxMiB,policyLength:data.policy.length,valueLength:data.values.length,
+     policyMaxError:policyError,valueMaxError:valueError,sessionMs:data.diagnostics.sessionCreationMs,inferenceMs:data.diagnostics.inferences.at(-1).ms},null,2);
+   }
+  }catch(error){status.textContent='ERROR: '+error.message;}};
+  worker.postMessage({type:'init',config:{...config,browserModel:'5m',browserQa:true,browserOfflineQa:true,browserCacheName:key}});
+ }catch(error){status.textContent='ERROR: '+error.message;}
+};
+document.querySelector('#end').onclick=async()=>{client?.release();worker?.terminate();if(blob)URL.revokeObjectURL(blob);await caches.delete(key);status.textContent='Test cache cleared; workers stopped.';};
+</script></html>

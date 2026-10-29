@@ -10,12 +10,19 @@ const config = JSON.parse(await readFile(new URL('config.json', root)));
 assert.equal(fixtures.length, 8);
 assert.equal(config.defaultModel, '5m');
 assert.equal(selectedModel(config).id, '5m');
-assert.equal(selectedModel(config, '79m').bytes, 316034244);
+assert.throws(() => selectedModel(config, '79m'), /Unknown/);
+assert.deepEqual(Object.keys(config.models), ['5m']);
+assert.ok(!JSON.stringify(config).includes('media.githubusercontent.com/media/'), 'browser config must not point to Git LFS');
+for (const file of ['../../play/native/platform.mjs', '../../play/native/platform-compat.mjs']) {
+  const source = await readFile(new URL(file, root), 'utf8');
+  assert.match(source, /const modelId\s*=\s*'5m'/, `${file} must ignore the 79M query override`);
+}
+const lab = await readFile(new URL('index.html', root), 'utf8');
+assert.ok(!lab.includes('<option value="79m">'), 'benchmark must not offer the LFS model');
 assert.throws(() => selectedModel(config, 'other'), /Unknown/);
 assert.equal(downloadBytes(config, '5m', 'wasm'), 36195504);
 assert.equal(downloadBytes(config, '5m', 'webgpu'), 50094390);
-assert.equal(downloadBytes(config, '79m', 'wasm'), 330883096);
-assert.equal(downloadBytes(config, '79m', 'webgpu'), 344781982);
+assert.throws(() => downloadBytes(config, '79m', 'wasm'), /Unknown/);
 assert.throws(() => downloadBytes(config, '5m', 'other'), /Unknown/);
 const smallFixtures = JSON.parse(await readFile(new URL(config.models['5m'].fixtures, root)));
 assert.equal(smallFixtures.length, 8);
@@ -58,9 +65,7 @@ for (const file of config.runtime.files) {
   assert.equal(bytes.length, file.bytes);
   assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256, file.path);
 }
-assert.equal(config.models['79m'].sha256, '3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010');
 assert.equal(config.models['5m'].sha256, 'ddae2aa893b5ca7ec94d24178871f1c337d09fd72ff38abe8d76b8ecf08cb942');
-assert.notEqual(config.models['5m'].url, config.models['79m'].url);
 for (const backend of ['wasm', 'webgpu']) {
   assert.match(config.runtime.assets[backend].url, /onnxruntime-web@1\.31\.1\//);
   assert.ok(config.runtime.files.some(f => f.path === config.runtime.assets[backend].module));

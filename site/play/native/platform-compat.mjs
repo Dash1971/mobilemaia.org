@@ -6,7 +6,8 @@ export function createCompatibility({stockfishBytes}) {
   const params=new URLSearchParams(location.search),qa=params.get('qa')?.match(/^[a-z0-9-]{1,60}$/)?.[0];
   const offlineQa=!!qa && params.get('offlineqa')==='1',keepEngines=!qa || offlineQa;
   const cacheName=qa?'mobile-maia-engine-qa-'+qa:CACHE_NAME;
-  const modelId=params.get('model')==='79m'?'79m':'5m';
+  // Browser downloads are restricted to the non-LFS 5M model.
+  const modelId='5m';
   let configPromise,offlinePreparation,offlinePhase;
   function config(){
     if(configPromise)return configPromise;
@@ -19,7 +20,7 @@ export function createCompatibility({stockfishBytes}) {
   const client=new MaiaClient({config,worker:()=>{
     const url=new URL('maia-compat-worker.mjs',import.meta.url);url.search=new URL(import.meta.url).search;
     return new Worker(url,{type:'module'});
-  },limits:modelId==='79m'?{session:85000}:{}});
+  }});
   async function cachedEngines(){
     if(!keepEngines || !globalThis.caches)return false;
     try{

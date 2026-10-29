@@ -30,23 +30,6 @@
         },
         "fixturesSha256": "e7e9dbcd3545d18b30f962b7a6fef1fc531a2c46af55134646a7fda201e65352"
       }
-    },
-    "79m": {
-      "id": "79m",
-      "name": "Maia-3 79M (current Android export)",
-      "bytes": 316034244,
-      "sha256": "3454b03ae78baa64a87b345fdb1a457265d912caec531039b074f07eda0d8010",
-      "url": "https://media.githubusercontent.com/media/Dash1971/maia-chess-android/5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84/assets/models/maia3-79m.onnx",
-      "sourceCommit": "5f6743eed5491d2e8413fe0dfd1f8ef612d0aa84",
-      "fixtures": "fixtures.json",
-      "reference": {
-        "repository": "Dash1971/mobile-maia-research",
-        "commit": "74d8684db865753080da72c6f43b1973bbfd668e",
-        "path": "studies/score-reliability-2026-10-27/data/known-case-sanity.json",
-        "whiteScoreTolerance": 0.0005,
-        "sha256": "27a67210cbdeb9a122f9d208b5a6a8546f98764d646cdd58a568a2e99d3272c2",
-        "fixturesSha256": "425b097fd83d97d81d100674d03a891b1e3195b24ac7f235fb8097d7d0caed45"
-      }
     }
   },
   "runtime": {

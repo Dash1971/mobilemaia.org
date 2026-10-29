@@ -166,6 +166,9 @@ not deliberately discard model downloads. Installation does not give the browser
 native inference speed. Start game now begins Maia preparation before the first
 prediction. The native System default theme follows browser/OS light/dark;
 wallpaper-derived Android system colors are unavailable through browser APIs.
+Human move timing defaults to on for new browser/PWA profiles and when resetting
+settings. Saved choices, including off, are preserved. This reuses the existing
+app timing behavior; the Android app defaults and source remain unchanged.
 
 Build using the official Flutter SDK revision pinned in the build helper:
 

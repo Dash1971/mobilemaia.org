@@ -26,6 +26,11 @@ def prepare(source,output,flutter):
     patch('lib/src/app_appearance.dart', '  static Future<AppDynamicColors?> _readSystemColors() async {', '  static Future<AppDynamicColors?> _readSystemColors() async {\n    if (Platform.isBrowser) return null;')
     patch('lib/src/app_appearance.dart', '              controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable', "              Platform.isBrowser\n                  ? 'Wallpaper-based system colors are not available in a browser. Choose System default above to follow light/dark mode.'\n                  : controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable")
     patch('lib/src/play.dart', '    if (_storageBlocked || _startingGame || !mounted) return;', "    if (_storageBlocked || _startingGame || !mounted) return;\n    if (Platform.isBrowser) unawaited(maiaEngineChannel.invokeMethod<void>('prepare').catchError((Object error, StackTrace stack) => AppDiagnostics.record('browser-maia-prepare', error, stack)));")
+    # Web default only: preserve an existing explicit humanTiming preference.
+    # Keep initial state, absent/invalid preference and Reset defaults aligned.
+    patch('lib/src/play.dart', '  bool _humanTiming = false;', '  bool _humanTiming = true;')
+    patch('lib/src/play.dart', "      'humanTiming',\n      fallback: false,", "      'humanTiming',\n      fallback: true,")
+    patch('lib/src/play.dart', '      _humanTiming = false;', '      _humanTiming = true;')
     patch('lib/src/play.dart', '              if (AppLanguageSettings.maybeOf(context)\n', '              if (Platform.isBrowser) ...[const BrowserAppSettings(), const SizedBox(height: 8)],\n              if (AppLanguageSettings.maybeOf(context)\n')
     patch('lib/src/sound_effect.dart',"static const _channel = MethodChannel('maia_chess/sound_effect');","static final MethodChannel _channel = BrowserMaiaChannel('maia_chess/sound_effect');")
     patch('lib/src/active_session_store.dart','Platform.isAndroid || _testRepository != null','Platform.isBrowser || Platform.isAndroid || _testRepository != null')
@@ -80,7 +85,7 @@ def prepare(source,output,flutter):
     for name in ui_files:
         if name in changed: raise ValueError(f'Canonical UI/logic was modified: {name}')
 
-    (output/'browser-source.json').write_text(json.dumps({'source':SOURCE,'sourceRepository':'Dash1971/maia-chess-android','modifiedPlatformBoundaries':sorted(changed),'unchangedDartFiles':len(originals)-len(changed),'unchangedUiAndLogic':{name:originals[name] for name in ui_files}},indent=2)+'\n')
+    (output/'browser-source.json').write_text(json.dumps({'source':SOURCE,'sourceRepository':'Dash1971/maia-chess-android','browserDefaults':{'humanTiming':True,'preserveSavedPreferences':True},'modifiedPlatformBoundaries':sorted(changed),'unchangedDartFiles':len(originals)-len(changed),'unchangedUiAndLogic':{name:originals[name] for name in ui_files}},indent=2)+'\n')
     print((output/'browser-source.json').read_text())
 if __name__=='__main__':
     args=argparse.ArgumentParser();args.add_argument('--source',required=True,type=pathlib.Path);args.add_argument('--output',required=True,type=pathlib.Path);args.add_argument('--flutter',required=True,type=pathlib.Path);a=args.parse_args();prepare(a.source.resolve(),a.output.resolve(),a.flutter.resolve())

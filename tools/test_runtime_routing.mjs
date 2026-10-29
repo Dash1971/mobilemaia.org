@@ -9,7 +9,7 @@ const hash=text=>createHash('sha256').update(text).digest('hex');
 const platform=await readFile(new URL('platform.mjs',root),'utf8');
 const suffix='\n// Reuse the verified Stockfish download in the isolated WebKit adapter.\nexport { stockfishBytes };\n';
 assert.ok(platform.endsWith(suffix));
-assert.equal(hash(platform.slice(0,-suffix.length)),'37c4a72671b9892439b7cfa46497e1d639642ca9e8f91e09628dbff06f38b625');
+assert.equal(hash(platform.slice(0,-suffix.length)),'341490d494144a98e88d9571dcc9df823bc2e64a10ce6ee28a9fbafaf633355f');
 assert.equal(hash(await readFile(new URL('maia-worker.mjs',root))),'7278e1c4c7971e1cae5224781e0721608f9d3d0f10428130485047dbd7935079');
 assert.equal(hash(await readFile(new URL('ort-5m-256m.mjs',root))),'01dbec91baae8526e56ae78123b9481178b9d7db73836c90c391eb931967cd9f');
 const safari='Mozilla/5.0 (iPhone; CPU iPhone OS 16_7_16 like Mac OS X) AppleWebKit/605.1.15 Version/16.6 Mobile Safari/604.1';

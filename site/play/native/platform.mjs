@@ -36,7 +36,8 @@ function store(kind,key,value) {
 async function flush(){await storageTail;if(storageFailure)throw storageFailure;}
 const files={get:key=>records.get(key) ?? null,keys:()=>[...records.keys()],put(key,value){store('put',key,value);records.set(key,value);},remove(key){store('remove',key);records.delete(key);}};
 let maia, ready, pending=new Map(), sequence=0, maiaDiagnostics;
-const modelId = new URLSearchParams(location.search).get('model') === '79m' ? '79m' : '5m';
+// Browser downloads are restricted to the non-LFS 5M model.
+const modelId = '5m';
 function releaseMaia(){maia?.terminate();maia=null;ready=null;for(const p of pending.values())p.reject(new Error('Maia released'));pending.clear();}
 async function prepareMaia(){
   if(ready)return ready;
@@ -148,7 +149,7 @@ async function prepareOffline() {
   })().finally(()=>{offlinePreparation=null;});
   return offlinePreparation;
 }
-globalThis.mobileMaiaNative={invoke,createStockfish,files,modelName:modelId === '5m' ? '5M' : '79M',preferencePrefix:qa ? 'mobileMaiaQa.'+qa+'.' : 'mobileMaiaNative.'};
+globalThis.mobileMaiaNative={invoke,createStockfish,files,modelName:'5M',preferencePrefix:qa ? 'mobileMaiaQa.'+qa+'.' : 'mobileMaiaNative.'};
 try{
   await storageReady();
   const script=document.createElement('script');script.src=document.querySelector('meta[name="mobile-maia-bootstrap"]')?.content || 'flutter_bootstrap.js';document.body.append(script);

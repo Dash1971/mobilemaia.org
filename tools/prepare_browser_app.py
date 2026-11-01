@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Prepare the actual pinned Flutter app with narrow browser platform adapters."""
 import argparse, hashlib, json, pathlib, shutil, subprocess, tarfile, io
+from prepare_browser_localizations import prepare_localizations
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 SOURCE='aeea49817c34f48397e910894414c1d8b0352124'
 PATHS=['lib','third_party/chessground','assets','pubspec.yaml','pubspec.lock','LICENSE','THIRD_PARTY_NOTICES.md','l10n.yaml','analysis_options.yaml']
@@ -13,18 +14,19 @@ def prepare(source,output,flutter):
     originals={p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in (output/'lib').rglob('*.dart')}
     for file in (ROOT/'browser-app/platform').glob('*.dart'):
         target=output/'lib/browser'/file.name;target.parent.mkdir(exist_ok=True);shutil.copyfile(file,target)
+    browser_localization = prepare_localizations(output)
     def patch(name,old,new,count=1):
         path=output/name; text=path.read_text()
         if text.count(old)!=count: raise ValueError(f'{name}: expected {count} occurrences of {old!r}, got {text.count(old)}')
         path.write_text(text.replace(old,new))
-    patch('lib/main.dart',"import 'dart:io';","import 'browser/io.dart';\nimport 'browser/bridge.dart';\nimport 'browser/settings.dart';")
+    patch('lib/main.dart',"import 'dart:io';","import 'browser/io.dart';\nimport 'browser/bridge.dart';\nimport 'browser/settings.dart';\nimport 'browser/strings.dart';")
     patch('lib/main.dart',"import 'package:multistockfish/multistockfish.dart';","import 'browser/stockfish.dart';")
     patch('lib/main.dart','        LicenseRegistry,','        LicenseRegistry,\n        TargetPlatform,')
     patch('lib/main.dart','  WidgetsFlutterBinding.ensureInitialized();','  WidgetsFlutterBinding.ensureInitialized();\n  reportBrowserCompiler();\n  SharedPreferences.setPrefix(browserPreferencePrefix);')
     patch('lib/main.dart',"const maiaEngineChannel = MethodChannel('maia_chess/engine');","final MethodChannel maiaEngineChannel = BrowserMaiaChannel();")
     patch('lib/src/app_appearance.dart','  return ThemeData(\n','  return ThemeData(\n    platform: TargetPlatform.android,\n')
     patch('lib/src/app_appearance.dart', '  static Future<AppDynamicColors?> _readSystemColors() async {', '  static Future<AppDynamicColors?> _readSystemColors() async {\n    if (Platform.isBrowser) return null;')
-    patch('lib/src/app_appearance.dart', '              controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable', "              Platform.isBrowser\n                  ? 'Wallpaper-based system colors are not available in a browser. Choose System default above to follow light/dark mode.'\n                  : controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable")
+    patch('lib/src/app_appearance.dart', '              controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable', "              Platform.isBrowser\n                  ? BrowserStrings.of(context).systemColorsUnavailable(strings.appearanceSystemDefault)\n                  : controller.dynamicColors == null\n                  ? strings.appearanceSystemColorsUnavailable")
     patch('lib/src/play.dart', '    if (_storageBlocked || _startingGame || !mounted) return;', "    if (_storageBlocked || _startingGame || !mounted) return;\n    if (Platform.isBrowser) unawaited(maiaEngineChannel.invokeMethod<void>('prepare').catchError((Object error, StackTrace stack) => AppDiagnostics.record('browser-maia-prepare', error, stack)));")
     # Web default only: preserve an existing explicit humanTiming preference.
     # Keep initial state, absent/invalid preference and Reset defaults aligned.
@@ -85,7 +87,7 @@ def prepare(source,output,flutter):
     for name in ui_files:
         if name in changed: raise ValueError(f'Canonical UI/logic was modified: {name}')
 
-    (output/'browser-source.json').write_text(json.dumps({'source':SOURCE,'sourceRepository':'Dash1971/maia-chess-android','browserDefaults':{'humanTiming':True,'preserveSavedPreferences':True},'modifiedPlatformBoundaries':sorted(changed),'unchangedDartFiles':len(originals)-len(changed),'unchangedUiAndLogic':{name:originals[name] for name in ui_files}},indent=2)+'\n')
+    (output/'browser-source.json').write_text(json.dumps({'source':SOURCE,'sourceRepository':'Dash1971/maia-chess-android','browserDefaults':{'humanTiming':True,'preserveSavedPreferences':True},'browserLocalization':browser_localization,'modifiedPlatformBoundaries':sorted(changed),'unchangedDartFiles':len(originals)-len(changed),'unchangedUiAndLogic':{name:originals[name] for name in ui_files}},indent=2)+'\n')
     print((output/'browser-source.json').read_text())
 if __name__=='__main__':
     args=argparse.ArgumentParser();args.add_argument('--source',required=True,type=pathlib.Path);args.add_argument('--output',required=True,type=pathlib.Path);args.add_argument('--flutter',required=True,type=pathlib.Path);a=args.parse_args();prepare(a.source.resolve(),a.output.resolve(),a.flutter.resolve())

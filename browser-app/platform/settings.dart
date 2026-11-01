@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'bridge.dart';
+import 'strings.dart';
 
 // Browser-only capabilities belong in Settings alongside the original app UI.
 class BrowserAppSettings extends StatefulWidget {
@@ -37,10 +38,11 @@ class _BrowserAppSettingsState extends State<BrowserAppSettings> {
     try { installed = await BrowserMaiaChannel().invokeMethod<bool>('pwaInstall'); }
     catch (error) { if (mounted) setState(() => _error = '$error'); return; }
     if (installed != true && mounted) {
+      final strings = BrowserStrings.of(context);
       await showDialog<void>(context: context, builder: (context) => AlertDialog(
-        title: const Text('Install Mobile Maia'),
-        content: const Text('Use your browser’s menu and choose Install app or Add to Home Screen. On iPhone or iPad, use Safari’s Share menu → Add to Home Screen. If already installed, open Mobile Maia from its home-screen icon.'),
-        actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK'))],
+        title: Text(strings.installTitle),
+        content: Text(strings.installHelp),
+        actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(strings.ok))],
       ));
     }
     await _refresh();
@@ -53,32 +55,41 @@ class _BrowserAppSettingsState extends State<BrowserAppSettings> {
   }
   @override
   Widget build(BuildContext context) {
+    final strings = BrowserStrings.of(context);
     final offline = _status['offlineReady'] == true;
     final progress = (_status['downloadProgress'] as num?)?.toDouble();
+    final statusError = _status['error'] as String?;
+    final error = _error ?? (statusError?.isNotEmpty == true ? statusError : null);
     final text = _saving
-        ? (_status['phase'] as String? ?? 'Preparing offline play…')
-        : offline ? 'Ready for offline play and analysis.'
-        : _status['shellReady'] == true ? 'App saved. Save engines below to play offline.'
-        : _status['error'] as String? ?? 'Save the app and engines to play offline.';
+        ? strings.phase(_status['phase'] as String?)
+        : offline ? strings.offlineReady
+        : _status['shellReady'] == true ? strings.shellReady
+        : strings.savePrompt;
     return Card(child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      const ListTile(leading: Icon(Icons.install_mobile), title: Text('Install and offline', style: TextStyle(fontWeight: FontWeight.w700))),
+      ListTile(leading: const Icon(Icons.install_mobile), title: Text(strings.installAndOffline, style: const TextStyle(fontWeight: FontWeight.w700))),
       const Divider(height: 1),
       ListTile(
-        title: Text(_status['installed'] == true ? 'Mobile Maia is installed' : 'Install Mobile Maia'),
-        subtitle: const Text('Open from your home screen in its own app window.'),
+        title: Text(_status['installed'] == true ? strings.installed : strings.installTitle),
+        subtitle: Text(strings.standaloneHelp),
         trailing: _status['installed'] == true ? const Icon(Icons.check) : null,
         onTap: _status['installed'] == true ? null : _install,
       ),
-      ListTile(title: const Text('Offline play'), subtitle: Text(text)),
+      ListTile(title: Text(strings.offlinePlay), subtitle: Text(text)),
       if (_saving) Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: LinearProgressIndicator(value: progress)),
       Padding(padding: const EdgeInsets.fromLTRB(16, 4, 16, 12), child: OutlinedButton.icon(
         onPressed: _saving ? null : _save,
         icon: Icon(offline ? Icons.refresh : Icons.download_for_offline_outlined),
-        label: Text(offline ? 'Check offline files' : 'Save for offline use'),
+        label: Text(offline ? strings.checkOfflineFiles : strings.saveOffline),
       )),
-      const Padding(padding: EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text('Downloads the selected Maia model, CPU runtime and Stockfish. The 5M engine downloads total about 38 MB, plus about 38 MB for the app and its board/piece choices. Browser storage can be cleared or evicted; export important games.')),
-      if (_status['updating'] == true) const Padding(padding: EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text('An update is ready. Finish your game, then close all Mobile Maia windows and tabs and reopen.')),
-      if (_error != null) Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text(_error!, semanticsLabel: 'Offline setup error: $_error')),
+      Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text(strings.downloadHelp)),
+      if (_status['updating'] == true) Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 16), child: Text(strings.updateReady)),
+      if (error != null) ...[
+        Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 8), child: Text(strings.offlineError)),
+        // Runtime errors are diagnostic details, not untranslated UI copy.
+        ExpansionTile(title: Text(strings.technicalDetails), children: [
+          Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 16), child: SelectableText(error)),
+        ]),
+      ],
     ]));
   }
 }

@@ -58,10 +58,11 @@ the explicit product exclusion below.
 | W13 | `/play/` presents a phone frame on desktop and a full viewport on phones. Installation metadata launches this same app route in standalone mode. | `host.css`, `host.mjs`, `manifest.webmanifest`, locally resized original app icons. Homepage/research stay ordinary static HTML. Verify desktop, phone, installed safe areas and browser Back/navigation. |
 | W14 | Installation or Save for offline use enables a custom `/play/` service worker that precaches a content-versioned, hash-checked shell for both compiler targets. CanvasKit's full variant is selected consistently so fallback clients have the right cached renderer. Settings can save/check selected Maia, CPU runtime and Stockfish for offline play. Updates wait until existing clients close; no forced reload during games. | `browser-app/pwa/sw.js`, generated asset list in the build helper, `pwa.mjs`, browser-only `settings.dart`. The 40 MiB shell budget includes JS/full CanvasKit and both SkWasm variants; source maps and unused CanvasKit variants stay excluded. Never cache whole-site navigations or unverified model bytes in the shell. Engine caches remain independent across updates; the generated custom CPU loader/config/licenses join the shell, while its verified Wasm bytes join the engine cache with the model (excluded from shell). Test both targets' offline cold launch and real engines, failed/quota-limited installs, waiting updates and saved-game preservation. |
 | W15 | Human move timing defaults to on for new browser/PWA profiles and Reset settings to default. Existing saved choices, including off, are preserved. The app's existing timing sampler and elapsed-inference-time handling are reused; move selection and analysis are unchanged. | Three exact `play.dart` substitutions in `tools/prepare_browser_app.py` align the initial value, missing/invalid preference fallback, and reset value in the disposable web copy only. The canonical preference reader/writer and timing implementation stay unchanged. Public `source.json` records `browserDefaults`. On source upgrades, check fresh settings, saved off/on after reload, and reset behavior. No Android source or release changes apply. |
+| W16 | Browser-only install/offline controls, installation help, download sizes, progress, update instructions, errors and the browser system-color explanation follow the selected app language in all ten supported languages. Raw runtime exceptions remain available under translated Technical details for diagnosis. | `browser-app/l10n.json`, `tools/prepare_browser_localizations.py`, generated `lib/browser/strings.dart` and `browser-app/platform/settings.dart`. Uses Flutter's resolved `Localizations` locale, so the app's saved choice and System default stay authoritative and switching languages rebuilds immediately. Preparation rejects missing languages/keys and records the catalog hash in public `source.json`; canonical app catalogs are unchanged. Known engine/PWA phase text is translated at the display boundary without altering either inference adapter. Every build runs `browser-app/test/localizations_test.dart` for live locale changes and progress/error translation coverage. Reconcile locale additions and phase values on upgrades. No native companion port applies. |
 
-Paths abbreviated as `native/` above are under `site/play/`. Browser-specific
-installation/offline controls and capability explanations currently use English;
-canonical app translations remain unchanged. Restoring the full-model download UI
+Paths abbreviated as `native/` above are under `site/play/`. Canonical app
+translations remain unchanged; web-only copy has its own complete catalogs.
+Restoring the full-model download UI
 requires a verified non-LFS host and new bandwidth assessment. Physical-phone
 memory/performance testing, first-use offline language fonts and long-game review
 responsiveness remain explicit follow-ups, not parity claims.
@@ -75,7 +76,7 @@ responsiveness remain explicit follow-ups, not parity claims.
    Android release as a side effect of a web update.
 2. Update the source pin in the preparation helper, workflow and this register.
    Update the compiler pin only when required and assess browser compatibility.
-   Reconcile **each** W01–W15 adaptation with the new source. Delete obsolete
+   Reconcile **each** W01–W16 adaptation with the new source. Delete obsolete
    patches rather than preserving outdated app behavior. A failed exact-fragment
    guard is a review prompt, not a reason to loosen the assertion globally.
 3. Prepare a new disposable project. Inspect every file listed as a modified

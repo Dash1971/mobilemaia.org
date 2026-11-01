@@ -1,0 +1,12 @@
+{
+  "owner": "PWA translations 2026-11-01",
+  "removed": [
+    "/Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/pwa-translations-20261101"
+  ],
+  "removedFileBytes": 75895782,
+  "freeBefore": 39915556864,
+  "freeAfter": 39995170816,
+  "processes": "Local widget tests and export commands completed; QA workers and owned tab closed. No local server or emulator was started.",
+  "retained": "Compact source/catalog hashes, CI run, UI/widget verification and screenshot. Shared Flutter SDK/pub cache and normal browser PWA shell preserved.",
+  "nativeRepositories": "Read-only; no native build/release or companion port applies."
+}

@@ -1,0 +1,61 @@
+{
+  "websiteRevision": "ccafcf3e1cca57ac7375c4df50c3add8e2551149",
+  "appSource": "aeea49817c34f48397e910894414c1d8b0352124",
+  "scope": "Website-only installation/offline copy, progress/error UI and system-color explanation; app catalogs and inference adapters unchanged.",
+  "browserLocalization": {
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "hi",
+      "ja",
+      "ko",
+      "pt",
+      "ru",
+      "zh"
+    ],
+    "catalogSha256": "266120ed608463bf37dc6e240394bd28ba0f642a6d61e7dab5ce7bd739989ab1"
+  },
+  "messagesPerLanguage": {
+    "en": 23,
+    "ja": 23,
+    "de": 23,
+    "es": 23,
+    "fr": 23,
+    "hi": 23,
+    "ko": 23,
+    "pt": 23,
+    "ru": 23,
+    "zh": 23
+  },
+  "localChecks": {
+    "catalogCoverage": "passed: ten app languages, keys, nonempty strings and exact placeholders",
+    "localizationWidgets": "passed: live English/Japanese/English locale change; all nine non-English progress/error strings",
+    "siteResearchRuntimePwa": "all existing static and Node checks passed",
+    "canonicalUiAndLogic": 19,
+    "nativeCheckoutStatus": "clean; read-only export, no Android modifications",
+    "ciLocalizationWidgets": "both tests passed on canonical Linux runner"
+  },
+  "localPubNote": "Locked dependencies resolved using the shared cache; pub CLI could not write its home active_roots marker in the sandbox. Localization tests passed using the resulting package_config with --no-pub. CI runs the full locked dependency and browser build checks.",
+  "deployment": {
+    "run": 41283600158,
+    "conclusion": "success",
+    "url": "https://github.com/Dash1971/mobilemaia.org/actions/runs/41283600158",
+    "publicBundle": "1e592137bffeb09b",
+    "publicCatalogHashMatches": true,
+    "offlineRelease": "51507e434bbb99f70bfe",
+    "shellBytes": 38201831
+  },
+  "publicUi": {
+    "browser": "Chrome desktop, Flutter Wasm, phone-width app frame",
+    "bundle": "1e592137bffeb09b",
+    "savedJapaneseSurvivedNormalPwaUpdate": true,
+    "japaneseInstallOfflineDownloadCopy": true,
+    "japaneseThemeExplanationUsesCanonicalSettingName": true,
+    "japaneseErrorSummaryAndTechnicalDetailsLabel": true,
+    "errorExercise": "Isolated QA intentionally disables persistent engines; Save produced the translated error summary without a model download.",
+    "cleanup": "Host End test confirmed Test data cleared. App workers closed.; owned tab closed. Ordinary user data and PWA caches preserved.",
+    "limits": "No physical-phone acceptance or engine performance change claimed; runtime/inference modules unchanged."
+  }
+}

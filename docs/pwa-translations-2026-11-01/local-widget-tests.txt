@@ -1,0 +1,4 @@
+00:00 +0: loading /Users/da/Documents/ChatGPT/Mobile Maia/mobilemaia.org/.scratch/pwa-translations-20261101/app/test/browser_localizations_test.dart
+00:00 +0: browser copy follows language changes without restarting the app
+00:00 +1: every supported language translates offline progress and error UI
+00:00 +2: All tests passed!

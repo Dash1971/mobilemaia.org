@@ -62,6 +62,8 @@ the explicit product exclusion below.
 
 Paths abbreviated as `native/` above are under `site/play/`. Canonical app
 translations remain unchanged; web-only copy has its own complete catalogs.
+The [2026-11-01 translation verification](pwa-translations-2026-11-01/verification.json)
+records the live Japanese update check, catalog coverage, CI and cleanup.
 Restoring the full-model download UI
 requires a verified non-LFS host and new bandwidth assessment. Physical-phone
 memory/performance testing, first-use offline language fonts and long-game review

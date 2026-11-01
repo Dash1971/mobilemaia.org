@@ -1,0 +1,94 @@
+Browser tab: 245637482, Title: "Mobile Maia — Try the app", URL: "https://mobilemaia.org/play/?qa=pwa-ja-20261101".
+0 AXWebArea Mobile Maia — Try the app, URL: mobilemaia.org/play/?qa=pwa-ja-20261101
+	1 link Description: Skip to Mobile Maia, Value: mobilemaia.org/play/?qa=pwa-ja-20261101#app
+	2 container
+		3 link Description: Mobile Maia., Value: mobilemaia.org/
+		4 container Main navigation
+			5 link Description: Research, Value: mobilemaia.org/research/
+			6 link Description: The Android app, Value: mobilemaia.org/#download
+	7 container
+		8 text TRY IT BEFORE YOU INSTALL
+		9 heading Mobile Maia. In your browser., Value: 1
+			10 text Mobile Maia.
+			11 text In your browser.
+		12 text The Mobile Maia app, running in your browser. Play, explore positions, and review games with the same screens and controls.
+		13 text Maia runs locally on your CPU. This browser version starts with the smaller 5M model.
+		14 link Description: Get the Android app, Value: mobilemaia.org/#download
+		15 container
+			16 text First engine use downloads Maia and its runtime. Games and settings are stored in this browser. 
+			17 link Description: Privacy and source, Value: mobilemaia.org/about.html#browser-play
+			18 text .
+		19 button Show QA diagnostics
+		20 button End this test and clear its data, ID: qa-end
+		21 container Mobile Maia app
+			22 container Description: Mobile Maia, ID: app
+				23 AXWebArea Mobile Maia, URL: mobilemaia.org/play/app/?v=1e592137bffeb09b&qa=pwa-ja-20261101
+					24 container
+						25 container 戻る 設定
+							26 container flt-semantic-node-3
+								27 container flt-semantic-node-16
+									28 button 戻る, ID: flt-semantic-node-21
+									29 heading 設定, Value: 2, ID: flt-semantic-node-17
+										30 text 設定
+								31 container flt-semantic-node-22
+									32 container ID: flt-semantic-node-23, Description: 選択したMaiaモデル、CPUランタイム、Stockfishをダウンロードします。5Mモデルのエンジン関連ファイルは合計約38 MBです。これに加え、アプリと盤・駒のデザイン用に約38 MB必要です。ブラウザー内のデータは、操作や自動処理で削除されることがあります。大切な棋譜はエクスポートしてください。
+										33 text インストールとオフライン利用
+										34 button Mobile Maiaをインストール ホーム画面から、独立したアプリウィンドウで開きます。, ID: flt-semantic-node-25
+										35 text オフライン対局 オフラインで対局するには、アプリとエンジンを保存してください。
+										36 button オフライン用に保存, ID: flt-semantic-node-27
+									37 heading 言語 言語 日本語, Value: 2, ID: flt-semantic-node-28
+										38 text 言語 言語 日本語
+									39 button (collapsed) Description: 外観 テーマ ダーク, ID: flt-semantic-node-29, Secondary Actions: Expand
+										40 switch (disabled) Description: OS と同じ色設定を使う ブラウザーでは壁紙に基づくシステムカラーを利用できません。ライト／ダークモードに合わせるには、上の「デバイスの設定に従う」を選んでください。, Value: 0, ID: flt-semantic-node-30
+										41 switch Description: 完全な黒の背景 ダークモードで背景を真っ黒にする, Value: 0, ID: flt-semantic-node-32
+									42 container flt-semantic-node-34
+										43 heading 盤, Value: 2, ID: flt-semantic-node-35
+											44 text 盤
+										45 button 盤のデザイン Brown, ID: flt-semantic-node-36
+										46 button 駒のデザイン Cburnett, ID: flt-semantic-node-37
+										47 switch Description: マスの座標, Value: 1, ID: flt-semantic-node-38
+										48 switch Description: 合法手の移動先, Value: 1, ID: flt-semantic-node-40
+										49 switch Description: 直前の手の強調表示, Value: 1, ID: flt-semantic-node-42
+										50 switch Description: 駒のアニメーション, Value: 1, ID: flt-semantic-node-44
+										51 switch Description: ドラッグ中の駒を拡大, Value: 1, ID: flt-semantic-node-46
+										52 button ドラッグ移動時の駒の照準 円形, ID: flt-semantic-node-48
+									53 container Description: 対局設定, ID: flt-semantic-node-49
+										54 switch Description: 対局の効果音 指し手、駒取り、エラー、対局終了時の音, Value: 0, ID: flt-semantic-node-50
+										55 switch Description: 触覚フィードバック 指し手、チェック、エラー、対局終了時の振動, Value: 1, ID: flt-semantic-node-52
+										56 switch Description: プリムーブ Maiaの手番中に次の手を予約, Value: 1, ID: flt-semantic-node-54
+										57 switch Description: プリムーブの0.1秒消費 持ち時間ありの対局でプリムーブごとに0.1秒消費, Value: 0, ID: flt-semantic-node-56
+										58 switch Description: 複数のプリムーブを許可 複数の手を予約できます。指せない手があると、そこから先の予約は取り消されます, Value: 0, ID: flt-semantic-node-58
+										59 switch Description: 人間らしい思考時間 Maiaが指すまでの待ち時間に自然なばらつきを加えます, Value: 1, ID: flt-semantic-node-60
+									60 container flt-semantic-node-62
+										61 container Description: エンジンの設定, ID: flt-semantic-node-63
+											62 button 温度とTop-Pについて, ID: flt-semantic-node-64
+										63 container Description: 温度：1.00, ID: flt-semantic-node-65
+											64 container Description: 1.00, ID: flt-semantic-node-66
+												65 slider (settable, integer) 1
+										66 container Description: Top-P：0.95, ID: flt-semantic-node-67
+											67 container Description: 0.95, ID: flt-semantic-node-68
+												68 slider (settable, integer) 1
+										69 container flt-semantic-node-69
+											70 switch Description: 序盤の多様性を最大にする, Value: 1, ID: flt-semantic-node-72
+											71 button 序盤の多様性を最大にする, ID: flt-semantic-node-71
+										72 container flt-semantic-node-73
+											73 switch Description: 過去の局面を使う, Value: 0, ID: flt-semantic-node-76
+											74 button 過去の局面を使う, ID: flt-semantic-node-75
+										75 container flt-semantic-node-77
+											76 switch Description: Maiaの手の選択データを保存, Value: 0, ID: flt-semantic-node-80
+											77 button Maiaの手の選択データを保存, ID: flt-semantic-node-79
+									78 button (collapsed) Description: 対局解析の品質 対局解析の品質 高速 深さ12・1局面あたり最大0.5秒、注目すべき手の確認にさらに最大3秒。, ID: flt-semantic-node-81, Secondary Actions: Expand
+										79 heading 解析に関する設定, Value: 2, ID: flt-semantic-node-82
+											80 text 解析に関する設定
+										81 container Description: 解析用Maiaのレーティング：1500, ID: flt-semantic-node-83
+											82 container Description: 1500, ID: flt-semantic-node-84
+												83 slider (settable, integer) 1
+										84 switch Description: 2つ目のMaiaエンジンを追加 解析や棋譜レビューで、異なるレーティングのMaiaを比較します, Value: 0, ID: flt-semantic-node-85
+										85 container flt-semantic-node-87
+											86 switch Description: Maiaの勝利（得点）率を表示, Value: 0, ID: flt-semantic-node-90
+											87 button Maiaの勝利（得点）率を表示, ID: flt-semantic-node-89
+									88 button 設定を初期値に戻す, ID: flt-semantic-node-91
+									89 text この画面のすべての設定を初期値に戻します。保存済みの対局と手の選択データは残ります。
+									90 button 診断情報をコピー, ID: flt-semantic-node-93
+
+The focused UI element is 25 container 戻る 設定

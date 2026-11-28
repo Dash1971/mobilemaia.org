@@ -1,4 +1,4 @@
-/* Precomputed famous-game evidence. No engine/model downloads or browser storage. */
+/* Recorded classical/online comparisons. No inference or browser storage. */
 // SPDX-License-Identifier: AGPL-3.0-only
 (() => {
   'use strict';
@@ -7,14 +7,14 @@
   const byId = id => document.getElementById('brilly-' + id);
   const grade = label => ({brilliant:'Brilliant !!',good:'Good !',interesting:'Interesting !?',dubious:'Dubious ?!',mistake:'Mistake ?',blunder:'Blunder ??'}[label] || 'Unmarked');
   const glyph = label => ({brilliant:'!!',good:'!',interesting:'!?',dubious:'?!',mistake:'?',blunder:'??'}[label] || 'Unmarked');
-  let data, gameId, ply, quality = 'fast', after = false;
-  const game = () => data.games.find(g => g.id === gameId);
+  let data, online, gameId, ply, quality = 'fast', after = false;
+  const game = () => [...data.games,...online.games].find(g => g.id === gameId);
   const current = () => game().cases.find(c => c.ply === ply);
   const metric = (id, value) => { const node = byId(id); if (node) node.textContent = value; };
   function tally() {
     const t = data.totals[quality];
-    metric('tally', `${t.oldHits} → ${t.newHits} of ${t.targets} published landmarks found`);
-    metric('total-awards', `Total Brilliant awards across the nine games: previous ${t.oldAwards}; Open Brilly Finder ${t.newAwards}.`);
+    metric('tally', `${t.oldHits} → ${t.newHits} of ${t.targets} published Brilliant moves found`);
+    metric('total-awards', `Total Brilliant awards across the nine classics: existing detector ${t.oldAwards}; Open Brilly Finder ${t.newAwards}.`);
     for (const g of data.games) {
       const s = g.stats[quality];
       document.querySelector(`[data-game-old="${g.id}"]`).textContent = `${s.oldHits}/${s.targets}`;
@@ -25,10 +25,10 @@
   function options() {
     const select = byId('position'); select.replaceChildren();
     for (const landmark of [true,false]) {
-      const group = document.createElement('optgroup'); group.label = landmark ? 'Published !! landmarks' : 'Other source-listed or awarded moves';
+      const group = document.createElement('optgroup'); group.label = landmark ? (game().collection==='online'?'Recorded Chess.com Brilliants':'Published !! moves') : 'Other moves in the comparison';
       for (const c of game().cases.filter(c => c.landmark === landmark)) {
         const option = document.createElement('option'); option.value = c.ply;
-        option.textContent = c.move + (c.diagnostic ? ' · search diagnostic' : '') + (c.sourceMark ? ` · published ${c.sourceMark}` : '');
+        option.textContent = c.move + (c.diagnostic ? ' · search diagnostic' : '') + (c.sourceMark ? (game().collection==='online'?' · recorded !!':` · published ${c.sourceMark}`) : '');
         group.append(option);
       }
       if (group.children.length) select.append(group);
@@ -65,37 +65,41 @@
     byId('before').setAttribute('aria-pressed',String(!after)); byId('after').setAttribute('aria-pressed',String(after));
   }
   function evidence() {
-    const g=game(), c=current(), m=c.modes[quality];
+    const g=game(), c=current(), q=g.collection==='online'?'fast':quality, m=c.modes[q];
     metric('case-title',c.move); metric('game-title',`${g.title} · ${g.year}`);
-    metric('annotation',c.diagnostic ? 'Post-run search diagnostic' : c.sourceMark ? `Published ${c.sourceMark}` : 'Not listed in the chosen annotation');
-    const link=byId('annotation-source'); link.href=g.source.url; link.textContent='Read the chosen annotation';
-    metric('idea',c.idea || 'This move is included because at least one classifier awarded it Brilliant, or it was separately marked in the chosen source.');
+    metric('annotation',c.referenceLabel || (c.diagnostic ? 'Post-run search diagnostic' : c.sourceMark ? `Published ${c.sourceMark}` : 'Not marked in the chosen annotation'));
+    const link=byId('annotation-source'); link.href=g.source.url; link.textContent=g.collection==='online'?'View the original game':'Read the published annotation';
+    metric('idea',c.idea || (g.collection==='online'?`Fast analysis; ${g.accountName}’s moves are scored against the recorded November 22, 2026 review.`:'Included because a detector awarded it Brilliant or the published source marked it.'));
     metric('old',grade(m.old)); metric('new',grade(m.new));
     const changed = m.old===m.new ? 'Same grade in this mode.' : `${grade(m.old)} → ${grade(m.new)}`;
     metric('change',changed);
     metric('reason',m.reason);
     metric('model',m.candidate == null ? 'A standalone model diagnostic was not recorded for this mode.' : m.candidate ? `Model score ${Number(m.score).toFixed(4)}; fixed cutoff ${data.cutoff.toFixed(4)}. This is not a probability.` : 'The exchange gate fails, so tree inference is skipped.');
     metric('engine',`Achieved depths: before ${m.depths[0]}, after ${m.depths[1]}. Before: ${m.beforePV || 'terminal position'}. After: ${m.afterPV || 'terminal position'}.`);
-    metric('game-awards',`Total Brilliant awards in this game: previous ${g.stats[quality].oldAwards}; new ${g.stats[quality].newAwards}.`);
+    metric('game-awards',`Brilliant awards ${g.collection==='online'?'on '+g.account+'’s moves':'in this game'} (${q}): existing detector ${g.stats[q].oldAwards}; Open Brilly Finder ${g.stats[q].newAwards}.`);
     const cases=g.cases, index=cases.indexOf(c);
     byId('previous').disabled=index===0; byId('next').disabled=index===cases.length-1;
     metric('case-count',`${index+1} / ${cases.length}`);
     const body=byId('all-awards'); body.replaceChildren();
     for (const item of cases) {
-      const v=item.modes[quality];
+      const v=item.modes[q];
       if (v.old!=='brilliant' && v.new!=='brilliant' && !item.landmark && !item.sourceListed && !item.diagnostic) continue;
       const tr=document.createElement('tr');
-      for (const value of [item.move,item.sourceMark || 'Not listed',glyph(v.old),glyph(v.new)]) {
+      for (const value of [item.move,item.referenceLabel || item.sourceMark || 'Not marked',glyph(v.old),glyph(v.new)]) {
         const td=document.createElement('td'); td.textContent=value; tr.append(td);
       }
       body.append(tr);
     }
   }
   function render() { options(); board(); evidence(); tally(); }
-  fetch('results.json', {cache:'no-cache'}).then(r => {if(!r.ok) throw new Error('Results unavailable'); return r.json();}).then(value => {
-    data=value; gameId=data.games[0].id; ply=data.games[0].defaultPly;
+  Promise.all(['results.json','online-results.json'].map(path=>fetch(path,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Results unavailable');return r.json();}))).then(values => {
+    [data,online]=values; gameId=data.games[0].id; ply=data.games[0].defaultPly;
     const select=byId('game'); select.replaceChildren();
-    for (const g of data.games) {const o=document.createElement('option');o.value=g.id;o.textContent=`${g.title} · ${g.year}`;select.append(o);}
+    for(const [title,games] of [['Classical games',data.games],['Online games · Fast analysis',online.games]]){
+      const group=document.createElement('optgroup');group.label=title;
+      for (const g of games) {const o=document.createElement('option');o.value=g.id;o.textContent=`${g.title} · ${g.year}`;group.append(o);}
+      select.append(group);
+    }
     select.addEventListener('change', e => {gameId=e.target.value;ply=game().defaultPly;after=false;render();});
     byId('position').addEventListener('change',e=>{ply=Number(e.target.value);after=false;render();});
     for (const phase of ['before','after']) byId(phase).addEventListener('click',()=>{after=phase==='after';board();});
@@ -103,6 +107,9 @@
       const cases=game().cases,index=cases.findIndex(c=>c.ply===ply);if(!cases[index+delta])return;ply=cases[index+delta].ply;after=false;render();
     });
     document.querySelectorAll('[data-quality]').forEach(b=>b.addEventListener('click',()=>{quality=b.dataset.quality;render();}));
+    document.querySelectorAll('[data-open-game]').forEach(button=>button.addEventListener('click',()=>{
+      gameId=button.dataset.openGame;ply=Number(button.dataset.openPly)||game().defaultPly;after=false;select.value=gameId;render();
+    }));
     root.hidden=false;byId('load-status').hidden=true;render();
   }).catch(()=>{byId('load-status').textContent='Interactive results could not load. The complete tables and diagrams below are still available.';});
 })();

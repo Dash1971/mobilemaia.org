@@ -125,7 +125,7 @@ versions of the original Stable app icon already recorded above.
 margin for launcher masks. No new branding or generated artwork is introduced.
 The manifest and service worker are original AGPL-3.0-only website code.
 
-## Famous-game Brilliant study — November 28, 2026
+## Brilliant-move comparison — November 28, 2026
 
 The article at `site/research/brilliant-moves/` is imported from the separate
 Mobile Maia research repository. `research-source/brilliant-study/manifest.json`
@@ -142,3 +142,9 @@ are AGPL-3.0-only; game records and third-party annotations retain their rights.
 
 The article’s interactive boards display recorded results. They do not download
 or run Stockfish, Maia, model weights, remote fonts or a third-party service.
+
+The expanded report includes 42 online games from the pinned Open Brilly Finder
+collection and two Chessbrah illustrations. The before/after diagrams use their
+actual legal PGN positions. Recorded reference labels, the two detectors’ awards
+and training overlap are documented separately; the diagrams are not screenshots
+or evidence of an Android release.

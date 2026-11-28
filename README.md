@@ -65,17 +65,20 @@ guide in the research repository, then import its new commit here; do not edit
 the generated pages independently. The renderer deliberately rejects unsupported
 Markdown blocks and requires review if the study index changes shape.
 
-### Famous-game Brilliant study
+### Brilliant-move comparison
 
-`/research/brilliant-moves/` is a separately pinned article and interactive
-viewer. `tools/brilliant_study.py --update FULL_RESEARCH_COMMIT_SHA` imports
+`/research/brilliant-moves/` introduces Mobile Maia, its existing En
+Croissant-derived detector and Open Brilly Finder, then compares nine classical
+games and 42 online games, including two Chessbrah examples. It is a separately
+pinned article and interactive viewer.
+`tools/brilliant_study.py --update FULL_RESEARCH_COMMIT_SHA` imports
 its bounded file manifest, source body, local figures/pieces and recorded
 results. It preserves the existing browser app and historical research pins.
 `tools/research.py` renders the new page/index entry and checks all imported
 bytes and exact generated output through the normal `--check` gate.
 
-The article targets a Preview 2.7 draft and reports the regression alongside
-the gains. Editing the article’s canonical content belongs in the research
+The article explains the planned 2.7 adoption, measured gains and remaining
+misses. Editing the article’s canonical content belongs in the research
 repository; reimport a reviewed commit rather than changing the copied files.
 No engine or model runs in this viewer.
 Run `python3 tools/test_brilliant_study.py` for offline importer checks covering

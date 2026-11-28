@@ -21,6 +21,7 @@ jobs:
       - name: Validate static site
         run: |
           python3 tools/research.py --check
+          python3 tools/test_brilliant_study.py
           python3 tools/check_site.py
           python3 tools/prepare_browser_runtime.py --check
           python3 tools/prepare_browser_localizations.py --check

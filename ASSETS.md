@@ -124,3 +124,21 @@ versions of the original Stable app icon already recorded above.
 `maskable-512.png` centers that same icon on the app background with a safe
 margin for launcher masks. No new branding or generated artwork is introduced.
 The manifest and service worker are original AGPL-3.0-only website code.
+
+## Famous-game Brilliant study — November 28, 2026
+
+The article at `site/research/brilliant-moves/` is imported from the separate
+Mobile Maia research repository. `research-source/brilliant-study/manifest.json`
+records its immutable commit and the byte count/SHA-256 of every source file.
+The older settings and score studies retain their original independent pin.
+
+The board diagrams show the actual legal game positions; they are not app
+screenshots. The twelve Cburnett WebP pieces are by Colin M. L. Burnett,
+GPL-2.0-or-later, copied unchanged through the research snapshot from the pinned
+application source. Diagram composition and reproduction code live with the
+study. The imported GPL text and research source notices preserve attribution
+and source access. Original article text, code and data-derived presentation
+are AGPL-3.0-only; game records and third-party annotations retain their rights.
+
+The article’s interactive boards display recorded results. They do not download
+or run Stockfish, Maia, model weights, remote fonts or a third-party service.

@@ -1,13 +1,13 @@
 {
   "repository": "https://github.com/Dash1971/mobile-maia-research",
-  "commit": "2d68849857344e102e5a1f9abaf2a6fabc9e961a",
+  "commit": "6bcbba49fdeadbd28034593578336624dbcccf26",
   "study": "studies/famous-brilliants-2026-11-28",
   "files": [
     {
       "source": "web/article-body.html",
       "target": "research-source/brilliant-study/article-body.html",
-      "bytes": 51426,
-      "sha256": "663bee4d3c5a83b779e37fdcc7464cf55bf0190f129247ab35d0a9fb2e13518d"
+      "bytes": 51585,
+      "sha256": "87794fa2c692f15cafe11f04b923dd344ad84760294a817f6f8d108e76be0d7f"
     },
     {
       "source": "web/index-card.json",

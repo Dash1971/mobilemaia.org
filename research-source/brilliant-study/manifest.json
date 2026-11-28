@@ -1,31 +1,31 @@
 {
   "repository": "https://github.com/Dash1971/mobile-maia-research",
-  "commit": "e8b853465013336271b2f4ad92d86586c8d3aaff",
+  "commit": "86853874402d992643e20b74da61da2f342c323c",
   "study": "studies/famous-brilliants-2026-11-28",
   "files": [
     {
       "source": "web/article-body.html",
       "target": "research-source/brilliant-study/article-body.html",
-      "bytes": 23969,
-      "sha256": "35439aaed1e566f065502a8f46d9d9d30b5ee65279f91230488c506baddc0efb"
+      "bytes": 34553,
+      "sha256": "f36c9ebf04c54818a5b4bc5aeb663881c1f6524b55513c8a23e595cf77d4a441"
     },
     {
       "source": "web/index-card.json",
       "target": "research-source/brilliant-study/index-card.json",
-      "bytes": 265,
-      "sha256": "dc1aa00d3ec9d93e608e6577787edaf2ba7a1bbe69fec7d7fb041783db2c129d"
+      "bytes": 256,
+      "sha256": "0aacc06a25b46efeee915bf4d682edf317648253ebdc2e15c2e2240f8f97c9b9"
     },
     {
       "source": "web/brilliant.css",
       "target": "site/research/brilliant-moves/brilliant.css",
-      "bytes": 7005,
-      "sha256": "98f454ab948e64f30911808c46af1e8d354225738c051c6c550bc73a1634762d"
+      "bytes": 8485,
+      "sha256": "1c4c227ed739162de8e8f9f57204f78266d216250f8a9668be45a29cfb58a5c8"
     },
     {
       "source": "web/brilliant.js",
       "target": "site/research/brilliant-moves/brilliant.js",
-      "bytes": 7708,
-      "sha256": "209e41a05efe028c0b44621c57001aec9ec2ec320d1fc21d733623170de7fd59"
+      "bytes": 8652,
+      "sha256": "efb5f0b257a42607cb80fb81f4a7156fe70b2798c722e2901d41b76dc7ef0755"
     },
     {
       "source": "web/results.json",
@@ -34,10 +34,34 @@
       "sha256": "134dc71578134a484a37ede33e0d3499e2231163eb0d0836f5338647894307f6"
     },
     {
+      "source": "web/online-results.json",
+      "target": "site/research/brilliant-moves/online-results.json",
+      "bytes": 91730,
+      "sha256": "ea3c56799b9ae7f587729f1453a03c4a43b74b7ce0b248bc269e34471e25d2a6"
+    },
+    {
       "source": "data/games.pgn",
       "target": "site/research/brilliant-moves/games.pgn",
       "bytes": 5417,
       "sha256": "767b7f8c0ffc1a04227df262ab8317179fbb421e68f58000518140cfc80c47d6"
+    },
+    {
+      "source": "online/review-labels.pgn",
+      "target": "site/research/brilliant-moves/online-games.pgn",
+      "bytes": 33612,
+      "sha256": "6c3b938a693af6643c84c14ffe2483efc86dc0b51b705e979520a714d658343e"
+    },
+    {
+      "source": "online/old-awards.pgn",
+      "target": "site/research/brilliant-moves/en-croissant-awards.pgn",
+      "bytes": 33420,
+      "sha256": "07a7ebe7e1123ec50c7ac31d5d0fabd228de323fd50248463626b7c2532441ec"
+    },
+    {
+      "source": "online/new-awards.pgn",
+      "target": "site/research/brilliant-moves/open-brilly-awards.pgn",
+      "bytes": 33051,
+      "sha256": "c1611bcb567885def32f0a66317c35327121368bd195da85213ae02139a283ec"
     },
     {
       "source": "GPL-2.0.txt",
@@ -104,6 +128,18 @@
       "target": "site/research/brilliant-moves/figures/levitsky-marshall-1912-046.png",
       "bytes": 47749,
       "sha256": "5ea428ed01602cba3b9356e1bab144454112e8cef43fc28e769fa7f2f6b40ab2"
+    },
+    {
+      "source": "figures/online-169812769348-053.png",
+      "target": "site/research/brilliant-moves/figures/online-169812769348-053.png",
+      "bytes": 62514,
+      "sha256": "a4ca6e70f4c5cef1a97c79c37d511cb1c64a2e303100894c76f9a793484fbfc6"
+    },
+    {
+      "source": "figures/online-170012492008-037.png",
+      "target": "site/research/brilliant-moves/figures/online-170012492008-037.png",
+      "bytes": 70168,
+      "sha256": "0dd780224a2e1e0043bf96b419ceabc76820f65909f572fb412e740c1db5be6a"
     },
     {
       "source": "figures/opera-1858-031.png",

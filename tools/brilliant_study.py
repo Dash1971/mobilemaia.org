@@ -67,7 +67,7 @@ def index_card():
     if value is None:
         return ''
     card = json.loads((SNAPSHOT / 'index-card.json').read_text())
-    return f'''<section class="research-feature famous-feature" aria-labelledby="brilliant-study-title"><div><p class="eyebrow">NEW RESEARCH · AIMING FOR 2.7</p><h2 id="brilliant-study-title">{html.escape(card['title'])}</h2><p>{html.escape(card['description'])}</p><a class="button" href="brilliant-moves/">Explore the famous games</a></div><a href="brilliant-moves/" class="feature-figure" aria-label="Explore the Brilliant-move study"><img src="brilliant-moves/figures/hero-opera.png" alt="The actual Opera Game position before Morphy’s queen sacrifice on b8." width="1280" height="720" fetchpriority="high"></a></section>'''
+    return f'''<section class="research-feature famous-feature" aria-labelledby="brilliant-study-title"><div><p class="eyebrow">NEW RESEARCH · AIMING FOR 2.7</p><h2 id="brilliant-study-title">{html.escape(card['title'])}</h2><p>{html.escape(card['description'])}</p><a class="button" href="brilliant-moves/">Read the comparison</a></div><a href="brilliant-moves/" class="feature-figure" aria-label="Explore the Brilliant-move study"><img src="brilliant-moves/figures/hero-opera.png" alt="The actual Opera Game position before Morphy’s queen sacrifice on b8." width="1280" height="720" fetchpriority="high"></a></section>'''
 
 
 def render(page):
@@ -75,7 +75,7 @@ def render(page):
     if value is None:
         return {}
     body = (SNAPSHOT / 'article-body.html').read_text().replace('__RESEARCH_COMMIT__', value['commit'])
-    text = page('Can a model spot a masterpiece?', 'We tested old and proposed Mobile Maia Brilliant classifiers on nine famous games and fourteen published landmarks. Explore the gains, misses and trade-offs.', 'research/brilliant-moves/', '../../', body)
+    text = page('Finding more brilliant moves', 'How Mobile Maia’s En Croissant-derived Brilliant rules compare with Open Brilly Finder on classical games and 42 online games, including Chessbrah examples.', 'research/brilliant-moves/', '../../', body)
     text = text.replace('</head>', '<link rel="stylesheet" href="brilliant.css"></head>')
     text = text.replace('</body>', '<script src="brilliant.js" defer></script></body>')
     text = text.replace('content="https://mobilemaia.org/assets/icon.png"', 'content="https://mobilemaia.org/research/brilliant-moves/figures/hero-opera.png"')

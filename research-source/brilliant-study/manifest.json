@@ -1,31 +1,31 @@
 {
   "repository": "https://github.com/Dash1971/mobile-maia-research",
-  "commit": "eb3b0bec4edf30beec80b9031f11bfbac1d8e754",
+  "commit": "2d68849857344e102e5a1f9abaf2a6fabc9e961a",
   "study": "studies/famous-brilliants-2026-11-28",
   "files": [
     {
       "source": "web/article-body.html",
       "target": "research-source/brilliant-study/article-body.html",
-      "bytes": 36286,
-      "sha256": "ad9aad6c5c394d0be0515a18c9db76448c9d92ff0587cea1bb0a3070df7f91a9"
+      "bytes": 51426,
+      "sha256": "663bee4d3c5a83b779e37fdcc7464cf55bf0190f129247ab35d0a9fb2e13518d"
     },
     {
       "source": "web/index-card.json",
       "target": "research-source/brilliant-study/index-card.json",
-      "bytes": 264,
-      "sha256": "f0f5fbc4fd9d8707b77f8f3d654b24168e0a07443538b45ce4fc93aa92c5c72c"
+      "bytes": 260,
+      "sha256": "49a5bfbb3c34125c990c7c4a64bea44e39284d6f7d39ca191f82b6b354646322"
     },
     {
       "source": "web/brilliant.css",
       "target": "site/research/brilliant-moves/brilliant.css",
-      "bytes": 8485,
-      "sha256": "1c4c227ed739162de8e8f9f57204f78266d216250f8a9668be45a29cfb58a5c8"
+      "bytes": 9712,
+      "sha256": "90d087d585a1a8a9a5824ad74aacc8042361125da7e9f9e43745d1f6155f1725"
     },
     {
       "source": "web/brilliant.js",
       "target": "site/research/brilliant-moves/brilliant.js",
-      "bytes": 8652,
-      "sha256": "efb5f0b257a42607cb80fb81f4a7156fe70b2798c722e2901d41b76dc7ef0755"
+      "bytes": 9452,
+      "sha256": "4c622ff34274bbe8accfe074d3ede394e09383ef97456be5860b7fc8c741cccc"
     },
     {
       "source": "web/results.json",
@@ -70,28 +70,34 @@
       "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
     },
     {
+      "source": "data/annotation-display.json",
+      "target": "site/research/brilliant-moves/annotation-sources.json",
+      "bytes": 1310,
+      "sha256": "3a76dca8f918a910c144a5f13e6ea9637133b5aefa99b9ee14dbe9e698b6315d"
+    },
+    {
       "source": "figures/byrne-fischer-1956-022.png",
       "target": "site/research/brilliant-moves/figures/byrne-fischer-1956-022.png",
-      "bytes": 62319,
-      "sha256": "36f1ba5e54872a014c4a793531389e0b00c010f8e9dfbe9e525bb96b1a4ac7ab"
+      "bytes": 64319,
+      "sha256": "d714a32ad4bdddcf554863660391e0be3faf60530402e695aec23a48adaf213c"
     },
     {
       "source": "figures/byrne-fischer-1956-034.png",
       "target": "site/research/brilliant-moves/figures/byrne-fischer-1956-034.png",
-      "bytes": 56817,
-      "sha256": "4776c5740a8310472717717189b6704db3882f4f42046a3513fcfc067b49cccc"
+      "bytes": 58838,
+      "sha256": "c2b4b78408cbda63e70b2db456fc7b0f969e085ef50f59d82c35feb1eaf25dec"
     },
     {
       "source": "figures/evergreen-1852-039.png",
       "target": "site/research/brilliant-moves/figures/evergreen-1852-039.png",
-      "bytes": 59854,
-      "sha256": "a5d418fb67b743b2a06ec1a748c2017df7142405b98b4bce654ed47d1336bcfd"
+      "bytes": 61868,
+      "sha256": "7853f9ad9d00c96c2ad420092a12d1e54894983bae3ebf4a2ae7552fab0f2ece"
     },
     {
       "source": "figures/evergreen-1852-041.png",
       "target": "site/research/brilliant-moves/figures/evergreen-1852-041.png",
-      "bytes": 59828,
-      "sha256": "29afa4d4ce0d366e26938ad6911ddab02b8a2b205bf23baebd07a81b81793cfd"
+      "bytes": 61841,
+      "sha256": "22a7d84a9458077cddf58c5bd155a8ad495eaf9d9c6f2da2011df352ba8b1794"
     },
     {
       "source": "figures/hero-opera.png",
@@ -102,74 +108,74 @@
     {
       "source": "figures/immortal-1851-043.png",
       "target": "site/research/brilliant-moves/figures/immortal-1851-043.png",
-      "bytes": 62323,
-      "sha256": "5661f5e59887e24a66635c213b9ee2d07fdce900990382538ef79c587d28b15c"
+      "bytes": 64303,
+      "sha256": "080f0b0c36de4337ab0dc891326505a18b178fab540b30941bccacabd2cfdfcc"
     },
     {
       "source": "figures/kasparov-topalov-1999-047.png",
       "target": "site/research/brilliant-moves/figures/kasparov-topalov-1999-047.png",
-      "bytes": 57883,
-      "sha256": "8eff5f26db22cd164607e011bcdc18abf955ec65e5ccb6757eda8391b7ace2e4"
+      "bytes": 59888,
+      "sha256": "1ede4ff76d6f7f60172e317404e071f25c43e38c963c9bdc895ef18a387ab0d9"
     },
     {
       "source": "figures/kasparov-topalov-1999-049.png",
       "target": "site/research/brilliant-moves/figures/kasparov-topalov-1999-049.png",
-      "bytes": 55935,
-      "sha256": "dd91e51be2e1b874c3722e3aadbdebe9851b7822735f5e844d7fd5a107fa183e"
+      "bytes": 57949,
+      "sha256": "c91bc44a652f48cbe64d8695fb99f65466aca86238ddb8fa3aa68917807ab6f5"
     },
     {
       "source": "figures/lasker-thomas-1912-021.png",
       "target": "site/research/brilliant-moves/figures/lasker-thomas-1912-021.png",
-      "bytes": 61326,
-      "sha256": "000740dd35893d8f193f5ae7a29ff30f2c30578004698c001148efed59807a93"
+      "bytes": 63302,
+      "sha256": "6778ffa10b9493cca109df755ac54d29fe77a105d7d34219557060d59d6dde63"
     },
     {
       "source": "figures/levitsky-marshall-1912-046.png",
       "target": "site/research/brilliant-moves/figures/levitsky-marshall-1912-046.png",
-      "bytes": 47749,
-      "sha256": "5ea428ed01602cba3b9356e1bab144454112e8cef43fc28e769fa7f2f6b40ab2"
+      "bytes": 49773,
+      "sha256": "437241587af39f48263dcaf670a606e7a2e6cf1ec962865232f50fa74fc9e7f7"
     },
     {
       "source": "figures/online-169812769348-053.png",
       "target": "site/research/brilliant-moves/figures/online-169812769348-053.png",
-      "bytes": 62514,
-      "sha256": "a4ca6e70f4c5cef1a97c79c37d511cb1c64a2e303100894c76f9a793484fbfc6"
+      "bytes": 64050,
+      "sha256": "28b43de175d81c645b3c07e7db4bbdd779a37becac8d4a3112282d9ca5f2c2a1"
     },
     {
       "source": "figures/online-170012492008-037.png",
       "target": "site/research/brilliant-moves/figures/online-170012492008-037.png",
-      "bytes": 70168,
-      "sha256": "0dd780224a2e1e0043bf96b419ceabc76820f65909f572fb412e740c1db5be6a"
+      "bytes": 71610,
+      "sha256": "01dbbd974b9528c44b026029e7279e526aa0139d87936b5c385efe6b2d20a682"
     },
     {
       "source": "figures/opera-1858-031.png",
       "target": "site/research/brilliant-moves/figures/opera-1858-031.png",
-      "bytes": 52766,
-      "sha256": "a8f9cc03aa32178e9aa31b49e0b933b53bcba361c332c49102ffec4659c16a5b"
+      "bytes": 54786,
+      "sha256": "4246eb91c132f905ddc4a0600990b726b55be864f60f5c6aad5d74184ce169a9"
     },
     {
       "source": "figures/rotlewi-rubinstein-1907-044.png",
       "target": "site/research/brilliant-moves/figures/rotlewi-rubinstein-1907-044.png",
-      "bytes": 61509,
-      "sha256": "4fdcd255c1ff7e18209af3894066e20c76120a9a1b6f34104f0db451c9657d4f"
+      "bytes": 63506,
+      "sha256": "a3270f0a1a9baebcd1d6e7538a83578f4401c57d6b9883aa71c116b7dd7c8f4e"
     },
     {
       "source": "figures/rotlewi-rubinstein-1907-046.png",
       "target": "site/research/brilliant-moves/figures/rotlewi-rubinstein-1907-046.png",
-      "bytes": 56191,
-      "sha256": "c514ee377fe170f79ba49f9e99378320943087c1d1be4b5ca890e1ffe504f2bf"
+      "bytes": 58182,
+      "sha256": "3f28f2ca1657ab6d5528fa314b44c021adc892d4b3aedf3f11709d07a8137a52"
     },
     {
       "source": "figures/rotlewi-rubinstein-1907-050.png",
       "target": "site/research/brilliant-moves/figures/rotlewi-rubinstein-1907-050.png",
-      "bytes": 52852,
-      "sha256": "9a6eb357bf91801fe75ec22ffe1c3ed1bebe28bb7a7cacdb22f726af247a9d95"
+      "bytes": 54875,
+      "sha256": "a1ae9c160eaf9078223c20838e6e1dfbfb7583de4b057bfd5602b481b49179a0"
     },
     {
       "source": "figures/short-timman-1991-061.png",
       "target": "site/research/brilliant-moves/figures/short-timman-1991-061.png",
-      "bytes": 56174,
-      "sha256": "9d905b4a8db1966ae73ee2e8ee9573c445c081cf4b8c5ef112746e6b923eb3bf"
+      "bytes": 58171,
+      "sha256": "782b3afb19cc3db0983abcf56fb26181d21062593aec572811b45702ac71ab5a"
     },
     {
       "source": "artwork/bB.webp",

@@ -81,6 +81,8 @@ bytes and exact generated output through the normal `--check` gate.
 The article explains the planned 2.7 adoption, measured gains and remaining
 misses. Editing the article’s canonical content belongs in the research
 repository; reimport a reviewed commit rather than changing the copied files.
+Classical examples identify the published source and show both named detectors
+in all three analysis modes; board pairs show before and after the same move.
 No engine or model runs in this viewer.
 Run `python3 tools/test_brilliant_study.py` for offline importer checks covering
 immutable references, target isolation, byte integrity and unchanged files on failure.

@@ -75,7 +75,7 @@ def render(page):
     if value is None:
         return {}
     body = (SNAPSHOT / 'article-body.html').read_text().replace('__RESEARCH_COMMIT__', value['commit'])
-    text = page('Finding more brilliant moves', 'How Mobile Maia’s En Croissant-derived Brilliant rules compare with Open Brilly Finder on classical games and 42 online games, including Chessbrah examples.', 'research/brilliant-moves/', '../../', body)
+    text = page('Finding more brilliant moves', 'How En Croissant (adapted) compares with Open Brilly Finder on classics, online games and an independent 27-game Ginger sample.', 'research/brilliant-moves/', '../../', body)
     text = text.replace('</head>', '<link rel="stylesheet" href="brilliant.css"></head>')
     text = text.replace('</body>', '<script src="brilliant.js" defer></script></body>')
     text = text.replace('content="https://mobilemaia.org/assets/icon.png"', 'content="https://mobilemaia.org/research/brilliant-moves/figures/hero-opera.png"')

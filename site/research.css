@@ -7,3 +7,6 @@
 .table-hint{display:none}@media(max-width:600px){.table-hint{display:block;margin-top:6px;color:var(--blue)}}
 
 .research-article h3{font-size:22px;line-height:1.4;letter-spacing:-.4px;margin:36px 0 18px}.research-article hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+
+/* A separately pinned new study; historical guide imports are unchanged. */
+.famous-feature{margin-bottom:2rem}

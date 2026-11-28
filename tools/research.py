@@ -15,6 +15,7 @@ import json
 import posixpath
 import re
 import xml.etree.ElementTree as ET
+import brilliant_study
 from pathlib import Path
 from urllib.parse import urlsplit
 from urllib.request import urlopen
@@ -226,9 +227,10 @@ def render(manifest):
         raise ValueError('Research index changed; review the study extraction before publishing')
     index_body = f'''<main id="main" class="container research-page">
 <header class="research-title research-index-title"><p class="eyebrow">THE QUESTIONS BEHIND THE SETTINGS</p><h1>A closer look at<br><em>human-like chess.</em></h1><p class="research-deck">Experiments into how Maia chooses moves and forecasts human results, and what that means for playing on your phone.</p><p class="research-intro">Independent research by the Mobile Maia project. Read the findings here, then follow the evidence: methods, recorded games, datasets and reproduction tools are openly available.</p></header>
+{brilliant_study.index_card()}
 <section class="research-feature" aria-labelledby="visual-guide-title"><div><p class="eyebrow">START HERE · VISUAL GUIDE</p><h2 id="visual-guide-title">Choosing Maia settings.</h2><p>What happens when you keep the opening variety and trim the least likely moves? Follow the worked Top-P example, opening comparisons and match results.</p><a class="button" href="choosing-maia-settings/">Read the visual guide <span aria-hidden="true">→</span></a></div><a href="choosing-maia-settings/" class="feature-figure" aria-label="Read the visual settings guide"><img src="figures/opening-switch.svg" alt="Full sampling for the first five moves by each side, then Temperature 1.0 and Top-P 0.95 from move 6." width="792" height="425" fetchpriority="high"></a></section>
 <section class="research-studies" aria-labelledby="studies-title"><div class="study-heading"><p class="eyebrow">FOLLOW THE EVIDENCE</p><h2 id="studies-title">The studies.</h2><p>Full reports and reproducible evidence in the research repository.</p></div>{''.join(study_html)}</section>
-<aside class="research-context research-index-context"><h2>Findings, with their limits.</h2><p>These are independent Mobile Maia experiments, not official Maia-team publications. Results describe the tested models, positions and match conditions. Stronger play does not by itself establish more human-like choices, and selected rating inputs are not calibrated competitive Elo ratings.</p><p>Research proposals and released app behavior are separate. See the <a href="https://github.com/Dash1971/maia-chess-android/releases">Stable release notes</a> and <a href="https://github.com/Dash1971/maia-chess-android-preview">experimental Preview channel</a> for implementation status.</p><p><a href="{source_url('README.md', commit)}">Browse this research snapshot ↗</a> · Source <a href="{REPO}/commit/{commit}">{commit[:7]}</a></p></aside>
+<aside class="research-context research-index-context"><h2>Findings, with their limits.</h2><p>These are independent Mobile Maia experiments, not official Maia-team publications. Results describe the tested models, positions and match conditions. Stronger play does not by itself establish more human-like choices, and selected rating inputs are not calibrated competitive Elo ratings.</p><p>Research proposals and released app behavior are separate. See the <a href="https://github.com/Dash1971/maia-chess-android/releases">Stable release notes</a> and <a href="https://github.com/Dash1971/maia-chess-android-preview">experimental Preview channel</a> for implementation status.</p><p><a href="{source_url('README.md', commit)}">Browse the earlier research snapshot ↗</a> · Source <a href="{REPO}/commit/{commit}">{commit[:7]}</a></p></aside>
 <aside class="research-context research-index-context"><h2>Try browser inference.</h2><p>The <a href="../lab/inference/">experimental inference benchmark</a> tests Maia 5M on your own device, with correctness checks and local timing results. The first CPU run downloads about 36 MB, only when you start a test. The 79M Android model is not available in the browser.</p></aside>
 </main>'''
     score = (SOURCE / 'score-reliability/REPORT.md').read_text()
@@ -243,6 +245,7 @@ def render(manifest):
 {score_content}
 <div class="research-end"><a class="text-link" href="../">← Explore the other studies</a><p>Text and original figures are published from the same pinned research snapshot. <a href="{source_url(f'{SCORE_STUDY}/README.md', commit)}">Data, methods and reproduction ↗</a></p></div></article></div></main>'''
     return {
+        **brilliant_study.render(page),
         SITE / 'research/index.html': page('Research', 'Independent Mobile Maia research into score reliability, sampling, opening variety and move history. Explore visual guides and reproducible evidence.', 'research/', '../', index_body),
         SITE / 'research/choosing-maia-settings/index.html': page('Choosing Maia settings', 'A visual guide to Temperature 1.0, Top-P 0.95 and opening variety, with measured results and links to the full Mobile Maia study.', 'research/choosing-maia-settings/', '../../', guide_body),
         SITE / 'research/score-reliability/index.html': page('Understanding Maia’s score %', 'What Maia’s expected-score percentage means, how it compares with human game results, and why individual estimates can jump after a move.', 'research/score-reliability/', '../../', score_body),

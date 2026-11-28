@@ -38,7 +38,7 @@ and checks used to complete the cutover. No paid 1984 hosting package is needed.
 
 ### Research publication
 
-`/research/` introduces the four published studies and links to locally served
+`/research/` introduces the published studies and links to locally served
 visual guides to playing settings and score reliability. The dedicated research
 repository remains the source for
 the text, figures, reports, datasets and reproduction tools. Research proposals
@@ -64,6 +64,22 @@ CI runs that check before validating and deploying `site/`. Edit the original
 guide in the research repository, then import its new commit here; do not edit
 the generated pages independently. The renderer deliberately rejects unsupported
 Markdown blocks and requires review if the study index changes shape.
+
+### Famous-game Brilliant study
+
+`/research/brilliant-moves/` is a separately pinned article and interactive
+viewer. `tools/brilliant_study.py --update FULL_RESEARCH_COMMIT_SHA` imports
+its bounded file manifest, source body, local figures/pieces and recorded
+results. It preserves the existing browser app and historical research pins.
+`tools/research.py` renders the new page/index entry and checks all imported
+bytes and exact generated output through the normal `--check` gate.
+
+The article targets a Preview 2.7 draft and reports the regression alongside
+the gains. Editing the article’s canonical content belongs in the research
+repository; reimport a reviewed commit rather than changing the copied files.
+No engine or model runs in this viewer.
+Run `python3 tools/test_brilliant_study.py` for offline importer checks covering
+immutable references, target isolation, byte integrity and unchanged files on failure.
 
 ### Browser inference prototype
 

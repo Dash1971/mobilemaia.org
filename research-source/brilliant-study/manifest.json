@@ -1,0 +1,211 @@
+{
+  "repository": "https://github.com/Dash1971/mobile-maia-research",
+  "commit": "e8b853465013336271b2f4ad92d86586c8d3aaff",
+  "study": "studies/famous-brilliants-2026-11-28",
+  "files": [
+    {
+      "source": "web/article-body.html",
+      "target": "research-source/brilliant-study/article-body.html",
+      "bytes": 23969,
+      "sha256": "35439aaed1e566f065502a8f46d9d9d30b5ee65279f91230488c506baddc0efb"
+    },
+    {
+      "source": "web/index-card.json",
+      "target": "research-source/brilliant-study/index-card.json",
+      "bytes": 265,
+      "sha256": "dc1aa00d3ec9d93e608e6577787edaf2ba7a1bbe69fec7d7fb041783db2c129d"
+    },
+    {
+      "source": "web/brilliant.css",
+      "target": "site/research/brilliant-moves/brilliant.css",
+      "bytes": 7005,
+      "sha256": "98f454ab948e64f30911808c46af1e8d354225738c051c6c550bc73a1634762d"
+    },
+    {
+      "source": "web/brilliant.js",
+      "target": "site/research/brilliant-moves/brilliant.js",
+      "bytes": 7708,
+      "sha256": "209e41a05efe028c0b44621c57001aec9ec2ec320d1fc21d733623170de7fd59"
+    },
+    {
+      "source": "web/results.json",
+      "target": "site/research/brilliant-moves/results.json",
+      "bytes": 78055,
+      "sha256": "134dc71578134a484a37ede33e0d3499e2231163eb0d0836f5338647894307f6"
+    },
+    {
+      "source": "data/games.pgn",
+      "target": "site/research/brilliant-moves/games.pgn",
+      "bytes": 5417,
+      "sha256": "767b7f8c0ffc1a04227df262ab8317179fbb421e68f58000518140cfc80c47d6"
+    },
+    {
+      "source": "GPL-2.0.txt",
+      "target": "site/research/brilliant-moves/GPL-2.0.txt",
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+    },
+    {
+      "source": "figures/byrne-fischer-1956-022.png",
+      "target": "site/research/brilliant-moves/figures/byrne-fischer-1956-022.png",
+      "bytes": 62319,
+      "sha256": "36f1ba5e54872a014c4a793531389e0b00c010f8e9dfbe9e525bb96b1a4ac7ab"
+    },
+    {
+      "source": "figures/byrne-fischer-1956-034.png",
+      "target": "site/research/brilliant-moves/figures/byrne-fischer-1956-034.png",
+      "bytes": 56817,
+      "sha256": "4776c5740a8310472717717189b6704db3882f4f42046a3513fcfc067b49cccc"
+    },
+    {
+      "source": "figures/evergreen-1852-039.png",
+      "target": "site/research/brilliant-moves/figures/evergreen-1852-039.png",
+      "bytes": 59854,
+      "sha256": "a5d418fb67b743b2a06ec1a748c2017df7142405b98b4bce654ed47d1336bcfd"
+    },
+    {
+      "source": "figures/evergreen-1852-041.png",
+      "target": "site/research/brilliant-moves/figures/evergreen-1852-041.png",
+      "bytes": 59828,
+      "sha256": "29afa4d4ce0d366e26938ad6911ddab02b8a2b205bf23baebd07a81b81793cfd"
+    },
+    {
+      "source": "figures/hero-opera.png",
+      "target": "site/research/brilliant-moves/figures/hero-opera.png",
+      "bytes": 81533,
+      "sha256": "a8effed856027847c5d68d19fa73781d89110b58921998e1c8f4eabe156450ed"
+    },
+    {
+      "source": "figures/immortal-1851-043.png",
+      "target": "site/research/brilliant-moves/figures/immortal-1851-043.png",
+      "bytes": 62323,
+      "sha256": "5661f5e59887e24a66635c213b9ee2d07fdce900990382538ef79c587d28b15c"
+    },
+    {
+      "source": "figures/kasparov-topalov-1999-047.png",
+      "target": "site/research/brilliant-moves/figures/kasparov-topalov-1999-047.png",
+      "bytes": 57883,
+      "sha256": "8eff5f26db22cd164607e011bcdc18abf955ec65e5ccb6757eda8391b7ace2e4"
+    },
+    {
+      "source": "figures/kasparov-topalov-1999-049.png",
+      "target": "site/research/brilliant-moves/figures/kasparov-topalov-1999-049.png",
+      "bytes": 55935,
+      "sha256": "dd91e51be2e1b874c3722e3aadbdebe9851b7822735f5e844d7fd5a107fa183e"
+    },
+    {
+      "source": "figures/lasker-thomas-1912-021.png",
+      "target": "site/research/brilliant-moves/figures/lasker-thomas-1912-021.png",
+      "bytes": 61326,
+      "sha256": "000740dd35893d8f193f5ae7a29ff30f2c30578004698c001148efed59807a93"
+    },
+    {
+      "source": "figures/levitsky-marshall-1912-046.png",
+      "target": "site/research/brilliant-moves/figures/levitsky-marshall-1912-046.png",
+      "bytes": 47749,
+      "sha256": "5ea428ed01602cba3b9356e1bab144454112e8cef43fc28e769fa7f2f6b40ab2"
+    },
+    {
+      "source": "figures/opera-1858-031.png",
+      "target": "site/research/brilliant-moves/figures/opera-1858-031.png",
+      "bytes": 52766,
+      "sha256": "a8f9cc03aa32178e9aa31b49e0b933b53bcba361c332c49102ffec4659c16a5b"
+    },
+    {
+      "source": "figures/rotlewi-rubinstein-1907-044.png",
+      "target": "site/research/brilliant-moves/figures/rotlewi-rubinstein-1907-044.png",
+      "bytes": 61509,
+      "sha256": "4fdcd255c1ff7e18209af3894066e20c76120a9a1b6f34104f0db451c9657d4f"
+    },
+    {
+      "source": "figures/rotlewi-rubinstein-1907-046.png",
+      "target": "site/research/brilliant-moves/figures/rotlewi-rubinstein-1907-046.png",
+      "bytes": 56191,
+      "sha256": "c514ee377fe170f79ba49f9e99378320943087c1d1be4b5ca890e1ffe504f2bf"
+    },
+    {
+      "source": "figures/rotlewi-rubinstein-1907-050.png",
+      "target": "site/research/brilliant-moves/figures/rotlewi-rubinstein-1907-050.png",
+      "bytes": 52852,
+      "sha256": "9a6eb357bf91801fe75ec22ffe1c3ed1bebe28bb7a7cacdb22f726af247a9d95"
+    },
+    {
+      "source": "figures/short-timman-1991-061.png",
+      "target": "site/research/brilliant-moves/figures/short-timman-1991-061.png",
+      "bytes": 56174,
+      "sha256": "9d905b4a8db1966ae73ee2e8ee9573c445c081cf4b8c5ef112746e6b923eb3bf"
+    },
+    {
+      "source": "artwork/bB.webp",
+      "target": "site/research/brilliant-moves/artwork/bB.webp",
+      "bytes": 2484,
+      "sha256": "58ce4edbe54dbcdce62a9fa3afcad160b743cc748ad460283dd7a73ab8f14cdf"
+    },
+    {
+      "source": "artwork/bK.webp",
+      "target": "site/research/brilliant-moves/artwork/bK.webp",
+      "bytes": 4978,
+      "sha256": "196891b5562ba8e819fdf263e1a808f06c856c12eab9756e6d953596652e292d"
+    },
+    {
+      "source": "artwork/bN.webp",
+      "target": "site/research/brilliant-moves/artwork/bN.webp",
+      "bytes": 3588,
+      "sha256": "34ee806e4e0defd1555bdb3efa1ada3973b94079b6a4637379d622e09c1b3281"
+    },
+    {
+      "source": "artwork/bP.webp",
+      "target": "site/research/brilliant-moves/artwork/bP.webp",
+      "bytes": 1382,
+      "sha256": "c878b7aa2df6920e43a94d41ac8c5fd3bec6c32dec96ea356e770bd3e8a05afc"
+    },
+    {
+      "source": "artwork/bQ.webp",
+      "target": "site/research/brilliant-moves/artwork/bQ.webp",
+      "bytes": 5294,
+      "sha256": "8375f0c06cc76156a1c9c8498a3a6b5b86ed9e502351cbaa59340faeab055f2b"
+    },
+    {
+      "source": "artwork/bR.webp",
+      "target": "site/research/brilliant-moves/artwork/bR.webp",
+      "bytes": 1130,
+      "sha256": "79a2ed267a8c25265f1637955d38d727cb8e6475b2f25d9f8fbf80426bc27ba4"
+    },
+    {
+      "source": "artwork/wB.webp",
+      "target": "site/research/brilliant-moves/artwork/wB.webp",
+      "bytes": 3886,
+      "sha256": "6367852504d5a8db25c429995ee4f87d9c6c6117c33d3996d7f177ac17d6b117"
+    },
+    {
+      "source": "artwork/wK.webp",
+      "target": "site/research/brilliant-moves/artwork/wK.webp",
+      "bytes": 4384,
+      "sha256": "491992c8eb9897bcee3d0abf0d5157fd40285b048090142ea791fad8fcda5360"
+    },
+    {
+      "source": "artwork/wN.webp",
+      "target": "site/research/brilliant-moves/artwork/wN.webp",
+      "bytes": 4326,
+      "sha256": "b7807c6f8d80bdbf4443d5f24a7c744b0b19dbee818cd81432e9d0a3f8557ab3"
+    },
+    {
+      "source": "artwork/wP.webp",
+      "target": "site/research/brilliant-moves/artwork/wP.webp",
+      "bytes": 2672,
+      "sha256": "1c3576784772538c21a3dd7cd38c23bb919521b445a0172f8606fd992e7c5a9b"
+    },
+    {
+      "source": "artwork/wQ.webp",
+      "target": "site/research/brilliant-moves/artwork/wQ.webp",
+      "bytes": 5814,
+      "sha256": "cdb9a4fe98e1eed6a367857817e389ec0231e94c1df58a95c6da848ed4e24768"
+    },
+    {
+      "source": "artwork/wR.webp",
+      "target": "site/research/brilliant-moves/artwork/wR.webp",
+      "bytes": 1286,
+      "sha256": "b69bec09fdc4ea127169482f012aa167293fcb90e13de18d5cce37c340d8e76e"
+    }
+  ]
+}

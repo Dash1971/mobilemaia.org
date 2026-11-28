@@ -69,7 +69,8 @@ Markdown blocks and requires review if the study index changes shape.
 
 `/research/brilliant-moves/` introduces Mobile Maia, its existing En
 Croissant-derived detector and Open Brilly Finder, then compares nine classical
-games and 42 online games, including two Chessbrah examples. It is a separately
+games and 42 online games, including two Chessbrah examples. A separate
+27-game Ginger sample checks the result outside the published development data. It is a separately
 pinned article and interactive viewer.
 `tools/brilliant_study.py --update FULL_RESEARCH_COMMIT_SHA` imports
 its bounded file manifest, source body, local figures/pieces and recorded
